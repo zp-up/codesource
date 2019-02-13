@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context="internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.AfterSaleFormSubmitActivity">
+    <include layout="@layout/status_bar_layout"></include>
+    <RelativeLayout
+        android:id="@+id/rl_header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x50"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="@dimen/x35"
+            android:layout_height="@dimen/x15"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x15"
+            android:src="@mipmap/icon_black_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="填写退货信息"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x14" />
+    </RelativeLayout>
+    <View
+        android:background="@color/gainsboro"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x10"></View>
+    <TextView
+        android:layout_marginTop="@dimen/x10"
+        android:layout_marginLeft="@dimen/x15"
+        android:text="退货信息"
+        android:textSize="@dimen/x13"
+        android:textColor="@color/textColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ScrollView
+        android:layout_marginTop="@dimen/x10"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <include layout="@layout/item_after_sale_confirm_goods_layout"></include>
+                <include layout="@layout/item_after_sale_confirm_goods_layout"></include>
+                <include layout="@layout/item_after_sale_confirm_goods_layout"></include>
+            </LinearLayout>
+            <RelativeLayout
+                android:id="@+id/rl_reason_select"
+                android:background="@drawable/shape_of_verify_code_btn"
+                android:layout_marginRight="@dimen/x15"
+                android:layout_marginLeft="@dimen/x15"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x45">
+                <TextView
+                    android:id="@+id/tv_reason_text"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:text="包装破碎"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/x12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/x10"
+                    android:src="@mipmap/icon_class_down"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="@dimen/x15"
+                    android:layout_height="@dimen/x15" />
+            </RelativeLayout>
+            <EditText
+                android:padding="@dimen/x6"
+                android:textSize="@dimen/x12"
+                android:gravity="start"
+                android:layout_marginTop="@dimen/x10"
+                android:layout_marginRight="@dimen/x15"
+                android:layout_marginLeft="@dimen/x15"
+                android:background="@drawable/shape_of_verify_code_btn"
+                android:lines="10"
+                android:textColorHint="@color/gray"
+                android:hint="为尽快处理你的售后申请，请填写详细描述(10-300字)"
+                android:textColor="@color/gray"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginBottom="@dimen/x40"
+                android:text="提交"
+                android:gravity="center"
+                android:textSize="@dimen/x14"
+                android:textColor="@color/white"
+                android:layout_marginTop="@dimen/x40"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/red"
+                android:layout_width="@dimen/x80"
+                android:layout_height="@dimen/x40" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TimerView">
+        <attr name="iradius" format="dimension"/>
+        <attr name="ibackground" format="color"/>
+        <attr name="idotColor" format="color"/>
+        <attr name="itextColor" format="color"/>
+        <attr name="itextSize" format="dimension"/>
+    </declare-styleable>
+    <declare-styleable name="RatingView">
+        <attr name="is_able" format="boolean"/>
+        <attr name="drawable_margin" format="dimension" />
+        <attr name="drawable_size" format="dimension"/>
+        <attr name="max_count" format="integer" />
+        <attr name="rating" format="float" />
+        <attr name="is_indicator" format="boolean" />
+        <attr name="drawable_empty" format="reference" />
+        <attr name="drawable_filled" format="reference" />
+        <attr name="drawable_half" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="WarpLinearLayout">
+        <attr name="grivate" format="enum"><!--对齐方式 !-->
+            <enum name="right" value="0"></enum>
+            <enum name="left" value="1"></enum>
+            <enum name="center" value="2"></enum>
+        </attr>
+        <attr name="horizontal_Space" format="dimension"></attr>
+        <attr name="vertical_Space" format="dimension"></attr>
+        <attr name="isFull" format="boolean"></attr>
+    </declare-styleable>
+    <declare-styleable name="Rotate3dAnimation">
+        <attr name="rollType" format="enum">
+            <enum name="x" value="0"/>
+            <enum name="y" value="1"/>
+            <enum name="z" value="2"/>
+        </attr>
+        <attr name="fromDeg" format="float" />
+        <attr name="toDeg" format="float" />
+        <attr name="pivotX" format="fraction"/>
+        <attr name="pivotY" format="fraction" />
+    </declare-styleable>
+</resources>

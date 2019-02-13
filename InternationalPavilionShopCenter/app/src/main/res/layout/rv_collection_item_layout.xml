@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x100">
+        <ImageView
+            android:id="@+id/iv_goods_pic"
+            android:src="@drawable/bg_home_lay10_1"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_gravity="center_vertical"
+            android:layout_width="@dimen/x80"
+            android:layout_height="@dimen/x80" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_marginRight="@dimen/x10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_goods_name"
+                    android:ellipsize="end"
+                    android:text="雅诗兰黛新沁水粉底液雅诗兰黛新沁水粉底液"
+                    android:textColor="#636363"
+                    android:textSize="@dimen/x14"
+                    android:lines="2"
+                    android:layout_marginTop="@dimen/x10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tv_goods_spec"
+                    android:ellipsize="end"
+                    android:text="SPF20/SP+++"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/x13"
+                    android:lines="1"
+                    android:layout_marginTop="@dimen/x5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tv_goods_price"
+                    android:ellipsize="end"
+                    android:text="￥320.00"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/x12"
+                    android:lines="1"
+                    android:layout_marginTop="@dimen/x5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/tv_to_buy"
+                android:layout_marginBottom="@dimen/x10"
+                android:layout_marginRight="@dimen/x15"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:background="@drawable/shape_of_verify_code_btn"
+                android:textSize="@dimen/x12"
+                android:textColor="@color/black"
+                android:text="去购买"
+                android:layout_width="@dimen/x70"
+                android:layout_height="@dimen/x25" />
+        </RelativeLayout>
+    </LinearLayout>
+    <View
+        android:background="@color/gainsboro"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x10"></View>
+</LinearLayout>

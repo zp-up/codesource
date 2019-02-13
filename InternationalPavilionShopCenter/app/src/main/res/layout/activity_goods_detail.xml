@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:id="@+id/rl_parent"
+    android:orientation="vertical"
+    tools:context="internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.GoodsDetailActivity">
+
+    <include layout="@layout/status_bar_layout" android:id="@+id/status_bar"></include>
+
+    <RelativeLayout
+        android:layout_below="@+id/status_bar"
+        android:id="@+id/rl_header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x50"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="@dimen/x35"
+            android:layout_height="@dimen/x15"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x15"
+            android:src="@mipmap/icon_black_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="商品详情"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x14" />
+    </RelativeLayout>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/view_line"
+        android:layout_below="@+id/rl_header">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+                <!--广告-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed">
+
+                    <include layout="@layout/rv_goods_detail_lay1"></include>
+
+                    <include layout="@layout/rv_goods_detail_layout2"></include>
+
+                    <include layout="@layout/rv_goods_detail_layout3"></include>
+                </LinearLayout>
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+            <com.flyco.tablayout.SlidingTabLayout
+                android:id="@+id/slidingTabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom"
+                android:background="@color/white"
+                app:tl_indicator_color="@color/red"
+                app:tl_indicator_height="2dp"
+                app:tl_indicator_width="70dp"
+                app:tl_indicator_width_equal_title="false"
+                app:tl_tab_space_equal="true"
+                app:tl_textSelectColor="@color/red"
+                app:tl_textUnselectColor="@color/gray"
+                app:tl_textsize="16sp"
+                app:tl_underline_color="@color/gainsboro"
+                app:tl_underline_gravity="BOTTOM"
+                app:tl_underline_height="0.7dp" />
+
+
+        </android.support.design.widget.AppBarLayout>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        </android.support.v4.view.ViewPager>
+    </android.support.design.widget.CoordinatorLayout>
+
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"
+        android:layout_above="@+id/ll_bottom"
+        android:background="@color/gainsboro"></View>
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x40"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="@dimen/x18"
+                    android:layout_height="@dimen/x18"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/icon_goods_detail_service" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="@dimen/x1"
+                android:layout_height="match_parent"
+                android:background="@color/gainsboro"></View>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="@dimen/x18"
+                    android:layout_height="@dimen/x18"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/icon_goods_detail_cart" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="@dimen/x1"
+                android:layout_height="match_parent"
+                android:background="@color/gainsboro"></View>
+
+            <RelativeLayout
+                android:id="@+id/rl_add_to_collection"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/iv_collection"
+                    android:layout_width="@dimen/x18"
+                    android:layout_height="@dimen/x18"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/icon_goods_detail_collection" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/x1"
+            android:layout_height="match_parent"
+            android:background="@color/gainsboro"></View>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_buy_immediately"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="立即购买"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/x14" />
+
+            <TextView
+                android:id="@+id/tv_add_to_cart"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/red"
+                android:gravity="center"
+                android:text="加入购物车"
+                android:textColor="@color/white"
+                android:textSize="@dimen/x14" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

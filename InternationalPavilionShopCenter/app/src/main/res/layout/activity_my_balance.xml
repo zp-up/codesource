@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context="internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.MyBalanceActivity">
+    <include layout="@layout/status_bar_layout"></include>
+    <RelativeLayout
+        android:id="@+id/rl_header"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x50">
+        <ImageView
+            android:id="@+id/iv_back"
+            android:src="@mipmap/icon_black_back"
+            android:layout_marginLeft="@dimen/x15"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/x35"
+            android:layout_height="@dimen/x15" />
+        <TextView
+            android:layout_centerInParent="true"
+            android:text="我的零钱"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <View
+        android:background="#c0c0c0"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"></View>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_marginTop="@dimen/x80"
+            android:orientation="vertical"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_gravity="center_horizontal"
+                android:src="@mipmap/icon_my_balance"
+                android:layout_width="@dimen/x100"
+                android:layout_height="@dimen/x100" />
+            <TextView
+                android:layout_marginTop="@dimen/x20"
+                android:layout_gravity="center_horizontal"
+                android:text="我的零钱"
+                android:textColor="@color/black"
+                android:textSize="@dimen/x16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_balance"
+                android:layout_marginTop="@dimen/x10"
+                android:layout_gravity="center_horizontal"
+                android:text="￥0.00"
+                android:textColor="@color/black"
+                android:textSize="@dimen/x26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

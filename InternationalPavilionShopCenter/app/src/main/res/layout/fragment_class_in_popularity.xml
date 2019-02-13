@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.scwang.smartrefresh.layout.header.ClassicsHeader
+                android:id="@+id/ch_header"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x100"
+                app:layout_srlBackgroundColor="#bebebe"
+                app:srlTextSizeTitle="15dp">
+            </com.scwang.smartrefresh.layout.header.ClassicsHeader>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_class_in_popularity"
+                android:layout_marginBottom="@dimen/x10"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+        <TextView
+            android:id="@+id/tv_remind"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="@dimen/x2"
+            android:background="#F5DEB3"
+            android:gravity="center"
+            android:paddingBottom="@dimen/x2"
+            android:paddingTop="@dimen/x2"
+            android:text="到底了，别扒了"
+            android:textSize="12dp"
+            android:visibility="gone" />
+    </RelativeLayout>
+</LinearLayout>

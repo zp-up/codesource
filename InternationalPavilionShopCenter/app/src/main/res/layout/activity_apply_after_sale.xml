@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context="internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.ApplyAfterSaleActivity">
+    <LinearLayout
+        android:layout_above="@+id/rl_bottom"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include layout="@layout/status_bar_layout"></include>
+        <RelativeLayout
+            android:id="@+id/rl_header"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x50"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="@dimen/x35"
+                android:layout_height="@dimen/x15"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x15"
+                android:src="@mipmap/icon_black_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="申请退货"
+                android:textColor="@color/black"
+                android:textSize="@dimen/x14" />
+            <TextView
+                android:id="@+id/tv_next"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x15"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="下一步"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/x14" />
+        </RelativeLayout>
+        <View
+            android:background="@color/gainsboro"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x10"></View>
+        <LinearLayout
+            android:layout_marginTop="@dimen/x10"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <View
+                android:layout_gravity="center_vertical"
+                android:background="@color/gainsboro"
+                android:layout_width="@dimen/x60"
+                android:layout_height="@dimen/x1"></View>
+            <TextView
+                android:layout_marginRight="@dimen/x10"
+                android:layout_marginLeft="@dimen/x10"
+                android:text="选择要退货的商品和数量"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/x12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <View
+                android:layout_gravity="center_vertical"
+                android:background="@color/gainsboro"
+                android:layout_width="@dimen/x60"
+                android:layout_height="@dimen/x1"></View>
+        </LinearLayout>
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.scwang.smartrefresh.layout.header.ClassicsHeader
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></com.scwang.smartrefresh.layout.header.ClassicsHeader>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_goods_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    </LinearLayout>
+    <RelativeLayout
+        android:background="@color/white"
+        android:id="@+id/rl_bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x45">
+        <View
+            android:background="@color/gainsboro"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x1"></View>
+        <LinearLayout
+            android:layout_centerVertical="true"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_all_selected"
+                android:src="@mipmap/icon_cart_box_unselected"
+                android:layout_marginLeft="@dimen/x20"
+                android:layout_centerVertical="true"
+                android:layout_width="@dimen/x15"
+                android:layout_height="@dimen/x15" />
+            <TextView
+                android:text="全选"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/x13"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_toRightOf="@+id/iv_all_selected"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <TextView
+            android:layout_marginRight="@dimen/x15"
+            android:layout_alignParentRight="true"
+            android:text="总计:￥700.00"
+            android:textColor="@color/red"
+            android:textSize="@dimen/x13"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</RelativeLayout>

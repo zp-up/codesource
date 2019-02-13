@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context="internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.MyGroupActivity">
+    <include layout="@layout/status_bar_layout"></include>
+    <RelativeLayout
+        android:id="@+id/rl_header"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x50">
+        <ImageView
+            android:id="@+id/iv_back"
+            android:src="@mipmap/icon_black_back"
+            android:layout_marginLeft="@dimen/x15"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/x35"
+            android:layout_height="@dimen/x15" />
+        <TextView
+            android:layout_centerInParent="true"
+            android:text="我的拼团"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <View
+        android:background="#c0c0c0"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"></View>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:id="@+id/tv_join_group_success"
+            android:text="拼团成功"
+            android:textColor="#ff7d66"
+            android:textSize="14sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:id="@+id/tv_join_group_failed"
+            android:text="拼团失败"
+            android:textColor="#636363"
+            android:textSize="14sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x2">
+        <View
+            android:id="@+id/v_scroll"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/shape_of_view"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"></View>
+        <View
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:visibility="invisible"
+            android:background="@drawable/shape_of_view"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"></View>
+
+    </LinearLayout>
+    <View
+        android:background="@color/gainsboro"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x10"></View>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_group_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+</LinearLayout>

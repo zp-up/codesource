@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.PayResultActivity">
+
+    <include
+        android:id="@+id/include_status_bar"
+        layout="@layout/status_bar_layout"></include>
+
+    <RelativeLayout
+        android:id="@+id/rl_header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x50"
+        android:layout_below="@+id/include_status_bar"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="@dimen/x35"
+            android:layout_height="@dimen/x15"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x15"
+            android:src="@mipmap/icon_black_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="支付结果"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x14" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"
+        android:background="#c0c0c0"></View>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/x20"
+        android:text="支付成功"
+        android:textColor="@color/mediumaquamarine"
+        android:textSize="@dimen/x25" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/x15"
+        android:text="确认收货后,将获得24积分"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/x14" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/x40"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_of_verify_code_btn"
+            android:paddingBottom="@dimen/x3"
+            android:paddingLeft="@dimen/x10"
+            android:paddingRight="@dimen/x10"
+            android:paddingTop="@dimen/x3"
+            android:text="查看订单"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/x13" />
+
+        <TextView
+            android:layout_marginLeft="@dimen/x50"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_of_verify_code_btn"
+            android:paddingBottom="@dimen/x3"
+            android:paddingLeft="@dimen/x10"
+            android:paddingRight="@dimen/x10"
+            android:paddingTop="@dimen/x3"
+            android:text="  继续逛  "
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/x13" />
+    </LinearLayout>
+    <View
+        android:layout_marginTop="@dimen/x20"
+        android:background="@color/gainsboro"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x10"></View>
+    <LinearLayout
+        android:layout_marginRight="@dimen/x20"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/x25"
+        android:layout_marginTop="@dimen/x25"
+        android:layout_marginLeft="@dimen/x40"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="李某某"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/x13" />
+            <TextView
+                android:layout_marginLeft="@dimen/x20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="18583861496"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/x13" />
+        </LinearLayout>
+        <TextView
+            android:layout_marginTop="@dimen/x6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="四川省成都市武侯区人民南路三段36号3号"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/x13" />
+        <LinearLayout
+            android:layout_marginTop="@dimen/x6"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="实付款:"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/x13" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥814.00"
+                android:textColor="@color/red"
+                android:textSize="@dimen/x13" />
+        </LinearLayout>
+    </LinearLayout>
+    <View
+        android:background="@color/gainsboro"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></View>
+</LinearLayout>

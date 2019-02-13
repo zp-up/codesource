@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/ll_header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x75">
+        <View
+            android:background="#c0c0c0"
+            android:id="@+id/view_status_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x20"></View>
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x45"
+            android:layout_marginTop="@dimen/x5">
+
+            <RelativeLayout
+                android:id="@+id/rl_search_container"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/x30"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x20"
+                android:layout_marginRight="@dimen/x10"
+                android:layout_toLeftOf="@+id/rl_message_container"
+                android:background="@drawable/shape_of_search_cotainer_gray">
+
+                <ImageView
+                    android:id="@+id/iv_search_icon"
+                    android:layout_width="@dimen/x15"
+                    android:layout_height="@dimen/x15"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:src="@mipmap/icon_search" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_toRightOf="@+id/iv_search_icon"
+                    android:text="请输入你想找的商品"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/x12" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_message_container"
+                android:layout_width="@dimen/x50"
+                android:layout_height="@dimen/x50"
+                android:layout_alignParentRight="true">
+
+                <ImageView
+                    android:id="@+id/iv_message"
+                    android:layout_width="@dimen/x18"
+                    android:layout_height="@dimen/x18"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/x15"
+                    android:src="@mipmap/icon_notice_message" />
+
+                <TextView
+                    android:layout_width="@dimen/x15"
+                    android:layout_height="@dimen/x15"
+                    android:layout_marginLeft="@dimen/x13"
+                    android:layout_marginTop="@dimen/x10"
+                    android:background="@drawable/shape_of_notice_num"
+                    android:gravity="center"
+                    android:text="10"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/x8" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginRight="@dimen/x80"
+        android:layout_marginLeft="@dimen/x80"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:id="@+id/tv_all_class"
+            android:text="分类"
+            android:textColor="#ff7d66"
+            android:textSize="14sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:id="@+id/tv_brand"
+            android:text="品牌"
+            android:textColor="#636363"
+            android:textSize="14sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:id="@+id/tv_popularity"
+            android:text="人气榜"
+            android:textColor="#636363"
+            android:textSize="14sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginRight="@dimen/x80"
+        android:layout_marginLeft="@dimen/x80"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x2">
+        <View
+            android:id="@+id/v_scroll"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/shape_of_view"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"></View>
+        <View
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:visibility="invisible"
+            android:background="@drawable/shape_of_view"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"></View>
+        <View
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:visibility="invisible"
+            android:background="@drawable/shape_of_view"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"></View>
+
+    </LinearLayout>
+    <View
+        android:background="@color/gainsboro"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"></View>
+   <android.support.v4.view.ViewPager
+       android:id="@+id/vp_class_container"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+</LinearLayout>

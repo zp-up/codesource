@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_marginLeft="@dimen/x20"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x100">
+        <ImageView
+            android:src="@mipmap/icon_mine_true_name_confirm"
+            android:layout_marginTop="@dimen/x23"
+            android:layout_width="@dimen/x15"
+            android:layout_height="@dimen/x15" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_receive_name"
+                android:gravity="right"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="李某某"
+                android:textSize="@dimen/x13"
+                android:textColor="#636363"
+                android:layout_width="@dimen/x50"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_is_default"
+                android:layout_gravity="end"
+                android:paddingBottom="@dimen/x2"
+                android:paddingTop="@dimen/x2"
+                android:background="@drawable/shape_of_address_default_bg"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/x15"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="默认"
+                android:textSize="@dimen/x13"
+                android:textColor="@color/red"
+                android:layout_width="@dimen/x40"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/x10"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_phone_number"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="185****1496"
+                android:textSize="@dimen/x13"
+                android:textColor="@color/gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_detail_place"
+                android:ellipsize="end"
+                android:lines="2"
+                android:layout_marginTop="@dimen/x6"
+                android:text="四川省成都市武侯区理想中心1307"
+                android:textSize="@dimen/x12"
+                android:textColor="@color/gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/iv_to_edit_place"
+            android:src="@mipmap/icon_address_edit"
+            android:layout_marginTop="@dimen/x15"
+            android:layout_marginRight="@dimen/x10"
+            android:layout_width="@dimen/x20"
+            android:layout_height="@dimen/x25" />
+    </LinearLayout>
+    <View
+        android:layout_marginLeft="@dimen/x15"
+        android:background="@color/gainsboro"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"></View>
+</LinearLayout>

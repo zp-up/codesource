@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/iv_goods_pic"
+        android:layout_marginRight="@dimen/x10"
+        android:src="@drawable/bg_home_lay10_1"
+        android:layout_marginBottom="@dimen/x10"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginTop="@dimen/x10"
+        android:layout_width="@dimen/x65"
+        android:layout_height="@dimen/x65" />
+    <LinearLayout
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/x10"
+        android:layout_marginTop="@dimen/x10"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tv_goods_name"
+            android:layout_marginRight="@dimen/x6"
+            android:text="Dior迪奥小姐花漾香水"
+            android:textSize="@dimen/x12"
+            android:textColor="@color/black"
+            android:ellipsize="end"
+            android:lines="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_goods_spec"
+            android:layout_marginTop="@dimen/x6"
+            android:layout_marginRight="@dimen/x6"
+            android:text="45ml/瓶"
+            android:textSize="@dimen/x12"
+            android:textColor="@color/gray"
+            android:ellipsize="end"
+            android:lines="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_marginTop="@dimen/x10"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_goods_price"
+                android:layout_marginRight="@dimen/x6"
+                android:text="￥814.00"
+                android:textSize="@dimen/x12"
+                android:textColor="@color/black"
+                android:ellipsize="end"
+                android:lines="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_banded_price"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/x6"
+                android:text="税费:￥114.00"
+                android:textSize="@dimen/x10"
+                android:textColor="@color/gray"
+                android:ellipsize="end"
+                android:lines="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_goods_count"
+        android:layout_marginTop="@dimen/x10"
+        android:layout_marginRight="@dimen/x10"
+        android:text="x1"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/x12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>

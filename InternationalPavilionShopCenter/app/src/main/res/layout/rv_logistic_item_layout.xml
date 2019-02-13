@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:layout_height="@dimen/x100">
+        <RelativeLayout
+            android:id="@+id/rl_line"
+            android:layout_marginLeft="@dimen/x6"
+            android:layout_width="@dimen/x30"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_centerHorizontal="true"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <View
+                    android:id="@+id/view_1"
+                    android:visibility="invisible"
+                    android:background="@color/gainsboro"
+                    android:layout_weight="1"
+                    android:layout_width="@dimen/x1"
+                    android:layout_height="0dp"></View>
+                <View
+                    android:id="@+id/view_2"
+                    android:background="@color/gainsboro"
+                    android:layout_weight="1"
+                    android:layout_width="@dimen/x1"
+                    android:layout_height="0dp"></View>
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/iv_delivary_icon"
+                android:src="@mipmap/icon_yuan_all"
+                android:layout_centerInParent="true"
+                android:layout_width="@dimen/x15"
+                android:layout_height="@dimen/x15" />
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_marginRight="@dimen/x10"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tv_content"
+                android:text="商品运输中,即将到达发货仓库"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/x14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_marginTop="@dimen/x6"
+                android:text="2018-12-30 13:40:23"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/x12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+    <View
+        android:layout_marginLeft="@dimen/x36"
+        android:background="@color/gainsboro"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"></View>
+</LinearLayout>

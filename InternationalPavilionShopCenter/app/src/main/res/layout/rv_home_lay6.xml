@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+    <View
+        android:layout_marginTop="@dimen/x15"
+        android:background="@color/gainsboro"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x10" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x60">
+        <View
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@color/gainsboro"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/x1"></View>
+        <TextView
+            android:paddingRight="@dimen/x30"
+            android:paddingBottom="@dimen/x6"
+            android:paddingTop="@dimen/x6"
+            android:paddingLeft="@dimen/x30"
+            android:text="海外直邮"
+            android:background="@drawable/shape_of_text_bg"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x14"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@color/gainsboro"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/x1"></View>
+    </LinearLayout>
+    <TextView
+        android:layout_marginBottom="@dimen/x15"
+        android:text="折扣立即享   惊喜没时差"
+        android:textSize="@dimen/x14"
+        android:textColor="@color/gray"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x20" />
+    <RelativeLayout
+        android:id="@+id/rl_to_overseas_goods_list"
+        android:layout_marginBottom="@dimen/x10"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x120">
+        <ImageView
+            android:layout_marginRight="@dimen/x10"
+            android:layout_marginLeft="@dimen/x10"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_home_lay6_1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_marginBottom="@dimen/x15"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x130">
+        <HorizontalScrollView
+            android:layout_marginRight="@dimen/x6"
+            android:layout_marginLeft="@dimen/x6"
+            android:scrollbars="none"
+            android:id="@+id/hsView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:id="@+id/ll_goods_container"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+    <View
+        android:background="@color/gainsboro"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x10" />
+</LinearLayout>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x35">
+        <TextView
+            android:id="@+id/tv_title"
+            android:textColor="@color/textColor"
+            android:text="限时购"
+            android:textSize="@dimen/x14"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.TimerView
+            android:id="@+id/tv_count_down"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/tv_title"
+            android:layout_marginLeft="@dimen/x15"
+            android:layout_marginBottom="@dimen/x8"
+            android:layout_marginTop="@dimen/x5"
+            android:layout_marginRight="@dimen/x5"
+            app:itextColor="@color/white"
+            app:iradius="6dp"
+            app:idotColor="@color/black"
+            app:ibackground="@color/black"
+            app:itextSize="13dp"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:id="@+id/ll_limit_time_more"
+            android:layout_marginRight="@dimen/x15"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="更多 >"
+                android:textSize="@dimen/x14"
+                android:textColor="@color/gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x130">
+        <HorizontalScrollView
+            android:layout_marginRight="@dimen/x6"
+            android:layout_marginLeft="@dimen/x6"
+            android:scrollbars="none"
+            android:id="@+id/hsView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:id="@+id/ll_goods_container"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+</LinearLayout>

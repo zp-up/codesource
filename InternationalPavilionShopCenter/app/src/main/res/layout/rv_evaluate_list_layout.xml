@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+    <View
+        android:layout_marginLeft="@dimen/x15"
+        android:background="#e0e0e0"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"></View>
+    <LinearLayout
+        android:layout_marginTop="@dimen/x15"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_head"
+            android:src="@drawable/bg_home_lay10_1"
+            android:layout_marginLeft="@dimen/x15"
+            android:layout_width="@dimen/x40"
+            android:layout_height="@dimen/x40" />
+        <TextView
+            android:id="@+id/tv_nick_name"
+            android:layout_marginLeft="@dimen/x10"
+            android:text="风起稻香"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/x14"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_insert_time"
+        android:layout_marginTop="@dimen/x6"
+        android:layout_marginLeft="@dimen/x20"
+        android:text="2018.08.21 14:22"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/x10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_evaluate_content"
+        android:layout_marginRight="@dimen/x15"
+        android:layout_marginBottom="@dimen/x10"
+        android:layout_marginTop="@dimen/x12"
+        android:layout_marginLeft="@dimen/x20"
+        android:text="如同一袭繁花缀饰的礼裙。清新花香调， 诠释Dior迪奥先生对花卉的挚爱。牡丹与大马士革玫瑰谐香，邂逅卡拉布里亚佛手柑，白麝香尾调曼妙悠扬。清新春日花束，献给优雅灵动的Dior迪奥小姐。"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/x11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:id="@+id/ll_image_container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x110">
+        <HorizontalScrollView
+            android:layout_marginRight="@dimen/x6"
+            android:layout_marginLeft="@dimen/x15"
+            android:scrollbars="none"
+            android:id="@+id/hsView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:id="@+id/ll_goods_container"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/ll_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context="internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.RealNameAuthenticationActivity">
+    <include layout="@layout/status_bar_layout"></include>
+    <RelativeLayout
+        android:id="@+id/rl_header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x50"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="@dimen/x35"
+            android:layout_height="@dimen/x15"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x15"
+            android:src="@mipmap/icon_black_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="实名认证"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x14" />
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x45">
+                <TextView
+                    android:layout_marginLeft="@dimen/x20"
+                    android:text="证件类型"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/x13"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/x20"
+                    android:text="身份证"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/x13"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+            <View
+                android:background="@color/gainsboro"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"></View>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x45">
+                <TextView
+                    android:layout_marginLeft="@dimen/x20"
+                    android:text="真实姓名"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/x13"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/x20"
+                    android:text="由系统自动识别"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/x13"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+            <View
+                android:background="@color/gainsboro"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"></View>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x45">
+                <TextView
+                    android:layout_marginLeft="@dimen/x20"
+                    android:text="证件号码"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/x13"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/x20"
+                    android:text="由系统自动识别"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/x13"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+            <View
+                android:background="@color/gainsboro"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"></View>
+            <RelativeLayout
+                android:layout_marginRight="@dimen/x40"
+                android:layout_marginLeft="@dimen/x40"
+                android:layout_marginTop="@dimen/x15"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x140">
+                <ImageView
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/icon_idcard_off"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <RelativeLayout
+                    android:id="@+id/rl_add_front"
+                    android:background="@drawable/shape_of_idcard_select_bg"
+                    android:layout_centerInParent="true"
+                    android:layout_width="@dimen/x60"
+                    android:layout_height="@dimen/x60">
+                    <TextView
+                        android:layout_centerInParent="true"
+                        android:text="请选择"
+                        android:textSize="@dimen/x14"
+                        android:textColor="@color/gray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_marginRight="@dimen/x40"
+                android:layout_marginLeft="@dimen/x40"
+                android:layout_marginTop="@dimen/x15"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x140">
+                <ImageView
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/icon_idcard_on"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <RelativeLayout
+                    android:id="@+id/rl_add_back"
+                    android:background="@drawable/shape_of_idcard_select_bg"
+                    android:layout_centerInParent="true"
+                    android:layout_width="@dimen/x60"
+                    android:layout_height="@dimen/x60">
+                    <TextView
+                        android:layout_centerInParent="true"
+                        android:text="请选择"
+                        android:textSize="@dimen/x14"
+                        android:textColor="@color/gray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

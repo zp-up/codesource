@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:visibility="visible"
+        android:id="@+id/rl_no_evaluate"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x80">
+        <TextView
+            android:text="暂无用户评论信息"
+            android:textSize="@dimen/x14"
+            android:textColor="@color/gray"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+   <LinearLayout
+       android:visibility="gone"
+       android:id="@+id/ll_item_evaluate"
+       android:orientation="vertical"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+       <RelativeLayout
+           android:id="@+id/rl_to_evaluate_list"
+           android:layout_width="match_parent"
+           android:layout_height="@dimen/x40">
+
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_centerVertical="true"
+               android:layout_marginLeft="@dimen/x15"
+               android:orientation="horizontal">
+
+               <TextView
+                   android:id="@+id/tv_evaluate_total"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="用户评价 (0)"
+                   android:textColor="@color/textColor"
+                   android:textSize="@dimen/x12" />
+           </LinearLayout>
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="@dimen/x40"
+               android:layout_alignParentRight="true"
+               android:layout_centerVertical="true"
+               android:layout_marginLeft="@dimen/x15"
+               android:layout_marginRight="@dimen/x15"
+               android:gravity="center_vertical"
+               android:text=">"
+               android:textColor="@color/textColor"
+               android:textSize="@dimen/x16" />
+       </RelativeLayout>
+       <View
+           android:layout_marginLeft="@dimen/x15"
+           android:background="#e0e0e0"
+           android:layout_width="match_parent"
+           android:layout_height="@dimen/x1"></View>
+       <LinearLayout
+           android:layout_marginTop="@dimen/x15"
+           android:orientation="horizontal"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content">
+           <de.hdodenhof.circleimageview.CircleImageView
+               android:id="@+id/civ_head"
+               android:src="@drawable/bg_home_lay10_1"
+               android:layout_marginLeft="@dimen/x15"
+               android:layout_width="@dimen/x40"
+               android:layout_height="@dimen/x40" />
+           <TextView
+               android:id="@+id/tv_nick_name"
+               android:layout_marginLeft="@dimen/x10"
+               android:text=""
+               android:textColor="@color/textColor"
+               android:textSize="@dimen/x14"
+               android:layout_gravity="center_vertical"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content" />
+           <internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.RatingView
+               android:id="@+id/rv_star"
+               android:layout_gravity="center_vertical"
+               android:layout_marginLeft="@dimen/x10"
+               app:is_able="false"
+               app:rating="0"
+               app:drawable_size="@dimen/x15"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content" />
+       </LinearLayout>
+       <TextView
+           android:id="@+id/tv_insert_time"
+           android:layout_marginTop="@dimen/x6"
+           android:layout_marginLeft="@dimen/x20"
+           android:text=""
+           android:textColor="@color/gray"
+           android:textSize="@dimen/x10"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content" />
+       <TextView
+           android:id="@+id/tv_evaluate_content"
+           android:layout_marginRight="@dimen/x15"
+           android:layout_marginBottom="@dimen/x10"
+           android:layout_marginTop="@dimen/x12"
+           android:layout_marginLeft="@dimen/x20"
+           android:text=""
+           android:textColor="@color/gray"
+           android:textSize="@dimen/x11"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content" />
+       <LinearLayout
+           android:id="@+id/ll_image_container"
+           android:layout_width="match_parent"
+           android:layout_height="@dimen/x110">
+           <HorizontalScrollView
+               android:layout_marginRight="@dimen/x6"
+               android:layout_marginLeft="@dimen/x15"
+               android:scrollbars="none"
+               android:id="@+id/hsView"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+               <LinearLayout
+                   android:gravity="center_vertical"
+                   android:id="@+id/ll_goods_container"
+                   android:orientation="horizontal"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent">
+
+               </LinearLayout>
+           </HorizontalScrollView>
+       </LinearLayout>
+   </LinearLayout>
+    <View
+        android:background="@color/gainsboro"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x10"></View>
+</LinearLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_marginTop="@dimen/x10"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/ll_parent"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:paddingBottom="@dimen/x10"
+        android:paddingTop="@dimen/x10"
+        android:layout_marginRight="@dimen/x10"
+        android:layout_marginLeft="@dimen/x10"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_home_lay10_1"
+        android:id="@+id/iv_goods_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/x100" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginLeft="@dimen/x6"
+            android:id="@+id/tv_goods_name"
+            android:ellipsize="end"
+            android:lines="1"
+            android:layout_toLeftOf="@+id/tv_goods_price"
+            android:layout_alignParentLeft="true"
+            android:text="儿童启蒙早教"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/x12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginRight="@dimen/x6"
+            android:id="@+id/tv_goods_price"
+            android:layout_alignParentRight="true"
+            android:text="￥9.9"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</LinearLayout>

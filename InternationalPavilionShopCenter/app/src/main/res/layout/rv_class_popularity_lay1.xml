@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_class_in_popularity_1"
+        android:layout_marginBottom="@dimen/x10"
+        android:layout_marginRight="@dimen/x10"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginTop="@dimen/x10"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x80" />
+    <TextView
+        android:gravity="center_vertical"
+        android:layout_marginLeft="@dimen/x30"
+        android:text="G国际馆人气榜"
+        android:textSize="@dimen/x14"
+        android:textColor="#636363"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/x40" />
+    <View
+        android:background="@color/gainsboro"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"></View>
+</LinearLayout>

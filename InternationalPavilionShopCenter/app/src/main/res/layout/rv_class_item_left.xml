@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="@dimen/x35"
+    android:id="@+id/ll_click_item"
+    android:background="@color/white">
+
+    <View
+        android:visibility="invisible"
+        android:id="@+id/view_selected"
+        android:background="@color/red"
+        android:layout_width="@dimen/x2"
+        android:layout_height="@dimen/x35"></View>
+    <TextView
+        android:gravity="center_vertical"
+        android:id="@+id/tv_class_name"
+        android:textColor="#636363"
+        android:text="美妆护肤"
+        android:textSize="@dimen/x12"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/x35" />
+</LinearLayout>

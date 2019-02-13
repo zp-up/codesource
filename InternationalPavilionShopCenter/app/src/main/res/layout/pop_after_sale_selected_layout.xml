@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:id="@+id/ll_to_back_all"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x40">
+        <ImageView
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/x15"
+            android:src="@mipmap/icon_after_sale_back"
+            android:layout_width="@dimen/x18"
+            android:layout_height="@dimen/x18" />
+        <TextView
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/x10"
+            android:text="退货退款"
+            android:textSize="@dimen/x12"
+            android:layout_width="wrap_content"
+            android:textColor="@color/textColor"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <View
+        android:layout_marginLeft="@dimen/x15"
+        android:background="@color/gainsboro"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"></View>
+    <LinearLayout
+        android:id="@+id/ll_change_goods"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x40">
+        <ImageView
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/x15"
+            android:src="@mipmap/icon_after_sale_change"
+            android:layout_width="@dimen/x18"
+            android:layout_height="@dimen/x18" />
+        <TextView
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/x10"
+            android:text="换货"
+            android:textSize="@dimen/x12"
+            android:layout_width="wrap_content"
+            android:textColor="@color/textColor"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <View
+        android:layout_marginLeft="@dimen/x15"
+        android:background="@color/gainsboro"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"></View>
+    <LinearLayout
+        android:id="@+id/ll_back_money"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x40">
+        <ImageView
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/x15"
+            android:src="@mipmap/icon_after_sale_money"
+            android:layout_width="@dimen/x18"
+            android:layout_height="@dimen/x18" />
+        <TextView
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/x10"
+            android:text="仅退款"
+            android:textSize="@dimen/x12"
+            android:layout_width="wrap_content"
+            android:textColor="@color/textColor"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <View
+        android:layout_marginLeft="@dimen/x15"
+        android:background="@color/gainsboro"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"></View>
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:layout_marginTop="@dimen/x30"
+        android:gravity="center"
+        android:text="取消"
+        android:textSize="@dimen/x14"
+        android:textColor="@color/white"
+        android:background="@color/red"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x35" />
+</LinearLayout>

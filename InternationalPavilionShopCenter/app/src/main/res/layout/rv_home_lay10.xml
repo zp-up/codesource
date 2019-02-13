@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/ll_click_item"
+    android:layout_width="match_parent"
+    android:layout_marginTop="@dimen/x10"
+    android:layout_marginLeft="@dimen/x10"
+    android:layout_marginRight="@dimen/x10"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x160">
+        <ImageView
+            android:id="@+id/iv_goods_pic"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_home_lay10_1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/tv_store_type"
+            android:background="@drawable/shape_of_text_left"
+            android:paddingBottom="@dimen/x2"
+            android:paddingTop="@dimen/x2"
+            android:paddingRight="@dimen/x10"
+            android:paddingLeft="@dimen/x10"
+            android:text="保税商品"
+            android:textSize="@dimen/x10"
+            android:textColor="@color/white"
+            android:layout_marginTop="@dimen/x20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tv_goods_name"
+        android:lines="1"
+        android:ellipsize="end"
+        android:layout_marginTop="@dimen/x5"
+        android:layout_gravity="center_horizontal"
+        android:text="挽救直发保湿定型泡沫200ml"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/x14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_goods_price"
+        android:layout_marginTop="@dimen/x5"
+        android:layout_gravity="center_horizontal"
+        android:text="￥9.90"
+        android:textColor="@color/black"
+        android:textSize="@dimen/x14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/x120"
+
+    android:background="@color/white"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/ll_class_detail_item_1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/x10"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginRight="@dimen/x10"
+        android:layout_marginTop="@dimen/x10"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_child_class_pic_1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x60"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_home_lay10_1" />
+
+        <TextView
+            android:id="@+id/tv_child_class_name_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/x6"
+            android:text="面膜"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/x12" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_class_detail_item_2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/x10"
+        android:layout_marginRight="@dimen/x10"
+        android:layout_marginTop="@dimen/x10"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_child_class_pic_2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x60"
+
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_home_lay10_1" />
+
+        <TextView
+            android:id="@+id/tv_child_class_name_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/x6"
+            android:text="面膜"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/x12" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_class_detail_item_3"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/x10"
+        android:layout_marginRight="@dimen/x10"
+        android:layout_marginTop="@dimen/x10"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_child_class_pic_3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x60"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_home_lay10_1" />
+
+        <TextView
+            android:id="@+id/tv_child_class_name_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/x6"
+            android:text="面膜"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/x12" />
+    </LinearLayout>
+</LinearLayout>

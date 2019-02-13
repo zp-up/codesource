@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    tools:context="internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.ContactCustomerServiceActivity">
+    <include layout="@layout/status_bar_layout"></include>
+
+    <RelativeLayout
+        android:id="@+id/rl_header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x50"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="@dimen/x35"
+            android:layout_height="@dimen/x15"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x15"
+            android:src="@mipmap/icon_black_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="在线客服"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x14" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.scwang.smartrefresh.layout.header.ClassicsHeader
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></com.scwang.smartrefresh.layout.header.ClassicsHeader>
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+        <RelativeLayout
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x45">
+            <View
+                android:background="@color/gainsboro"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"></View>
+            <LinearLayout
+                android:layout_centerVertical="true"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x35">
+                <ImageView
+                    android:src="@mipmap/icon_sevice_voice"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/x15"
+                    android:layout_width="@dimen/x20"
+                    android:layout_height="@dimen/x20" />
+                <EditText
+                    android:singleLine="true"
+                    android:id="@+id/et_im_input"
+                    android:imeOptions="actionSend"
+                    android:paddingLeft="@dimen/x6"
+                    android:textColor="#636363"
+                    android:textSize="@dimen/x12"
+                    android:layout_marginRight="@dimen/x20"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/shape_of_et_im_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/x25" />
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>

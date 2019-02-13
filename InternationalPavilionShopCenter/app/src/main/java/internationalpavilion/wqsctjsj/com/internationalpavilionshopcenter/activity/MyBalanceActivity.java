@@ -1,0 +1,104 @@
+package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
+
+import com.chrisjason.baseui.ui.BaseAppcompatActivity;
+import com.jaeger.library.StatusBarUtil;
+
+import org.json.JSONObject;
+import org.xutils.http.RequestParams;
+
+import java.text.DecimalFormat;
+
+import butterknife.BindView;
+import butterknife.OnClick;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.application.IPSCApplication;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp.CommonGoodsImp;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.CommonDataInterface;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnCommonGoodsCallBack;
+
+public class MyBalanceActivity extends BaseAppcompatActivity implements OnCommonGoodsCallBack {
+    private CommonDataInterface commonPresenter;
+
+    @BindView(R.id.tv_balance)
+    TextView tvBalance;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        StatusBarUtil.setTranslucentForImageViewInFragment(this, 0, null);
+        commonPresenter = new CommonGoodsImp();
+        initData();
+    }
+
+    private void initData() {
+        if (((IPSCApplication) getApplication()).getUserInfo() == null) {
+            return;
+        }
+        RequestParams params = new RequestParams(MainUrls.getUserInfoUrl);
+        params.addBodyParameter("access_token", IPSCApplication.accessToken);
+        params.addBodyParameter("id", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
+        commonPresenter.getCommonGoodsData(params, this);
+    }
+
+    @Override
+    public int initLayout() {
+        return R.layout.activity_my_balance;
+    }
+
+    @OnClick({R.id.iv_back})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.iv_back:
+                MyBalanceActivity.this.finish();
+                break;
+        }
+    }
+
+    @Override
+    public void reloadData() {
+
+    }
+
+    @Override
+    public void onStarted() {
+        showLoading(false, "获取数据中...");
+    }
+
+    @Override
+    public void onFinished() {
+        dismissLoading();
+    }
+
+    @Override
+    public void onError(String error) {
+        Log.e("MyBalanceActivity", "请求出错:" + error);
+    }
+
+    @Override
+    public void onCommonGoodsCallBack(String result) {
+        if (result != null) {
+            Log.e("TAG", "余额:" + result);
+            try {
+                JSONObject jsonObject = new JSONObject(result);
+                int code = jsonObject.getInt("code");
+                int state = jsonObject.getInt("state");
+                if (code == 0 && state == 1){
+                    JSONObject data = jsonObject.getJSONObject("data");
+                    if (data != null){
+                        double balance = data.getDouble("money");
+                        tvBalance.setText("￥"+new DecimalFormat("######0.00").format(balance));
+                    }
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+}

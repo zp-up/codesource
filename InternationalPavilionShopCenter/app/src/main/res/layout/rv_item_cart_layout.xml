@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+    <View
+        android:layout_marginLeft="@dimen/x10"
+        android:background="@color/gainsboro"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"></View>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x30">
+        <ImageView
+            android:id="@+id/iv_all_selected"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/icon_cart_box_selected"
+            android:layout_width="@dimen/x15"
+            android:layout_height="@dimen/x15" />
+        <TextView
+            android:id="@+id/item_carts"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_gravity="center_vertical"
+            android:text="香港直邮仓库"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:layout_marginRight="@dimen/x10"
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <View
+                    android:background="@color/gainsboro"
+                    android:layout_width="@dimen/x2"
+                    android:layout_height="@dimen/x15"></View>
+                <TextView
+                    android:id="@+id/tv_store_total"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:text="￥420"
+                    android:textSize="@dimen/x13"
+                    android:textColor="@color/gray"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/cartContents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </LinearLayout>
+
+</LinearLayout>

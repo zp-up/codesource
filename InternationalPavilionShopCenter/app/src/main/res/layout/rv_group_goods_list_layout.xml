@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_marginRight="@dimen/x10"
+        android:layout_marginLeft="@dimen/x10"
+        android:background="@color/gainsboro"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x150">
+        <LinearLayout
+            android:id="@+id/ll_group_count"
+            android:paddingBottom="@dimen/x3"
+            android:paddingTop="@dimen/x3"
+            android:background="#c0c0c0"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginLeft="@dimen/x10"
+                android:text="已有"
+                android:textColor="@color/white"
+                android:textSize="@dimen/x12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginLeft="@dimen/x2"
+                android:text="314"
+                android:textColor="@color/red"
+                android:textSize="@dimen/x12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginRight="@dimen/x10"
+                android:layout_marginLeft="@dimen/x2"
+                android:text="人开团"
+                android:textColor="@color/white"
+                android:textSize="@dimen/x12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/iv_goods_pic"
+            android:src="@drawable/bg_home_lay10_1"
+            android:layout_below="@+id/ll_group_count"
+            android:layout_width="@dimen/x120"
+            android:layout_height="@dimen/x120" />
+        <LinearLayout
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_toRightOf="@+id/iv_goods_pic"
+            android:orientation="vertical"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/ll_group_count"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/x160">
+            <TextView
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="Dior迪奥小姐花漾淡香水"
+                android:textSize="@dimen/x13"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="@dimen/x6"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="如同一袭繁花缀饰的礼裙"
+                android:textSize="@dimen/x13"
+                android:textColor="@color/gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_marginRight="@dimen/x10"
+                android:orientation="horizontal"
+                android:background="@drawable/shape_of_group_goods_list_price_bg"
+                android:layout_marginTop="@dimen/x6"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x45">
+                <LinearLayout
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:background="@mipmap/icon_group_price_bg"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/x35">
+                    <TextView
+                        android:layout_gravity="center"
+                        android:text="单独购
+￥1750"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/x12"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/x10"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/x35">
+                    <TextView
+                        android:layout_gravity="center"
+                        android:text="组团购
+￥750"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/x12"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+            <TextView
+                android:layout_marginTop="@dimen/x6"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="截止时间:2018/12/30/23:00"
+                android:textSize="@dimen/x13"
+                android:textColor="@color/gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </RelativeLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="仅剩"
+            android:layout_marginTop="@dimen/x10"
+            android:layout_marginBottom="@dimen/x10"
+            android:layout_marginLeft="@dimen/x10"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.TimerView
+            android:id="@+id/tv_group_time"
+            app:itextSize="@dimen/x12"
+            app:itextColor="@color/white"
+            app:ibackground="@color/red"
+            app:idotColor="@color/black"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_gravity="center_vertical"
+            android:layout_width="@dimen/x80"
+            android:layout_height="@dimen/x20" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/ll_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context="internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.SettingActivity">
+    <include layout="@layout/status_bar_layout"></include>
+    <RelativeLayout
+        android:id="@+id/rl_header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x50"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="@dimen/x35"
+            android:layout_height="@dimen/x15"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x15"
+            android:src="@mipmap/icon_black_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="设置"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x14" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x120">
+        <LinearLayout
+            android:id="@+id/ll_click_change_head"
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_head"
+                android:src="@mipmap/icon_mine_defaul_head"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="@dimen/x80"
+                android:layout_height="@dimen/x80" />
+            <TextView
+                android:layout_marginTop="@dimen/x6"
+                android:text="点击更换头像"
+                android:textColor="@color/skyblue"
+                android:layout_width="wrap_content"
+                android:textSize="@dimen/x13"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </RelativeLayout>
+    <TextView
+        android:background="@color/gainsboro"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <RelativeLayout
+        android:id="@+id/rl_to_change_phone"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x45">
+        <TextView
+            android:layout_marginLeft="@dimen/x15"
+            android:text="昵称"
+            android:textSize="@dimen/x14"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_nick_name"
+            android:text="昵称"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/x13"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x20"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_marginRight="@dimen/x15"
+            android:layout_marginLeft="@dimen/x15"
+            android:layout_alignParentBottom="true"
+            android:background="@color/gainsboro"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x1"></View>
+    </RelativeLayout>
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x45">
+        <TextView
+            android:layout_marginLeft="@dimen/x15"
+            android:text="账号"
+            android:textSize="@dimen/x14"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_account"
+            android:text="账号"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/x13"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x20"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_marginRight="@dimen/x15"
+            android:layout_marginLeft="@dimen/x15"
+            android:layout_alignParentBottom="true"
+            android:background="@color/gainsboro"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x1"></View>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_to_forgot_password"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x45">
+        <TextView
+            android:layout_marginLeft="@dimen/x15"
+            android:text="修改密码"
+            android:textSize="@dimen/x14"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text=">"
+            android:textSize="@dimen/x14"
+            android:textColor="@color/gray"
+            android:id="@+id/tv_more_2"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x10"
+            android:layout_alignParentRight="true"
+            android:layout_width="@dimen/x15"
+            android:layout_height="@dimen/x15" />
+        <View
+            android:layout_marginRight="@dimen/x15"
+            android:layout_marginLeft="@dimen/x15"
+            android:layout_alignParentBottom="true"
+            android:background="@color/gainsboro"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x1"></View>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_to_about_us"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x45">
+        <TextView
+            android:layout_marginLeft="@dimen/x15"
+            android:text="关于我们"
+            android:textSize="@dimen/x14"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text=">"
+            android:textSize="@dimen/x14"
+            android:textColor="@color/gray"
+            android:id="@+id/tv_more_1"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x10"
+            android:layout_alignParentRight="true"
+            android:layout_width="@dimen/x15"
+            android:layout_height="@dimen/x15" />
+        <View
+            android:layout_marginRight="@dimen/x15"
+            android:layout_marginLeft="@dimen/x15"
+            android:layout_alignParentBottom="true"
+            android:background="@color/gainsboro"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x1"></View>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_clear_cache"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x45">
+        <TextView
+            android:layout_marginLeft="@dimen/x15"
+            android:text="清除缓存"
+            android:textSize="@dimen/x14"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginRight="@dimen/x10"
+            android:layout_centerVertical="true"
+            android:id="@+id/tv_count"
+            android:layout_toLeftOf="@+id/tv_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text=">"
+            android:textSize="@dimen/x14"
+            android:textColor="@color/gray"
+            android:id="@+id/tv_more"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x10"
+            android:layout_alignParentRight="true"
+            android:layout_width="@dimen/x15"
+            android:layout_height="@dimen/x15" />
+        <View
+            android:layout_marginRight="@dimen/x15"
+            android:layout_marginLeft="@dimen/x15"
+            android:layout_alignParentBottom="true"
+            android:background="@color/gainsboro"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x1"></View>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:visibility="visible"
+        android:id="@+id/activity_set_rl_logout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <View
+            android:layout_above="@+id/tv_login"
+            android:background="@color/gainsboro"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x1"></View>
+        <TextView
+            android:id="@+id/tv_logout"
+            android:textColor="@color/black"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            android:textSize="@dimen/x14"
+            android:gravity="center"
+            android:text="退出当前账户"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+    </RelativeLayout>
+</LinearLayout>

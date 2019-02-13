@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+    <com.youth.banner.Banner
+        app:indicator_height="8dp"
+        app:indicator_margin="6dp"
+        app:indicator_width="8dp"
+        app:scroll_time="2500"
+        app:delay_time="3500"
+        app:image_scale_type="fit_xy"
+        android:id="@+id/home_banner"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x180"></com.youth.banner.Banner>
+    <LinearLayout
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x35">
+        <LinearLayout
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_marginRight="@dimen/x3"
+                android:src="@mipmap/icon_home_confirm_pic"
+                android:layout_width="@dimen/x15"
+                android:layout_height="@dimen/x15" />
+            <TextView
+                android:layout_marginLeft="@dimen/x3"
+                android:text="海外直邮"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/x12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_marginRight="@dimen/x3"
+                android:src="@mipmap/icon_home_confirm_pic"
+                android:layout_width="@dimen/x15"
+                android:layout_height="@dimen/x15" />
+            <TextView
+                android:layout_marginLeft="@dimen/x3"
+                android:text="100%正品"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/x12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_marginRight="@dimen/x3"
+                android:src="@mipmap/icon_home_confirm_pic"
+                android:layout_width="@dimen/x15"
+                android:layout_height="@dimen/x15" />
+            <TextView
+                android:layout_marginLeft="@dimen/x3"
+                android:text="全场关税补贴"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/x12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

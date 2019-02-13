@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context="internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.PayWayActivity">
+    <include layout="@layout/status_bar_layout" android:id="@+id/include_status_bar"></include>
+    <RelativeLayout
+        android:layout_below="@+id/include_status_bar"
+        android:id="@+id/rl_header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x50"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="@dimen/x35"
+            android:layout_height="@dimen/x15"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x15"
+            android:src="@mipmap/icon_black_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="选择支付方式"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x14" />
+    </RelativeLayout>
+    <View
+        android:background="@color/gainsboro"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x10"></View>
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_marginLeft="@dimen/x20"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x45">
+        <ImageView
+            android:src="@mipmap/icon_cart_box_selected"
+            android:layout_width="@dimen/x15"
+            android:layout_height="@dimen/x15" />
+        <ImageView
+            android:layout_marginLeft="@dimen/x15"
+            android:src="@mipmap/icon_pay_way_alipay"
+            android:layout_width="@dimen/x18"
+            android:layout_height="@dimen/x18" />
+        <TextView
+            android:layout_marginLeft="@dimen/x10"
+            android:text="支付宝"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/x13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <View
+        android:layout_marginLeft="@dimen/x20"
+        android:background="#c0c0c0"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"></View>
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_marginLeft="@dimen/x20"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x45">
+        <ImageView
+            android:src="@mipmap/icon_cart_box_unselected"
+            android:layout_width="@dimen/x15"
+            android:layout_height="@dimen/x15" />
+        <ImageView
+            android:layout_marginLeft="@dimen/x15"
+            android:src="@mipmap/icon_pay_way_wechat"
+            android:layout_width="@dimen/x18"
+            android:layout_height="@dimen/x18" />
+        <TextView
+            android:layout_marginLeft="@dimen/x10"
+            android:text="微信支付"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/x13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <View
+        android:layout_marginLeft="@dimen/x20"
+        android:background="#c0c0c0"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"></View>
+    <TextView
+        android:id="@+id/tv_confirm"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/x50"
+        android:background="@color/red"
+        android:layout_marginRight="@dimen/x20"
+        android:layout_marginLeft="@dimen/x20"
+        android:text="确定"
+        android:textSize="@dimen/x14"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x35" />
+    <View
+        android:background="@color/gainsboro"
+        android:layout_marginTop="@dimen/x30"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></View>
+</LinearLayout>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+    <View
+        android:background="@color/gainsboro"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x10" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x60">
+        <View
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@color/gainsboro"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/x1"></View>
+        <TextView
+            android:paddingRight="@dimen/x30"
+            android:paddingBottom="@dimen/x6"
+            android:paddingTop="@dimen/x6"
+            android:paddingLeft="@dimen/x30"
+            android:text="人气榜"
+            android:background="@drawable/shape_of_text_bg"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x14"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@color/gainsboro"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/x1"></View>
+    </LinearLayout>
+
+
+</LinearLayout>
