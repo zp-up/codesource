@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="org.xutils:xutils-3.3.36">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-4.1-all/caches/transforms-1/files-1.1/xutils-3.3.36.aar/03ba33b5323d636184325981cc11b080/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-4.1-all/caches/transforms-1/files-1.1/xutils-3.3.36.aar/03ba33b5323d636184325981cc11b080/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/xutils-3.3.36.aar/5e8b6a7eeb28b0d658f39b509171fac9/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/xutils-3.3.36.aar/5e8b6a7eeb28b0d658f39b509171fac9/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-4.1-all/caches/modules-2/files-2.1/org.xutils/xutils/3.3.36/45c31e9a243f475802eadf1412455c26963e7a7d/xutils-3.3.36-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.xutils/xutils/3.3.36/45c31e9a243f475802eadf1412455c26963e7a7d/xutils-3.3.36-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
