@@ -22,7 +22,7 @@
             android:layout_height="@dimen/x15" />
         <TextView
             android:layout_centerInParent="true"
-            android:text="我的拼团"
+            android:text="拼团中"
             android:textColor="@color/black"
             android:textSize="@dimen/x14"
             android:layout_width="wrap_content"
@@ -33,6 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/x1"></View>
     <LinearLayout
+        android:visibility="gone"
         android:orientation="horizontal"
         android:background="@color/white"
         android:layout_width="match_parent"
@@ -59,7 +60,7 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
     <LinearLayout
-
+        android:visibility="gone"
         android:background="@color/white"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -89,5 +90,7 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_group_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+        android:layout_height="match_parent">
+
+    </android.support.v4.view.ViewPager>
 </LinearLayout>

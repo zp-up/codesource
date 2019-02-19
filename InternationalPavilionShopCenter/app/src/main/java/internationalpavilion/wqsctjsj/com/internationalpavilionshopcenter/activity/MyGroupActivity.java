@@ -71,10 +71,10 @@ public class MyGroupActivity extends BaseAppcompatActivity {
 
     private void initView() {
         frgList.add(new GroupSuccessFragment());
-        frgList.add(new GroupFailedFragment());
+        //frgList.add(new GroupFailedFragment());
         vpAdapter = new MainVPAdapter(getSupportFragmentManager());
         vpGroupList.setAdapter(vpAdapter);
-        vpGroupList.setOffscreenPageLimit(2);
+        vpGroupList.setOffscreenPageLimit(1);
         vpGroupList.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
