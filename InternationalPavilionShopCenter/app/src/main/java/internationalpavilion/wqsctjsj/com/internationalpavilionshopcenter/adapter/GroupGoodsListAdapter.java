@@ -135,7 +135,7 @@ public class GroupGoodsListAdapter extends DelegateAdapter.Adapter<GroupGoodsLis
     private void bind_2(ViewHolder holder, int position) {
         HashMap<String, Object> map = data.get(position);
         if (map != null) {
-            GroupProductEntity productEntity = (GroupProductEntity) map.get("product");
+            final GroupProductEntity productEntity = (GroupProductEntity) map.get("product");
             if (productEntity != null) {
                 //拼团人数
                 holder.tvGroupNum.setText(String.valueOf(productEntity.getGroup_num_p()));
@@ -182,6 +182,14 @@ public class GroupGoodsListAdapter extends DelegateAdapter.Adapter<GroupGoodsLis
                     e.printStackTrace();
                 }
 
+                holder.llBox.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent= new Intent(context,GoodsDetailActivity.class);
+                        intent.putExtra("goodsId",productEntity.getGoods_goods().getId());
+                        context.startActivity(intent);
+                    }
+                });
 
 
             }
@@ -215,6 +223,7 @@ public class GroupGoodsListAdapter extends DelegateAdapter.Adapter<GroupGoodsLis
         TextView tvSinglePrice;//商品单独购买价格
         TextView tvGroupPrice;//团购价格
         TextView tvGroupEndDate;//团购结束时间
+        LinearLayout llBox;
 
         public ViewHolder(View itemView, int viewType) {
             super(itemView);
@@ -231,6 +240,7 @@ public class GroupGoodsListAdapter extends DelegateAdapter.Adapter<GroupGoodsLis
                     tvGroupPrice =itemView.findViewById(R.id.tv_group_price);
                     tvGroupEndDate =itemView.findViewById(R.id.tv_group_end_date);
 
+                    llBox=itemView.findViewById(R.id.ll_box);
 
                     tvGroupTime = itemView.findViewById(R.id.tv_group_time);
                     break;

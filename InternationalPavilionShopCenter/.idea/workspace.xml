@@ -37,49 +37,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="rv_group_goods_list_layout.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/rv_group_goods_list_layout.xml">
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="190" column="92" lean-forward="false" selection-start-line="190" selection-start-column="83" selection-end-line="190" selection-end-column="92" />
-              <folding>
-                <element signature="e#4320#4332#0" expanded="true" />
-                <element signature="e#4529#4541#0" expanded="true" />
-                <element signature="e#5066#5078#0" expanded="true" />
-                <element signature="e#5575#5587#0" expanded="true" />
-                <element signature="e#6772#6784#0" expanded="true" />
-                <element signature="e#7276#7288#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GroupGoodsListAdapter.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GroupGoodsListAdapter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/adapter/GroupGoodsListAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="167" column="0" lean-forward="false" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
+            <state relative-caret-position="696">
+              <caret line="188" column="90" lean-forward="false" selection-start-line="188" selection-start-column="90" selection-end-line="188" selection-end-column="90" />
               <folding>
                 <element signature="method#GroupGoodsListAdapter#1;class#GroupGoodsListAdapter#0" expanded="false" />
-                <element signature="method#onCreateViewHolder#0;class#GroupGoodsListAdapter#0" expanded="false" />
                 <element signature="method#onBindViewHolder#0;class#GroupGoodsListAdapter#0" expanded="false" />
+                <element signature="e#7029#7409#0" expanded="true" />
+                <element signature="e#7408#7409#0" expanded="true" />
                 <element signature="method#getItemViewType#0;class#GroupGoodsListAdapter#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TimerView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/widget/TimerView.java">
+      <file leaf-file-name="GoodsDetailActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/activity/GoodsDetailActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
-              <caret line="310" column="25" lean-forward="false" selection-start-line="310" selection-start-column="25" selection-end-line="310" selection-end-column="25" />
-              <folding>
-                <element signature="method#setTime#0;class#TimerView#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="653">
+              <caret line="197" column="60" lean-forward="true" selection-start-line="197" selection-start-column="60" selection-end-line="197" selection-end-column="60" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -172,7 +151,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Glide.geti</find>
       <find>Glide.get</find>
       <find>Glide.ge</find>
       <find>Glide.g</find>
@@ -202,6 +180,7 @@
       <find>Timer</find>
       <find>tvSurplus</find>
       <find>Timerview</find>
+      <find>getIntent</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -2859,9 +2838,9 @@
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/urls/MainUrls.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/entitys/GroupProductEntity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/rv_group_goods_list_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/activity/GroupGoodsListActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/widget/TimerView.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/rv_group_goods_list_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/adapter/GroupGoodsListAdapter.java" />
       </list>
     </option>
@@ -3103,7 +3082,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1550642741367" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1550643044135" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -3151,7 +3130,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1550642741367" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1550643044135" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -3347,7 +3326,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1550642741394" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1550643044136" />
       </method>
     </configuration>
     <list size="1">
@@ -3391,6 +3370,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1920" y="23" width="1920" height="999" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -3401,7 +3381,7 @@
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3997735" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997735" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40656853" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -3438,14 +3418,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/activity/LoginByVerifyCodeActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/activity/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
@@ -4127,24 +4099,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/rv_group_goods_list_layout.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="190" column="92" lean-forward="false" selection-start-line="190" selection-start-column="83" selection-end-line="190" selection-end-column="92" />
-          <folding>
-            <element signature="e#4320#4332#0" expanded="true" />
-            <element signature="e#4529#4541#0" expanded="true" />
-            <element signature="e#5066#5078#0" expanded="true" />
-            <element signature="e#5575#5587#0" expanded="true" />
-            <element signature="e#6772#6784#0" expanded="true" />
-            <element signature="e#7276#7288#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/activity/GroupGoodsListActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="611">
@@ -4224,14 +4178,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/activity/LimitedTimeActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-433">
-          <caret line="27" column="21" lean-forward="false" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/entitys/homeLimitGoods/LimitTimeGoodsBean.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="337">
@@ -4250,16 +4196,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/activity/LimitedTimeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-433">
+          <caret line="27" column="21" lean-forward="false" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/rv_group_goods_list_layout.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="5" column="27" lean-forward="false" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/adapter/GroupGoodsListAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="167" column="0" lean-forward="false" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
+        <state relative-caret-position="696">
+          <caret line="188" column="90" lean-forward="false" selection-start-line="188" selection-start-column="90" selection-end-line="188" selection-end-column="90" />
           <folding>
             <element signature="method#GroupGoodsListAdapter#1;class#GroupGoodsListAdapter#0" expanded="false" />
-            <element signature="method#onCreateViewHolder#0;class#GroupGoodsListAdapter#0" expanded="false" />
             <element signature="method#onBindViewHolder#0;class#GroupGoodsListAdapter#0" expanded="false" />
+            <element signature="e#7029#7409#0" expanded="true" />
+            <element signature="e#7408#7409#0" expanded="true" />
             <element signature="method#getItemViewType#0;class#GroupGoodsListAdapter#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/activity/GoodsDetailActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="653">
+          <caret line="197" column="60" lean-forward="true" selection-start-line="197" selection-start-column="60" selection-end-line="197" selection-end-column="60" />
+          <folding />
         </state>
       </provider>
     </entry>
