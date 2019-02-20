@@ -304,6 +304,13 @@ public class TimerView extends View implements ViewTreeObserver.OnGlobalFocusCha
         }
     }
 
+    public void setTime(long ms){
+        mday = (int) (ms / (24 * 60 * 60 * 1000));
+        mhour = (int) (ms / (60 * 60 * 1000) - mday * 24);
+        mmin = (int) ((ms / (60 * 1000)) - mday * 24 * 60 - mhour * 60);
+        msecond = (int) (ms / 1000 - mday * 24 * 60 * 60 - mhour * 60 * 60 - mmin * 60);
+    }
+
     /**
      * 对时间进行格式化 ex:1->01 2->02
      * @return  时间字符串

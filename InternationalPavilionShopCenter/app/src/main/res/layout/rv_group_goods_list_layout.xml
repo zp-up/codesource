@@ -26,6 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/tv_group_num"
                 android:layout_marginLeft="@dimen/x2"
                 android:text="314"
                 android:textColor="@color/red"
@@ -56,6 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/x160">
             <TextView
+                android:id="@+id/tv_product_name"
                 android:ellipsize="end"
                 android:lines="1"
                 android:text="Dior迪奥小姐花漾淡香水"
@@ -64,6 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/tv_describe"
                 android:layout_marginTop="@dimen/x6"
                 android:ellipsize="end"
                 android:lines="1"
@@ -80,8 +83,17 @@
                 android:layout_marginTop="@dimen/x6"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/x45">
-                <LinearLayout
-                    android:gravity="center_vertical"
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:paddingBottom="2dp"
+                    android:paddingTop="2dp"
+                    android:gravity="center_horizontal"
                     android:orientation="vertical"
                     android:background="@mipmap/icon_group_price_bg"
                     android:layout_marginLeft="@dimen/x10"
@@ -89,40 +101,72 @@
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/x35">
-                    <TextView
-                        android:layout_gravity="center"
-                        android:text="单独购
-￥1750"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/x12"
-                        android:gravity="center"
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_centerInParent="true"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-                <LinearLayout
-                    android:gravity="center_vertical"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_gravity="center"
+                            android:text="单独购"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/x12"
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/tv_single_price"
+                            android:layout_gravity="center"
+                            android:text="￥"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/x12"
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:gravity="center_horizontal"
                     android:orientation="vertical"
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="@dimen/x10"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/x35">
-                    <TextView
-                        android:layout_gravity="center"
-                        android:text="组团购
-￥750"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/x12"
-                        android:gravity="center"
+                    <LinearLayout
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_gravity="center"
+                            android:text="组团购"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/x12"
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/tv_group_price"
+                            android:layout_gravity="center"
+                            android:text="￥"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/x12"
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
             </LinearLayout>
             <TextView
+                android:id="@+id/tv_group_end_date"
                 android:layout_marginTop="@dimen/x6"
                 android:ellipsize="end"
                 android:lines="1"
-                android:text="截止时间:2018/12/30/23:00"
+                android:text="截止时间:"
                 android:textSize="@dimen/x13"
                 android:textColor="@color/gray"
                 android:layout_width="wrap_content"

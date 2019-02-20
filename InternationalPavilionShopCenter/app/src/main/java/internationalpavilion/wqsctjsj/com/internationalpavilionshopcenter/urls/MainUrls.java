@@ -1,5 +1,7 @@
 package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls;
 
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.BuildConfig;
+
 /**
  * Created by wuqaing on 2018/12/14.
  */
@@ -7,9 +9,9 @@ package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls;
 public class MainUrls {
     public static final String areaUrl = "https://app.gjigbuy.com";
 
-    public static final String ServerIp = "https://app.gjigbuy.com/app/index/api";
+    public static final String ServerIp = BuildConfig.DEBUG? "https://api.gjigbuy.com/app/index/api":"https://app.gjigbuy.com/app/index/api";
 
-    public static final String getAccessTokenUrl = "https://app.gjigbuy.com/app/index/login";
+    public static final String getAccessTokenUrl = BuildConfig.DEBUG? "https://api.gjigbuy.com/app/index/login":"https://app.gjigbuy.com/app/index/login";
 
     public static final String getVerifyCodeUrl = ServerIp + "?api=data.config.sendregsms";
 
@@ -102,5 +104,8 @@ public class MainUrls {
     public static final String getHistorySearchUrl = ServerIp + "?api=goods.search.userlog";
 
     public static final String getHotSearchUrl = ServerIp + "?api=goods.search.hot";
+
+    //获取拼团商品列表数据
+    public static final String getGroupProductListUrl = ServerIp +"/api?api=store.price.getgroupgoodslist";
 
 }
