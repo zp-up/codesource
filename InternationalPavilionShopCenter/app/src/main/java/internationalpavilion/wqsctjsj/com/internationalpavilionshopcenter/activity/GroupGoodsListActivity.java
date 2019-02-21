@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.View;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
@@ -31,6 +32,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.adapter.GroupGoodsListAdapter;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.application.IPSCApplication;
@@ -143,6 +145,15 @@ public class GroupGoodsListActivity extends BaseAppcompatActivity implements OnG
     @Override
     public void reloadData() {
 
+    }
+
+    @OnClick({R.id.iv_back})
+    public void onClick(View v){
+        switch (v.getId()){
+            case R.id.iv_back:
+                finish();
+                break;
+        }
     }
 
 

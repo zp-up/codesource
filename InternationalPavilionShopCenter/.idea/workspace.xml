@@ -36,106 +36,30 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GroupGoodsListAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/adapter/GroupGoodsListAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="696">
-              <caret line="188" column="90" lean-forward="false" selection-start-line="188" selection-start-column="90" selection-end-line="188" selection-end-column="90" />
-              <folding>
-                <element signature="method#GroupGoodsListAdapter#1;class#GroupGoodsListAdapter#0" expanded="false" />
-                <element signature="method#onBindViewHolder#0;class#GroupGoodsListAdapter#0" expanded="false" />
-                <element signature="e#7029#7409#0" expanded="true" />
-                <element signature="e#7408#7409#0" expanded="true" />
-                <element signature="method#getItemViewType#0;class#GroupGoodsListAdapter#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GoodsDetailActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/activity/GoodsDetailActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="653">
-              <caret line="197" column="60" lean-forward="true" selection-start-line="197" selection-start-column="60" selection-end-line="197" selection-end-column="60" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LimitedTimeActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/activity/LimitedTimeActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-433">
-              <caret line="27" column="21" lean-forward="false" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_limited_time.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_limited_time.xml">
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-87">
-              <caret line="58" column="12" lean-forward="false" selection-start-line="58" selection-start-column="12" selection-end-line="58" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LimitTimeGoodsFragment_3.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/fragment/LimitTimeGoodsFragment_3.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="640">
-              <caret line="99" column="43" lean-forward="false" selection-start-line="99" selection-start-column="38" selection-end-line="99" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="129">
-              <caret line="5" column="16" lean-forward="false" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
-              <folding>
-                <element signature="e#441#459#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-          <provider editor-type-id="android-manifest">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ic_launcher.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GroupGoodsListActivity.java" pinned="false" current-in-tab="false">
+    <leaf>
+      <file leaf-file-name="GroupGoodsListActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/activity/GroupGoodsListActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="611">
-              <caret line="225" column="66" lean-forward="false" selection-start-line="225" selection-start-column="66" selection-end-line="225" selection-end-column="66" />
+            <state relative-caret-position="31">
+              <caret line="110" column="48" lean-forward="false" selection-start-line="110" selection-start-column="48" selection-end-line="110" selection-end-column="48" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#onCreate#0;class#GroupGoodsListActivity#0" expanded="false" />
-                <element signature="e#3255#3419#0" expanded="true" />
-                <element signature="e#3418#3419#0" expanded="true" />
-                <element signature="e#3461#3627#0" expanded="true" />
-                <element signature="e#3626#3627#0" expanded="true" />
-                <element signature="method#initRVLayout#0;class#GroupGoodsListActivity#0" expanded="false" />
-                <element signature="method#initLayoutHelper1#0;class#GroupGoodsListActivity#0" expanded="false" />
-                <element signature="method#initLayoutHelper2#0;class#GroupGoodsListActivity#0" expanded="false" />
-                <element signature="method#reloadData#0;class#GroupGoodsListActivity#0" expanded="false" />
+                <element signature="method#initData#0;class#GroupGoodsListActivity#0" expanded="false" />
+                <element signature="method#onSuccess#0;class#GroupGoodsListActivity#0" expanded="false" />
               </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_group_goods_list.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_group_goods_list.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="17" column="36" lean-forward="false" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
           </provider>
         </entry>
       </file>
@@ -151,23 +75,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Glide.get</find>
-      <find>Glide.ge</find>
-      <find>Glide.g</find>
-      <find>Glide.w</find>
-      <find>Glide.wi</find>
-      <find>rv_group_goods_list</find>
-      <find>M</find>
-      <find>MainU</find>
-      <find>MainUrl</find>
-      <find>https://api.gjigbuy.com/app/index/api</find>
-      <find>getAccessTokenUrl</find>
-      <find>presenter</find>
-      <find>baseUni</find>
-      <find>BaseUnitBean</find>
-      <find>GoodsGoodsBean</find>
-      <find>base_unit</find>
-      <find>areaUrl</find>
       <find>baseunitB</find>
       <find>BaseA</find>
       <find>new</find>
@@ -179,8 +86,25 @@
       <find>space</find>
       <find>Timer</find>
       <find>tvSurplus</find>
-      <find>Timerview</find>
       <find>getIntent</find>
+      <find>vpOrder</find>
+      <find>Timerview</find>
+      <find>U</find>
+      <find>User</find>
+      <find>eOrderRootBean</find>
+      <find>exOrderRootBean</find>
+      <find>exteOrderRootBean</find>
+      <find>extenOrderRootBean</find>
+      <find>extend'sOrderRootBean</find>
+      <find>extends OrderRootBean</find>
+      <find>extendsOrderRootBean</find>
+      <find>extendOrderRootBean</find>
+      <find>OrderRootBean</find>
+      <find>frgList</find>
+      <find>iv_back</find>
+      <find>R.layout.</find>
+      <find>rl_header</find>
+      <find>tv_join_group_success</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -2827,8 +2751,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/application/IPSCApplication.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_mine_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/adapter/OrderAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_my_group.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/activity/MyGroupActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/views/IGroupProductListView.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/presenters/presenterInterface/IGroupProductListPresenter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/views/OnGroupProductListCallback.java" />
@@ -2838,10 +2760,12 @@
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/urls/MainUrls.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/entitys/GroupProductEntity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/activity/GroupGoodsListActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/widget/TimerView.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/rv_group_goods_list_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/adapter/GroupGoodsListAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_my_group.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/activity/MyGroupActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/activity/GroupGoodsListActivity.java" />
       </list>
     </option>
   </component>
@@ -2866,9 +2790,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane" />
+      <pane id="Scratches" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -2969,23 +2892,10 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="InternationalPavilionShopCenter" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manifests" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidManifestsGroupNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -3082,7 +2992,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1550643044135" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1550741420309" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -3130,7 +3040,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1550643044135" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1550741420309" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -3175,27 +3085,6 @@
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <method />
-    </configuration>
-    <configuration default="true" type="JUnit" factoryName="JUnit">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
       <method />
     </configuration>
     <configuration default="true" type="JarApplication" factoryName="JAR Application">
@@ -3326,7 +3215,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1550643044136" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1550741420310" />
       </method>
     </configuration>
     <list size="1">
@@ -3374,7 +3263,7 @@
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32842582" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Flutter Outline" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5492639" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -3393,9 +3282,8 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21246007" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20553781" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Android WiFi ADB" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -3406,6 +3294,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -3413,176 +3302,15 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="15" />
+      <option name="time" value="22" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/activity/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="141" column="48" lean-forward="false" selection-start-line="141" selection-start-column="48" selection-end-line="141" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/baseui/src/main/res/values-1024x600/lay_x.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_mine_layout.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="167" column="58" lean-forward="false" selection-start-line="167" selection-start-column="41" selection-end-line="167" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/adapter/OrderAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10701">
-          <caret line="565" column="78" lean-forward="false" selection-start-line="565" selection-start-column="78" selection-end-line="565" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/fragment/MineFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="150" column="76" lean-forward="false" selection-start-line="150" selection-start-column="76" selection-end-line="150" selection-end-column="76" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_my_group.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="542">
-          <caret line="90" column="38" lean-forward="false" selection-start-line="90" selection-start-column="25" selection-end-line="90" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/activity/MyGroupActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="91" column="30" lean-forward="true" selection-start-line="91" selection-start-column="30" selection-end-line="91" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/presenters/presenterInterface/BondedGoodsInterface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="14" column="23" lean-forward="true" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/models/modelsInterface/NetCallBack.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/rv_group_goods_header_layout.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="4" column="26" lean-forward="true" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/fragment/ClassInPopularityFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="54" column="80" lean-forward="false" selection-start-line="54" selection-start-column="80" selection-end-line="54" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/entitys/homeBanner/BannerRootBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/models/modelsInterface/NetRequestInterface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/views/OnGroupProductListCallback.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="9" column="1" lean-forward="false" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/views/OnHomeDataCallBack.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/presenters/presenterInterface/HomeDataInterface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="12" column="63" lean-forward="false" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/views/IGroupProductListView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/presenters/presenterImp/HomeDataImp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3">
-          <caret line="17" column="67" lean-forward="false" selection-start-line="17" selection-start-column="67" selection-end-line="17" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_group_goods_list.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="33" column="32" lean-forward="false" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
-          <folding>
-            <element signature="e#556#1349#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/baseui/libs/gson-2.3.1.jar!/com/google/gson/JsonElement.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="96" column="15" lean-forward="false" selection-start-line="96" selection-start-column="15" selection-end-line="96" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-27/org/json/JSONObject.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1560">
           <caret line="80" column="13" lean-forward="false" selection-start-line="80" selection-start-column="13" selection-end-line="80" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3597,7 +3325,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3605,7 +3332,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="466">
           <caret line="231" column="0" lean-forward="false" selection-start-line="231" selection-start-column="0" selection-end-line="231" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3621,7 +3347,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="70">
           <caret line="58" column="47" lean-forward="true" selection-start-line="58" selection-start-column="47" selection-end-line="58" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3629,39 +3354,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
           <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_home_layout.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="364">
           <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <element signature="e#516#862#0" expanded="false" />
-            <element signature="e#872#1151#0" expanded="false" />
-          </folding>
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/fragment/HomeFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="778">
           <caret line="506" column="63" lean-forward="false" selection-start-line="506" selection-start-column="63" selection-end-line="506" selection-end-column="63" />
-          <folding>
-            <element signature="method#getBannerData#0;class#HomeFragment#0" expanded="false" />
-            <element signature="method#onClick#0;class#HomeFragment#0" expanded="false" />
-            <element signature="method#initData#0;class#HomeFragment#0" expanded="false" />
-            <element signature="method#getLimitTimeGoodsList#0;class#HomeFragment#0" expanded="false" />
-            <element signature="method#initRVL#0;class#HomeFragment#0" expanded="false" />
-            <element signature="method#onGetBannerData#0;class#HomeFragment#0" expanded="false" />
-            <element signature="method#onLimitTimeGoodsLoaded#0;class#HomeFragment#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3669,11 +3378,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3">
           <caret line="23" column="34" lean-forward="true" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="method#onStart#0;class#1247:1799" expanded="false" />
-            <element signature="method#onFinished#0;class#1247:1799" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3681,7 +3385,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="72" column="66" lean-forward="false" selection-start-line="72" selection-start-column="66" selection-end-line="72" selection-end-column="66" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3689,7 +3392,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="9" column="38" lean-forward="false" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3697,7 +3399,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="316">
           <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3705,7 +3406,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="780">
           <caret line="48" column="13" lean-forward="false" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3713,381 +3413,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-217">
           <caret line="786" column="0" lean-forward="false" selection-start-line="786" selection-start-column="0" selection-end-line="786" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4932#4933#0" expanded="true" />
-            <element signature="e#4957#4958#0" expanded="true" />
-            <element signature="e#4990#4991#0" expanded="true" />
-            <element signature="e#5018#5019#0" expanded="true" />
-            <element signature="e#5064#5065#0" expanded="true" />
-            <element signature="e#5098#5099#0" expanded="true" />
-            <element signature="e#5160#5161#0" expanded="true" />
-            <element signature="e#5206#5207#0" expanded="true" />
-            <element signature="e#5252#5253#0" expanded="true" />
-            <element signature="e#5286#5287#0" expanded="true" />
-            <element signature="e#5348#5349#0" expanded="true" />
-            <element signature="e#5394#5395#0" expanded="true" />
-            <element signature="e#5426#5427#0" expanded="true" />
-            <element signature="e#5454#5455#0" expanded="true" />
-            <element signature="e#5496#5497#0" expanded="true" />
-            <element signature="e#5530#5531#0" expanded="true" />
-            <element signature="e#5564#5565#0" expanded="true" />
-            <element signature="e#5594#5595#0" expanded="true" />
-            <element signature="e#5640#5641#0" expanded="true" />
-            <element signature="e#5678#5679#0" expanded="true" />
-            <element signature="e#5712#5713#0" expanded="true" />
-            <element signature="e#5742#5743#0" expanded="true" />
-            <element signature="e#5788#5789#0" expanded="true" />
-            <element signature="e#5826#5827#0" expanded="true" />
-            <element signature="e#5856#5857#0" expanded="true" />
-            <element signature="e#5885#5886#0" expanded="true" />
-            <element signature="e#5926#5927#0" expanded="true" />
-            <element signature="e#5962#5963#0" expanded="true" />
-            <element signature="e#5995#5996#0" expanded="true" />
-            <element signature="e#6027#6028#0" expanded="true" />
-            <element signature="e#6074#6075#0" expanded="true" />
-            <element signature="e#6116#6117#0" expanded="true" />
-            <element signature="e#6151#6152#0" expanded="true" />
-            <element signature="e#6185#6186#0" expanded="true" />
-            <element signature="e#6236#6237#0" expanded="true" />
-            <element signature="e#6282#6283#0" expanded="true" />
-            <element signature="e#6313#6314#0" expanded="true" />
-            <element signature="e#6343#6344#0" expanded="true" />
-            <element signature="e#6386#6387#0" expanded="true" />
-            <element signature="e#6424#6425#0" expanded="true" />
-            <element signature="e#6460#6461#0" expanded="true" />
-            <element signature="e#6495#6496#0" expanded="true" />
-            <element signature="e#6548#6549#0" expanded="true" />
-            <element signature="e#6596#6597#0" expanded="true" />
-            <element signature="e#6628#6629#0" expanded="true" />
-            <element signature="e#6659#6660#0" expanded="true" />
-            <element signature="e#6704#6705#0" expanded="true" />
-            <element signature="e#6744#6745#0" expanded="true" />
-            <element signature="e#6781#6782#0" expanded="true" />
-            <element signature="e#6814#6815#0" expanded="true" />
-            <element signature="e#6866#6867#0" expanded="true" />
-            <element signature="e#6910#6911#0" expanded="true" />
-            <element signature="e#6945#6946#0" expanded="true" />
-            <element signature="e#6979#6980#0" expanded="true" />
-            <element signature="e#7030#7031#0" expanded="true" />
-            <element signature="e#7076#7077#0" expanded="true" />
-            <element signature="e#7110#7111#0" expanded="true" />
-            <element signature="e#7140#7141#0" expanded="true" />
-            <element signature="e#7186#7187#0" expanded="true" />
-            <element signature="e#7224#7225#0" expanded="true" />
-            <element signature="e#7261#7262#0" expanded="true" />
-            <element signature="e#7294#7295#0" expanded="true" />
-            <element signature="e#7346#7347#0" expanded="true" />
-            <element signature="e#7390#7391#0" expanded="true" />
-            <element signature="e#7430#7431#0" expanded="true" />
-            <element signature="e#7466#7467#0" expanded="true" />
-            <element signature="e#7524#7525#0" expanded="true" />
-            <element signature="e#7574#7575#0" expanded="true" />
-            <element signature="e#7614#7615#0" expanded="true" />
-            <element signature="e#7650#7651#0" expanded="true" />
-            <element signature="e#7708#7709#0" expanded="true" />
-            <element signature="e#7758#7759#0" expanded="true" />
-            <element signature="e#7792#7793#0" expanded="true" />
-            <element signature="e#7822#7823#0" expanded="true" />
-            <element signature="e#7868#7869#0" expanded="true" />
-            <element signature="e#7906#7907#0" expanded="true" />
-            <element signature="e#7943#7944#0" expanded="true" />
-            <element signature="e#7976#7977#0" expanded="true" />
-            <element signature="e#8028#8029#0" expanded="true" />
-            <element signature="e#8072#8073#0" expanded="true" />
-            <element signature="e#8112#8113#0" expanded="true" />
-            <element signature="e#8148#8149#0" expanded="true" />
-            <element signature="e#8206#8207#0" expanded="true" />
-            <element signature="e#8256#8257#0" expanded="true" />
-            <element signature="e#8293#8294#0" expanded="true" />
-            <element signature="e#8329#8330#0" expanded="true" />
-            <element signature="e#8384#8385#0" expanded="true" />
-            <element signature="e#8434#8435#0" expanded="true" />
-            <element signature="e#8474#8475#0" expanded="true" />
-            <element signature="e#8510#8511#0" expanded="true" />
-            <element signature="e#8568#8569#0" expanded="true" />
-            <element signature="e#8618#8619#0" expanded="true" />
-            <element signature="e#8649#8650#0" expanded="true" />
-            <element signature="e#8676#8677#0" expanded="true" />
-            <element signature="e#8716#8717#0" expanded="true" />
-            <element signature="e#8748#8749#0" expanded="true" />
-            <element signature="e#8780#8781#0" expanded="true" />
-            <element signature="e#8811#8812#0" expanded="true" />
-            <element signature="e#8856#8857#0" expanded="true" />
-            <element signature="e#8896#8897#0" expanded="true" />
-            <element signature="e#8934#8935#0" expanded="true" />
-            <element signature="e#8968#8969#0" expanded="true" />
-            <element signature="e#9022#9023#0" expanded="true" />
-            <element signature="e#9068#9069#0" expanded="true" />
-            <element signature="e#9103#9104#0" expanded="true" />
-            <element signature="e#9137#9138#0" expanded="true" />
-            <element signature="e#9188#9189#0" expanded="true" />
-            <element signature="e#9234#9235#0" expanded="true" />
-            <element signature="e#9269#9270#0" expanded="true" />
-            <element signature="e#9303#9304#0" expanded="true" />
-            <element signature="e#9354#9355#0" expanded="true" />
-            <element signature="e#9400#9401#0" expanded="true" />
-            <element signature="e#9431#9432#0" expanded="true" />
-            <element signature="e#9461#9462#0" expanded="true" />
-            <element signature="e#9504#9505#0" expanded="true" />
-            <element signature="e#9542#9543#0" expanded="true" />
-            <element signature="e#9573#9574#0" expanded="true" />
-            <element signature="e#9603#9604#0" expanded="true" />
-            <element signature="e#9646#9647#0" expanded="true" />
-            <element signature="e#9684#9685#0" expanded="true" />
-            <element signature="e#9720#9721#0" expanded="true" />
-            <element signature="e#9752#9753#0" expanded="true" />
-            <element signature="e#9802#9803#0" expanded="true" />
-            <element signature="e#9844#9845#0" expanded="true" />
-            <element signature="e#9878#9879#0" expanded="true" />
-            <element signature="e#9911#9912#0" expanded="true" />
-            <element signature="e#9960#9961#0" expanded="true" />
-            <element signature="e#10004#10005#0" expanded="true" />
-            <element signature="e#10035#10036#0" expanded="true" />
-            <element signature="e#10062#10063#0" expanded="true" />
-            <element signature="e#10102#10103#0" expanded="true" />
-            <element signature="e#10134#10135#0" expanded="true" />
-            <element signature="e#10172#10173#0" expanded="true" />
-            <element signature="e#10206#10207#0" expanded="true" />
-            <element signature="e#10260#10261#0" expanded="true" />
-            <element signature="e#10306#10307#0" expanded="true" />
-            <element signature="e#10342#10343#0" expanded="true" />
-            <element signature="e#10374#10375#0" expanded="true" />
-            <element signature="e#10424#10425#0" expanded="true" />
-            <element signature="e#10466#10467#0" expanded="true" />
-            <element signature="e#10502#10503#0" expanded="true" />
-            <element signature="e#10534#10535#0" expanded="true" />
-            <element signature="e#10584#10585#0" expanded="true" />
-            <element signature="e#10626#10627#0" expanded="true" />
-            <element signature="e#10663#10664#0" expanded="true" />
-            <element signature="e#10696#10697#0" expanded="true" />
-            <element signature="e#10748#10749#0" expanded="true" />
-            <element signature="e#10792#10793#0" expanded="true" />
-            <element signature="e#10823#10824#0" expanded="true" />
-            <element signature="e#10853#10854#0" expanded="true" />
-            <element signature="e#10896#10897#0" expanded="true" />
-            <element signature="e#10934#10935#0" expanded="true" />
-            <element signature="e#10964#10965#0" expanded="true" />
-            <element signature="e#10993#10994#0" expanded="true" />
-            <element signature="e#11034#11035#0" expanded="true" />
-            <element signature="e#11070#11071#0" expanded="true" />
-            <element signature="e#11108#11109#0" expanded="true" />
-            <element signature="e#11142#11143#0" expanded="true" />
-            <element signature="e#11196#11197#0" expanded="true" />
-            <element signature="e#11242#11243#0" expanded="true" />
-            <element signature="e#11271#11272#0" expanded="true" />
-            <element signature="e#11296#11297#0" expanded="true" />
-            <element signature="e#11332#11333#0" expanded="true" />
-            <element signature="e#11360#11361#0" expanded="true" />
-            <element signature="e#11389#11390#0" expanded="true" />
-            <element signature="e#11417#11418#0" expanded="true" />
-            <element signature="e#11456#11457#0" expanded="true" />
-            <element signature="e#11490#11491#0" expanded="true" />
-            <element signature="e#11519#11520#0" expanded="true" />
-            <element signature="e#11547#11548#0" expanded="true" />
-            <element signature="e#11586#11587#0" expanded="true" />
-            <element signature="e#11620#11621#0" expanded="true" />
-            <element signature="e#11649#11650#0" expanded="true" />
-            <element signature="e#11677#11678#0" expanded="true" />
-            <element signature="e#11716#11717#0" expanded="true" />
-            <element signature="e#11750#11751#0" expanded="true" />
-            <element signature="e#11779#11780#0" expanded="true" />
-            <element signature="e#11807#11808#0" expanded="true" />
-            <element signature="e#11846#11847#0" expanded="true" />
-            <element signature="e#11880#11881#0" expanded="true" />
-            <element signature="e#11913#11914#0" expanded="true" />
-            <element signature="e#11942#11943#0" expanded="true" />
-            <element signature="e#11986#11987#0" expanded="true" />
-            <element signature="e#12022#12023#0" expanded="true" />
-            <element signature="e#12060#12061#0" expanded="true" />
-            <element signature="e#12094#12095#0" expanded="true" />
-            <element signature="e#12148#12149#0" expanded="true" />
-            <element signature="e#12194#12195#0" expanded="true" />
-            <element signature="e#12232#12233#0" expanded="true" />
-            <element signature="e#12266#12267#0" expanded="true" />
-            <element signature="e#12320#12321#0" expanded="true" />
-            <element signature="e#12366#12367#0" expanded="true" />
-            <element signature="e#12398#12399#0" expanded="true" />
-            <element signature="e#12426#12427#0" expanded="true" />
-            <element signature="e#12468#12469#0" expanded="true" />
-            <element signature="e#12502#12503#0" expanded="true" />
-            <element signature="e#12541#12542#0" expanded="true" />
-            <element signature="e#12579#12580#0" expanded="true" />
-            <element signature="e#12638#12639#0" expanded="true" />
-            <element signature="e#12692#12693#0" expanded="true" />
-            <element signature="class#StoreStoreBean#0;class#GroupProductEntity#0" expanded="false" />
-            <element signature="e#12940#12941#0" expanded="true" />
-            <element signature="e#12975#12976#0" expanded="true" />
-            <element signature="e#13019#13020#0" expanded="true" />
-            <element signature="e#13059#13060#0" expanded="true" />
-            <element signature="e#13094#13095#0" expanded="true" />
-            <element signature="e#13129#13130#0" expanded="true" />
-            <element signature="e#13173#13174#0" expanded="true" />
-            <element signature="e#13213#13214#0" expanded="true" />
-            <element signature="e#13243#13244#0" expanded="true" />
-            <element signature="e#13276#13277#0" expanded="true" />
-            <element signature="e#13313#13314#0" expanded="true" />
-            <element signature="e#13349#13350#0" expanded="true" />
-            <element signature="e#16335#16336#0" expanded="true" />
-            <element signature="e#16368#16369#0" expanded="true" />
-            <element signature="e#16405#16406#0" expanded="true" />
-            <element signature="e#16441#16442#0" expanded="true" />
-            <element signature="e#16476#16477#0" expanded="true" />
-            <element signature="e#16511#16512#0" expanded="true" />
-            <element signature="e#16555#16556#0" expanded="true" />
-            <element signature="e#16595#16596#0" expanded="true" />
-            <element signature="e#16643#16644#0" expanded="true" />
-            <element signature="e#16684#16685#0" expanded="true" />
-            <element signature="e#16747#16748#0" expanded="true" />
-            <element signature="e#16799#16800#0" expanded="true" />
-            <element signature="e#16849#16850#0" expanded="true" />
-            <element signature="e#16891#16892#0" expanded="true" />
-            <element signature="e#16957#16958#0" expanded="true" />
-            <element signature="e#17011#17012#0" expanded="true" />
-            <element signature="e#17057#17058#0" expanded="true" />
-            <element signature="e#17097#17098#0" expanded="true" />
-            <element signature="e#17157#17158#0" expanded="true" />
-            <element signature="e#17207#17208#0" expanded="true" />
-            <element signature="e#17255#17256#0" expanded="true" />
-            <element signature="e#17296#17297#0" expanded="true" />
-            <element signature="e#17359#17360#0" expanded="true" />
-            <element signature="e#17411#17412#0" expanded="true" />
-            <element signature="e#17446#17447#0" expanded="true" />
-            <element signature="e#17481#17482#0" expanded="true" />
-            <element signature="e#17525#17526#0" expanded="true" />
-            <element signature="e#17565#17566#0" expanded="true" />
-            <element signature="e#17611#17612#0" expanded="true" />
-            <element signature="e#17651#17652#0" expanded="true" />
-            <element signature="e#17711#17712#0" expanded="true" />
-            <element signature="e#17761#17762#0" expanded="true" />
-            <element signature="e#17799#17800#0" expanded="true" />
-            <element signature="e#17837#17838#0" expanded="true" />
-            <element signature="e#17887#17888#0" expanded="true" />
-            <element signature="e#17933#17934#0" expanded="true" />
-            <element signature="e#17971#17972#0" expanded="true" />
-            <element signature="e#18009#18010#0" expanded="true" />
-            <element signature="e#18059#18060#0" expanded="true" />
-            <element signature="e#18105#18106#0" expanded="true" />
-            <element signature="e#18143#18144#0" expanded="true" />
-            <element signature="e#18184#18185#0" expanded="true" />
-            <element signature="e#18237#18238#0" expanded="true" />
-            <element signature="e#18289#18290#0" expanded="true" />
-            <element signature="e#18330#18331#0" expanded="true" />
-            <element signature="e#18371#18372#0" expanded="true" />
-            <element signature="e#18427#18428#0" expanded="true" />
-            <element signature="e#18479#18480#0" expanded="true" />
-            <element signature="e#18518#18519#0" expanded="true" />
-            <element signature="e#18557#18558#0" expanded="true" />
-            <element signature="e#18609#18610#0" expanded="true" />
-            <element signature="e#18657#18658#0" expanded="true" />
-            <element signature="e#18694#18695#0" expanded="true" />
-            <element signature="e#18731#18732#0" expanded="true" />
-            <element signature="e#18779#18780#0" expanded="true" />
-            <element signature="e#18823#18824#0" expanded="true" />
-            <element signature="e#18858#18859#0" expanded="true" />
-            <element signature="e#18896#18897#0" expanded="true" />
-            <element signature="e#18943#18944#0" expanded="true" />
-            <element signature="e#18989#18990#0" expanded="true" />
-            <element signature="e#19022#19023#0" expanded="true" />
-            <element signature="e#19058#19059#0" expanded="true" />
-            <element signature="e#19101#19102#0" expanded="true" />
-            <element signature="e#19143#19144#0" expanded="true" />
-            <element signature="e#19180#19181#0" expanded="true" />
-            <element signature="e#19217#19218#0" expanded="true" />
-            <element signature="e#19265#19266#0" expanded="true" />
-            <element signature="e#19309#19310#0" expanded="true" />
-            <element signature="e#19346#19347#0" expanded="true" />
-            <element signature="e#19383#19384#0" expanded="true" />
-            <element signature="e#19431#19432#0" expanded="true" />
-            <element signature="e#19475#19476#0" expanded="true" />
-            <element signature="e#19515#19516#0" expanded="true" />
-            <element signature="e#19549#19550#0" expanded="true" />
-            <element signature="e#19597#19598#0" expanded="true" />
-            <element signature="e#19635#19636#0" expanded="true" />
-            <element signature="e#19681#19682#0" expanded="true" />
-            <element signature="e#19720#19721#0" expanded="true" />
-            <element signature="e#19779#19780#0" expanded="true" />
-            <element signature="e#19827#19828#0" expanded="true" />
-            <element signature="e#21483#21484#0" expanded="true" />
-            <element signature="e#21524#21525#0" expanded="true" />
-            <element signature="e#21565#21566#0" expanded="true" />
-            <element signature="e#21609#21610#0" expanded="true" />
-            <element signature="e#21649#21650#0" expanded="true" />
-            <element signature="e#21693#21694#0" expanded="true" />
-            <element signature="e#21743#21744#0" expanded="true" />
-            <element signature="e#21793#21794#0" expanded="true" />
-            <element signature="e#21832#21833#0" expanded="true" />
-            <element signature="e#21875#21876#0" expanded="true" />
-            <element signature="e#21923#21924#0" expanded="true" />
-            <element signature="e#21971#21972#0" expanded="true" />
-            <element signature="e#22011#22012#0" expanded="true" />
-            <element signature="e#22055#22056#0" expanded="true" />
-            <element signature="e#22105#22106#0" expanded="true" />
-            <element signature="e#22155#22156#0" expanded="true" />
-            <element signature="e#22196#22197#0" expanded="true" />
-            <element signature="e#22241#22242#0" expanded="true" />
-            <element signature="e#22293#22294#0" expanded="true" />
-            <element signature="e#22345#22346#0" expanded="true" />
-            <element signature="e#22391#22392#0" expanded="true" />
-            <element signature="e#22441#22442#0" expanded="true" />
-            <element signature="e#22503#22504#0" expanded="true" />
-            <element signature="e#22565#22566#0" expanded="true" />
-            <element signature="e#22605#22606#0" expanded="true" />
-            <element signature="e#22649#22650#0" expanded="true" />
-            <element signature="e#22699#22700#0" expanded="true" />
-            <element signature="e#22749#22750#0" expanded="true" />
-            <element signature="e#22793#22794#0" expanded="true" />
-            <element signature="e#22835#22836#0" expanded="true" />
-            <element signature="e#22887#22888#0" expanded="true" />
-            <element signature="e#22933#22934#0" expanded="true" />
-            <element signature="class#GoodsBrandBean#0;class#GoodsGoodsBean#0;class#GroupProductEntity#0" expanded="false" />
-            <element signature="e#23406#23407#0" expanded="true" />
-            <element signature="e#23449#23450#0" expanded="true" />
-            <element signature="e#23497#23498#0" expanded="true" />
-            <element signature="e#23545#23546#0" expanded="true" />
-            <element signature="e#23582#23583#0" expanded="true" />
-            <element signature="e#23623#23624#0" expanded="true" />
-            <element signature="e#23667#23668#0" expanded="true" />
-            <element signature="e#23711#23712#0" expanded="true" />
-            <element signature="e#23745#23746#0" expanded="true" />
-            <element signature="e#23786#23787#0" expanded="true" />
-            <element signature="e#23827#23828#0" expanded="true" />
-            <element signature="e#23871#23872#0" expanded="true" />
-            <element signature="e#23916#23917#0" expanded="true" />
-            <element signature="e#23959#23960#0" expanded="true" />
-            <element signature="e#24013#24014#0" expanded="true" />
-            <element signature="e#24061#24062#0" expanded="true" />
-            <element signature="e#24553#24554#0" expanded="true" />
-            <element signature="e#24596#24597#0" expanded="true" />
-            <element signature="e#24644#24645#0" expanded="true" />
-            <element signature="e#24692#24693#0" expanded="true" />
-            <element signature="e#24726#24727#0" expanded="true" />
-            <element signature="e#24767#24768#0" expanded="true" />
-            <element signature="e#24808#24809#0" expanded="true" />
-            <element signature="e#24852#24853#0" expanded="true" />
-            <element signature="e#24896#24897#0" expanded="true" />
-            <element signature="e#24938#24939#0" expanded="true" />
-            <element signature="e#24990#24991#0" expanded="true" />
-            <element signature="e#25036#25037#0" expanded="true" />
-            <element signature="class#GoodsCateBean#0;class#GoodsGoodsBean#0;class#GroupProductEntity#0" expanded="false" />
-            <element signature="e#25277#25278#0" expanded="true" />
-            <element signature="e#25320#25321#0" expanded="true" />
-            <element signature="e#25368#25369#0" expanded="true" />
-            <element signature="e#25416#25417#0" expanded="true" />
-            <element signature="e#25450#25451#0" expanded="true" />
-            <element signature="e#25491#25492#0" expanded="true" />
-            <element signature="e#25532#25533#0" expanded="true" />
-            <element signature="e#25576#25577#0" expanded="true" />
-            <element signature="class#BaseUnitBean#0;class#GoodsGoodsBean#0;class#GroupProductEntity#0" expanded="false" />
-            <element signature="e#25809#25810#0" expanded="true" />
-            <element signature="e#25852#25853#0" expanded="true" />
-            <element signature="e#25900#25901#0" expanded="true" />
-            <element signature="e#25948#25949#0" expanded="true" />
-            <element signature="e#25982#25983#0" expanded="true" />
-            <element signature="e#26023#26024#0" expanded="true" />
-            <element signature="e#26064#26065#0" expanded="true" />
-            <element signature="e#26108#26109#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4095,26 +3420,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
           <caret line="51" column="13" lean-forward="false" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/activity/GroupGoodsListActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="611">
-          <caret line="225" column="66" lean-forward="false" selection-start-line="225" selection-start-column="66" selection-end-line="225" selection-end-column="66" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#onCreate#0;class#GroupGoodsListActivity#0" expanded="false" />
-            <element signature="e#3255#3419#0" expanded="true" />
-            <element signature="e#3418#3419#0" expanded="true" />
-            <element signature="e#3461#3627#0" expanded="true" />
-            <element signature="e#3626#3627#0" expanded="true" />
-            <element signature="method#initRVLayout#0;class#GroupGoodsListActivity#0" expanded="false" />
-            <element signature="method#initLayoutHelper1#0;class#GroupGoodsListActivity#0" expanded="false" />
-            <element signature="method#initLayoutHelper2#0;class#GroupGoodsListActivity#0" expanded="false" />
-            <element signature="method#reloadData#0;class#GroupGoodsListActivity#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4127,7 +3432,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4146,7 +3450,7 @@
         <state relative-caret-position="129">
           <caret line="5" column="16" lean-forward="false" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
           <folding>
-            <element signature="e#441#459#0" expanded="true" />
+            <element signature="e#441#459#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -4158,7 +3462,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="640">
           <caret line="99" column="43" lean-forward="false" selection-start-line="99" selection-start-column="38" selection-end-line="99" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4168,21 +3471,19 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_limited_time.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-87">
           <caret line="58" column="12" lean-forward="false" selection-start-line="58" selection-start-column="12" selection-end-line="58" selection-end-column="12" />
-          <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/entitys/homeLimitGoods/LimitTimeGoodsBean.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="337">
           <caret line="19" column="22" lean-forward="false" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4190,9 +3491,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="438">
           <caret line="310" column="25" lean-forward="false" selection-start-line="310" selection-start-column="25" selection-end-line="310" selection-end-column="25" />
-          <folding>
-            <element signature="method#setTime#0;class#TimerView#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4200,40 +3498,217 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-433">
           <caret line="27" column="21" lean-forward="false" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/rv_group_goods_list_layout.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="130">
           <caret line="5" column="27" lean-forward="false" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
-          <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/adapter/GroupGoodsListAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="696">
           <caret line="188" column="90" lean-forward="false" selection-start-line="188" selection-start-column="90" selection-end-line="188" selection-end-column="90" />
-          <folding>
-            <element signature="method#GroupGoodsListAdapter#1;class#GroupGoodsListAdapter#0" expanded="false" />
-            <element signature="method#onBindViewHolder#0;class#GroupGoodsListAdapter#0" expanded="false" />
-            <element signature="e#7029#7409#0" expanded="true" />
-            <element signature="e#7408#7409#0" expanded="true" />
-            <element signature="method#getItemViewType#0;class#GroupGoodsListAdapter#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/activity/GoodsDetailActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="653">
-          <caret line="197" column="60" lean-forward="true" selection-start-line="197" selection-start-column="60" selection-end-line="197" selection-end-column="60" />
+        <state relative-caret-position="67">
+          <caret line="165" column="49" lean-forward="false" selection-start-line="165" selection-start-column="49" selection-end-line="165" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_order.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="141" column="33" lean-forward="false" selection-start-line="141" selection-start-column="25" selection-end-line="141" selection-end-column="33" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/entitys/userInfo/UserBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="47" column="15" lean-forward="false" selection-start-line="47" selection-start-column="15" selection-end-line="47" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_all_order.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/adapter/OrderAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="582">
+          <caret line="111" column="7" lean-forward="true" selection-start-line="111" selection-start-column="7" selection-end-line="111" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/fragment/WaitReveivedOrderFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="642">
+          <caret line="97" column="13" lean-forward="true" selection-start-line="97" selection-start-column="13" selection-end-line="97" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/fragment/WaitDeliveryOrderFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-759">
+          <caret line="43" column="13" lean-forward="false" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/fragment/AllOrderFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="568">
+          <caret line="93" column="75" lean-forward="true" selection-start-line="93" selection-start-column="75" selection-end-line="93" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/entitys/OrderRootBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1059">
+          <caret line="14" column="22" lean-forward="true" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/rv_order_after_sale_complete_layout.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/rv_order_after_sale_failed_layout.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="17" column="8" lean-forward="false" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/rv_order_after_sale_success_layout.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/rv_order_after_sale_doing_layout.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/adapter/AfterSaleAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="124" column="62" lean-forward="true" selection-start-line="124" selection-start-column="62" selection-end-line="124" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/fragment/AfterSaleOrderFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="31" column="18" lean-forward="true" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/activity/OrderActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="152" column="46" lean-forward="true" selection-start-line="152" selection-start-column="46" selection-end-line="152" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-27/android/app/Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="5539" column="16" lean-forward="false" selection-start-line="5539" selection-start-column="16" selection-end-line="5539" selection-end-column="16" />
+          <folding>
+            <element signature="e#235860#235861#0" expanded="true" />
+            <element signature="e#235914#235915#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/baseui/src/main/java/com/chrisjason/baseui/ui/BaseAppcompatActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="119" column="16" lean-forward="false" selection-start-line="119" selection-start-column="16" selection-end-line="119" selection-end-column="16" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_my_group.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="15" column="8" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+          <folding>
+            <element signature="e#2586#3498#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/activity/MyGroupActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="443">
+          <caret line="56" column="58" lean-forward="true" selection-start-line="56" selection-start-column="58" selection-end-line="56" selection-end-column="58" />
+          <folding>
+            <element signature="class#2851:3469" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_group_goods_list.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="17" column="36" lean-forward="false" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/activity/GroupGoodsListActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31">
+          <caret line="110" column="48" lean-forward="false" selection-start-line="110" selection-start-column="48" selection-end-line="110" selection-end-column="48" />
+          <folding>
+            <element signature="method#initData#0;class#GroupGoodsListActivity#0" expanded="false" />
+            <element signature="method#onSuccess#0;class#GroupGoodsListActivity#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -68,7 +68,6 @@ public class MyGroupActivity extends BaseAppcompatActivity {
                 break;
         }
     }
-
     private void initView() {
         frgList.add(new GroupSuccessFragment());
         //frgList.add(new GroupFailedFragment());
