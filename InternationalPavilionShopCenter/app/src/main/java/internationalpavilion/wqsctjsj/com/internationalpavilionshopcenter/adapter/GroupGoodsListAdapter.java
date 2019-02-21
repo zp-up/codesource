@@ -4,27 +4,34 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.GoodsDetailActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.LimitedTimeActivity;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.GroupProductEntity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.HomeBannerBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.TimerView;
 
@@ -46,6 +53,7 @@ public class GroupGoodsListAdapter extends DelegateAdapter.Adapter<GroupGoodsLis
     private RecyclerView.LayoutParams layoutParams;
     private int count;
     private int type;
+    private String rmb = Html.fromHtml("&yen").toString();
 
     //构造函数(传入每个的数据列表 & 展示的Item数量)
     public GroupGoodsListAdapter(Context context, LayoutHelper layoutHelper, int count,
@@ -115,13 +123,78 @@ public class GroupGoodsListAdapter extends DelegateAdapter.Adapter<GroupGoodsLis
 
                 break;
             case TYPE_2:
-                holder.tvGroupTime.setTime(6 * 60 * 60, TIMETYPE_S);
-                holder.tvGroupTime.start();
+                bind_2(holder, position);
+
+                //holder.tvGroupTime.setTime(6 * 60 * 60, TIMETYPE_S);
+                //holder.tvGroupTime.start();
                 break;
         }
 
     }
 
+    private void bind_2(ViewHolder holder, int position) {
+        HashMap<String, Object> map = data.get(position);
+        if (map != null) {
+            final GroupProductEntity productEntity = (GroupProductEntity) map.get("product");
+            if (productEntity != null) {
+                //拼团人数
+                holder.tvGroupNum.setText(String.valueOf(productEntity.getGroup_num_p()));
+                //商品图片
+                if(productEntity.getGoods_goods().getImg()!=null && productEntity.getGoods_goods().getImg().size()>0){
+                    Glide.with(context).load(productEntity.getGoods_goods().getImg().get(0)).
+                            apply(new RequestOptions().override(300, 300).
+                                    placeholder(R.mipmap.ic_launcher).
+                                    error(R.mipmap.ic_launcher)).
+                            into(holder.ivProduct);
+                }
+
+                //商品名字
+                holder.tvProductName.setText(productEntity.getGoods_goods().getName());
+
+                //商品描述
+                holder.tvDescribe.setText(productEntity.getGoods_goods().getDescribe());
+                //商品单价
+                holder.tvSinglePrice.setText(rmb+productEntity.getPrice_m());
+                //商品团购价
+                holder.tvGroupPrice.setText(rmb+productEntity.getGroup_price());
+                //团购结束时间
+                holder.tvGroupEndDate.setText("截止时间："+productEntity.getPron_end_time());
+
+                //计算倒计时
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                Date date_now,date_end;
+                try {
+                     date_now = new Date(System.currentTimeMillis());
+                     date_end = sdf.parse(productEntity.getPron_end_time());
+                     long time =(date_end.getTime()-date_now.getTime());
+                     if(time>0){
+                         holder.tvGroupTime.setVisibility(View.VISIBLE);
+                         if (holder.tvGroupTime.getRunning()) {
+                             holder.tvGroupTime.stop();
+                         }
+                         holder.tvGroupTime.setTime(time);
+                         holder.tvGroupTime.start();
+                     }else {
+                         holder.tvGroupTime.setVisibility(View.GONE);
+                     }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                holder.llBox.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent= new Intent(context,GoodsDetailActivity.class);
+                        intent.putExtra("goodsId",productEntity.getGoods_goods().getId());
+                        context.startActivity(intent);
+                    }
+                });
+
+
+            }
+        }
+    }
 
     @Override
     public int getItemViewType(int position) {
@@ -131,7 +204,7 @@ public class GroupGoodsListAdapter extends DelegateAdapter.Adapter<GroupGoodsLis
             case 2:
                 return TYPE_2;
             default:
-                return -1;
+                return 99;
         }
     }
 
@@ -143,6 +216,15 @@ public class GroupGoodsListAdapter extends DelegateAdapter.Adapter<GroupGoodsLis
     class ViewHolder extends RecyclerView.ViewHolder {
         TimerView tvGroupTime;
 
+        TextView tvGroupNum;//参团人数
+        ImageView ivProduct;//商品主图
+        TextView tvProductName;//商品名字
+        TextView tvDescribe;//商品描述
+        TextView tvSinglePrice;//商品单独购买价格
+        TextView tvGroupPrice;//团购价格
+        TextView tvGroupEndDate;//团购结束时间
+        LinearLayout llBox;
+
         public ViewHolder(View itemView, int viewType) {
             super(itemView);
             switch (viewType) {
@@ -150,6 +232,16 @@ public class GroupGoodsListAdapter extends DelegateAdapter.Adapter<GroupGoodsLis
 
                     break;
                 case TYPE_2:
+                    tvGroupNum = itemView.findViewById(R.id.tv_group_num);
+                    ivProduct = itemView.findViewById(R.id.iv_goods_pic);
+                    tvProductName = itemView.findViewById(R.id.tv_product_name);
+                    tvDescribe = itemView.findViewById(R.id.tv_describe);
+                    tvSinglePrice = itemView.findViewById(R.id.tv_single_price);
+                    tvGroupPrice =itemView.findViewById(R.id.tv_group_price);
+                    tvGroupEndDate =itemView.findViewById(R.id.tv_group_end_date);
+
+                    llBox=itemView.findViewById(R.id.ll_box);
+
                     tvGroupTime = itemView.findViewById(R.id.tv_group_time);
                     break;
             }

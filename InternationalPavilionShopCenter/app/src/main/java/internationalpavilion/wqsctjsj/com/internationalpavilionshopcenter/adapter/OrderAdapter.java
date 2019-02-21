@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -535,7 +536,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                     holder.tvTAG5.setVisibility(View.GONE);
                     holder.tvCompleteBuyAgain.setVisibility(View.VISIBLE);
                 }
-                if (data.get(position).getStatus().equals("已关闭")){
+                if (TextUtils.equals(data.get(position).getStatus(),"已关闭")){
                     holder.tvApplyAfterSaleComplete.setVisibility(View.GONE);
                 }else {
                     holder.tvApplyAfterSaleComplete.setVisibility(View.VISIBLE);

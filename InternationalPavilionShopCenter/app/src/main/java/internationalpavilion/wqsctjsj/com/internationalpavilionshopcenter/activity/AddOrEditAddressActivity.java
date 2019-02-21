@@ -19,6 +19,7 @@ import com.chrisjason.baseui.ui.BaseAppcompatActivity;
 import com.google.gson.Gson;
 import com.jaeger.library.StatusBarUtil;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.xutils.common.Callback;
@@ -35,6 +36,7 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.applic
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.AddressBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.AppAddress;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.JsonBean;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.eventBusBean.AddressUpdateEvent;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp.LocationOperationImp;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.LocationAperationInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
@@ -346,12 +348,18 @@ public class AddOrEditAddressActivity extends BaseAppcompatActivity implements O
                     msg = jsonObject.getJSONObject("data").getString("msg");
                 }
                 if (code == 0 && state == 0) {
+                    AddressUpdateEvent event =new AddressUpdateEvent();
+                    event.setRes(true);
                     if (isEdit){
+                        event.setOp(2);
                         ToastUtils.show(AddOrEditAddressActivity.this, "修改收货地址成功");
                     }else {
+                        event.setOp(1);
                         ToastUtils.show(AddOrEditAddressActivity.this, "添加收货地址成功");
                     }
                     AddOrEditAddressActivity.this.finish();
+                    //发送事件通知
+                    EventBus.getDefault().post(event);
                 } else {
                     ToastUtils.show(AddOrEditAddressActivity.this, msg);
                 }

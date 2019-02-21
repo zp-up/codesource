@@ -1,7 +1,9 @@
 package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.application;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.multidex.MultiDex;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -34,6 +36,12 @@ public class IPSCApplication extends Application implements OnNetCallBack{
         accessToken = getSPAccessToken();
         x.Ext.init(this);
         getTokenFromNet();
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 
     private String getSPAccessToken() {

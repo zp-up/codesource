@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.EventLog;
 import android.util.Log;
 import android.view.View;
 
@@ -16,11 +17,14 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.xutils.http.RequestParams;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -28,9 +32,11 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.adapter.AddressAdapter;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.application.IPSCApplication;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.AddressBean;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.eventBusBean.AddressUpdateEvent;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp.CommonGoodsImp;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.CommonDataInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnCommonGoodsCallBack;
 
 public class ReceivedAddressListActivity extends BaseAppcompatActivity implements OnCommonGoodsCallBack {
@@ -49,13 +55,38 @@ public class ReceivedAddressListActivity extends BaseAppcompatActivity implement
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         StatusBarUtil.setTranslucentForImageViewInFragment(this, 0, null);
+        EventBus.getDefault().register(this);
         initViews();
         commonPresenter = new CommonGoodsImp();
         initData();
+    }
 
+
+    @Subscribe
+    public void onEvent(AddressUpdateEvent event) {
+        if (event != null) {
+            if (event.isRes()) {
+                data.clear();
+                pageIndex=1;
+                initData();
+            }
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
     }
 
     private void initViews() {
+
+        if (adapter == null) {
+            adapter = new AddressAdapter(this, data);
+            rvAddress.setLayoutManager(new LinearLayoutManager(this));
+            rvAddress.setAdapter(adapter);
+        }
+
         srlContent.setEnableLoadmore(true);
         srlContent.setOnRefreshListener(new OnRefreshListener() {
             @Override
@@ -67,10 +98,10 @@ public class ReceivedAddressListActivity extends BaseAppcompatActivity implement
         srlContent.setOnLoadmoreListener(new OnLoadmoreListener() {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
-                pageIndex++;
                 initData();
             }
         });
+
     }
 
     private void initData() {
@@ -82,17 +113,6 @@ public class ReceivedAddressListActivity extends BaseAppcompatActivity implement
         commonPresenter.getCommonGoodsData(params, this);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (adapter == null) {
-            adapter = new AddressAdapter(this, data);
-            rvAddress.setLayoutManager(new LinearLayoutManager(this));
-            rvAddress.setAdapter(adapter);
-        } else {
-            adapter.notifyDataSetChanged();
-        }
-    }
 
     @OnClick({R.id.iv_back, R.id.tv_add_new_address})
     public void onClick(View view) {
@@ -136,28 +156,29 @@ public class ReceivedAddressListActivity extends BaseAppcompatActivity implement
 
     @Override
     public void onCommonGoodsCallBack(String result) {
+
         if (result != null) {
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");
                 int state = jsonObject.getInt("state");
                 if (code == 0 && state == 0) {
-                    JSONArray data = jsonObject.getJSONArray("data");
-                    if (pageIndex == 1) {
-                        ReceivedAddressListActivity.this.data.clear();
-                        adapter.notifyDataSetChanged();
-                    }
-                    if (data != null && data.length() != 0) {
-                        for (int i = 0; i < data.length(); i++) {
+                    JSONArray dataArray = jsonObject.getJSONArray("data");
+
+                    //临时存放数据，只为了手动解析数据
+                    List<AddressBean> tmpList = new ArrayList<>();
+
+                    if (data != null && dataArray.length() > 0) {
+                        for (int i = 0; i < dataArray.length(); i++) {
                             AddressBean addressBean = new AddressBean();
-                            int id = data.getJSONObject(i).getInt("id");
-                            String name = data.getJSONObject(i).getString("name");
-                            String area = data.getJSONObject(i).getString("area");
-                            String city = data.getJSONObject(i).getString("city");
-                            String province = data.getJSONObject(i).getString("province");
-                            int isDefault = data.getJSONObject(i).getInt("status");
-                            String detailPlace = data.getJSONObject(i).getString("address");
-                            String phone = data.getJSONObject(i).getString("telphone");
+                            int id = dataArray.getJSONObject(i).getInt("id");
+                            String name = dataArray.getJSONObject(i).getString("name");
+                            String area = dataArray.getJSONObject(i).getString("area");
+                            String city = dataArray.getJSONObject(i).getString("city");
+                            String province = dataArray.getJSONObject(i).getString("province");
+                            int isDefault = dataArray.getJSONObject(i).getInt("status");
+                            String detailPlace = dataArray.getJSONObject(i).getString("address");
+                            String phone = dataArray.getJSONObject(i).getString("telphone");
                             addressBean.setArea(area);
                             addressBean.setChecked(isDefault == 0 ? true : false);
                             addressBean.setCity(city);
@@ -166,14 +187,58 @@ public class ReceivedAddressListActivity extends BaseAppcompatActivity implement
                             addressBean.setProvince(province);
                             addressBean.setReceiveName(name);
                             addressBean.setReceivePhone(phone);
-                            ReceivedAddressListActivity.this.data.add(addressBean);
+                            tmpList.add(addressBean);
                         }
                     }
+
+
+                    //刷新或第一次加载
+                    if (pageIndex == 1) {
+                        data.clear();
+                        if (tmpList != null && tmpList.size() > 0) {
+                            data.addAll(tmpList);
+
+                            //已经加载完所有数据
+                            if (tmpList.size() < 10) {
+                                ToastUtils.show(this,"已加载完所有数据");
+                                srlContent.setEnableLoadmore(false);
+                            } else {
+                                pageIndex++;
+                                srlContent.setEnableLoadmore(true);
+                            }
+                        } else {
+                            //刷新或首次加载失败
+                            ToastUtils.show(this,"数据加载失败");
+                        }
+
+                    } else if (pageIndex > 1) {
+                        //上拉加载时
+                        if (tmpList != null && tmpList.size() > 0) {
+
+                            data.addAll(tmpList);
+                            if (tmpList.size() < 10) {
+                                ToastUtils.show(this,"已加载完所有数据");
+                                //上拉加载完所有数据，禁止上拉事件
+                                srlContent.setEnableLoadmore(false);
+                            } else {
+                                pageIndex++;
+                                srlContent.setEnableLoadmore(true);
+                            }
+                        } else {
+                            //上拉加载完了所有数据
+                            ToastUtils.show(this,"已加载完所有数据");
+                            srlContent.setEnableLoadmore(false);
+                        }
+
+                    }
+
                     adapter.notifyDataSetChanged();
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+
             }
+
         }
+
     }
 }

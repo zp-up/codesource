@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="com.jaeger.statusbaruitl:library-1.3.0">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-4.1-all/caches/transforms-1/files-1.1/library-1.3.0.aar/5d52b75b0c1b7f24e43763cdee9048e5/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-4.1-all/caches/transforms-1/files-1.1/library-1.3.0.aar/5d52b75b0c1b7f24e43763cdee9048e5/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.3.0.aar/7793ab1cc6c85e3bd2baafcbae3e64e3/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.3.0.aar/7793ab1cc6c85e3bd2baafcbae3e64e3/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-4.1-all/caches/modules-2/files-2.1/com.jaeger.statusbaruitl/library/1.3.0/f0d40cfd07e42669c8b38fb3b50a0f4242e05af8/library-1.3.0-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jaeger.statusbaruitl/library/1.3.0/f0d40cfd07e42669c8b38fb3b50a0f4242e05af8/library-1.3.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
