@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_marginBottom="18dp"
+    android:id="@+id/ll_box"
+    android:background="@color/white"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:background="#fff4f4f4"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="171dp">
+        <ImageView
+            android:id="@+id/iv_product"
+            tools:src="@mipmap/ic_launcher"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:background="#ffdbe2ee"
+        android:layout_width="match_parent"
+        android:layout_height="25dp">
+        <TextView
+            android:id="@+id/tv_describe"
+            android:layout_centerInParent="true"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:layout_marginRight="3dp"
+            android:layout_marginLeft="3dp"
+            android:gravity="left"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="花漾淡香水，如同一袭繁花..."
+            android:textColor="#ff788aa6"
+            android:textSize="12dp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:singleLine="true"
+        android:layout_marginTop="18dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Gucci Bloom Acqua..."
+        android:textColor="#ff333333"
+        android:textSize="14dp" />
+
+    <TextView
+        android:id="@+id/tv_price"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="¥820"
+        android:textColor="#ff232323"
+        android:textSize="10dp"
+        />
+
+</LinearLayout>
