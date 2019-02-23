@@ -311,7 +311,7 @@ public class SearchActivity extends BaseAppcompatActivity implements OnSearchCal
         MultiTypeViewBinder<GroupProductEntity> binder = new MultiTypeViewBinder<GroupProductEntity>(this, R.layout.item_product_search_result) {
             @Override
             protected void convert(ViewHolder holder, final GroupProductEntity productEntity, int position) {
-                LinearLayout llBox= holder.getView(R.id.ll_box);
+                android.widget.LinearLayout llBox= holder.getView(R.id.ll_box);
                 ImageView ivProduct = holder.getView(R.id.iv_product);
                 TextView tvProductName = holder.getView(R.id.tv_name);
                 TextView tvDescribe= holder.getView(R.id.tv_describe);
