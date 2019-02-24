@@ -36,12 +36,14 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/x10"></View>
     <LinearLayout
+        android:id="@+id/ll_alipay"
         android:gravity="center_vertical"
         android:layout_marginLeft="@dimen/x20"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x45">
         <ImageView
+            android:id="@+id/iv_alipay"
             android:src="@mipmap/icon_cart_box_selected"
             android:layout_width="@dimen/x15"
             android:layout_height="@dimen/x15" />
@@ -64,12 +66,14 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/x1"></View>
     <LinearLayout
+        android:id="@+id/ll_wechat"
         android:gravity="center_vertical"
         android:layout_marginLeft="@dimen/x20"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x45">
         <ImageView
+            android:id="@+id/iv_wechat"
             android:src="@mipmap/icon_cart_box_unselected"
             android:layout_width="@dimen/x15"
             android:layout_height="@dimen/x15" />

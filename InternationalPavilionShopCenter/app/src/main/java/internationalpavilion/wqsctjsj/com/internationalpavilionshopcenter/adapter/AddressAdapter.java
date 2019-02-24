@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
     private Context context;
     private ArrayList<AddressBean> data;
     private LayoutInflater inflater;
+    private OnItemClickListener listener;
 
     public AddressAdapter(Context context, ArrayList<AddressBean> data) {
         this.context = context;
@@ -35,6 +37,10 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
         if (inflater == null) {
             inflater = LayoutInflater.from(context);
         }
+    }
+
+    public void setListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 
     @NonNull
@@ -45,7 +51,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         final AddressBean addressBean = data.get(position);
         holder.tvReceiveName.setText(addressBean.getReceiveName());
         holder.tvReceivePhone.setText(addressBean.getReceivePhone());
@@ -84,6 +90,12 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
                 dialog.show();
             }
         });
+        holder.llItemClick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onItemClick(data.get(position).getId());
+            }
+        });
     }
 
     @Override
@@ -98,6 +110,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
         TextView tvIsDefault;
         TextView tvDetailPlace;
         ImageView ivEdit;
+        LinearLayout llItemClick;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -106,6 +119,10 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
             tvIsDefault = itemView.findViewById(R.id.tv_is_default);
             tvDetailPlace = itemView.findViewById(R.id.tv_detail_place);
             ivEdit = itemView.findViewById(R.id.iv_to_edit_place);
+            llItemClick = itemView.findViewById(R.id.ll_item_click);
         }
+    }
+    public interface OnItemClickListener{
+        void onItemClick(int id);
     }
 }
