@@ -37,34 +37,62 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SearchActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/activity/SearchActivity.java">
+      <file leaf-file-name="ContactCustomerServiceActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/activity/ContactCustomerServiceActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="313" column="43" lean-forward="false" selection-start-line="313" selection-start-column="43" selection-end-line="313" selection-end-column="43" />
+            <state relative-caret-position="346">
+              <caret line="214" column="142" lean-forward="false" selection-start-line="214" selection-start-column="142" selection-end-line="214" selection-end-column="142" />
               <folding>
-                <element signature="method#onCreate#0;class#SearchActivity#0" expanded="false" />
-                <element signature="e#4449#4644#0" expanded="true" />
-                <element signature="e#4643#4644#0" expanded="true" />
-                <element signature="e#4687#4853#0" expanded="true" />
-                <element signature="e#4852#4853#0" expanded="true" />
-                <element signature="class#4906:5542" expanded="false" />
-                <element signature="method#afterTextChanged#0;class#4906:5542" expanded="false" />
-                <element signature="e#5584#5901#0" expanded="true" />
-                <element signature="e#5900#5901#0" expanded="true" />
-                <element signature="method#doSearch#0;class#SearchActivity#0" expanded="false" />
-                <element signature="method#onSuccess#0;class#6484:13733" expanded="false" />
-                <element signature="e#14112#14132#0" expanded="true" />
-                <element signature="e#15582#15966#0" expanded="true" />
-                <element signature="e#15965#15966#0" expanded="true" />
-                <element signature="e#16086#16750#0" expanded="true" />
-                <element signature="e#16749#16750#0" expanded="true" />
-                <element signature="method#initData#0;class#SearchActivity#0" expanded="false" />
-                <element signature="method#reloadData#0;class#SearchActivity#0" expanded="false" />
-                <element signature="method#onHistorySearchLoaded#0;class#SearchActivity#0" expanded="false" />
-                <element signature="method#initHistoryTag#0;class#SearchActivity#0" expanded="false" />
-                <element signature="method#onHotSearchLoaded#0;class#SearchActivity#0" expanded="false" />
-                <element signature="method#initHatTag#0;class#SearchActivity#0" expanded="false" />
+                <element signature="method#onCreate#0;class#ContactCustomerServiceActivity#0" expanded="false" />
+                <element signature="method#initView#0;class#ContactCustomerServiceActivity#0" expanded="false" />
+                <element signature="e#3623#4171#0" expanded="true" />
+                <element signature="e#4170#4171#0" expanded="true" />
+                <element signature="method#onClick#0;class#ContactCustomerServiceActivity#0" expanded="false" />
+                <element signature="method#reloadData#0;class#ContactCustomerServiceActivity#0" expanded="false" />
+                <element signature="e#4921#4945#0" expanded="true" />
+                <element signature="method#initIM#0;class#ContactCustomerServiceActivity#0" expanded="false" />
+                <element signature="method#sendMsg#0;class#ContactCustomerServiceActivity#0" expanded="false" />
+                <element signature="method#hideSoftInput#0;class#ContactCustomerServiceActivity#0" expanded="false" />
+                <element signature="method#invokeSend#0;class#ContactCustomerServiceActivity#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MineFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/fragment/MineFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="430">
+              <caret line="106" column="13" lean-forward="false" selection-start-line="91" selection-start-column="8" selection-end-line="106" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="item_customer_service_message_receive_layout.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_customer_service_message_receive_layout.xml">
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="295">
+              <caret line="46" column="22" lean-forward="false" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
+              <folding>
+                <element signature="e#1332#1581#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CustomerServicePresenterImp.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/presenters/presenterImp/CustomerServicePresenterImp.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="560">
+              <caret line="53" column="5" lean-forward="false" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="class#1325:1878" expanded="false" />
+                <element signature="method#onError#0;class#1325:1878" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -75,28 +103,15 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="resourceFile" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>r</find>
-      <find>viewPager</find>
-      <find>goodsBean</find>
-      <find>收藏</find>
-      <find>type</find>
-      <find>rl_add_to_collection</find>
-      <find>addGoodsToCollection</find>
-      <find>x</find>
-      <find>xin'ping</find>
-      <find>xin'pin</find>
-      <find>新品h</find>
-      <find>新品hui</find>
-      <find>新品hui'cui</find>
-      <find>新品荟萃</find>
-      <find>新品荟</find>
       <find>新品</find>
       <find>tv_add_new_address</find>
       <find>getintent</find>
@@ -112,7 +127,25 @@
       <find>onco</find>
       <find>pageIndex</find>
       <find>adapter</find>
+      <find>shap</find>
+      <find>shape_of</find>
+      <find>s</find>
+      <find>shape_</find>
+      <find>shape_o</find>
+      <find>shape_of_</find>
+      <find>shape_of_im</find>
+      <find>RequestParams params</find>
+      <find>RequestParams params</find>
+      <find>RequestParams params =</find>
+      <find>params.addBodyParameter</find>
+      <find>Glide</find>
+      <find>notifydata</find>
+      <find>adapter.notify</find>
+      <find>civHead</find>
     </findStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/app</dir>
+    </dirStrings>
   </component>
   <component name="GradleLocalSettings">
     <option name="myGradleHomes">
@@ -2764,7 +2797,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_group_goods_list.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/utils/JSONUtils.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/urls/MainUrls.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/entitys/GroupProductEntity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/widget/TimerView.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/rv_group_goods_list_layout.xml" />
@@ -2782,13 +2814,34 @@
         <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/utils/CrashHandler.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/application/IPSCApplication.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/activity/SearchActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/shape_of_et_im_bg.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/btn_send_msg_dra_bg.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/entitys/customerService/ReceivedMessage.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/entitys/customerService/SendedMessage.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/entitys/customerService/SentMessage.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/im_received_message_dra_bg.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/im_sent_message_dra_bg.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_im_message_layout.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/presenters/presenterInterface/CustomerServicePresenter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/presenters/presenterImp/CustomerServicePresenterImp.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/entitys/customerService/CustomerServiceMessage.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_customer_service_message_send_layout.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_question_list_layout.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/utils/ListViewUtil.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/utils/GlideRoundTransform.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/adapter/QuestionListAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_contact_customer_service.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/urls/MainUrls.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_customer_service_message_receive_layout.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/activity/ContactCustomerServiceActivity.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="2" />
+    <option name="x" value="1" />
     <option name="y" value="23" />
-    <option name="width" value="1278" />
+    <option name="width" value="1279" />
     <option name="height" value="718" />
   </component>
   <component name="ProjectView">
@@ -2831,6 +2884,24 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="res" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="InternationalPavilionShopCenter" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidResFolderTypeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -2887,6 +2958,74 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="internationalpavilion" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wqsctjsj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="internationalpavilionshopcenter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="utils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="InternationalPavilionShopCenter" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="internationalpavilion" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wqsctjsj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="internationalpavilionshopcenter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fragment" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="InternationalPavilionShopCenter" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="manifests" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidManifestsGroupNode" />
             </PATH_ELEMENT>
@@ -2930,7 +3069,7 @@
     <property name="settings.editor.selected.configurable" value="android.sdk-updates" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="show.migrate.to.gradle.popup" value="false" />
-    <property name="device.picker.selection" value="d72994bf" />
+    <property name="device.picker.selection" value="988a16464f594f454b" />
     <property name="DEBUGGABLE_DEVICE" value="samsung-sm_g9500-988a16464f594f454b" />
     <property name="DEBUGGABLE_PROCESS" value="internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
@@ -2939,6 +3078,10 @@
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -3024,7 +3167,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1550888472814" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1550991654856" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -3072,7 +3215,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1550888472815" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1550991654856" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -3268,7 +3411,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1550888472822" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1550991654859" />
       </method>
     </configuration>
     <list size="1">
@@ -3311,7 +3454,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="2" y="23" width="1278" height="718" extended-state="6" />
+    <frame x="1" y="23" width="1279" height="718" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -3323,20 +3466,21 @@
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39966834" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3986711" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40656853" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34789643" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29911074" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32890365" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23381877" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26434922" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Android WiFi ADB" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -3347,7 +3491,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -3417,257 +3560,11 @@
           <option name="timeStamp" value="38" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="39" />
+      <option name="time" value="46" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/adapter/GroupGoodsListAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3744">
-          <caret line="189" column="54" lean-forward="false" selection-start-line="187" selection-start-column="23" selection-end-line="189" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_order.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="141" column="33" lean-forward="false" selection-start-line="141" selection-start-column="25" selection-end-line="141" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/entitys/userInfo/UserBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="47" column="15" lean-forward="false" selection-start-line="47" selection-start-column="15" selection-end-line="47" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_all_order.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/adapter/OrderAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="582">
-          <caret line="111" column="7" lean-forward="true" selection-start-line="111" selection-start-column="7" selection-end-line="111" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/fragment/WaitReveivedOrderFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="642">
-          <caret line="97" column="13" lean-forward="true" selection-start-line="97" selection-start-column="13" selection-end-line="97" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/fragment/WaitDeliveryOrderFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-759">
-          <caret line="43" column="13" lean-forward="false" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/fragment/AllOrderFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="568">
-          <caret line="93" column="75" lean-forward="true" selection-start-line="93" selection-start-column="75" selection-end-line="93" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/entitys/OrderRootBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1059">
-          <caret line="14" column="22" lean-forward="true" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/rv_order_after_sale_complete_layout.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/rv_order_after_sale_failed_layout.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="17" column="8" lean-forward="false" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/rv_order_after_sale_success_layout.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/rv_order_after_sale_doing_layout.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/adapter/AfterSaleAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="124" column="62" lean-forward="true" selection-start-line="124" selection-start-column="62" selection-end-line="124" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/fragment/AfterSaleOrderFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="31" column="18" lean-forward="true" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/activity/OrderActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="152" column="46" lean-forward="true" selection-start-line="152" selection-start-column="46" selection-end-line="152" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-27/android/app/Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="5539" column="16" lean-forward="false" selection-start-line="5539" selection-start-column="16" selection-end-line="5539" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/baseui/src/main/java/com/chrisjason/baseui/ui/BaseAppcompatActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="119" column="16" lean-forward="false" selection-start-line="119" selection-start-column="16" selection-end-line="119" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_my_group.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="15" column="8" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
-          <folding>
-            <element signature="e#2586#3498#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/activity/MyGroupActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="56" column="58" lean-forward="true" selection-start-line="56" selection-start-column="58" selection-end-line="56" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_group_goods_list.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="17" column="36" lean-forward="false" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_home_layout.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="62" column="53" lean-forward="false" selection-start-line="62" selection-start-column="53" selection-end-line="62" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/rv_home_lay5.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="43" column="43" lean-forward="false" selection-start-line="43" selection-start-column="43" selection-end-line="43" selection-end-column="43" />
-          <folding>
-            <element signature="e#1167#1643#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/adapter/HomeAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2106">
-          <caret line="142" column="55" lean-forward="false" selection-start-line="142" selection-start-column="55" selection-end-line="142" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/fragment/HomeFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="76" column="20" lean-forward="false" selection-start-line="76" selection-start-column="20" selection-end-line="76" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/rv_goods_detail_layout4.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="26" column="26" lean-forward="false" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/rv_goods_detail_layout2.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/rv_goods_detail_lay1.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_goods_detail.xml">
       <provider editor-type-id="android-designer2">
         <state />
@@ -3678,7 +3575,7 @@
           <folding>
             <element signature="e#618#1459#0" expanded="false" />
             <element signature="e#2806#3643#0" expanded="false" />
-            <element signature="e#3913#3953#0" expanded="true" />
+            <element signature="e#3913#3953#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3730,6 +3627,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="349" column="46" lean-forward="false" selection-start-line="349" selection-start-column="46" selection-end-line="349" selection-end-column="46" />
+          <folding>
+            <element signature="method#doModify#0;class#AddOrEditAddressActivity#0" expanded="false" />
+            <element signature="method#doSubmit#0;class#AddOrEditAddressActivity#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3812,7 +3713,7 @@
         <state relative-caret-position="520">
           <caret line="22" column="5" lean-forward="false" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3835,23 +3736,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="11" column="105" lean-forward="true" selection-start-line="11" selection-start-column="105" selection-end-line="11" selection-end-column="105" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/utils/CrashHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="354">
           <caret line="76" column="7" lean-forward="false" selection-start-line="76" selection-start-column="7" selection-end-line="76" selection-end-column="7" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3901,31 +3791,325 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/activity/SearchActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
+        <state relative-caret-position="293">
           <caret line="313" column="43" lean-forward="false" selection-start-line="313" selection-start-column="43" selection-end-line="313" selection-end-column="43" />
           <folding>
             <element signature="method#onCreate#0;class#SearchActivity#0" expanded="false" />
-            <element signature="e#4449#4644#0" expanded="true" />
-            <element signature="e#4643#4644#0" expanded="true" />
-            <element signature="e#4687#4853#0" expanded="true" />
-            <element signature="e#4852#4853#0" expanded="true" />
+            <element signature="e#4449#4644#0" expanded="false" />
+            <element signature="e#4643#4644#0" expanded="false" />
+            <element signature="e#4687#4853#0" expanded="false" />
+            <element signature="e#4852#4853#0" expanded="false" />
             <element signature="class#4906:5542" expanded="false" />
             <element signature="method#afterTextChanged#0;class#4906:5542" expanded="false" />
-            <element signature="e#5584#5901#0" expanded="true" />
-            <element signature="e#5900#5901#0" expanded="true" />
+            <element signature="e#5584#5901#0" expanded="false" />
+            <element signature="e#5900#5901#0" expanded="false" />
             <element signature="method#doSearch#0;class#SearchActivity#0" expanded="false" />
             <element signature="method#onSuccess#0;class#6484:13733" expanded="false" />
-            <element signature="e#14112#14132#0" expanded="true" />
-            <element signature="e#15582#15966#0" expanded="true" />
-            <element signature="e#15965#15966#0" expanded="true" />
-            <element signature="e#16086#16750#0" expanded="true" />
-            <element signature="e#16749#16750#0" expanded="true" />
+            <element signature="e#14112#14132#0" expanded="false" />
+            <element signature="e#15582#15966#0" expanded="false" />
+            <element signature="e#15965#15966#0" expanded="false" />
+            <element signature="e#16086#16750#0" expanded="false" />
+            <element signature="e#16749#16750#0" expanded="false" />
             <element signature="method#initData#0;class#SearchActivity#0" expanded="false" />
             <element signature="method#reloadData#0;class#SearchActivity#0" expanded="false" />
             <element signature="method#onHistorySearchLoaded#0;class#SearchActivity#0" expanded="false" />
             <element signature="method#initHistoryTag#0;class#SearchActivity#0" expanded="false" />
             <element signature="method#onHotSearchLoaded#0;class#SearchActivity#0" expanded="false" />
             <element signature="method#initHatTag#0;class#SearchActivity#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/shape_of_et_im_bg.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="5" column="2" lean-forward="false" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/btn_send_msg_dra_bg.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/entitys/customerService/ReceivedMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="8" column="52" lean-forward="false" selection-start-line="8" selection-start-column="52" selection-end-line="8" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/entitys/customerService/SentMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="8" column="55" lean-forward="false" selection-start-line="8" selection-start-column="55" selection-end-line="8" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/im_sent_message_dra_bg.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="5" column="33" lean-forward="false" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/im_received_message_dra_bg.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="5" column="41" lean-forward="false" selection-start-line="5" selection-start-column="41" selection-end-line="5" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/presenters/presenterInterface/BondedGoodsInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/presenters/presenterImp/BondedGoodsImp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/presenters/presenterImp/SearchOperationImp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="77" column="45" lean-forward="true" selection-start-line="77" selection-start-column="45" selection-end-line="77" selection-end-column="45" />
+          <folding>
+            <element signature="method#getHistorySearch#0;class#SearchOperationImp#0" expanded="false" />
+            <element signature="method#getHotSearch#0;class#SearchOperationImp#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/views/OnNetCallBack.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/models/modelsInterface/NetCallBack.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/presenters/presenterInterface/NetCallback.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/presenters/presenterInterface/CustomerServicePresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="18" column="53" lean-forward="false" selection-start-line="18" selection-start-column="53" selection-end-line="18" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/presenters/presenterImp/CustomerServicePresenterImp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="53" column="5" lean-forward="false" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="class#1325:1878" expanded="false" />
+            <element signature="method#onError#0;class#1325:1878" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/entitys/customerService/CustomerServiceMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="25" column="37" lean-forward="true" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
+          <folding>
+            <element signature="e#600#601#0" expanded="true" />
+            <element signature="e#635#636#0" expanded="true" />
+            <element signature="e#697#698#0" expanded="true" />
+            <element signature="e#745#746#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_customer_service_message_send_layout.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="15" column="36" lean-forward="true" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/adapter/LimitTimeGoodsAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="51" column="61" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/utils/ListViewUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/adapter/QuestionListAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="62" column="64" lean-forward="false" selection-start-line="62" selection-start-column="64" selection-end-line="62" selection-end-column="64" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#924#925#0" expanded="true" />
+            <element signature="e#977#978#0" expanded="true" />
+            <element signature="e#1034#1035#0" expanded="true" />
+            <element signature="e#1075#1076#0" expanded="true" />
+            <element signature="e#1132#1133#0" expanded="true" />
+            <element signature="e#1163#1164#0" expanded="true" />
+            <element signature="e#1751#2047#0" expanded="true" />
+            <element signature="e#2046#2047#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="63" column="50" lean-forward="false" selection-start-line="63" selection-start-column="41" selection-end-line="63" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_contact_customer_service.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="39" column="45" lean-forward="false" selection-start-line="39" selection-start-column="45" selection-end-line="39" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/urls/MainUrls.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="114" column="31" lean-forward="false" selection-start-line="114" selection-start-column="31" selection-end-line="114" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_question_list_layout.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="2" column="32" lean-forward="false" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_im_message_layout.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="7" column="64" lean-forward="true" selection-start-line="7" selection-start-column="64" selection-end-line="7" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/utils/GlideRoundTransform.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="28" column="11" lean-forward="false" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_customer_service_message_receive_layout.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="46" column="22" lean-forward="false" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
+          <folding>
+            <element signature="e#1332#1581#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/multitype/MultiTypeAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2956">
+          <caret line="150" column="48" lean-forward="false" selection-start-line="150" selection-start-column="38" selection-end-line="150" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/fragment/MineFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="106" column="13" lean-forward="false" selection-start-line="91" selection-start-column="8" selection-end-line="106" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/internationalpavilion/wqsctjsj/com/internationalpavilionshopcenter/activity/ContactCustomerServiceActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="214" column="142" lean-forward="false" selection-start-line="214" selection-start-column="142" selection-end-line="214" selection-end-column="142" />
+          <folding>
+            <element signature="method#onCreate#0;class#ContactCustomerServiceActivity#0" expanded="false" />
+            <element signature="method#initView#0;class#ContactCustomerServiceActivity#0" expanded="false" />
+            <element signature="e#3623#4171#0" expanded="true" />
+            <element signature="e#4170#4171#0" expanded="true" />
+            <element signature="method#onClick#0;class#ContactCustomerServiceActivity#0" expanded="false" />
+            <element signature="method#reloadData#0;class#ContactCustomerServiceActivity#0" expanded="false" />
+            <element signature="e#4921#4945#0" expanded="true" />
+            <element signature="method#initIM#0;class#ContactCustomerServiceActivity#0" expanded="false" />
+            <element signature="method#sendMsg#0;class#ContactCustomerServiceActivity#0" expanded="false" />
+            <element signature="method#hideSoftInput#0;class#ContactCustomerServiceActivity#0" expanded="false" />
+            <element signature="method#invokeSend#0;class#ContactCustomerServiceActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -109,4 +109,8 @@ public class MainUrls {
     public static final String getGroupProductListUrl = ServerIp +"/api?api=store.price.getgroupgoodslist";
     //商品搜索
     public static final String searchProduct =ServerIp+"/api?api=goods.search.goods";
+    //初始化联系客服
+    public static final String getInitIMMessage = ServerIp +"/api?api=msg.qmsg.getallcatebrand";
+    //发送客服消息
+    public static final String sendMessage = ServerIp +"/api?api=msg.qmsg.getdata";
 }
