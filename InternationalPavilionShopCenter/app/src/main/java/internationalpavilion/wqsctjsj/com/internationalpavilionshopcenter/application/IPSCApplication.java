@@ -18,6 +18,7 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entity
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp.UserOptionImp;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.UserOptionInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.CrashHandler;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnNetCallBack;
 
 /**
@@ -33,9 +34,13 @@ public class IPSCApplication extends Application implements OnNetCallBack{
     @Override
     public void onCreate() {
         super.onCreate();
+        //统一java层异常捕获
+        Thread.setDefaultUncaughtExceptionHandler(CrashHandler.getInstance(this));
         accessToken = getSPAccessToken();
         x.Ext.init(this);
         getTokenFromNet();
+
+
     }
 
     @Override
