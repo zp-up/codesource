@@ -12,6 +12,4 @@ public interface SearchOperationInterface {
     void getHistorySearch(RequestParams params, OnSearchCallback callback);
 
     void getHotSearch(RequestParams params, OnSearchCallback callback);
-    //发起搜索
-    void doSearch(RequestParams params,NetCallback callback);
 }

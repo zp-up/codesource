@@ -25,7 +25,7 @@ public class Goods_goods {
     private String barcode;
     private String keyword;
     //private Customs_hs customs_hs;
-    private String goods_attr;
+    //private String goods_attr;
     private String describe;
     private String detail;
     private int quality;
@@ -161,13 +161,13 @@ public class Goods_goods {
 //        return customs_hs;
 //    }
 
-    public void setGoods_attr(String goods_attr) {
-        this.goods_attr = goods_attr;
-    }
-
-    public String getGoods_attr() {
-        return goods_attr;
-    }
+//    public void setGoods_attr(String goods_attr) {
+//        this.goods_attr = goods_attr;
+//    }
+//
+//    public String getGoods_attr() {
+//        return goods_attr;
+//    }
 
     public void setDescribe(String describe) {
         this.describe = describe;
