@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="alipaySdk-15.5.9-20181123210601:@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-4.1-all/caches/transforms-1/files-1.1/alipaySdk-15.5.9-20181123210601.aar/32f64bd803a7395c133f608051274ddd/res" />
+      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-4.1-all/caches/transforms-1/files-1.1/alipaySdk-15.5.9-20181123210601.aar/32f64bd803a7395c133f608051274ddd/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

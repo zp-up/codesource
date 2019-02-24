@@ -194,6 +194,7 @@ public class CartFragment extends Fragment implements OnCommonGoodsCallBack, Car
                     String orderId = data.has("0") ? data.getString("0") : "-1";
                     if (!orderId.equals("-1")) {
                         Intent intent = new Intent(getActivity(), ConfirmOrderActivity.class);
+                        intent.putExtra("id",orderId);
                         startActivity(intent);
                     }
                 }
