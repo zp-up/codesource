@@ -1,7 +1,6 @@
 package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity;
 
 
-import android.Manifest;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -44,7 +43,6 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.fragme
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp.UserOptionImp;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.UserOptionInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
-import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.EasyPermissionsEx;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnNetCallBack;
 
@@ -82,21 +80,11 @@ public class MainActivity extends BaseAppcompatActivity implements RadioGroup.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         StatusBarUtil.setTranslucentForImageViewInFragment(this, 0, null);
-        requestPermis();
         userOptionPresenter = new UserOptionImp();
         mFragmentManager = getSupportFragmentManager();
         addFragment(1);
         initView();
         EventBus.getDefault().register(this);
-    }
-
-    private void requestPermis() {
-        if(!EasyPermissionsEx.hasPermissions(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)){
-            EasyPermissionsEx.requestPermissions(this,"支付宝支付需要获取sd卡写入权限", 1,Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        }
-        if(!EasyPermissionsEx.hasPermissions(this, Manifest.permission.READ_PHONE_STATE)){
-            EasyPermissionsEx.requestPermissions(this,"支付宝支付需要读取您的手机状态", 2,Manifest.permission.READ_PHONE_STATE);
-        }
     }
     private void hideAllFragment(){
         FragmentTransaction transaction = mFragmentManager.beginTransaction();

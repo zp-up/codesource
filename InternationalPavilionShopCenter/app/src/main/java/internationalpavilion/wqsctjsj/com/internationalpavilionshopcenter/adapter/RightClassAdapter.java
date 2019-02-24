@@ -62,15 +62,15 @@ public class RightClassAdapter extends RecyclerView.Adapter<RightClassAdapter.Vi
         for (int i = 0; i < Math.floor(count / 3); i++) {
             View view = inflater.inflate(R.layout.item_child_class_in_class, null);
             TextView tvChild1 = view.findViewById(R.id.tv_child_class_name_1);
-            tvChild1.setText(rightClassBean.getChildBeans().get(i*3 ).getClassName());
+            tvChild1.setText(rightClassBean.getChildBeans().get(i).getClassName());
             TextView tvChild2 = view.findViewById(R.id.tv_child_class_name_2);
-            tvChild2.setText(rightClassBean.getChildBeans().get(i*3 + 1).getClassName());
+            tvChild2.setText(rightClassBean.getChildBeans().get(i + 1).getClassName());
             TextView tvChild3 = view.findViewById(R.id.tv_child_class_name_3);
-            tvChild3.setText(rightClassBean.getChildBeans().get(i*3  + 2).getClassName());
+            tvChild3.setText(rightClassBean.getChildBeans().get(i + 2).getClassName());
 
             ImageView ivChildPic1 = view.findViewById(R.id.iv_child_class_pic_1);
-            Glide.with(context).load(rightClassBean.getChildBeans().get(i*3 ).getImgUrl()).apply(new RequestOptions().placeholder(R.drawable.bg_home_lay10_1).error(R.drawable.bg_home_lay10_1)).into(ivChildPic1);
-            final int index = i*3 ;
+            Glide.with(context).load(rightClassBean.getChildBeans().get(i).getImgUrl()).apply(new RequestOptions().placeholder(R.drawable.bg_home_lay10_1).error(R.drawable.bg_home_lay10_1)).into(ivChildPic1);
+            final int index = i;
             ivChildPic1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -81,7 +81,7 @@ public class RightClassAdapter extends RecyclerView.Adapter<RightClassAdapter.Vi
                 }
             });
             ImageView ivChildPic2 = view.findViewById(R.id.iv_child_class_pic_2);
-            Glide.with(context).load(rightClassBean.getChildBeans().get(i*3  + 1).getImgUrl()).apply(new RequestOptions().placeholder(R.drawable.bg_home_lay10_1).error(R.drawable.bg_home_lay10_1)).into(ivChildPic2);
+            Glide.with(context).load(rightClassBean.getChildBeans().get(i + 1).getImgUrl()).apply(new RequestOptions().placeholder(R.drawable.bg_home_lay10_1).error(R.drawable.bg_home_lay10_1)).into(ivChildPic2);
             ivChildPic2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -92,7 +92,7 @@ public class RightClassAdapter extends RecyclerView.Adapter<RightClassAdapter.Vi
                 }
             });
             ImageView ivChildPic3 = view.findViewById(R.id.iv_child_class_pic_3);
-            Glide.with(context).load(rightClassBean.getChildBeans().get(i *3 + 2).getImgUrl()).apply(new RequestOptions().placeholder(R.drawable.bg_home_lay10_1).error(R.drawable.bg_home_lay10_1)).into(ivChildPic3);
+            Glide.with(context).load(rightClassBean.getChildBeans().get(i + 2).getImgUrl()).apply(new RequestOptions().placeholder(R.drawable.bg_home_lay10_1).error(R.drawable.bg_home_lay10_1)).into(ivChildPic3);
             ivChildPic3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

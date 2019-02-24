@@ -40,103 +40,93 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <LinearLayout
-                android:id="@+id/ll_address_container"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <View
-                    android:background="@mipmap/icon_address_line_bg"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/x6"></View>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:orientation="vertical"
-                    android:background="@color/white"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:layout_marginLeft="@dimen/x6"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/x60">
-
-                        <LinearLayout
-                            android:orientation="vertical"
-                            android:layout_marginTop="@dimen/x5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:id="@+id/tv_address_name"
-                                android:gravity="right"
-                                android:ellipsize="end"
-                                android:text="李某某"
-                                android:lines="1"
-                                android:textSize="@dimen/x13"
-                                android:textColor="#636363"
-                                android:layout_width="@dimen/x50"
-                                android:layout_height="wrap_content" />
-                            <TextView
-                                android:id="@+id/tv_is_default"
-                                android:paddingRight="@dimen/x6"
-                                android:paddingLeft="@dimen/x6"
-                                android:layout_gravity="end"
-                                android:paddingBottom="@dimen/x1"
-                                android:paddingTop="@dimen/x1"
-                                android:background="@drawable/shape_of_address_default_bg"
-                                android:gravity="center"
-                                android:layout_marginTop="@dimen/x5"
-                                android:ellipsize="end"
-                                android:lines="1"
-                                android:text="默认"
-                                android:textSize="@dimen/x10"
-                                android:textColor="@color/red"
-                                android:layout_width="@dimen/x40"
-                                android:layout_height="wrap_content" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_weight="1"
-                            android:layout_marginLeft="@dimen/x10"
-                            android:orientation="vertical"
-                            android:layout_gravity="center_vertical"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:id="@+id/tv_address_phone"
-                                android:ellipsize="end"
-                                android:lines="1"
-                                android:text="185****1496"
-                                android:textSize="@dimen/x13"
-                                android:textColor="@color/gray"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-                            <TextView
-                                android:id="@+id/tv_address_detail"
-                                android:ellipsize="end"
-                                android:lines="2"
-                                android:layout_marginTop="@dimen/x6"
-                                android:text="四川省成都市武侯区理想中心1307"
-                                android:textSize="@dimen/x12"
-                                android:textColor="@color/gray"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-                        </LinearLayout>
-                        <TextView
-                            android:gravity="center"
-                            android:text=">"
-                            android:textColor="@color/gray"
-                            android:textSize="@dimen/x16"
-                            android:layout_marginTop="@dimen/x15"
-                            android:layout_marginRight="@dimen/x10"
-                            android:layout_width="@dimen/x20"
-                            android:layout_height="@dimen/x25" />
-                    </LinearLayout>
-
-                </LinearLayout>
-            </LinearLayout>
             <View
-                android:background="@color/gainsboro"
+                android:background="@mipmap/icon_address_line_bg"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/x10"></View>
+                android:layout_height="@dimen/x6"></View>
+            <LinearLayout
+                android:id="@+id/ll_to_address_list"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_marginLeft="@dimen/x6"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/x60">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_marginTop="@dimen/x5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:gravity="right"
+                            android:ellipsize="end"
+                            android:text="李某某"
+                            android:lines="1"
+                            android:textSize="@dimen/x13"
+                            android:textColor="#636363"
+                            android:layout_width="@dimen/x50"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:paddingRight="@dimen/x6"
+                            android:paddingLeft="@dimen/x6"
+                            android:layout_gravity="end"
+                            android:paddingBottom="@dimen/x1"
+                            android:paddingTop="@dimen/x1"
+                            android:background="@drawable/shape_of_address_default_bg"
+                            android:gravity="center"
+                            android:layout_marginTop="@dimen/x5"
+                            android:ellipsize="end"
+                            android:lines="1"
+                            android:text="默认"
+                            android:textSize="@dimen/x10"
+                            android:textColor="@color/red"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_marginLeft="@dimen/x10"
+                        android:orientation="vertical"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:ellipsize="end"
+                            android:lines="1"
+                            android:text="185****1496"
+                            android:textSize="@dimen/x13"
+                            android:textColor="@color/gray"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:ellipsize="end"
+                            android:lines="2"
+                            android:layout_marginTop="@dimen/x6"
+                            android:text="四川省成都市武侯区理想中心1307"
+                            android:textSize="@dimen/x12"
+                            android:textColor="@color/gray"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <TextView
+                        android:gravity="center"
+                        android:text=">"
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/x16"
+                        android:layout_marginTop="@dimen/x15"
+                        android:layout_marginRight="@dimen/x10"
+                        android:layout_width="@dimen/x20"
+                        android:layout_height="@dimen/x25" />
+                </LinearLayout>
+                <View
+                    android:background="@color/gainsboro"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/x10"></View>
+            </LinearLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/x25">
@@ -149,7 +139,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
-                    android:id="@+id/tv_goods_total_price"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/x15"
@@ -171,7 +160,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
-                    android:id="@+id/tv_banded_price"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/x15"
@@ -182,40 +170,25 @@
                     android:layout_height="wrap_content" />
             </RelativeLayout>
             <RelativeLayout
-                android:id="@+id/rl_wallet_add"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/x25">
                 <TextView
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/x15"
-                    android:text="零钱包"
+                    android:text="活动优惠"
                     android:textSize="@dimen/x12"
                     android:textColor="@color/textColor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
-                    android:layout_toLeftOf="@+id/tv_more"
-                    android:gravity="center"
-                    android:id="@+id/tv_activity_discount"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/x5"
-                    android:text="￥-0.00"
-                    android:textSize="@dimen/x12"
-                    android:textColor="@color/textColor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:id="@+id/tv_more"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/x15"
-                    android:text=">"
-                    android:textSize="@dimen/x16"
+                    android:text="￥-599.00"
+                    android:textSize="@dimen/x12"
                     android:textColor="@color/textColor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -229,7 +202,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
-                    android:id="@+id/tv_post_price"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/x15"
@@ -240,7 +212,6 @@
                     android:layout_height="wrap_content" />
             </RelativeLayout>
             <RelativeLayout
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/x25">
                 <TextView
@@ -266,11 +237,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/x10"></View>
             <LinearLayout
-                android:id="@+id/ll_goods_list_container"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
+                <include layout="@layout/item_confirm_activity_goods"></include>
+                <include layout="@layout/item_confirm_activity_goods"></include>
+                <include layout="@layout/item_confirm_activity_goods"></include>
+                <include layout="@layout/item_confirm_activity_goods"></include>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
@@ -289,7 +262,6 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/x1"></View>
         <TextView
-            android:id="@+id/tv_pay_total"
             android:layout_marginLeft="@dimen/x15"
             android:layout_centerVertical="true"
             android:text="应付:￥814.00"

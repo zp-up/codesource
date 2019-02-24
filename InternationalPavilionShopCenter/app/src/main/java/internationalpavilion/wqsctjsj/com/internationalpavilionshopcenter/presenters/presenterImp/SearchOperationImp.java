@@ -5,6 +5,7 @@ import org.xutils.http.RequestParams;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.models.modelsImp.NetRequestImp;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.models.modelsInterface.NetCallBack;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.models.modelsInterface.NetRequestInterface;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.NetCallback;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.SearchOperationInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnSearchCallback;
 
@@ -70,4 +71,38 @@ public class SearchOperationImp implements SearchOperationInterface {
             }
         });
     }
+
+    @Override
+    public void doSearch(RequestParams params, final NetCallback callback) {
+        if (netRequest == null) {
+            netRequest = new NetRequestImp();
+        }
+        netRequest.doNetRequest(params, new NetCallBack() {
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+
+            @Override
+            public void onError(Throwable error) {
+                if(callback!=null){
+                    callback.onFailed(error);
+                }
+            }
+
+            @Override
+            public void onSuccess(String result) {
+                if(callback!=null){
+                    callback.onSuccess(result);
+                }
+            }
+        });
+    }
+
+
 }

@@ -61,63 +61,102 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </RelativeLayout>
-    <View
-        android:background="#c0c0c0"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/x1"></View>
-    <TextView
-        android:layout_marginTop="@dimen/x10"
-        android:layout_marginLeft="@dimen/x15"
-        android:text="历史纪录"
-        android:textColor="@color/black"
-        android:textSize="@dimen/x14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/tv_no_record"
-            android:text="暂无历史记录"
-            android:gravity="center"
-            android:textColor="@color/gray_btn_bg_pressed_color"
-            android:textSize="@dimen/x14"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/ll_search_box"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/x60" />
-        <internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.LinearLayout
+            android:layout_height="match_parent">
+            <View
+                android:background="#c0c0c0"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"></View>
+            <TextView
+                android:layout_marginTop="@dimen/x10"
+                android:layout_marginLeft="@dimen/x15"
+                android:text="历史纪录"
+                android:textColor="@color/black"
+                android:textSize="@dimen/x14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_no_record"
+                    android:text="暂无历史记录"
+                    android:gravity="center"
+                    android:textColor="@color/gray_btn_bg_pressed_color"
+                    android:textSize="@dimen/x14"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/x60" />
+                <internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.LinearLayout
+                    android:visibility="gone"
+                    android:layout_marginTop="@dimen/x10"
+                    android:id="@+id/ll_history_record"
+                    android:padding="0dp"
+                    app:grivate="left"
+                    app:horizontal_Space="5dp"
+                    app:isFull="false"
+                    app:vertical_Space="5dp"
+                    android:layout_marginBottom="@dimen/x20"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.LinearLayout>
+            </RelativeLayout>
+            <View
+                android:background="@color/gainsboro"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x10"></View>
+            <TextView
+                android:layout_marginTop="@dimen/x10"
+                android:layout_marginLeft="@dimen/x15"
+                android:text="热门搜索"
+                android:textColor="@color/black"
+                android:textSize="@dimen/x14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.LinearLayout
+                android:layout_marginTop="@dimen/x10"
+                android:id="@+id/ll_hot_keyword"
+                android:padding="0dp"
+                app:grivate="left"
+                app:horizontal_Space="5dp"
+                app:isFull="false"
+                app:vertical_Space="5dp"
+                android:layout_marginBottom="@dimen/x20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.LinearLayout>
+        </LinearLayout>
+
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
             android:visibility="gone"
-            android:layout_marginTop="@dimen/x10"
-            android:id="@+id/ll_history_record"
-            android:padding="0dp"
-            app:grivate="left"
-            app:horizontal_Space="5dp"
-            app:isFull="false"
-            app:vertical_Space="5dp"
-            android:layout_marginBottom="@dimen/x20"
+            android:id="@+id/refresh"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.LinearLayout>
+            android:layout_height="match_parent">
+            <com.scwang.smartrefresh.layout.header.ClassicsHeader
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </com.scwang.smartrefresh.layout.header.ClassicsHeader>
+            <android.support.v7.widget.RecyclerView
+                android:overScrollMode="never"
+                android:paddingTop="7dp"
+
+                android:id="@+id/rv_result"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v7.widget.RecyclerView>
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
+
     </RelativeLayout>
-    <View
-        android:background="@color/gainsboro"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/x10"></View>
-    <TextView
-        android:layout_marginTop="@dimen/x10"
-        android:layout_marginLeft="@dimen/x15"
-        android:text="热门搜索"
-        android:textColor="@color/black"
-        android:textSize="@dimen/x14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.LinearLayout
-        android:layout_marginTop="@dimen/x10"
-        android:id="@+id/ll_hot_keyword"
-        android:padding="0dp"
-        app:grivate="left"
-        app:horizontal_Space="5dp"
-        app:isFull="false"
-        app:vertical_Space="5dp"
-        android:layout_marginBottom="@dimen/x20"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.LinearLayout>
+
+
 </LinearLayout>
