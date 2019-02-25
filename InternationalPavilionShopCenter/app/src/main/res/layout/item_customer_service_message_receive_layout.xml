@@ -8,6 +8,7 @@
     android:layout_height="wrap_content">
 
     <de.hdodenhof.circleimageview.CircleImageView
+        
         android:src="@drawable/icons_im_customer_service"
         android:id="@+id/civ_received_message_portrait"
         android:layout_marginLeft="10dp"
