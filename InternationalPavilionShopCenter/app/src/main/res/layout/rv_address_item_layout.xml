@@ -5,6 +5,7 @@
     android:background="@color/white"
     android:layout_height="wrap_content">
     <LinearLayout
+        android:id="@+id/ll_item_click"
         android:layout_marginLeft="@dimen/x20"
         android:orientation="horizontal"
         android:layout_width="match_parent"

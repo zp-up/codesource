@@ -1,6 +1,7 @@
 package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -44,6 +45,9 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.PhoneNumberCheckUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnAreaOrCityOrProvenceDataCallBack;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.dialog.SweetAlertDialog;
+
+import static internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.dialog.SweetAlertDialog.WARNING_TYPE;
 
 
 public class AddOrEditAddressActivity extends BaseAppcompatActivity implements OnAreaOrCityOrProvenceDataCallBack {
@@ -167,7 +171,7 @@ public class AddOrEditAddressActivity extends BaseAppcompatActivity implements O
         locationOperationPresenter.getAreaOrCityOrProvence(params, this);
     }
 
-    @OnClick({R.id.iv_back, R.id.tv_select_city, R.id.rl_check, R.id.iv_checked, R.id.tv_submit})
+    @OnClick({R.id.iv_back, R.id.tv_select_city, R.id.rl_check, R.id.iv_checked, R.id.tv_submit,R.id.tv_delete})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -227,7 +231,37 @@ public class AddOrEditAddressActivity extends BaseAppcompatActivity implements O
                     doSubmit();
                 }
                 break;
+            case R.id.tv_delete:
+                final SweetAlertDialog dialog = new SweetAlertDialog(AddOrEditAddressActivity.this,WARNING_TYPE);
+                dialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        dialog.dismissWithAnimation();
+                        deleteAddress();
+                    }
+                });
+                dialog.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        dialog.dismissWithAnimation();
+                    }
+                });
+                dialog.showCancelButton(true);
+                dialog.setCancelText("取消");
+                dialog.setConfirmText("确定");
+                dialog.setTitleText("注意");
+                dialog.setContentText("是否要删除收货地址?");
+                dialog.setCancelable(false);
+                dialog.show();
+                break;
         }
+    }
+
+    private void deleteAddress() {
+        RequestParams params = new RequestParams(MainUrls.deleteAddressUrl);
+        params.addBodyParameter("access_token",IPSCApplication.accessToken);
+        params.addBodyParameter("id",addressBean == null?"-1":String.valueOf(addressBean.getId()));
+        locationOperationPresenter.deleteAddressOperation(params,this);
     }
 
     private void doModify() {
@@ -357,7 +391,7 @@ public class AddOrEditAddressActivity extends BaseAppcompatActivity implements O
                         event.setOp(1);
                         ToastUtils.show(AddOrEditAddressActivity.this, "添加收货地址成功");
                     }
-                    AddOrEditAddressActivity.this.finish();
+                    finish();
                     //发送事件通知
                     EventBus.getDefault().post(event);
                 } else {
@@ -366,6 +400,27 @@ public class AddOrEditAddressActivity extends BaseAppcompatActivity implements O
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    @Override
+    public void onAddressDlelteCallBack(String result) {
+        try {
+            JSONObject jsonObject = new JSONObject(result);
+            int code = jsonObject.getInt("code");
+            int state = jsonObject.getInt("state");
+            String msg = jsonObject.getString("msg");
+            if (code == 0 && state == 0){
+                ToastUtils.show(AddOrEditAddressActivity.this,"操作成功");
+                AddressUpdateEvent event = new AddressUpdateEvent();
+                event.setRes(true);
+                EventBus.getDefault().post(event);
+                finish();
+            }else {
+                ToastUtils.show(AddOrEditAddressActivity.this,msg);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 

@@ -8,9 +8,10 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/x40">
         <TextView
+            android:id="@+id/tv_time_month"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/x20"
-            android:text="本月"
+            android:text="全部"
             android:textColor="@color/gray"
             android:textSize="@dimen/x13"
             android:layout_width="wrap_content"

@@ -1,16 +1,13 @@
 package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.EventLog;
 import android.util.Log;
 import android.view.View;
 
 import com.chrisjason.baseui.ui.BaseAppcompatActivity;
-import com.google.gson.Gson;
 import com.jaeger.library.StatusBarUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -33,6 +30,9 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.adapte
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.application.IPSCApplication;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.AddressBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.eventBusBean.AddressUpdateEvent;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.models.modelsImp.NetRequestImp;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.models.modelsInterface.NetCallBack;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.models.modelsInterface.NetRequestInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp.CommonGoodsImp;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.CommonDataInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
@@ -49,15 +49,19 @@ public class ReceivedAddressListActivity extends BaseAppcompatActivity implement
     private AddressAdapter adapter;
 
     private CommonDataInterface commonPresenter;
+    private NetRequestInterface netRequestInterface;
     private int pageIndex = 1;
+    private int flag = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         StatusBarUtil.setTranslucentForImageViewInFragment(this, 0, null);
+        flag = getIntent().getIntExtra("flag", -1);
         EventBus.getDefault().register(this);
         initViews();
         commonPresenter = new CommonGoodsImp();
+        netRequestInterface = new NetRequestImp();
         initData();
     }
 
@@ -67,7 +71,7 @@ public class ReceivedAddressListActivity extends BaseAppcompatActivity implement
         if (event != null) {
             if (event.isRes()) {
                 data.clear();
-                pageIndex=1;
+                pageIndex = 1;
                 initData();
             }
         }
@@ -101,7 +105,52 @@ public class ReceivedAddressListActivity extends BaseAppcompatActivity implement
                 initData();
             }
         });
+        if (flag == 1) {
+            adapter.setListener(new AddressAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(int id) {
+                    Log.e("TAG", "地址Id:" + id);
+                    RequestParams params = new RequestParams(MainUrls.setAddressDefaultUrl);
+                    params.addBodyParameter("access_token", IPSCApplication.accessToken);
+                    params.addBodyParameter("id", id + "");
+                    netRequestInterface.doNetRequest(params, new NetCallBack() {
+                        @Override
+                        public void onStart() {
 
+                        }
+
+                        @Override
+                        public void onFinished() {
+
+                        }
+
+                        @Override
+                        public void onError(Throwable error) {
+
+                        }
+
+                        @Override
+                        public void onSuccess(String result) {
+                            Log.e("TAG", "设置默认地址:" + result);
+                            try {
+                                JSONObject jsonObject = new JSONObject(result);
+                                int code = jsonObject.getInt("code");
+                                int state = jsonObject.getInt("state");
+                                if (code == 0 && state == 0) {
+                                    AddressUpdateEvent event = new AddressUpdateEvent();
+                                    event.setOp(1);
+                                    event.setRes(false);
+                                    EventBus.getDefault().post(event);
+                                    ReceivedAddressListActivity.this.finish();
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                }
+            });
+        }
     }
 
     private void initData() {
@@ -200,7 +249,7 @@ public class ReceivedAddressListActivity extends BaseAppcompatActivity implement
 
                             //已经加载完所有数据
                             if (tmpList.size() < 10) {
-                                ToastUtils.show(this,"已加载完所有数据");
+                                ToastUtils.show(this, "已加载完所有数据");
                                 srlContent.setEnableLoadmore(false);
                             } else {
                                 pageIndex++;
@@ -208,7 +257,7 @@ public class ReceivedAddressListActivity extends BaseAppcompatActivity implement
                             }
                         } else {
                             //刷新或首次加载失败
-                            ToastUtils.show(this,"数据加载失败");
+                            ToastUtils.show(this, "数据加载失败");
                         }
 
                     } else if (pageIndex > 1) {
@@ -217,7 +266,7 @@ public class ReceivedAddressListActivity extends BaseAppcompatActivity implement
 
                             data.addAll(tmpList);
                             if (tmpList.size() < 10) {
-                                ToastUtils.show(this,"已加载完所有数据");
+                                ToastUtils.show(this, "已加载完所有数据");
                                 //上拉加载完所有数据，禁止上拉事件
                                 srlContent.setEnableLoadmore(false);
                             } else {
@@ -226,7 +275,7 @@ public class ReceivedAddressListActivity extends BaseAppcompatActivity implement
                             }
                         } else {
                             //上拉加载完了所有数据
-                            ToastUtils.show(this,"已加载完所有数据");
+                            ToastUtils.show(this, "已加载完所有数据");
                             srlContent.setEnableLoadmore(false);
                         }
 

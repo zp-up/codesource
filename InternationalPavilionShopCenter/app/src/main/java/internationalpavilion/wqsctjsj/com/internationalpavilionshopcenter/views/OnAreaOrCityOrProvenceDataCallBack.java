@@ -14,4 +14,6 @@ public interface OnAreaOrCityOrProvenceDataCallBack {
     void onAreaInfoCallBack(String result);
 
     void onAddressInfoAddOrChangedCallBack(String result);
+
+    void onAddressDlelteCallBack(String result);
 }

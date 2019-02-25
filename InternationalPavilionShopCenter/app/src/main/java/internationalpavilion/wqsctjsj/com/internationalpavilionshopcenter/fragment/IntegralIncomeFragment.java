@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.bigkoo.pickerview.TimePickerView;
 import com.chrisjason.baseui.ui.BaseAppcompatActivity;
@@ -51,6 +52,8 @@ public class IntegralIncomeFragment extends Fragment implements OnCommonGoodsCal
     RecyclerView rvIntegral;
     @BindView(R.id.srl_content)
     SmartRefreshLayout srlContent;
+    @BindView(R.id.tv_time_month)
+    TextView tvTimeMonth;
 
     private ArrayList<IntegralInOrOutBean> data = new ArrayList<>();
     private IntegralListAdapter adapter;
@@ -96,6 +99,7 @@ public class IntegralIncomeFragment extends Fragment implements OnCommonGoodsCal
                     public void onTimeSelect(Date date, View v) {//选中事件回调
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM");
                         selectedDate = simpleDateFormat.format(date);
+                        tvTimeMonth.setText(selectedDate);
                         Log.e("TAG", selectedDate);
                         pageIndex = 1;
                         initData();

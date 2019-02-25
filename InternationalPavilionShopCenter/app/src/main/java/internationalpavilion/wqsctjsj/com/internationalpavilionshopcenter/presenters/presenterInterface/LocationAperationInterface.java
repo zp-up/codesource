@@ -14,5 +14,7 @@ public interface LocationAperationInterface {
 
     void editOrAddLocationInfo(RequestParams params, OnAreaOrCityOrProvenceDataCallBack callBack);
 
+    void deleteAddressOperation(RequestParams params, OnAreaOrCityOrProvenceDataCallBack callBack);
+
     void onDestroyed();
 }

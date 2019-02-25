@@ -72,6 +72,34 @@ public class LocationOperationImp implements LocationAperationInterface{
     }
 
     @Override
+    public void deleteAddressOperation(RequestParams params, final OnAreaOrCityOrProvenceDataCallBack callBack) {
+        if (netReques == null){
+            netReques = new NetRequestImp();
+        }
+        netReques.doNetRequest(params, new NetCallBack() {
+            @Override
+            public void onStart() {
+                callBack.onStarted();
+            }
+
+            @Override
+            public void onFinished() {
+                callBack.onFinished();
+            }
+
+            @Override
+            public void onError(Throwable error) {
+                callBack.onError(error.toString());
+            }
+
+            @Override
+            public void onSuccess(String result) {
+                callBack.onAddressDlelteCallBack(result);
+            }
+        });
+    }
+
+    @Override
     public void onDestroyed() {
 
     }
