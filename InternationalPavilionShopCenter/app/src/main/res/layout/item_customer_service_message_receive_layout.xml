@@ -8,9 +8,9 @@
     android:layout_height="wrap_content">
 
     <de.hdodenhof.circleimageview.CircleImageView
+        android:src="@drawable/im_customer_service"
         android:id="@+id/civ_received_message_portrait"
         android:layout_marginLeft="10dp"
-        android:src="@mipmap/ic_launcher"
         android:layout_width="37dp"
         android:layout_height="37dp" />
     <LinearLayout
