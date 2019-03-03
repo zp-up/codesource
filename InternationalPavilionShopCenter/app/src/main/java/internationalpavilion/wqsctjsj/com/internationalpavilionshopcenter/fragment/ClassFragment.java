@@ -1,6 +1,7 @@
 package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.fragment;
 
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -24,6 +25,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.SearchActivity;
 
 /**
  * Created by wuqaing on 2018/11/29.
@@ -93,7 +95,7 @@ public class ClassFragment extends Fragment{
         });
     }
 
-    @OnClick({R.id.tv_all_class,R.id.tv_brand,R.id.tv_popularity})
+    @OnClick({R.id.tv_all_class,R.id.tv_brand,R.id.tv_popularity,R.id.rl_search_container})
     public void onClick(View view){
         switch (view.getId()){
             case R.id.tv_all_class:
@@ -104,6 +106,12 @@ public class ClassFragment extends Fragment{
                 break;
             case R.id.tv_popularity:
                 change(3);
+                break;
+            case R.id.rl_search_container:
+                if(getActivity()!=null && isAdded()){
+                    getActivity().startActivity(new Intent(getActivity(), SearchActivity.class));
+                }
+
                 break;
         }
     }

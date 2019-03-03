@@ -42,6 +42,7 @@ import com.youth.banner.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.xutils.http.RequestParams;
@@ -62,6 +63,7 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.adapte
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.application.IPSCApplication;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.EvaluateImage;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.HomeBannerBean;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.eventBusBean.FragmentSwitchEvent;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.goodsDetailBean.GoodsDetailRootBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.goodsDetailBean.Speclist;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.goodsDetailBean.Storelist;
@@ -189,6 +191,7 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
     protected void onResume() {
         super.onResume();
     }
+
 
     public void initData(int goodsId) {
         this.goodsId = goodsId;
@@ -334,7 +337,8 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
         return R.layout.activity_goods_detail;
     }
 
-    @OnClick({R.id.iv_back, R.id.rl_open_select_spec, R.id.rl_to_evaluate_list, R.id.tv_add_to_cart, R.id.rl_add_to_collection, R.id.tv_buy_immediately})
+    @OnClick({R.id.iv_back, R.id.rl_open_select_spec, R.id.rl_to_evaluate_list, R.id.tv_add_to_cart, R.id.rl_add_to_collection, R.id.tv_buy_immediately,
+    R.id.rl_contact_customer_service,R.id.rl_to_cart})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -384,6 +388,24 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
 
                     }
                 });
+                break;
+                //联系客服
+            case R.id.rl_contact_customer_service:
+                if (((IPSCApplication) getApplication()).getUserInfo() != null) {
+                    Intent intent1 = new Intent(GoodsDetailActivity.this,ContactCustomerServiceActivity.class);
+                    startActivity(intent1);
+                } else {
+                    ToastUtils.show(GoodsDetailActivity.this, "请先登录");
+                    Intent intentToCollection = new Intent(GoodsDetailActivity.this, LoginByPasswordActivity.class);
+                    startActivityForResult(intentToCollection, 100);
+                }
+                break;
+                //购物车
+            case R.id.rl_to_cart:
+                EventBus.getDefault().post(new FragmentSwitchEvent(3));
+                Intent intent1 = new Intent(GoodsDetailActivity.this,MainActivity.class);
+                startActivity(intent1);
+                finish();
                 break;
         }
     }
