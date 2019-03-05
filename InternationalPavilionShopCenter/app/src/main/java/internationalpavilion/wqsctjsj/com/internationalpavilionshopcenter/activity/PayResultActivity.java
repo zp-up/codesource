@@ -27,7 +27,7 @@ public class PayResultActivity extends BaseAppcompatActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
-                PayResultActivity.this.finish();
+                finish();
                 break;
         }
     }

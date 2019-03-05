@@ -12,10 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -127,35 +125,6 @@ public class SettingActivity extends BaseAppcompatActivity implements TakePhoto.
                 TextView tvConfirm = v.findViewById(R.id.tv_confirm);
                 final EditText etInput = v.findViewById(R.id.et_input_nick_name);
                 etInput.setText(userBean.getNickName());
-
-                //监听回车
-                etInput.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-                    @Override
-                    public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                        if (TextUtils.isEmpty(etInput.getText().toString())) {
-                            ToastUtils.show(SettingActivity.this, "请先输入昵称");
-                            return true;
-                        }
-
-
-                        if (i == EditorInfo.IME_ACTION_DONE) {
-                            if (etInput.getText().toString().length() >= 2 && etInput.getText().toString().trim().length() <= 8){
-                                RequestParams params = new RequestParams(MainUrls.modifyUserInfoUrl);
-                                params.addBodyParameter("access_token",IPSCApplication.accessToken);
-                                params.addBodyParameter("nickname",etInput.getText().toString().trim());
-                                params.addBodyParameter("id",((IPSCApplication)getApplication()).getUserInfo().getId()+"");
-                                upLoadFilePresenter.modifyUserNickName(params,SettingActivity.this);
-                                dialog.dismiss();
-                            }else {
-                                ToastUtils.show(SettingActivity.this,"请输入2-8位长度的昵称");
-                            }
-                        }
-
-
-                        return true;
-                    }
-                });
-
                 tvCancel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

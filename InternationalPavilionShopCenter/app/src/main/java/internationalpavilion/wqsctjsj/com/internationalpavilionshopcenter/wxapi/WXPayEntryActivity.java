@@ -28,8 +28,8 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        api = WXAPIFactory.createWXAPI(this, "wxc9468a3a1bf25156", false);
-        api.registerApp("wxc9468a3a1bf25156");
+        api = WXAPIFactory.createWXAPI(this, "wx936ef706f9fb1fe7", false);
+        api.registerApp("wx936ef706f9fb1fe7");
         api.handleIntent(getIntent(), this);
     }
 
@@ -48,21 +48,21 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
                     ToastUtils.show(WXPayEntryActivity.this, "支付成功");
                     Log.e("TAG", resp.errCode + "");
                     EventBus.getDefault().post(new WxPayEvent(1, "支付成功"));
-                    WXPayEntryActivity.this.finish();
+                    finish();
                     break;
                 //错误
                 case -1:
                     Log.e("TAG", resp.errCode + "");
                     ToastUtils.show(WXPayEntryActivity.this, "支付失败");
                     EventBus.getDefault().post(new WxPayEvent(-1, "支付失败"));
-                    WXPayEntryActivity.this.finish();
+                    finish();
                     break;
                 //取消
                 case -2:
                     ToastUtils.show(WXPayEntryActivity.this, "用户取消支付");
                     Log.e("TAG", resp.errCode + "");
                     EventBus.getDefault().post(new WxPayEvent(-2, "用户取消支付"));
-                    WXPayEntryActivity.this.finish();
+                    finish();
                     break;
             }
 

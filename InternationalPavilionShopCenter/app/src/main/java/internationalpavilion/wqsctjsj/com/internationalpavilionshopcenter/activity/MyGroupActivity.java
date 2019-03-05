@@ -64,7 +64,7 @@ public class MyGroupActivity extends BaseAppcompatActivity {
                 change(2);
                 break;
             case R.id.iv_back:
-                MyGroupActivity.this.finish();
+                finish();
                 break;
         }
     }

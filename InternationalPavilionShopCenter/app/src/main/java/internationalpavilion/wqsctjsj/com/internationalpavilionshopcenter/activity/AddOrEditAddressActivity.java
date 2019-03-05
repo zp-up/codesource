@@ -175,7 +175,7 @@ public class AddOrEditAddressActivity extends BaseAppcompatActivity implements O
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
-                AddOrEditAddressActivity.this.finish();
+                finish();
                 break;
             case R.id.tv_select_city:
                 hidSoftware();

@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.ApplyAfterSaleActivity;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.EvaluateActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.LogisticsActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.OrderActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.OrderDetailActivity;
@@ -78,14 +80,15 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         int viewType = getItemViewType(position);
-        OrderRootBean rootBean = data.get(position);
+        final OrderRootBean rootBean = data.get(position);
         switch (viewType) {
             case 1:
                 holder.tvToPay.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(context, PayWayActivity.class);
-                        intent.putExtra("orderId", data.get(position).getId() + "");
+                        intent.putExtra("oderId", rootBean.getId() + "");
+                        Log.e("TAG","---订单:"+rootBean.getId());
                         context.startActivity(intent);
                     }
                 });
@@ -395,6 +398,14 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                 });
                 break;
             case 4:
+                holder.tvToEvaluate.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context, EvaluateActivity.class);
+                        intent.putExtra("orderId",data.get(position).getId());
+                        context.startActivity(intent);
+                    }
+                });
                 holder.tvGoodsCount4.setText("共" + (data.get(position).getGoodsBeans() != null ? data.get(position).getGoodsBeans().size() : 0) + "件商品");
                 holder.tvStoreType4.setText(data.get(position).getStoreType());
                 holder.tvStatus.setText(data.get(position).getStatus());
@@ -709,6 +720,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         TextView tvDescription4;
         TextView tvStoreType4;
         TextView tvGoodsCount4;
+        TextView tvToEvaluate;
 
         //type = 5
         HorizontalScrollView hsvParent5;
@@ -786,6 +798,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                     ivGoodsPic4 = item.findViewById(R.id.iv_goods_pic);
                     tvStoreType4 = item.findViewById(R.id.tv_store_type);
                     tvGoodsCount4 = item.findViewById(R.id.tv_goods_count);
+                    tvToEvaluate = item.findViewById(R.id.tv_to_evaluate);
                     break;
                 case 5:
                     tvStatus = item.findViewById(R.id.tv_status);

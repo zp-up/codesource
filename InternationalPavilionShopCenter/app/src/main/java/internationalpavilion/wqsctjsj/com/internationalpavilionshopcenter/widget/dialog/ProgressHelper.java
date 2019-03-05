@@ -2,7 +2,8 @@ package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widge
 
 import android.content.Context;
 
-import com.pnikosis.materialishprogress.ProgressWheel;
+
+import com.chrisjason.baseui.widget.view.ProgressWheel;
 
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
 

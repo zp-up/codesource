@@ -17,7 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSON;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.chrisjason.baseui.ui.BaseAppcompatActivity;
@@ -161,130 +161,138 @@ public class SearchActivity extends BaseAppcompatActivity implements OnSearchCal
                 public void onSuccess(String result) {
                     stopRefreshAndLoadMore();
                     if (result != null) {
-                        com.alibaba.fastjson.JSONObject obj = JSON.parseObject(result);
-                        if (obj != null) {
+                        try {
+                            JSONObject obj = new JSONObject(result);
+                            if (obj != null) {
 
-                            int code = obj.getIntValue("code");
-                            int state = obj.getIntValue("state");
-                            if (0 == code && 0 == state) {
+                                int code = obj.getInt("code");
+                                int state = obj.getInt("state");
+                                if (0 == code && 0 == state) {
 
-                                com.alibaba.fastjson.JSONArray data_array = obj.getJSONArray("data");
-                                if (data_array != null && data_array.size() > 0) {
-                                    List<GroupProductEntity> data = new ArrayList<>();
+                                    JSONArray data_array = obj.getJSONArray("data");
+                                    if (data_array != null && data_array.length() > 0) {
+                                        List<GroupProductEntity> data = new ArrayList<>();
 
-                                    for (int i = 0; i < data_array.size(); i++) {
-                                        com.alibaba.fastjson.JSONObject obj_i = data_array.getJSONObject(i);
-                                        GroupProductEntity gp = new GroupProductEntity();
-                                        gp.setId(obj_i.getIntValue("id"));
+                                        for (int i = 0; i < data_array.length(); i++) {
+                                            JSONObject obj_i = data_array.getJSONObject(i);
+                                            GroupProductEntity gp = new GroupProductEntity();
+                                            gp.setId(obj_i.getInt("id"));
 
-                                        GroupProductEntity.GoodsGoodsBean goodsGoodsBean = new GroupProductEntity.GoodsGoodsBean();
-                                        GroupProductEntity.StoreStoreBean storeStoreBean = new GroupProductEntity.StoreStoreBean();
+                                            GroupProductEntity.GoodsGoodsBean goodsGoodsBean = new GroupProductEntity.GoodsGoodsBean();
+                                            GroupProductEntity.StoreStoreBean storeStoreBean = new GroupProductEntity.StoreStoreBean();
 
-                                        com.alibaba.fastjson.JSONObject goods_goods = obj_i.getJSONObject("goods_goods");
 
-                                        goodsGoodsBean.setId(goods_goods.getIntValue("id"));
-                                        //商品图片
-                                        List<String> imgs = new ArrayList<>();
-                                        if (!TextUtils.isEmpty(goods_goods.getString("img"))) {
-                                            com.alibaba.fastjson.JSONArray array = JSON.parseArray(goods_goods.getString("img"));
-                                            if (array != null) {
-                                                imgs = array.toJavaList(String.class);
+                                            JSONObject goods_goods = obj_i.getJSONObject("goods_goods");
+
+                                            goodsGoodsBean.setId(goods_goods.getInt("id"));
+                                            //商品图片
+                                            List<String> imgs = new ArrayList<>();
+                                            if (!TextUtils.isEmpty(goods_goods.getString("img"))) {
+                                                JSONArray array = goods_goods.getJSONArray("img");
+                                                if (array != null) {
+                                                    for (int p = 0;p < array.length();p++){
+                                                        imgs.add(array.getString(p));
+                                                    }
+                                                    //imgs = array.toJavaList(String.class);
+                                                }
                                             }
+                                            goodsGoodsBean.setImg(imgs);
+
+                                            //商品名字
+                                            goodsGoodsBean.setName(goods_goods.getString("name"));
+                                            //商品描述
+                                            goodsGoodsBean.setDescribe(goods_goods.getString("describe"));
+
+                                            //拼团人数
+                                            gp.setGroup_num_p(obj_i.getInt("group_num_p"));
+                                            //商品单价
+                                            gp.setPrice_m(obj_i.getString("price_m"));
+                                            //商品团购价
+                                            gp.setGroup_price(obj_i.getString("group_price"));
+                                            //团购截止时间
+                                            gp.setPron_end_time(obj_i.getString("pron_end_time"));
+
+                                            gp.setGoods_goods(goodsGoodsBean);
+                                            gp.setStore_store(storeStoreBean);
+                                            data.add(gp);
+
                                         }
-                                        goodsGoodsBean.setImg(imgs);
-
-                                        //商品名字
-                                        goodsGoodsBean.setName(goods_goods.getString("name"));
-                                        //商品描述
-                                        goodsGoodsBean.setDescribe(goods_goods.getString("describe"));
-
-                                        //拼团人数
-                                        gp.setGroup_num_p(obj_i.getIntValue("group_num_p"));
-                                        //商品单价
-                                        gp.setPrice_m(obj_i.getString("price_m"));
-                                        //商品团购价
-                                        gp.setGroup_price(obj_i.getString("group_price"));
-                                        //团购截止时间
-                                        gp.setPron_end_time(obj_i.getString("pron_end_time"));
-
-                                        gp.setGoods_goods(goodsGoodsBean);
-                                        gp.setStore_store(storeStoreBean);
-                                        data.add(gp);
-
-                                    }
 
 
-                                    //刷新或第一次加载
-                                    if (pageIndex == 1) {
-                                        items.clear();
-                                        if (data != null && data.size() > 0) {
-                                            //showSuccessLayout();
-                                            items.addAll(data);
+                                        //刷新或第一次加载
+                                        if (pageIndex == 1) {
+                                            items.clear();
+                                            if (data != null && data.size() > 0) {
+                                                //showSuccessLayout();
+                                                items.addAll(data);
 
-                                            //已经加载完所有数据
-                                            if (data.size() < 10) {
-                                                ToastUtils.show(SearchActivity.this, "已加载完所有数据");
-                                                mRefresh.setEnableLoadmore(false);
+                                                //已经加载完所有数据
+                                                if (data.size() < 10) {
+                                                    ToastUtils.show(SearchActivity.this, "已加载完所有数据");
+                                                    mRefresh.setEnableLoadmore(false);
+                                                } else {
+                                                    pageIndex++;
+                                                    mRefresh.setEnableLoadmore(true);
+                                                }
+
                                             } else {
-                                                pageIndex++;
-                                                mRefresh.setEnableLoadmore(true);
+                                                //刷新或首次加载失败
+                                                ToastUtils.show(SearchActivity.this, "数据加载失败");
+                                                //showEmptyLayout();
                                             }
 
-                                        } else {
-                                            //刷新或首次加载失败
-                                            ToastUtils.show(SearchActivity.this, "数据加载失败");
-                                            //showEmptyLayout();
-                                        }
+                                        } else if (pageIndex > 1) {
+                                            //上拉加载时
+                                            if (data != null && data.size() > 0) {
 
-                                    } else if (pageIndex > 1) {
-                                        //上拉加载时
-                                        if (data != null && data.size() > 0) {
+                                                items.addAll(data);
 
-                                            items.addAll(data);
-
-                                            if (data.size() < 10) {
+                                                if (data.size() < 10) {
 //                                if (mItems.contains(bottomEntity)) {
 //                                    mItems.remove(bottomEntity);
 //                                    mItems.add(bottomEntity);
 //                                } else {
 //                                    mItems.add(bottomEntity);
 //                                }
-                                                ToastUtils.show(SearchActivity.this, "已加载完所有数据");
-                                                //上拉加载完所有数据，禁止上拉事件
-                                                mRefresh.setEnableLoadmore(false);
+                                                    ToastUtils.show(SearchActivity.this, "已加载完所有数据");
+                                                    //上拉加载完所有数据，禁止上拉事件
+                                                    mRefresh.setEnableLoadmore(false);
+                                                } else {
+                                                    pageIndex++;
+                                                    mRefresh.setEnableLoadmore(true);
+                                                }
                                             } else {
-                                                pageIndex++;
-                                                mRefresh.setEnableLoadmore(true);
-                                            }
-                                        } else {
-                                            //上拉加载完了所有数据
+                                                //上拉加载完了所有数据
 //                            if (mItems.contains(bottomEntity)) {
 //                                mItems.remove(bottomEntity);
 //                                mItems.add(bottomEntity);
 //                            } else {
 //                                mItems.add(bottomEntity);
 //                            }
-                                            ToastUtils.show(SearchActivity.this, "已加载完所有数据");
-                                            mRefresh.setEnableLoadmore(false);
+                                                ToastUtils.show(SearchActivity.this, "已加载完所有数据");
+                                                mRefresh.setEnableLoadmore(false);
+                                            }
+
                                         }
 
+                                        adapter.notifyDataSetChanged();
+
+                                        if(items.size()>0){
+                                            mLLSearchBox.setVisibility(View.GONE);
+                                            mRefresh.setVisibility(View.VISIBLE);
+                                        }else {
+                                            mLLSearchBox.setVisibility(View.VISIBLE);
+                                            mRefresh.setVisibility(View.GONE);
+                                        }
+
+
                                     }
-
-                                    adapter.notifyDataSetChanged();
-
-                                    if(items.size()>0){
-                                        mLLSearchBox.setVisibility(View.GONE);
-                                        mRefresh.setVisibility(View.VISIBLE);
-                                    }else {
-                                        mLLSearchBox.setVisibility(View.VISIBLE);
-                                        mRefresh.setVisibility(View.GONE);
-                                    }
-
 
                                 }
 
                             }
-
+                        }catch (Exception e){
+                            e.printStackTrace();
                         }
                     }
                 }

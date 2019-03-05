@@ -28,7 +28,7 @@ public class AfterSaleFormSubmitActivity extends BaseAppcompatActivity {
     public void onClick(View view){
         switch (view.getId()){
             case R.id.iv_back:
-                AfterSaleFormSubmitActivity.this.finish();
+                finish();
                 break;
             case R.id.rl_reason_select:
                 final ArrayList<String> data = new ArrayList<>();

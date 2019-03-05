@@ -51,7 +51,7 @@ public class FriendsActivity extends BaseAppcompatActivity {
     public void onClick(View view){
         switch (view.getId()){
             case R.id.iv_back:
-                FriendsActivity.this.finish();
+                finish();
                 break;
         }
     }

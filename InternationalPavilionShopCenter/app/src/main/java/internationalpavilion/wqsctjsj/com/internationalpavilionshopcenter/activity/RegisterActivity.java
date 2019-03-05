@@ -187,7 +187,7 @@ public class RegisterActivity extends BaseAppcompatActivity implements OnNetCall
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
-                RegisterActivity.this.finish();
+                finish();
                 break;
             case R.id.tv_get_code:
                 if (!phoneIsOk) {
@@ -290,7 +290,7 @@ public class RegisterActivity extends BaseAppcompatActivity implements OnNetCall
                 String msg = jsonObject.has("msg") ? jsonObject.getString("msg") : "";
                 if (code == 0 && state == 0) {
                     ToastUtils.show(RegisterActivity.this, "注册成功");
-                    RegisterActivity.this.finish();
+                    finish();
                 } else {
                     ToastUtils.show(RegisterActivity.this, msg);
                 }

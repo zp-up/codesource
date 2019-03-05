@@ -32,7 +32,7 @@ public class ApplyAfterSaleActivity extends BaseAppcompatActivity {
     public void onClick(View view){
         switch (view.getId()){
             case R.id.iv_back:
-                ApplyAfterSaleActivity.this.finish();
+                finish();
                 break;
             case R.id.tv_next:
                 Intent intent = new Intent(ApplyAfterSaleActivity.this,AfterSaleFormSubmitActivity.class);
