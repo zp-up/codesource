@@ -47,7 +47,7 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.
 
 public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoodsCallBack {
     // APP_ID 替换为你的应用从官方网站申请到的合法appID
-    private static final String APP_ID = "wxc9468a3a1bf25156";
+    private static final String APP_ID = "wx936ef706f9fb1fe7";
 
     // IWXAPI 是第三方app和微信通信的openApi接口
     private IWXAPI api;
@@ -100,6 +100,7 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
         // 将应用的appId注册到微信
         api.registerApp(APP_ID);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,6 +109,7 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
         regToWx();
         commonPresenter = new CommonGoodsImp();
         if (!TextUtils.isEmpty(getIntent().getStringExtra("oderId"))) {
+            Log.e("TAG","订单Id:"+getIntent().getStringExtra("oderId"));
             orderId = getIntent().getStringExtra("oderId");
             initData(getIntent().getStringExtra("oderId"));
         }
@@ -130,10 +132,11 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
         params.addBodyParameter("id", oderId);
         commonPresenter.getCommonGoodsData(params, this);
     }
+
     @Subscribe
-    public void onEvent(WxPayEvent event){
-        if (event != null){
-            if (event.getCode() == 1){
+    public void onEvent(WxPayEvent event) {
+        if (event != null) {
+            if (event.getCode() == 1) {
                 Intent intent = new Intent(PayWayActivity.this, PayResultActivity.class);
                 startActivity(intent);
             }
@@ -154,7 +157,7 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
 //                startActivity(intent);
                 break;
             case R.id.iv_back:
-                PayWayActivity.this.finish();
+                finish();
                 break;
             case R.id.ll_alipay:
                 currentId = alipayId;
@@ -253,46 +256,64 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
     }
 
     private void payWithWechat(String orderInfo) {
-        if (!checkWeixin(PayWayActivity.this)){
-            ToastUtils.show(PayWayActivity.this,"您未安装微信程序。");
+        if (!checkWeixin(PayWayActivity.this)) {
+            ToastUtils.show(PayWayActivity.this, "您未安装微信程序。");
             return;
+        }
+        try {
+            JSONObject jsonObject = new JSONObject(orderInfo);
+            JSONObject pay = jsonObject.getJSONObject("pay");
+            String appId = pay.getString("appId");
+            String timeStamp = pay.getString("timeStamp");
+            String nonceStr = pay.getString("nonceStr");
+            String packageStr = pay.getString("package");
+            String signType = pay.getString("signType");
+            String paySign = pay.getString("paySign");
+            String prepayid = pay.getString("prepayid");
+            String mch_id = pay.getString("mch_id");
+            wxpay(paySign, mch_id, prepayid, nonceStr, appId, timeStamp, packageStr, signType);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     } //唤起微信支付
-    private void wxpay(String signs,String partnerId,String prepayId,String nonceStr,String appId) {
-        String time=String.valueOf(System.currentTimeMillis()/1000);
-//        //随机字符串
-        String ranStr= RandCharsUtils.getRandomString(16);
+
+    private void wxpay(String signs, String partnerId, String prepayId, String nonceStr, String appId, String timeStamp, String packageStr, String signType) {
+//        String time=String.valueOf(System.currentTimeMillis()/1000);
+////        //随机字符串
+//        String ranStr= RandCharsUtils.getRandomString(16);
         //生成签名
-        SortedMap<Object,Object> parameters = new TreeMap<Object,Object>();
-        parameters.put("appid",appId);
-        parameters.put("noncestr",ranStr);
-        parameters.put("partnerid", partnerId);
-        parameters.put("prepayid", prepayId);
-        String str="Sign=WXPay";
-        parameters.put("package",str);
-        parameters.put("timestamp",time);
-        String xSign= WXSignUtils.createSign("UTF-8",parameters);
+//        SortedMap<Object,Object> parameters = new TreeMap<Object,Object>();
+//        parameters.put("appid",appId);
+//        parameters.put("noncestr",ranStr);
+//        parameters.put("partnerid", partnerId);
+//        parameters.put("prepayid", prepayId);
+//        String str="Sign=WXPay";
+//        parameters.put("package",str);
+//        parameters.put("timestamp",time);
+//        String xSign= WXSignUtils.createSign("UTF-8",parameters);
 
 
         PayReq req = new PayReq();
         //应用 wxd34f7dc698b271af
         req.appId = appId;
         //随机字符串
-        req.nonceStr = ranStr;
+        req.nonceStr = nonceStr;
         //扩展字段
-        req.packageValue =str;
+        req.packageValue = packageStr;
         //商户号
         req.partnerId = partnerId;
+
+        req.signType = signType;
         //预支付交易 id
         req.prepayId = prepayId;
         //时间戳
-        req.timeStamp =time;//获取系统时间的10位的时间戳app data";
-        req.sign=xSign;
+        req.timeStamp = timeStamp;
+        req.sign = signs;
         api.sendReq(req);
-        Log.e("TAG","本地sign:"+xSign);
     }
-    private boolean checkWeixin(Context context){
+
+    private boolean checkWeixin(Context context) {
         Intent intent = new Intent(Intent.ACTION_MAIN, null);
         intent.addCategory(Intent.CATEGORY_LAUNCHER);
         List<ResolveInfo> apps = getPackageManager().queryIntentActivities(intent, 0);
@@ -300,7 +321,7 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
         for (int i = 0; i < apps.size(); i++) {
             ResolveInfo info = apps.get(i);
             String packageName = info.activityInfo.packageName;
-            Log.e("TAG","包名："+packageName);
+            Log.e("TAG", "包名：" + packageName);
             if (packageName.equalsIgnoreCase("com.tencent.mm")) {
                 return true;
             }
@@ -308,6 +329,7 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
 
         return false;
     }
+
     private void payWithAlipay(final String orderInfo) {
         Runnable payRunnable = new Runnable() {
 

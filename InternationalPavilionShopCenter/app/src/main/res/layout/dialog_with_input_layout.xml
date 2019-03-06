@@ -13,8 +13,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <EditText
-        android:imeOptions="actionDone"
-        android:singleLine="true"
         android:id="@+id/et_input_nick_name"
         android:layout_marginTop="@dimen/x6"
         android:hint="请输入2-8位昵称"

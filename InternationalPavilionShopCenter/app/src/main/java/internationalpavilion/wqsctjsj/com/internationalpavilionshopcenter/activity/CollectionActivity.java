@@ -86,7 +86,7 @@ public class CollectionActivity extends BaseAppcompatActivity implements OnCommo
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
-                CollectionActivity.this.finish();
+                finish();
                 break;
         }
     }

@@ -10,8 +10,7 @@ import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
 import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
+
 import com.chrisjason.baseui.ui.BaseAppcompatActivity;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -25,6 +24,7 @@ import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 import org.xutils.http.RequestParams;
 
 import java.util.ArrayList;
@@ -172,36 +172,39 @@ public class GroupGoodsListActivity extends BaseAppcompatActivity implements OnG
         }
 
         try {
-            com.alibaba.fastjson.JSONObject root = JSONObject.parseObject(result);
+            JSONObject root = new JSONObject(result);
 
             if (root != null) {
-                int code = root.getIntValue("code");
-                int state = root.getIntValue("state");
+                int code = root.getInt("code");
+                int state = root.getInt("state");
                 if (state == 0 && code == 0) {
-                    com.alibaba.fastjson.JSONArray data_array = root.getJSONArray("data");
-                    if (data_array != null && data_array.size() > 0) {
+                    JSONArray data_array = root.getJSONArray("data");
+                    if (data_array != null && data_array.length() > 0) {
 
                         List<GroupProductEntity> data = new ArrayList<>();
                         //List<GroupProductEntity> data = data_array.toJavaList(GroupProductEntity.class);
 
-                        for (int i=0;i<data_array.size();i++){
+                        for (int i=0;i<data_array.length();i++){
                             JSONObject obj_i = data_array.getJSONObject(i);
 
                             GroupProductEntity gp = new GroupProductEntity();
-                            gp.setId(obj_i.getIntValue("id"));
+                            gp.setId(obj_i.getInt("id"));
 
                             GroupProductEntity.GoodsGoodsBean goodsGoodsBean = new GroupProductEntity.GoodsGoodsBean();
                             GroupProductEntity.StoreStoreBean storeStoreBean = new GroupProductEntity.StoreStoreBean();
 
                             JSONObject goods_goods = obj_i.getJSONObject("goods_goods");
 
-                            goodsGoodsBean.setId(goods_goods.getIntValue("id"));
+                            goodsGoodsBean.setId(goods_goods.getInt("id"));
                             //商品图片
                             List<String> imgs=new ArrayList<>();
                             if(!TextUtils.isEmpty(goods_goods.getString("img"))){
-                                com.alibaba.fastjson.JSONArray array = JSON.parseArray(goods_goods.getString("img"));
+                                JSONArray array = new JSONArray(goods_goods.getString("img"));
                                 if(array!=null){
-                                    imgs = array.toJavaList(String.class);
+                                    for (int p= 0;p < array.length();p++){
+                                        imgs.add(array.getString(p));
+                                    }
+                                    //imgs = array.toJavaList(String.class);
                                 }
                             }
                             goodsGoodsBean.setImg(imgs);
@@ -214,7 +217,7 @@ public class GroupGoodsListActivity extends BaseAppcompatActivity implements OnG
 
 
                             //拼团人数
-                            gp.setGroup_num_p(obj_i.getIntValue("group_num_p"));
+                            gp.setGroup_num_p(obj_i.getInt("group_num_p"));
                             //商品单价
                             gp.setPrice_m(obj_i.getString("price_m"));
                             //商品团购价

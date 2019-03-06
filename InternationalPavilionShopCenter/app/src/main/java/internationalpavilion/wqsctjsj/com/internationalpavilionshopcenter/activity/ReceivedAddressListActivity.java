@@ -141,7 +141,7 @@ public class ReceivedAddressListActivity extends BaseAppcompatActivity implement
                                     event.setOp(1);
                                     event.setRes(false);
                                     EventBus.getDefault().post(event);
-                                    ReceivedAddressListActivity.this.finish();
+                                    finish();
                                 }
                             } catch (Exception e) {
                                 e.printStackTrace();
@@ -167,7 +167,7 @@ public class ReceivedAddressListActivity extends BaseAppcompatActivity implement
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
-                ReceivedAddressListActivity.this.finish();
+                finish();
                 break;
             case R.id.tv_add_new_address:
                 Intent intent = new Intent(ReceivedAddressListActivity.this, AddOrEditAddressActivity.class);

@@ -1,7 +1,5 @@
 package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls;
 
-import java.io.Serializable;
-
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.BuildConfig;
 
 /**
@@ -108,14 +106,14 @@ public class MainUrls {
     public static final String getHotSearchUrl = ServerIp + "?api=goods.search.hot";
 
     //获取拼团商品列表数据
-    public static final String getGroupProductListUrl = ServerIp + "?api=store.price.getgroupgoodslist";
+    public static final String getGroupProductListUrl = ServerIp + "/api?api=store.price.getgroupgoodslist";
 
     //商品搜索
-    public static final String searchProduct =ServerIp+"?api=goods.search.goods";
+    public static final String searchProduct =ServerIp+"/api?api=goods.search.goods";
     //初始化联系客服
-    public static final String getInitIMMessage = ServerIp +"?api=msg.qmsg.getallcatebrand";
+    public static final String getInitIMMessage = ServerIp +"/api?api=msg.qmsg.getallcatebrand";
     //发送客服消息
-    public static final String sendMessage = ServerIp +"?api=msg.qmsg.getdata";
+    public static final String sendMessage = ServerIp +"/api?api=msg.qmsg.getdata";
 
     public static final String getUserWalletMoneyUrl = ServerIp + "?api=order.order.getmoney";
 
@@ -130,8 +128,4 @@ public class MainUrls {
     public static final String toPayUrl = ServerIp + "?api=order.order.pay";
 
     public static final String deleteAddressUrl = ServerIp + "?api=user.address.del";
-    //查询新品列表
-    public static final String getNewlyGoodsListUrl =ServerIp +"?api=store.price.newgoods";
-    //查询折扣商品列表
-    public static final String getDiscountGoodsListUrl = ServerIp +"?api=store.price.agio";
 }

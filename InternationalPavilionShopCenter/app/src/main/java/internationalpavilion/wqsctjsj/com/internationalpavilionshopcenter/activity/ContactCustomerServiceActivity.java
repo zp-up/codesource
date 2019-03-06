@@ -18,13 +18,14 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.chrisjason.baseui.ui.BaseAppcompatActivity;
 import com.jaeger.library.StatusBarUtil;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.xutils.http.RequestParams;
 
 import java.util.ArrayList;
@@ -233,38 +234,42 @@ public class ContactCustomerServiceActivity extends BaseAppcompatActivity {
             @Override
             public void onSuccess(String result) {
                 if (result != null) {
-                    JSONObject root = JSONObject.parseObject(result);
-                    if (root != null) {
+                    try {
+                        JSONObject root = new JSONObject(result);
+                        if (root != null) {
 
-                        int code = root.getIntValue("code");
-                        int state = root.getIntValue("state");
-                        if (0 == code && 0 == state) {
+                            int code = root.getInt("code");
+                            int state = root.getInt("state");
+                            if (0 == code && 0 == state) {
 
-                            JSONArray dataArray = root.getJSONArray("data");
-                            if (dataArray != null && dataArray.size() > 0) {
-                                //解析数据
+                                JSONArray dataArray = root.getJSONArray("data");
+                                if (dataArray != null && dataArray.length() > 0) {
+                                    //解析数据
 
-                                CustomerServiceMessage message = new CustomerServiceMessage();
-                                message.setDirection(1);
-                                List<String> questionList = new ArrayList<>();
+                                    CustomerServiceMessage message = new CustomerServiceMessage();
+                                    message.setDirection(1);
+                                    List<String> questionList = new ArrayList<>();
 
-                                for (int i = 0; i < dataArray.size(); i++) {
-                                    JSONObject obj = dataArray.getJSONObject(i);
-                                    String title = obj.getString("title");
-                                    questionList.add(title);
+                                    for (int i = 0; i < dataArray.length(); i++) {
+                                        JSONObject obj = dataArray.getJSONObject(i);
+                                        String title = obj.getString("title");
+                                        questionList.add(title);
+                                    }
+
+                                    message.setQuestionList(questionList);
+
+                                    //插入列表
+                                    if (mItems.size() > 0) {
+                                        mItems.clear();
+                                    }
+                                    mItems.add(message);
+                                    adapter.notifyItemInserted(0);
                                 }
 
-                                message.setQuestionList(questionList);
-
-                                //插入列表
-                                if (mItems.size() > 0) {
-                                    mItems.clear();
-                                }
-                                mItems.add(message);
-                                adapter.notifyItemInserted(0);
                             }
-
                         }
+                    }catch (Exception e){
+                        e.printStackTrace();
                     }
                 }
             }
@@ -318,39 +323,43 @@ public class ContactCustomerServiceActivity extends BaseAppcompatActivity {
             @Override
             public void onSuccess(String result) {
                 if (result != null) {
-                    JSONObject root = JSONObject.parseObject(result);
-                    if (root != null) {
-                        int state = root.getIntValue("state");
-                        int code = root.getIntValue("code");
-                        if (0 == state && 0 == code) {
-                            JSONArray arrayData = root.getJSONArray("data");
+                    try {
+                        JSONObject root = new JSONObject(result);
+                        if (root != null) {
+                            int state = root.getInt("state");
+                            int code = root.getInt("code");
+                            if (0 == state && 0 == code) {
+                                JSONArray arrayData = root.getJSONArray("data");
 
-                            if (arrayData != null && arrayData.size() > 0) {
+                                if (arrayData != null && arrayData.length() > 0) {
 
-                                for (int i = 0; i < arrayData.size(); i++) {
-                                    CustomerServiceMessage message = new CustomerServiceMessage();
-                                    JSONObject obj = arrayData.getJSONObject(i);
-                                    int id = obj.getIntValue("id");
-                                    String title = obj.getString("title");
-                                    String text = obj.getString("text");
-                                    String img = obj.getString("img");
+                                    for (int i = 0; i < arrayData.length(); i++) {
+                                        CustomerServiceMessage message = new CustomerServiceMessage();
+                                        JSONObject obj = arrayData.getJSONObject(i);
+                                        int id = obj.getInt("id");
+                                        String title = obj.getString("title");
+                                        String text = obj.getString("text");
+                                        String img = obj.getString("img");
 
-                                    message.setId(id);
-                                    message.setDirection(1);
-                                    message.setTitle(title);
-                                    message.setText(text);
-                                    message.setImg(img);
-                                    message.setQuestionList(null);
-                                    mItems.add(message);
+                                        message.setId(id);
+                                        message.setDirection(1);
+                                        message.setTitle(title);
+                                        message.setText(text);
+                                        message.setImg(img);
+                                        message.setQuestionList(null);
+                                        mItems.add(message);
+                                    }
+
+                                    //插入列表
+                                    adapter.notifyItemInserted(mItems.size()-1);
+
+                                    layoutManager.scrollToPositionWithOffset(mItems.size()-1, 0);
+
                                 }
-
-                                //插入列表
-                                adapter.notifyItemInserted(mItems.size()-1);
-
-                                layoutManager.scrollToPositionWithOffset(mItems.size()-1, 0);
-
                             }
                         }
+                    }catch (Exception e){
+                        e.printStackTrace();
                     }
                 }
             }

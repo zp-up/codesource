@@ -39,7 +39,6 @@ import java.util.HashMap;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.BondedGoodsListActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.GoodsDetailActivity;
-import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.GoodsListActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.GroupGoodsListActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.LimitedTimeActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.OverseasGoodsListActivity;
@@ -176,29 +175,10 @@ public class HomeAdapter extends DelegateAdapter.Adapter<HomeAdapter.ViewHolder>
                 }
                 break;
             case TYPE_2:
-                //拼团列表
                 holder.rlToGroup.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(context, GroupGoodsListActivity.class);
-                        context.startActivity(intent);
-                    }
-                });
-                //新品列表
-                holder.rlToNewly.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(context, GoodsListActivity.class);
-                        intent.putExtra("type",1);
-                        context.startActivity(intent);
-                    }
-                });
-                //折扣列表
-                holder.rlToDiscount.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(context, GoodsListActivity.class);
-                        intent.putExtra("type",2);
                         context.startActivity(intent);
                     }
                 });
@@ -497,7 +477,7 @@ public class HomeAdapter extends DelegateAdapter.Adapter<HomeAdapter.ViewHolder>
         //type = 1
         Banner banner;
         //type = 2
-        RelativeLayout rlToGroup,rlToNewly,rlToDiscount;
+        RelativeLayout rlToGroup;
         //type = 3
         TimerView tvCountDown;
         LinearLayout llGoodsContainer;
@@ -532,8 +512,6 @@ public class HomeAdapter extends DelegateAdapter.Adapter<HomeAdapter.ViewHolder>
                     break;
                 case TYPE_2:
                     rlToGroup = itemView.findViewById(R.id.rl_to_group);
-                    rlToNewly =itemView.findViewById(R.id.rl_to_newly_goods_list);
-                    rlToDiscount = itemView.findViewById(R.id.rl_to_discount);
                     break;
                 case TYPE_3:
                     tvCountDown = itemView.findViewById(R.id.tv_count_down);

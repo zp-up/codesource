@@ -34,7 +34,6 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.application.IPSCApplication;
-import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.eventBusBean.FragmentSwitchEvent;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.eventBusBean.TokenEvent;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.userInfo.UserBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.fragment.CartFragment;
@@ -50,7 +49,7 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.
 public class MainActivity extends BaseAppcompatActivity implements RadioGroup.OnCheckedChangeListener {
     private FragmentManager mFragmentManager;
     private Fragment homeFragment,classFragment,cartFragment,mineFragment;
-    private int position =-1;
+
     @BindView(R.id.rb_home)
     RadioButton rbHome;
     @BindView(R.id.rb_class)
@@ -87,13 +86,6 @@ public class MainActivity extends BaseAppcompatActivity implements RadioGroup.On
         initView();
         EventBus.getDefault().register(this);
     }
-
-    @Override
-    protected void onDestroy() {
-        EventBus.getDefault().unregister(this);
-        super.onDestroy();
-    }
-
     private void hideAllFragment(){
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
         if (homeFragment != null){
@@ -112,10 +104,10 @@ public class MainActivity extends BaseAppcompatActivity implements RadioGroup.On
         transaction.commit();
     }
     private void addFragment(int index) {
-
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
         switch (index){
             case 1:
+                hideAllFragment();
                 if (homeFragment == null){
                     homeFragment = new HomeFragment();
                     transaction.add(R.id.frame_container,homeFragment);
@@ -125,6 +117,7 @@ public class MainActivity extends BaseAppcompatActivity implements RadioGroup.On
                 }
                 break;
             case 2:
+                hideAllFragment();
                 if (classFragment == null){
                     classFragment = new ClassFragment();
                     transaction.add(R.id.frame_container,classFragment);
@@ -134,6 +127,7 @@ public class MainActivity extends BaseAppcompatActivity implements RadioGroup.On
                 }
                 break;
             case 3:
+                hideAllFragment();
                 if (cartFragment == null){
                     cartFragment = new CartFragment();
                     transaction.add(R.id.frame_container,cartFragment);
@@ -143,6 +137,7 @@ public class MainActivity extends BaseAppcompatActivity implements RadioGroup.On
                 }
                 break;
             case 4:
+                hideAllFragment();
                 if (mineFragment == null){
                     mineFragment = new MineFragment();
                     transaction.add(R.id.frame_container,mineFragment);
@@ -179,7 +174,6 @@ public class MainActivity extends BaseAppcompatActivity implements RadioGroup.On
     }
 
     private void selectedView(int i) {
-        hideAllFragment();
         switch (i){
             case 1:
                 setDrawable(rbHome, R.mipmap.icon_home_tab_selected);
@@ -340,22 +334,6 @@ public class MainActivity extends BaseAppcompatActivity implements RadioGroup.On
 
                 }
             });
-        }
-    }
-
-    @Subscribe
-    public void onEvent(FragmentSwitchEvent event){
-        if(event!=null){
-            position=event.getPosition();
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if(position!=-1){
-            selectedView(position);
-            position=-1;
         }
     }
 }

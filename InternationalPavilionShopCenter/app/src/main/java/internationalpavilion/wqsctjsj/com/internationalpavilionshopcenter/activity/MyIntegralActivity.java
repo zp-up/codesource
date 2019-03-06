@@ -111,7 +111,7 @@ public class MyIntegralActivity extends BaseAppcompatActivity implements OnCommo
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
-                MyIntegralActivity.this.finish();
+                finish();
                 break;
             case R.id.tv_integral_income:
                 change(1);

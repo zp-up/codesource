@@ -104,7 +104,7 @@ public class CouponActivity extends BaseAppcompatActivity {
                 change(3);
                 break;
             case R.id.iv_back:
-                CouponActivity.this.finish();
+                finish();
                 break;
         }
     }

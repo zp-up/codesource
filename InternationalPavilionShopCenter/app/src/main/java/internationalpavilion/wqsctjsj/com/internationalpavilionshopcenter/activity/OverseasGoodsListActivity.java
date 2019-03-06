@@ -357,7 +357,7 @@ public class OverseasGoodsListActivity extends BaseAppcompatActivity implements 
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
-                OverseasGoodsListActivity.this.finish();
+                finish();
                 break;
             case R.id.ll_filter_screen:
                 llScreenContainer.setVisibility(View.VISIBLE);
