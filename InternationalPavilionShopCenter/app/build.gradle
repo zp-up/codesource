@@ -1,11 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter"
-        minSdkVersion 21
-        targetSdkVersion 27
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -15,7 +16,7 @@ android {
         release {
             keyAlias 'international'
             keyPassword 'CD812416'
-            storeFile file('/Users/wuqaing/Downloads/keystore/internationalPavilion.jks')
+            storeFile file('../internationalPavilion.jks')
             storePassword 'CD812416'
         }
     }
@@ -23,12 +24,23 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug{
+            signingConfig signingConfigs.release
         }
     }
-    dexOptions {
-        javaMaxHeapSize "4g"
-        incremental true
+
+    compileOptions {
+        sourceCompatibility rootProject.ext.javaVersion
+        targetCompatibility rootProject.ext.javaVersion
     }
+
+    dexOptions{
+        javaMaxHeapSize "4g"
+        preDexLibraries = false
+    }
+
     repositories{
         flatDir {
             dirs 'libs'
@@ -36,36 +48,36 @@ android {
     }
 }
 
+
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':baseui')
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    implementation('com.android.support:design:27.1.1') {
-        exclude group: "com.android.support", module: "support-v4"
-        exclude group: "com.android.support", module: "support-v7"
-    }
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    implementation 'org.xutils:xutils:3.3.36'
-    implementation 'com.github.bumptech.glide:glide:4.1.0'
-    implementation 'com.youth.banner:banner:1.4.10'
-    implementation 'org.greenrobot:eventbus:3.1.1'
-    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4-7'
-    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.4-7'
-    implementation 'com.jph.takephoto:takephoto_library:3.0.2'
-    implementation 'com.jaeger.statusbaruitl:library:1.3.0'
-    implementation('com.alibaba.android:vlayout:1.2.2@aar') {
-        transitive = true
-    }
-    compile 'com.jph.takephoto:takephoto_library:3.0.2'
-    implementation 'com.contrarywind:Android-PickerView:3.2.6'
-    implementation 'de.hdodenhof:circleimageview:2.2.0'
-    implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
-    implementation 'com.pnikosis:materialish-progress:1.7'
+
+    api project(':baseui')
+
+    annotationProcessor "com.jakewharton:butterknife-compiler:${rootProject.ext.butterKnifeCompilerVersion}"
+
+    //alipay
     implementation(name: 'alipaySdk-15.5.9-20181123210601', ext: 'aar')
-    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
-    configurations {
-        all*.exclude group: 'com.android.support', module: 'support-v13'
-    }
+
+    //image-load
     implementation files('libs/universal-image-loader-1.9.5.jar')
-    compile 'com.android.support:multidex:1.0.1'
+
+    implementation ('com.jph.takephoto:takephoto_library:3.0.2'){
+        exclude module:'support-v4'
+        exclude module:'support-compat'
+        exclude module:'appcompat-v7'
+        exclude module:'support-fragment'
+        exclude module:'support-annotations'
+        exclude module:'glide'
+    }
+
+    //multidex
+    api ("com.android.support:multidex:${rootProject.ext.multidexVersion}"){
+        exclude module:'support-v4'
+        exclude module:'support-compat'
+    }
+
+
+
 }
