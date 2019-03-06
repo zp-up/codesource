@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Environment;
-import android.support.multidex.MultiDexApplication;
+import android.support.multidex.MultiDex;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -41,7 +41,7 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.
  * Created by wuqaing on 2018/12/14.
  */
 
-public class IPSCApplication extends MultiDexApplication implements OnNetCallBack{
+public class IPSCApplication extends Application implements OnNetCallBack{
     public static String accessToken = "";
     public static int id = -1;
     private String token;
@@ -83,6 +83,11 @@ public class IPSCApplication extends MultiDexApplication implements OnNetCallBac
         ImageLoader.getInstance().init(config);
     }
 
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
 
     private String getSPAccessToken() {
         SharedPreferences sp = getSharedPreferences("Token", MODE_PRIVATE);

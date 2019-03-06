@@ -1,11 +1,11 @@
 package com.chrisjason.baseui.ui;
 
+import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Toast;
 
-import com.chrisjason.baseui.R;
 import com.chrisjason.baseui.receiver.NetworkChangeReceiver;
 import com.chrisjason.baseui.util.NetUtil;
 import com.chrisjason.baseui.widget.dialog.LoadingDialog;
@@ -69,9 +68,9 @@ public abstract class BaseAppcompatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(initLayout());
-        if (getSupportActionBar() != null){
-            getSupportActionBar().hide();
-        }
+//        if (getSupportActionBar() != null){
+//            getSupportActionBar().hide();
+//        }
         //锁定屏幕
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
