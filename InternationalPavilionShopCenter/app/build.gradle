@@ -12,6 +12,9 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
+    dexOptions{
+        jumboMode true
+    }
     signingConfigs {
         release {
             keyAlias 'international'
@@ -37,7 +40,7 @@ android {
     }
 
     dexOptions{
-        javaMaxHeapSize "4g"
+        javaMaxHeapSize "2g"
         preDexLibraries = false
     }
 
@@ -51,33 +54,24 @@ android {
 
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-
+    api fileTree(include: ['*.jar'], dir: 'libs')
     api project(':baseui')
-
     annotationProcessor "com.jakewharton:butterknife-compiler:${rootProject.ext.butterKnifeCompilerVersion}"
-
     //alipay
     implementation(name: 'alipaySdk-15.5.9-20181123210601', ext: 'aar')
-
     //image-load
-    implementation files('libs/universal-image-loader-1.9.5.jar')
-
-    implementation ('com.jph.takephoto:takephoto_library:3.0.2'){
-        exclude module:'support-v4'
-        exclude module:'support-compat'
-        exclude module:'appcompat-v7'
-        exclude module:'support-fragment'
-        exclude module:'support-annotations'
-        exclude module:'glide'
+    //implementation files('libs/universal-image-loader-1.9.5.jar')
+    implementation('com.jph.takephoto:takephoto_library:3.0.2') {
+        exclude module: 'support-v4'
+        exclude module: 'support-compat'
+        exclude module: 'appcompat-v7'
+        exclude module: 'support-fragment'
+        exclude module: 'support-annotations'
+        exclude module: 'glide'
     }
-
     //multidex
-    api ("com.android.support:multidex:${rootProject.ext.multidexVersion}"){
-        exclude module:'support-v4'
-        exclude module:'support-compat'
+    api("com.android.support:multidex:${rootProject.ext.multidexVersion}") {
+        exclude module: 'support-v4'
+        exclude module: 'support-compat'
     }
-
-
-
 }
