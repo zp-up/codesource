@@ -39,11 +39,6 @@ android {
         targetCompatibility rootProject.ext.javaVersion
     }
 
-    dexOptions{
-        javaMaxHeapSize "2g"
-        preDexLibraries = false
-    }
-
     repositories{
         flatDir {
             dirs 'libs'
