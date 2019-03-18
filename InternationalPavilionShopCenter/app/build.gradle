@@ -69,4 +69,6 @@ dependencies {
         exclude module: 'support-v4'
         exclude module: 'support-compat'
     }
+
+    implementation 'com.alibaba:fastjson:1.2.39'
 }

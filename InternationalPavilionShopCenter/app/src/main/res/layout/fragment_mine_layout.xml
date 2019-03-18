@@ -29,6 +29,7 @@
                         android:layout_width="@dimen/x60"
                         android:layout_height="@dimen/x60" />
                     <LinearLayout
+                        android:id="@+id/ll_account"
                         android:orientation="vertical"
                         android:layout_toRightOf="@+id/civ_head"
                         android:layout_marginLeft="@dimen/x10"

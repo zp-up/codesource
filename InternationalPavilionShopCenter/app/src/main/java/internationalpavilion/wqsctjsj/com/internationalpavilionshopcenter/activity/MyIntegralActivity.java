@@ -72,7 +72,9 @@ public class MyIntegralActivity extends BaseAppcompatActivity implements OnCommo
     private void initData() {
         RequestParams params = new RequestParams(MainUrls.getUserInfoUrl);
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
-        params.addBodyParameter("id", ((IPSCApplication)getApplication()).getUserInfo().getId() + "");
+        if(((IPSCApplication) getApplication()).getUserInfo()!=null){
+            params.addBodyParameter("user", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
+        }
         commonPresenter.getCommonGoodsData(params, this);
     }
 

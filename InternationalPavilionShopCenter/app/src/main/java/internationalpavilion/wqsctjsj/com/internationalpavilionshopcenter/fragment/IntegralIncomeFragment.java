@@ -128,7 +128,12 @@ public class IntegralIncomeFragment extends Fragment implements OnCommonGoodsCal
     private void initData() {
         RequestParams params = new RequestParams(MainUrls.getExperienceListUrl);
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
-        params.addBodyParameter("user", ((IPSCApplication) getActivity().getApplication()).getUserInfo().getId() + "");
+        if(getActivity()!=null && isAdded()){
+            if(((IPSCApplication) getActivity().getApplication()).getUserInfo()!=null){
+                params.addBodyParameter("user", ((IPSCApplication) getActivity().getApplication()).getUserInfo().getId() + "");
+            }
+        }
+
         params.addBodyParameter("type", "收入");
         params.addBodyParameter("page", pageIndex + "");
         params.addBodyParameter("limit", "10");

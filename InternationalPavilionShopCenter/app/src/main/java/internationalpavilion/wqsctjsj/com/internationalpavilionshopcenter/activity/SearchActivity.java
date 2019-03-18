@@ -154,7 +154,11 @@ public class SearchActivity extends BaseAppcompatActivity implements OnSearchCal
 
             params.addBodyParameter("access_token", IPSCApplication.accessToken);
             params.addBodyParameter("page", String.valueOf(pageIndex));
-            params.addBodyParameter("user", String.valueOf(((IPSCApplication) getApplication()).getUserInfo().getId()));
+
+            if( ((IPSCApplication) getApplication()).getUserInfo()!=null){
+                params.addBodyParameter("user", String.valueOf(((IPSCApplication) getApplication()).getUserInfo().getId()));
+            }
+
             params.addBodyParameter("search", etSearchInput.getText().toString());
             searchOperationPresenter.doSearch(params, new NetCallback() {
                 @Override

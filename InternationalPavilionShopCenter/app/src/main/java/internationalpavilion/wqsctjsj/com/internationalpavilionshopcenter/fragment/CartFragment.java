@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.chrisjason.baseui.ui.BaseAppcompatActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -31,6 +32,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.ConfirmOrderActivity;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.LoginByPasswordActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.adapter.CartAdapter;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.application.IPSCApplication;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.CartGood;
@@ -94,7 +96,9 @@ public class CartFragment extends Fragment implements OnCommonGoodsCallBack, Car
                 RequestParams params = new RequestParams(MainUrls.selectedAllGoodsUrl);
                 params.addBodyParameter("access_token", IPSCApplication.accessToken);
                 params.addBodyParameter("cart_state", isAllChecked ? 1 + "" : 0 + "");
-                params.addBodyParameter("user", ((IPSCApplication) getActivity().getApplication()).getUserInfo().getId() + "");
+                if(((IPSCApplication) getActivity().getApplication()).getUserInfo()!=null){
+                    params.addBodyParameter("user", ((IPSCApplication) getActivity().getApplication()).getUserInfo().getId() + "");
+                }
                 cartOperationPresenter.cartAllChecked(params, CartFragment.this);
             }
         });
@@ -113,8 +117,7 @@ public class CartFragment extends Fragment implements OnCommonGoodsCallBack, Car
     }
 
     private void initData() {
-        if (((IPSCApplication) getActivity().getApplication()).getUserInfo() != null) {
-            Log.e("TAG", "用户id:" + ((IPSCApplication) getActivity().getApplication()).getUserInfo().getId());
+        if (isLogin()) {
             RequestParams params = new RequestParams(MainUrls.getGoodsCartUrl);
             params.addBodyParameter("access_token", IPSCApplication.accessToken);
             params.addBodyParameter("page", "1");
@@ -128,8 +131,22 @@ public class CartFragment extends Fragment implements OnCommonGoodsCallBack, Car
     @OnClick({R.id.tv_submit_cart})
     public void onClick(View view) {
         switch (view.getId()) {
+            //点击结算
             case R.id.tv_submit_cart:
-                submitCart();
+                if (isLogin()) {
+                    if (carts != null && carts.size() > 0) {
+                        submitCart();
+                    } else {
+                        if (getActivity() != null && isAdded()) {
+                            Toast.makeText(getActivity(), "当前购物车为空", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                } else {
+                    if (getActivity() != null) {
+                        getActivity().startActivity(new Intent(getActivity(), LoginByPasswordActivity.class));
+                    }
+                }
+
                 break;
         }
     }
@@ -137,7 +154,9 @@ public class CartFragment extends Fragment implements OnCommonGoodsCallBack, Car
     private void submitCart() {
         RequestParams params = new RequestParams(MainUrls.cartSubmitUrl);
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
-        params.addBodyParameter("user", ((IPSCApplication) getContext().getApplicationContext()).getUserInfo().getId() + "");
+        if(((IPSCApplication) getContext().getApplicationContext()).getUserInfo()!=null){
+            params.addBodyParameter("user", ((IPSCApplication) getContext().getApplicationContext()).getUserInfo().getId() + "");
+        }
         cartOperationPresenter.cartSubmit(params, this);
     }
 
@@ -194,7 +213,7 @@ public class CartFragment extends Fragment implements OnCommonGoodsCallBack, Car
                     String orderId = data.has("0") ? data.getString("0") : "-1";
                     if (!orderId.equals("-1")) {
                         Intent intent = new Intent(getActivity(), ConfirmOrderActivity.class);
-                        intent.putExtra("id",orderId);
+                        intent.putExtra("id", orderId);
                         startActivity(intent);
                     }
                 }
@@ -266,7 +285,7 @@ public class CartFragment extends Fragment implements OnCommonGoodsCallBack, Car
                             }
                             ivAllSelected.setImageResource(isAllChecked(carts) ? R.mipmap.icon_cart_box_selected : R.mipmap.icon_cart_box_unselected);
                         }
-                    }else {
+                    } else {
                         ivAllSelected.setImageResource(R.mipmap.icon_cart_box_unselected);
                     }
                 }
@@ -305,7 +324,12 @@ public class CartFragment extends Fragment implements OnCommonGoodsCallBack, Car
         RequestParams params = new RequestParams(MainUrls.cartStoreChangedUrl);
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
         params.addBodyParameter("store", storeId + "");
-        params.addBodyParameter("user", ((IPSCApplication) getActivity().getApplication()).getUserInfo().getId() + "");
+        if(getActivity()!=null && isAdded()){
+            if(((IPSCApplication) getActivity().getApplication()).getUserInfo()!=null){
+                params.addBodyParameter("user", ((IPSCApplication) getActivity().getApplication()).getUserInfo().getId() + "");
+            }
+        }
+
         cartOperationPresenter.cartAdd(params, this);
     }
 
@@ -342,4 +366,15 @@ public class CartFragment extends Fragment implements OnCommonGoodsCallBack, Car
         params.addBodyParameter("id", goodsCartId + "");
         cartOperationPresenter.cartAdd(params, this);
     }
+
+    //判断是否登录
+    private boolean isLogin() {
+        if (getActivity() != null && isAdded()) {
+            if (((IPSCApplication) getActivity().getApplication()).getUserInfo() != null) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

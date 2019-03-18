@@ -281,7 +281,7 @@ public class RegisterActivity extends BaseAppcompatActivity implements OnNetCall
 
     @Override
     public void onRegisterSuccess(String result) {
-        Log.e("TAG", "注册结果：" + result);
+
         if (result != null) {
             try {
                 JSONObject jsonObject = new JSONObject(result);

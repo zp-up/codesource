@@ -115,7 +115,9 @@ public class IntegralOutFragment extends Fragment implements OnCommonGoodsCallBa
     private void initData() {
         RequestParams params = new RequestParams(MainUrls.getExperienceListUrl);
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
-        params.addBodyParameter("user", ((IPSCApplication) getActivity().getApplication()).getUserInfo().getId() + "");
+        if(((IPSCApplication) getActivity().getApplication()).getUserInfo()!=null){
+            params.addBodyParameter("user", ((IPSCApplication) getActivity().getApplication()).getUserInfo().getId() + "");
+        }
         params.addBodyParameter("type", "支出");
         params.addBodyParameter("page", pageIndex + "");
         params.addBodyParameter("limit", "10");

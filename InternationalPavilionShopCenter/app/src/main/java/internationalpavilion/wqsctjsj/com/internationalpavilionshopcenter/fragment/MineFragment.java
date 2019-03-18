@@ -111,14 +111,14 @@ public class MineFragment extends Fragment {
 
     }
 
-    @OnClick({R.id.tv_account, R.id.ll_to_wait_pay_order, R.id.ll_to_wait_delivery_order,
+    @OnClick({R.id.ll_account, R.id.ll_to_wait_pay_order, R.id.ll_to_wait_delivery_order,
             R.id.ll_to_wait_received_order, R.id.ll_to_after_sale_order, R.id.ll_to_group_order, R.id.ll_to_my_balance, R.id.ll_to_integral,
             R.id.ll_to_collection, R.id.ll_to_friends, R.id.ll_to_coupon, R.id.ll_to_address_manage, R.id.ll_to_real_name_auther, R.id.ll_to_custom_service,
             R.id.ll_to_setting
     })
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tv_account:
+            case R.id.ll_account:
                 if (((IPSCApplication) getActivity().getApplicationContext()).getUserInfo() == null) {
                     Intent intent = new Intent(getActivity(), LoginByPasswordActivity.class);
                     startActivity(intent);
@@ -128,64 +128,162 @@ public class MineFragment extends Fragment {
                 }
                 break;
             case R.id.ll_to_wait_pay_order:
-                Intent intentToWaitPayOrder = new Intent(getActivity(), OrderActivity.class);
-                intentToWaitPayOrder.putExtra("index", 1);
-                startActivity(intentToWaitPayOrder);
+                if(isLogin()){
+                    Intent intentToWaitPayOrder = new Intent(getActivity(), OrderActivity.class);
+                    intentToWaitPayOrder.putExtra("index", 1);
+                    startActivity(intentToWaitPayOrder);
+                }else {
+                    if(getActivity()!=null){
+                        getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
+                    }
+                }
+
                 break;
             case R.id.ll_to_wait_delivery_order:
-                Intent intentToWaitDeliveryOrder = new Intent(getActivity(), OrderActivity.class);
-                intentToWaitDeliveryOrder.putExtra("index", 2);
-                startActivity(intentToWaitDeliveryOrder);
+                if(isLogin()){
+                    Intent intentToWaitDeliveryOrder = new Intent(getActivity(), OrderActivity.class);
+                    intentToWaitDeliveryOrder.putExtra("index", 2);
+                    startActivity(intentToWaitDeliveryOrder);
+                }else {
+                    if(getActivity()!=null){
+                        getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
+                    }
+                }
+
                 break;
             case R.id.ll_to_wait_received_order:
-                Intent intentToWaitReceivedOrder = new Intent(getActivity(), OrderActivity.class);
-                intentToWaitReceivedOrder.putExtra("index", 3);
-                startActivity(intentToWaitReceivedOrder);
+                if(isLogin()){
+                    Intent intentToWaitReceivedOrder = new Intent(getActivity(), OrderActivity.class);
+                    intentToWaitReceivedOrder.putExtra("index", 3);
+                    startActivity(intentToWaitReceivedOrder);
+                }else {
+                    if(getActivity()!=null){
+                        getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
+                    }
+                }
+
                 break;
             case R.id.ll_to_after_sale_order:
-                Intent intentToAfterSaleOrder = new Intent(getActivity(), OrderActivity.class);
-                intentToAfterSaleOrder.putExtra("index", 4);
-                startActivity(intentToAfterSaleOrder);
+                if(isLogin()){
+                    Intent intentToAfterSaleOrder = new Intent(getActivity(), OrderActivity.class);
+                    intentToAfterSaleOrder.putExtra("index", 4);
+                    startActivity(intentToAfterSaleOrder);
+                }else {
+                    if(getActivity()!=null){
+                        getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
+                    }
+                }
+
                 break;
             case R.id.ll_to_group_order:
-                Intent intentToGroupOrder = new Intent(getActivity(), MyGroupActivity.class);
-                startActivity(intentToGroupOrder);
+                if(isLogin()){
+                    Intent intentToGroupOrder = new Intent(getActivity(), MyGroupActivity.class);
+                    startActivity(intentToGroupOrder);
+                }else {
+                    if(getActivity()!=null){
+                        getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
+                    }
+                }
+
                 break;
             case R.id.ll_to_my_balance:
-                Intent intentToMyBalance = new Intent(getActivity(), MyBalanceActivity.class);
-                startActivity(intentToMyBalance);
+                if(isLogin()){
+                    Intent intentToMyBalance = new Intent(getActivity(), MyBalanceActivity.class);
+                    startActivity(intentToMyBalance);
+                }else {
+                    if(getActivity()!=null){
+                        getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
+                    }
+                }
+
                 break;
             case R.id.ll_to_integral:
-                Intent intentToIntegral = new Intent(getActivity(), MyIntegralActivity.class);
-                startActivity(intentToIntegral);
+                if(isLogin()){
+                    Intent intentToIntegral = new Intent(getActivity(), MyIntegralActivity.class);
+                    startActivity(intentToIntegral);
+                }else {
+                    if(getActivity()!=null){
+                        getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
+                    }
+                }
+
                 break;
             case R.id.ll_to_collection:
-                Intent intentToCollection = new Intent(getActivity(), CollectionActivity.class);
-                startActivity(intentToCollection);
+                if(isLogin()){
+                    Intent intentToCollection = new Intent(getActivity(), CollectionActivity.class);
+                    startActivity(intentToCollection);
+                }else {
+                    if(getActivity()!=null){
+                        getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
+                    }
+                }
+
                 break;
             case R.id.ll_to_friends:
-                Intent intentToFriends = new Intent(getActivity(), FriendsActivity.class);
-                startActivity(intentToFriends);
+                if(isLogin()){
+                    Intent intentToFriends = new Intent(getActivity(), FriendsActivity.class);
+                    startActivity(intentToFriends);
+                }else {
+                    if(getActivity()!=null){
+                        getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
+                    }
+                }
+
                 break;
             case R.id.ll_to_coupon:
-                Intent intentToCoupon = new Intent(getActivity(), CouponActivity.class);
-                startActivity(intentToCoupon);
+                if(isLogin()){
+                    Intent intentToCoupon = new Intent(getActivity(), CouponActivity.class);
+                    startActivity(intentToCoupon);
+                }else {
+                    if(getActivity()!=null){
+                        getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
+                    }
+                }
+
                 break;
             case R.id.ll_to_address_manage:
-                Intent intentToAddressManage = new Intent(getActivity(), ReceivedAddressListActivity.class);
-                startActivity(intentToAddressManage);
+                if(isLogin()){
+                    Intent intentToAddressManage = new Intent(getActivity(), ReceivedAddressListActivity.class);
+                    startActivity(intentToAddressManage);
+                }else {
+                    if(getActivity()!=null){
+                        getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
+                    }
+                }
+
                 break;
             case R.id.ll_to_real_name_auther:
-                Intent intentToRealNameAuthor = new Intent(getActivity(), RealNameAuthenticationActivity.class);
-                startActivity(intentToRealNameAuthor);
+                if(isLogin()){
+                    Intent intentToRealNameAuthor = new Intent(getActivity(), RealNameAuthenticationActivity.class);
+                    startActivity(intentToRealNameAuthor);
+                }else {
+                    if(getActivity()!=null){
+                        getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
+                    }
+                }
+
                 break;
             case R.id.ll_to_custom_service:
-                Intent intentToCustomService = new Intent(getActivity(), ContactCustomerServiceActivity.class);
-                startActivity(intentToCustomService);
+                if(isLogin()){
+                    Intent intentToCustomService = new Intent(getActivity(), ContactCustomerServiceActivity.class);
+                    startActivity(intentToCustomService);
+                }else {
+                    if(getActivity()!=null){
+                        getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
+                    }
+                }
+
                 break;
             case R.id.ll_to_setting:
-                Intent intentToSetting = new Intent(getActivity(), SettingActivity.class);
-                startActivity(intentToSetting);
+                if(isLogin()){
+                    Intent intentToSetting = new Intent(getActivity(), SettingActivity.class);
+                    startActivity(intentToSetting);
+                }else {
+                    if(getActivity()!=null){
+                        getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
+                    }
+                }
+
                 break;
         }
     }
@@ -204,5 +302,15 @@ public class MineFragment extends Fragment {
     public void onDestroy() {
         unbinder.unbind();
         super.onDestroy();
+    }
+
+    //判断是否登录
+    private boolean isLogin() {
+        if (getActivity() != null && isAdded()) {
+            if (((IPSCApplication) getActivity().getApplication()).getUserInfo() != null) {
+                return true;
+            }
+        }
+        return false;
     }
 }

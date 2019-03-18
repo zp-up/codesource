@@ -43,7 +43,9 @@ public class MyBalanceActivity extends BaseAppcompatActivity implements OnCommon
         }
         RequestParams params = new RequestParams(MainUrls.getUserInfoUrl);
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
-        params.addBodyParameter("id", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
+        if(((IPSCApplication) getApplication()).getUserInfo()!=null){
+            params.addBodyParameter("id", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
+        }
         commonPresenter.getCommonGoodsData(params, this);
     }
 

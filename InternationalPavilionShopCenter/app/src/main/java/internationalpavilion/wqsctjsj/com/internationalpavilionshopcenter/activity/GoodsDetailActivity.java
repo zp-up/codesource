@@ -334,9 +334,17 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
         return R.layout.activity_goods_detail;
     }
 
-    @OnClick({R.id.iv_back, R.id.rl_open_select_spec, R.id.rl_to_evaluate_list, R.id.tv_add_to_cart, R.id.rl_add_to_collection, R.id.tv_buy_immediately})
+    @OnClick({R.id.iv_back, R.id.rl_open_select_spec, R.id.rl_to_evaluate_list, R.id.tv_add_to_cart, R.id.rl_add_to_collection,
+            R.id.tv_buy_immediately,R.id.rl_car,R.id.rl_contact_service})
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.rl_contact_service:
+                if(isLogin()){
+                    startActivity(new Intent(this,ContactCustomerServiceActivity.class));
+                }else {
+                    startActivity(new Intent(this,LoginByPasswordActivity.class));
+                }
+                break;
             case R.id.iv_back:
                 finish();
                 break;
@@ -355,16 +363,22 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
                 startActivity(intent);
                 break;
             case R.id.tv_add_to_cart:
-                goodsPropsSelectPop = new GoodsPropsSelectPop(this, goodsBean, specLists, storeLists);
-                goodsPropsSelectPop.show(rlParent, new GoodsPropsSelectPop.ShoppingCartClick() {
-                    @Override
-                    public void onClick(int type, double rentPrice, double buyPrice) {
+            case R.id.rl_car:
+                if(isLogin()){
+                    goodsPropsSelectPop = new GoodsPropsSelectPop(this, goodsBean, specLists, storeLists);
+                    goodsPropsSelectPop.show(rlParent, new GoodsPropsSelectPop.ShoppingCartClick() {
+                        @Override
+                        public void onClick(int type, double rentPrice, double buyPrice) {
 
-                    }
-                });
+                        }
+                    });
+                }else{
+                    startActivity(new Intent(this,LoginByPasswordActivity.class));
+                }
+
                 break;
             case R.id.rl_add_to_collection:
-                if (((IPSCApplication) getApplication()).getUserInfo() != null) {
+                if (isLogin()) {
                     RequestParams params = new RequestParams(MainUrls.addToCollectionUrl);
                     params.addBodyParameter("access_token", IPSCApplication.accessToken);
                     params.addBodyParameter("user", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
@@ -377,13 +391,18 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
                 }
                 break;
             case R.id.tv_buy_immediately:
-                goodsPropsSelectPop = new GoodsPropsSelectPop(this, goodsBean, specLists, storeLists);
-                goodsPropsSelectPop.show(rlParent, new GoodsPropsSelectPop.ShoppingCartClick() {
-                    @Override
-                    public void onClick(int type, double rentPrice, double buyPrice) {
+                if (isLogin()){
+                    goodsPropsSelectPop = new GoodsPropsSelectPop(this, goodsBean, specLists, storeLists);
+                    goodsPropsSelectPop.show(rlParent, new GoodsPropsSelectPop.ShoppingCartClick() {
+                        @Override
+                        public void onClick(int type, double rentPrice, double buyPrice) {
 
-                    }
-                });
+                        }
+                    });
+                }else{
+                    startActivity(new Intent(this,LoginByPasswordActivity.class));
+                }
+
                 break;
         }
     }
@@ -599,4 +618,13 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
             initData(goodsId);
         }
     }
+
+    //判断是否登录
+    private boolean isLogin() {
+        if (((IPSCApplication) getApplication()).getUserInfo() != null) {
+            return true;
+        }
+        return false;
+    }
+
 }

@@ -76,7 +76,9 @@ public class CollectionActivity extends BaseAppcompatActivity implements OnCommo
     private void initData() {
         RequestParams params = new RequestParams(MainUrls.collectionGoodsListUrl);
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
-        params.addBodyParameter("user", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
+        if(((IPSCApplication) getApplication()).getUserInfo()!=null){
+            params.addBodyParameter("user", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
+        }
         params.addBodyParameter("page", pageIndex + "");
         params.addBodyParameter("limit", "10");
         commonPresenter.getCommonGoodsData(params, this);

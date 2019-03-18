@@ -282,7 +282,9 @@ public class AddOrEditAddressActivity extends BaseAppcompatActivity implements O
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
         params.addBodyParameter("id", addressBean.getId() + "");
         params.addBodyParameter("name", etReceiveName.getText().toString().trim());
-        params.addBodyParameter("user", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
+        if(((IPSCApplication) getApplication()).getUserInfo()!=null){
+            params.addBodyParameter("user", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
+        }
         params.addBodyParameter("telphone", etReceivePhone.getText().toString().trim());
         params.addBodyParameter("country", "中国");
         params.addBodyParameter("province", provence);
@@ -314,7 +316,9 @@ public class AddOrEditAddressActivity extends BaseAppcompatActivity implements O
         RequestParams params = new RequestParams(MainUrls.addAddressInfoUrl);
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
         params.addBodyParameter("name", etReceiveName.getText().toString().trim());
-        params.addBodyParameter("user", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
+        if(((IPSCApplication) getApplication()).getUserInfo()!=null){
+            params.addBodyParameter("user", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
+        }
         params.addBodyParameter("telphone", etReceivePhone.getText().toString().trim());
         params.addBodyParameter("country", "中国");
         params.addBodyParameter("province", provence);

@@ -34,33 +34,40 @@ import butterknife.Unbinder;
 
 public abstract class BaseAppcompatActivity extends AppCompatActivity {
     private Unbinder unbinder;
-    /**页面根布局**/
+    /**
+     * 页面根布局
+     **/
     private View rootView;
     private ViewGroup root;
 
-    /**无网络提示控件**/
+    /**
+     * 无网络提示控件
+     **/
     private DefaultRemindView defaultRemindView;
 
-    /**无网络时弹出的 dialog**/
+    /**
+     * 无网络时弹出的 dialog
+     **/
     private AlertDialog noNetworkRemindDialog;
     private AlertDialog.Builder noNetworkRemindBuilder;
 
     //网络状态发生变化时，是否需要提示重新加载页面
-    private boolean isNeedNetRemind =true;
+    private boolean isNeedNetRemind = true;
 
     /** 日志输出标志 **/
 
 
-    /**判断 activity 是否处于激活状态**/
-    private boolean isReady=false;
+    /**
+     * 判断 activity 是否处于激活状态
+     **/
+    private boolean isReady = false;
 
-    /**加载进度对话框**/
+    /**
+     * 加载进度对话框
+     **/
     private LoadingDialog dialog;
 
-    private  View decorView;
-
-
-
+    private View decorView;
 
 
     @Override
@@ -80,7 +87,7 @@ public abstract class BaseAppcompatActivity extends AppCompatActivity {
             @Override
             public void onNetworkChanged(boolean isConnected, int type) {
                 //无网络
-                if(!isConnected){
+                if (!isConnected) {
                     showDefaultPage(1);
                 } else {
                     dismissDefaultPage();
@@ -88,10 +95,9 @@ public abstract class BaseAppcompatActivity extends AppCompatActivity {
             }
         });
 
-        if(!NetUtil.isConnected(this)){
+        if (!NetUtil.isConnected(this)) {
             showDefaultPage(1);
         }
-
 
 
     }
@@ -118,20 +124,20 @@ public abstract class BaseAppcompatActivity extends AppCompatActivity {
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
         //隐藏导航栏
-         //hideBottomUIMenu();
-         super.setContentView(layoutResID);
-         //decorView = getWindow().getDecorView();
-         //显示导航栏
-         //setViewListener();
-        unbinder= ButterKnife.bind(this);
+        //hideBottomUIMenu();
+        super.setContentView(layoutResID);
+        //decorView = getWindow().getDecorView();
+        //显示导航栏
+        //setViewListener();
+        unbinder = ButterKnife.bind(this);
     }
 
     private void setViewListener() {
         decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
             @Override
             public void onSystemUiVisibilityChange(int visibility) {
-                Log.e("ChangeListener",visibility+"");
-                if(visibility==2){
+                Log.e("ChangeListener", visibility + "");
+                if (visibility == 2) {
                     View mv = getWindow().getDecorView();
                     int uiOptions = View.SYSTEM_UI_FLAG_VISIBLE;
                     mv.setSystemUiVisibility(uiOptions);
@@ -148,7 +154,7 @@ public abstract class BaseAppcompatActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        isReady=true;
+        isReady = true;
     }
 
     @Override
@@ -156,10 +162,10 @@ public abstract class BaseAppcompatActivity extends AppCompatActivity {
         super.onResume();
 
 
-        if(NetUtil.isConnected(this)){
+        if (NetUtil.isConnected(this)) {
             dismissDefaultPage();
 
-        }else {
+        } else {
             showDefaultPage(1);
 
         }
@@ -175,7 +181,7 @@ public abstract class BaseAppcompatActivity extends AppCompatActivity {
     protected void onStop() {
 
         super.onStop();
-        isReady=false;
+        isReady = false;
     }
 
     @Override
@@ -189,51 +195,54 @@ public abstract class BaseAppcompatActivity extends AppCompatActivity {
 
     /**
      * 判断 activity 是否处于激活状态
+     *
      * @return
      */
-    public boolean isActReady(){
+    public boolean isActReady() {
         return isReady;
     }
 
     /**
      * 设置是否需要网络变化提示
+     *
      * @param b
      */
-    public void setNeedNetRemind(boolean b){
-        this.isNeedNetRemind =b;
+    public void setNeedNetRemind(boolean b) {
+        this.isNeedNetRemind = b;
     }
 
     /**
      * 显示缺省页面
      * 1：无网络 2：有网络时，加载数据失败
+     *
      * @param type
      */
-    public void showDefaultPage(int type){
+    public void showDefaultPage(int type) {
 
-        if(isNeedNetRemind){
+        if (isNeedNetRemind) {
             //获取页面根布局
-            rootView=  getWindow().getDecorView().findViewById(android.R.id.content);
-            root= (ViewGroup) rootView;
+            rootView = getWindow().getDecorView().findViewById(android.R.id.content);
+            root = (ViewGroup) rootView;
 
-            if(defaultRemindView==null){
-                defaultRemindView=new DefaultRemindView(this);
+            if (defaultRemindView == null) {
+                defaultRemindView = new DefaultRemindView(this);
                 //设置点击重新加载数据的监听
                 defaultRemindView.setOnReloadClickListerer(new DefaultRemindView.ReloadClickListener() {
                     @Override
                     public void reload() {
-                        if (NetUtil.isConnected(BaseAppcompatActivity.this)){
-                            rootView=  getWindow().getDecorView().findViewById(android.R.id.content);
-                            root= (ViewGroup) rootView;
+                        if (NetUtil.isConnected(BaseAppcompatActivity.this)) {
+                            rootView = getWindow().getDecorView().findViewById(android.R.id.content);
+                            root = (ViewGroup) rootView;
 
                             //循环遍历根布局下的所有子布局，隐藏其他布局，显示无网络提示
-                            for (int i=0;i<root.getChildCount();i++){
-                                if(root.getChildAt(i) instanceof DefaultRemindView){
+                            for (int i = 0; i < root.getChildCount(); i++) {
+                                if (root.getChildAt(i) instanceof DefaultRemindView) {
                                     root.getChildAt(i).setVisibility(View.GONE);
-                                }else {
+                                } else {
                                     root.getChildAt(i).setVisibility(View.VISIBLE);
                                 }
                             }
-                        }else {
+                        } else {
                             Toast.makeText(BaseAppcompatActivity.this, "请打开网络后操作。", Toast.LENGTH_SHORT).show();
                         }
 
@@ -250,14 +259,14 @@ public abstract class BaseAppcompatActivity extends AppCompatActivity {
             }
 
             //重新获取一次根布局
-            rootView=  getWindow().getDecorView().findViewById(android.R.id.content);
-            root= (ViewGroup) rootView;
+            rootView = getWindow().getDecorView().findViewById(android.R.id.content);
+            root = (ViewGroup) rootView;
 
             //循环遍历根布局下的所有子布局，隐藏其他布局，显示无网络提示
-            for (int i=0;i<root.getChildCount();i++){
-                if(root.getChildAt(i) instanceof DefaultRemindView){
+            for (int i = 0; i < root.getChildCount(); i++) {
+                if (root.getChildAt(i) instanceof DefaultRemindView) {
                     root.getChildAt(i).setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     root.getChildAt(i).setVisibility(View.GONE);
                 }
             }
@@ -269,18 +278,18 @@ public abstract class BaseAppcompatActivity extends AppCompatActivity {
     /**
      * 关闭无网络提示
      */
-    public void dismissDefaultPage(){
+    public void dismissDefaultPage() {
 
-        if(isNeedNetRemind){
+        if (isNeedNetRemind) {
             //获取页面根布局
-            rootView=  getWindow().getDecorView().findViewById(android.R.id.content);
-            root= (ViewGroup) rootView;
+            rootView = getWindow().getDecorView().findViewById(android.R.id.content);
+            root = (ViewGroup) rootView;
 
             //循环遍历根布局下的所有子布局，显示其他布局，隐藏无网络提示
-            for (int i=0;i<root.getChildCount();i++){
-                if(root.getChildAt(i) instanceof DefaultRemindView){
-                    root.getChildAt(i).setVisibility(View. GONE);
-                }else {
+            for (int i = 0; i < root.getChildCount(); i++) {
+                if (root.getChildAt(i) instanceof DefaultRemindView) {
+                    root.getChildAt(i).setVisibility(View.GONE);
+                } else {
                     root.getChildAt(i).setVisibility(View.VISIBLE);
                 }
             }
@@ -290,30 +299,30 @@ public abstract class BaseAppcompatActivity extends AppCompatActivity {
     }
 
 
-
     /**
      * 重新加载数据的方法必须重写
      */
-    public  abstract void reloadData();
+    public abstract void reloadData();
 
     /**
      * 去设置网络
      */
-    public void goToSetNetwork(){
+    public void goToSetNetwork() {
         NetUtil.openSetting(this);
     }
 
     /**
      * 显示加载dialog
+     *
      * @param str
      */
-    public void showLoading(boolean b,String str){
-        if(dialog==null){
-            dialog=new LoadingDialog(this);
+    public void showLoading(boolean b, String str) {
+        if (dialog == null) {
+            dialog = new LoadingDialog(this);
         }
         dialog.setCancelable(b);
         dialog.setLoadingStr(str);
-        if(!dialog.isShowing() && isReady){
+        if (!dialog.isShowing() && isReady) {
             dialog.show();
         }
 
@@ -322,12 +331,11 @@ public abstract class BaseAppcompatActivity extends AppCompatActivity {
     /**
      * 关闭加载 dialog
      */
-    public void dismissLoading(){
-        if(dialog!=null){
+    public void dismissLoading() {
+        if (dialog != null) {
             dialog.dismiss();
         }
     }
-
 
 
 }

@@ -116,6 +116,7 @@
             android:orientation="horizontal">
 
             <RelativeLayout
+                android:id="@+id/rl_contact_service"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
@@ -133,6 +134,7 @@
                 android:background="@color/gainsboro"></View>
 
             <RelativeLayout
+                android:id="@+id/rl_car"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
