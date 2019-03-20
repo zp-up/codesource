@@ -42,6 +42,7 @@ import com.youth.banner.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.xutils.http.RequestParams;
@@ -62,6 +63,7 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.adapte
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.application.IPSCApplication;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.EvaluateImage;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.HomeBannerBean;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.eventBusBean.MainSwitchEvent;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.goodsDetailBean.GoodsDetailRootBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.goodsDetailBean.Speclist;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.goodsDetailBean.Storelist;
@@ -335,14 +337,14 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
     }
 
     @OnClick({R.id.iv_back, R.id.rl_open_select_spec, R.id.rl_to_evaluate_list, R.id.tv_add_to_cart, R.id.rl_add_to_collection,
-            R.id.tv_buy_immediately,R.id.rl_car,R.id.rl_contact_service})
+            R.id.tv_buy_immediately, R.id.rl_car, R.id.rl_contact_service})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rl_contact_service:
-                if(isLogin()){
-                    startActivity(new Intent(this,ContactCustomerServiceActivity.class));
-                }else {
-                    startActivity(new Intent(this,LoginByPasswordActivity.class));
+                if (isLogin()) {
+                    startActivity(new Intent(this, ContactCustomerServiceActivity.class));
+                } else {
+                    startActivity(new Intent(this, LoginByPasswordActivity.class));
                 }
                 break;
             case R.id.iv_back:
@@ -362,9 +364,10 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
                 intent.putExtra("goodsId", goodsId);
                 startActivity(intent);
                 break;
+            //添加购物车
             case R.id.tv_add_to_cart:
-            case R.id.rl_car:
-                if(isLogin()){
+
+                if (isLogin()) {
                     goodsPropsSelectPop = new GoodsPropsSelectPop(this, goodsBean, specLists, storeLists);
                     goodsPropsSelectPop.show(rlParent, new GoodsPropsSelectPop.ShoppingCartClick() {
                         @Override
@@ -372,11 +375,25 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
 
                         }
                     });
-                }else{
-                    startActivity(new Intent(this,LoginByPasswordActivity.class));
+                } else {
+                    startActivity(new Intent(this, LoginByPasswordActivity.class));
                 }
 
                 break;
+
+            //打开购物车
+            case R.id.rl_car:
+
+                if (isLogin()) {
+                    EventBus.getDefault().post(new MainSwitchEvent(3));
+
+                    finish();
+                } else {
+                    startActivity(new Intent(this, LoginByPasswordActivity.class));
+                }
+
+                break;
+
             case R.id.rl_add_to_collection:
                 if (isLogin()) {
                     RequestParams params = new RequestParams(MainUrls.addToCollectionUrl);
@@ -391,7 +408,7 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
                 }
                 break;
             case R.id.tv_buy_immediately:
-                if (isLogin()){
+                if (isLogin()) {
                     goodsPropsSelectPop = new GoodsPropsSelectPop(this, goodsBean, specLists, storeLists);
                     goodsPropsSelectPop.show(rlParent, new GoodsPropsSelectPop.ShoppingCartClick() {
                         @Override
@@ -399,8 +416,8 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
 
                         }
                     });
-                }else{
-                    startActivity(new Intent(this,LoginByPasswordActivity.class));
+                } else {
+                    startActivity(new Intent(this, LoginByPasswordActivity.class));
                 }
 
                 break;
