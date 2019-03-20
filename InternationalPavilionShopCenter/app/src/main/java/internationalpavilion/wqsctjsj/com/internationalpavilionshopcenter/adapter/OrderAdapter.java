@@ -83,6 +83,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         final OrderRootBean rootBean = data.get(position);
         switch (viewType) {
             case 1:
+                holder.tvShouldPay.setText("应付:"+rootBean.getPay_total());
                 holder.tvToPay.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -680,6 +681,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         TextView tvGoodsCount1;
         TextView tvToPay;
         TextView tvCancelOrder;
+        TextView tvShouldPay;
 
         //type = 2
         HorizontalScrollView hsvParent2;
@@ -741,6 +743,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             super(item);
             switch (viewType) {
                 case 1:
+                    tvShouldPay = item.findViewById(R.id.should_pay);
                     tvStatus = item.findViewById(R.id.tv_status);
                     hsvParent1 = item.findViewById(R.id.hsView);
                     llGoodsContainer1 = item.findViewById(R.id.ll_goods_container);

@@ -167,11 +167,14 @@ public class GoodsPropsSelectPop implements View.OnClickListener {
         tvNum = v.findViewById(R.id.tv_num);
         tvSub = v.findViewById(R.id.tv_sub);
         String num="";
-        if(goodsBean.getData()!=null){
-            if(goodsBean.getData().getGoods_goods()!=null){
-                num = goodsBean.getData().getGoods_goods().getNum()+"";
+        if(goodsBean!=null){
+            if(goodsBean.getData()!=null){
+                if(goodsBean.getData().getGoods_goods()!=null){
+                    num = goodsBean.getData().getGoods_goods().getNum()+"";
+                }
             }
         }
+
         tvNum.setText(num);
 
         tvSub.setOnClickListener(new View.OnClickListener() {
