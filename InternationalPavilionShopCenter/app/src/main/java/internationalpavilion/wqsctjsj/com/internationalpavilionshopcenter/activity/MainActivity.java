@@ -34,6 +34,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.application.IPSCApplication;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.eventBusBean.MainSwitchEvent;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.eventBusBean.TokenEvent;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.userInfo.UserBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.fragment.CartFragment;
@@ -46,9 +47,9 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.M
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnNetCallBack;
 
-public class MainActivity extends BaseAppcompatActivity implements RadioGroup.OnCheckedChangeListener {
+public class MainActivity extends BaseAppcompatActivity {
     private FragmentManager mFragmentManager;
-    private Fragment homeFragment,classFragment,cartFragment,mineFragment;
+    private Fragment homeFragment, classFragment, cartFragment, mineFragment;
 
     @BindView(R.id.rb_home)
     RadioButton rbHome;
@@ -63,12 +64,14 @@ public class MainActivity extends BaseAppcompatActivity implements RadioGroup.On
     @BindView(R.id.rg_bottom)
     RadioGroup rgHome;
 
+    private int index = -1;
+
     private boolean isExit = false;
-    private Handler mHandler = new Handler(){
+    private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            switch (msg.what){
+            switch (msg.what) {
                 case 0:
                     isExit = false;
                     break;
@@ -76,6 +79,7 @@ public class MainActivity extends BaseAppcompatActivity implements RadioGroup.On
         }
     };
     private UserOptionInterface userOptionPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,63 +90,65 @@ public class MainActivity extends BaseAppcompatActivity implements RadioGroup.On
         initView();
         EventBus.getDefault().register(this);
     }
-    private void hideAllFragment(){
+
+    private void hideAllFragment() {
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
-        if (homeFragment != null){
+        if (homeFragment != null) {
             transaction.hide(homeFragment);
         }
-        if (classFragment != null){
+        if (classFragment != null) {
             transaction.hide(classFragment);
         }
-        if (cartFragment != null){
+        if (cartFragment != null) {
             transaction.hide(cartFragment);
         }
-        if (mineFragment != null){
+        if (mineFragment != null) {
             transaction.hide(mineFragment);
         }
         //提交
         transaction.commit();
     }
+
     private void addFragment(int index) {
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
-        switch (index){
+        switch (index) {
             case 1:
                 hideAllFragment();
-                if (homeFragment == null){
+                if (homeFragment == null) {
                     homeFragment = new HomeFragment();
-                    transaction.add(R.id.frame_container,homeFragment);
+                    transaction.add(R.id.frame_container, homeFragment);
                     transaction.show(homeFragment).commit();
-                }else {
+                } else {
                     transaction.show(homeFragment).commit();
                 }
                 break;
             case 2:
                 hideAllFragment();
-                if (classFragment == null){
+                if (classFragment == null) {
                     classFragment = new ClassFragment();
-                    transaction.add(R.id.frame_container,classFragment);
+                    transaction.add(R.id.frame_container, classFragment);
                     transaction.show(classFragment).commit();
-                }else {
+                } else {
                     transaction.show(classFragment).commit();
                 }
                 break;
             case 3:
                 hideAllFragment();
-                if (cartFragment == null){
+                if (cartFragment == null) {
                     cartFragment = new CartFragment();
-                    transaction.add(R.id.frame_container,cartFragment);
+                    transaction.add(R.id.frame_container, cartFragment);
                     transaction.show(cartFragment).commit();
-                }else {
+                } else {
                     transaction.show(cartFragment).commit();
                 }
                 break;
             case 4:
                 hideAllFragment();
-                if (mineFragment == null){
+                if (mineFragment == null) {
                     mineFragment = new MineFragment();
-                    transaction.add(R.id.frame_container,mineFragment);
+                    transaction.add(R.id.frame_container, mineFragment);
                     transaction.show(mineFragment).commit();
-                }else {
+                } else {
                     transaction.show(mineFragment).commit();
                 }
                 break;
@@ -155,7 +161,7 @@ public class MainActivity extends BaseAppcompatActivity implements RadioGroup.On
         setDrawable(rbClass, R.mipmap.icon_class_tab_unselected);
         setDrawable(rbShopCart, R.mipmap.icon_shop_cart_tab_unselected);
         setDrawable(rbMine, R.mipmap.icon_mine_tab_unselected);
-        rgHome.setOnCheckedChangeListener(this);
+
     }
 
     private void setDrawable(RadioButton mRadioButton, int id) {
@@ -166,15 +172,30 @@ public class MainActivity extends BaseAppcompatActivity implements RadioGroup.On
     }
 
     //设置点击事件
-    @OnClick({})
+    @OnClick({R.id.rb_home,R.id.rb_class,R.id.rb_shop_cart,R.id.rb_mine})
     public void onClick(View view) {
-        switch (view.getId()) {
 
+
+        switch (view.getId()) {
+            case R.id.rb_home://首页
+                selectedView(1);
+                break;
+            case R.id.rb_class://分类
+                selectedView(2);
+                break;
+            case R.id.rb_shop_cart://购物车
+                selectedView(3);
+                break;
+            case R.id.rb_mine://我的
+                selectedView(4);
+                break;
         }
+
+
     }
 
     private void selectedView(int i) {
-        switch (i){
+        switch (i) {
             case 1:
                 setDrawable(rbHome, R.mipmap.icon_home_tab_selected);
                 setDrawable(rbClass, R.mipmap.icon_class_tab_unselected);
@@ -217,23 +238,6 @@ public class MainActivity extends BaseAppcompatActivity implements RadioGroup.On
 
     }
 
-    @Override
-    public void onCheckedChanged(RadioGroup radioGroup, int i) {
-        switch (i) {
-            case R.id.rb_home://首页
-                selectedView(1);
-                break;
-            case R.id.rb_class://分类
-                selectedView(2);
-                break;
-            case R.id.rb_shop_cart://购物车
-                selectedView(3);
-                break;
-            case R.id.rb_mine://我的
-                selectedView(4);
-                break;
-        }
-    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -253,34 +257,35 @@ public class MainActivity extends BaseAppcompatActivity implements RadioGroup.On
             return super.onKeyDown(keyCode, event);
         }
     }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEventReceived(TokenEvent event){
-        if (event != null && event.code == 0){
+    public void onEventReceived(TokenEvent event) {
+        if (event != null && event.code == 0) {
             initData();
         }
     }
 
     private void initData() {
-        if (homeFragment != null){
-            ((HomeFragment)homeFragment).initData();
+        if (homeFragment != null) {
+            ((HomeFragment) homeFragment).initData();
         }
         oneKeyLogin();
     }
 
     private void oneKeyLogin() {
-        if (((IPSCApplication)getApplication()).getUserInfo() == null){
+        if (((IPSCApplication) getApplication()).getUserInfo() == null) {
             return;
         }
-        final UserBean userBean = ((IPSCApplication)getApplication()).getUserInfo();
-        if (userBean != null && userBean.getPassword() != null && userBean.getUserPhone() != null){
+        final UserBean userBean = ((IPSCApplication) getApplication()).getUserInfo();
+        if (userBean != null && userBean.getPassword() != null && userBean.getUserPhone() != null) {
             RequestParams params = new RequestParams(MainUrls.userLoginUrl);
-            params.addBodyParameter("access_token",IPSCApplication.accessToken);
-            params.addBodyParameter("name",userBean.getUserPhone());
-            params.addBodyParameter("password",userBean.getPassword());
+            params.addBodyParameter("access_token", IPSCApplication.accessToken);
+            params.addBodyParameter("name", userBean.getUserPhone());
+            params.addBodyParameter("password", userBean.getPassword());
             userOptionPresenter.doLogin(params, new OnNetCallBack() {
                 @Override
                 public void onStarted() {
-                    showLoading(false,"网络请求中,请稍候");
+                    showLoading(false, "网络请求中,请稍候");
                 }
 
                 @Override
@@ -301,30 +306,30 @@ public class MainActivity extends BaseAppcompatActivity implements RadioGroup.On
                 @Override
                 public void onLoginSuccess(String result) {
                     try {
-                        Log.e("TAG","用户登录:"+result);
+                        Log.e("TAG", "用户登录:" + result);
                         JSONObject jsonObject = new JSONObject(result);
                         int code = jsonObject.getInt("code");
                         int state = jsonObject.getInt("state");
-                        String msg = jsonObject.has("msg")?jsonObject.getString("msg"):"";
-                        if (code == 0 && state == 0){
-                            if (jsonObject.has("data") && jsonObject.getString("data") != null && !jsonObject.getString("data").equals("null")){
+                        String msg = jsonObject.has("msg") ? jsonObject.getString("msg") : "";
+                        if (code == 0 && state == 0) {
+                            if (jsonObject.has("data") && jsonObject.getString("data") != null && !jsonObject.getString("data").equals("null")) {
                                 JSONObject data = jsonObject.getJSONObject("data");
                                 UserBean userBeanNew = new UserBean();
                                 userBeanNew.setId(data.getInt("id"));
                                 userBeanNew.setName(data.getString("name"));
                                 userBeanNew.setUserPhone(userBean.getUserPhone());
                                 userBeanNew.setPassword(userBean.getPassword());
-                                userBeanNew.setNickName(data.has("nickname")?data.getString("nickname"):"");
-                                userBeanNew.setImg(data.has("img")?data.getString("img"):"");
-                                ((IPSCApplication)getApplication()).saveUserInfo(new Gson().toJson(userBeanNew));
-                            }else {
-                                ((IPSCApplication)getApplication()).removeUserInfo();
+                                userBeanNew.setNickName(data.has("nickname") ? data.getString("nickname") : "");
+                                userBeanNew.setImg(data.has("img") ? data.getString("img") : "");
+                                ((IPSCApplication) getApplication()).saveUserInfo(new Gson().toJson(userBeanNew));
+                            } else {
+                                ((IPSCApplication) getApplication()).removeUserInfo();
                             }
 
-                        }else {
-                            ((IPSCApplication)getApplication()).removeUserInfo();
+                        } else {
+                            ((IPSCApplication) getApplication()).removeUserInfo();
                         }
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
@@ -334,6 +339,25 @@ public class MainActivity extends BaseAppcompatActivity implements RadioGroup.On
 
                 }
             });
+        }
+    }
+
+
+    @Subscribe
+    public void onEvent(final MainSwitchEvent event){
+
+        if(event!=null){
+           index = event.getPosition();
+        }
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(index!=-1){
+            selectedView(index);
+            index=-1;
         }
     }
 }

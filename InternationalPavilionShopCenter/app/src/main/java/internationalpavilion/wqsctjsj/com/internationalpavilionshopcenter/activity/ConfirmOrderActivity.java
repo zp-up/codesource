@@ -320,11 +320,22 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
 
     private void bindDataToView() {
         llAddressContainer.setVisibility(View.VISIBLE);
-        tvAddressName.setText(orderRootBean.getAddressBean().getReceiveName());
-        tvAddressPhone.setText(orderRootBean.getAddressBean().getReceivePhone());
-        tvAddressDetail.setText(orderRootBean.getAddressBean().getProvince()
-                + orderRootBean.getAddressBean().getCity() + orderRootBean.getAddressBean().getArea()
-                + orderRootBean.getAddressBean().getDetailPlace());
+        String receiveName="";
+        String receivePhone="";
+        String province ="";
+        String area="";
+        String detailPlace="";
+        if(orderRootBean.getAddressBean()!=null){
+            receiveName = orderRootBean.getAddressBean().getReceiveName();
+            receivePhone =orderRootBean.getAddressBean().getReceivePhone();
+            province =orderRootBean.getAddressBean().getProvince();
+            area =orderRootBean.getAddressBean().getArea();
+            detailPlace =orderRootBean.getAddressBean().getDetailPlace();
+        }
+        tvAddressName.setText(receiveName);
+        tvAddressPhone.setText(receivePhone);
+        tvAddressDetail.setText(province + area + detailPlace);
+
         llGoodsListContainer.removeAllViews();
         for (int i = 0; i < orderRootBean.getGoodsBeans().size(); i++) {
             View view = LayoutInflater.from(ConfirmOrderActivity.this).inflate(R.layout.item_confirm_activity_goods, null);
