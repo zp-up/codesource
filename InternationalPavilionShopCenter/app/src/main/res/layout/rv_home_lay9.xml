@@ -27,7 +27,7 @@
             android:text="人气榜"
             android:background="@drawable/shape_of_text_bg"
             android:textColor="@color/black"
-            android:textSize="@dimen/x14"
+            android:textSize="14sp"
             android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

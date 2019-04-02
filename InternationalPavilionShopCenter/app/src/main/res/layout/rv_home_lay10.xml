@@ -38,7 +38,7 @@
         android:layout_gravity="center_horizontal"
         android:text="挽救直发保湿定型泡沫200ml"
         android:textColor="@color/gray"
-        android:textSize="@dimen/x14"
+        android:textSize="11sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <TextView

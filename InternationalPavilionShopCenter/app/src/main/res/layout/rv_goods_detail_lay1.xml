@@ -168,8 +168,8 @@
             android:layout_marginTop="@dimen/x15"
             android:layout_marginLeft="@dimen/x15"
             android:text="Dior迪奥小姐花漾香水"
-            android:textColor="#636363"
-            android:textSize="@dimen/x14"
+            android:textColor="#333333"
+            android:textSize="14sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
@@ -178,8 +178,8 @@
             android:layout_marginTop="@dimen/x5"
             android:layout_marginLeft="@dimen/x15"
             android:text="花漾淡香水，如同一袭繁花坠饰的礼裙"
-            android:textColor="@color/gray"
-            android:textSize="@dimen/x12"
+            android:textColor="#666666"
+            android:textSize="13sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <RelativeLayout
@@ -202,7 +202,7 @@
                 android:id="@+id/tv_price"
                 android:text="600"
                 android:textColor="@color/black"
-                android:textSize="@dimen/x20"
+                android:textSize="18sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -213,7 +213,7 @@
                 android:id="@+id/tv_original_price"
                 android:text="￥850"
                 android:textColor="@color/gray"
-                android:textSize="@dimen/x14"
+                android:textSize="13sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
@@ -223,7 +223,7 @@
                 android:id="@+id/tv_taxation_price"
                 android:text="税费:￥0.00"
                 android:textColor="@color/red"
-                android:textSize="@dimen/x12"
+                android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -234,7 +234,7 @@
                 android:id="@+id/tv_stock"
                 android:text="库存:0"
                 android:textColor="@color/gray"
-                android:textSize="@dimen/x12"
+                android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </RelativeLayout>

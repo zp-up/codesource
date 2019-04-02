@@ -16,7 +16,7 @@
             android:id="@+id/tv_coupon_un_use"
             android:text="商品详情"
             android:textColor="#ff7d66"
-            android:textSize="14sp"
+            android:textSize="13sp"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
         <TextView
@@ -26,7 +26,7 @@
             android:id="@+id/tv_coupon_used"
             android:text="适用范围"
             android:textColor="#636363"
-            android:textSize="14sp"
+            android:textSize="13sp"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
         <TextView
@@ -36,7 +36,7 @@
             android:id="@+id/tv_coupon_overdue"
             android:text="购物须知"
             android:textColor="#636363"
-            android:textSize="14sp"
+            android:textSize="13sp"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
     </LinearLayout>

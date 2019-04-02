@@ -217,11 +217,13 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
     }
 
     private void initView() {
+        Log.e("goods:","goodsbean:"+goodsBean);
         if (goodsBean == null) {
             return;
         }
         //商品信息数据
         tvGoodsName.setText(goodsBean.getData().getGoods_goods().getName());
+        Log.e("TAG","goodsname:"+tvGoodsName.getText() );
         tvGoodsDescription.setText(goodsBean.getData().getGoods_goods().getDescribe());
         tvNowPrice.setText("" + new DecimalFormat("######0.00").format(goodsBean.getData().getPrice()));
         tvOriginalPrice.setText("￥" + new DecimalFormat("######0.00").format(goodsBean.getData().getPrice_m()));

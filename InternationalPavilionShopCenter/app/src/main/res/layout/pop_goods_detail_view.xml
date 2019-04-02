@@ -34,9 +34,9 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:id="@+id/tv_goods_name"
-                    android:textSize="@dimen/x13"
+                    android:textSize="14sp"
                     android:text="Dior迪奥小姐花漾淡香水"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/light_gray"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <RelativeLayout
@@ -48,7 +48,7 @@
                         android:id="@+id/tv_unit"
                         android:textSize="@dimen/x12"
                         android:text="￥"
-                        android:textColor="@color/black"
+                        android:textColor="#232323"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
@@ -56,16 +56,16 @@
                         android:layout_toRightOf="@+id/tv_unit"
                         android:textSize="@dimen/x18"
                         android:text="820"
-                        android:textColor="@color/black"
+                        android:textColor="#232323"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </RelativeLayout>
                 <TextView
                     android:layout_alignBaseline="@+id/tv_price"
                     android:id="@+id/tv_selected"
-                    android:textSize="@dimen/x12"
+                    android:textSize="13sp"
                     android:text="已选:45ml"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/light_gray"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>

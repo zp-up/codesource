@@ -25,12 +25,14 @@
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x45">
+        android:layout_height="52dp">
         <RadioGroup
             android:id="@+id/rg_bottom"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+
+            >
             <RadioButton
                 android:paddingTop="@dimen/x5"
                 android:id="@+id/rb_home"
@@ -39,10 +41,11 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:button="@null"
-                android:textSize="@dimen/x10"
+                android:textSize="13sp"
                 android:text="首页"
                 android:gravity="center"
                 android:textColor="@color/gray"
+
                 />
             <RadioButton
                 android:paddingTop="@dimen/x5"
@@ -52,7 +55,7 @@
                 android:layout_weight="1"
                 android:button="@null"
                 android:gravity="center"
-                android:textSize="@dimen/x10"
+                android:textSize="13sp"
                 android:text="分类"
                 android:textColor="@color/gray"
                 />
@@ -64,7 +67,7 @@
                 android:layout_weight="1"
                 android:button="@null"
                 android:gravity="center"
-                android:textSize="@dimen/x10"
+                android:textSize="13sp"
                 android:text="购物车"
                 android:textColor="@color/gray"
                 />
@@ -76,7 +79,7 @@
                 android:layout_weight="1"
                 android:button="@null"
                 android:gravity="center"
-                android:textSize="@dimen/x10"
+                android:textSize="13sp"
                 android:text="我的"
                 android:textColor="@color/gray"
                 />

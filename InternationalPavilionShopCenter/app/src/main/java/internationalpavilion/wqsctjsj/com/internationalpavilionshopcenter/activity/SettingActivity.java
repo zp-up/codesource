@@ -389,6 +389,7 @@ public class SettingActivity extends BaseAppcompatActivity implements TakePhoto.
                     options.circleCrop();
                     options.placeholder(R.mipmap.icon_mine_defaul_head);
                     options.error(R.mipmap.icon_mine_defaul_head);
+                    Log.e("TAG","头像url:"+MainUrls.areaUrl + url);
                     Glide.with(this).load(MainUrls.areaUrl + url).apply(options).into(civHead);
                     UserBean userBean = ((IPSCApplication)getApplication()).getUserInfo();
                     userBean.setImg(MainUrls.areaUrl + url);

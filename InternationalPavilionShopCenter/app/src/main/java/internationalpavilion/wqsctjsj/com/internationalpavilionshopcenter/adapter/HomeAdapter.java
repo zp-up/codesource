@@ -389,6 +389,7 @@ public class HomeAdapter extends DelegateAdapter.Adapter<HomeAdapter.ViewHolder>
                                 view.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
+                                        Log.e("goods","goodsID:"+goodsList.get(index).getGoodsId());
                                         Intent intent = new Intent(context, GoodsDetailActivity.class);
                                         intent.putExtra("goodsId", goodsList.get(index).getGoodsId());
                                         context.startActivity(intent);

@@ -114,7 +114,7 @@ public class MineFragment extends Fragment {
     @OnClick({R.id.ll_account, R.id.ll_to_wait_pay_order, R.id.ll_to_wait_delivery_order,
             R.id.ll_to_wait_received_order, R.id.ll_to_after_sale_order, R.id.ll_to_group_order, R.id.ll_to_my_balance, R.id.ll_to_integral,
             R.id.ll_to_collection, R.id.ll_to_friends, R.id.ll_to_coupon, R.id.ll_to_address_manage, R.id.ll_to_real_name_auther, R.id.ll_to_custom_service,
-            R.id.ll_to_setting
+            R.id.ll_to_setting,R.id.ll_to_wait_all_order
     })
     public void onClick(View view) {
         switch (view.getId()) {
@@ -126,6 +126,18 @@ public class MineFragment extends Fragment {
                     Intent intent = new Intent(getActivity(), SettingActivity.class);
                     startActivity(intent);
                 }
+                break;
+            case R.id.ll_to_wait_all_order:
+                if(isLogin()){
+                    Intent intentToWaitPayOrder = new Intent(getActivity(), OrderActivity.class);
+                    intentToWaitPayOrder.putExtra("index", 0);
+                    startActivity(intentToWaitPayOrder);
+                }else {
+                    if(getActivity()!=null){
+                        getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
+                    }
+                }
+
                 break;
             case R.id.ll_to_wait_pay_order:
                 if(isLogin()){

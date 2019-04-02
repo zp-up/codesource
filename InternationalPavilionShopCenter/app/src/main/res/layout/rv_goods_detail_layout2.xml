@@ -10,7 +10,7 @@
         android:layout_height="@dimen/x40">
         <TextView
             android:text="规格数量选择"
-            android:textSize="@dimen/x14"
+            android:textSize="13sp"
             android:textColor="@color/textColor"
             android:layout_marginLeft="@dimen/x15"
             android:gravity="center_vertical"
@@ -38,7 +38,7 @@
         android:layout_height="@dimen/x40">
         <TextView
             android:text="限制"
-            android:textSize="@dimen/x14"
+            android:textSize="13sp"
             android:textColor="@color/textColor"
             android:layout_marginLeft="@dimen/x15"
             android:gravity="center_vertical"
@@ -46,7 +46,7 @@
             android:layout_height="@dimen/x40" />
         <TextView
             android:text="特价商品不可与优惠券叠加使用"
-            android:textSize="@dimen/x14"
+            android:textSize="13sp"
             android:textColor="@color/gray"
             android:layout_marginLeft="@dimen/x20"
             android:gravity="center_vertical"
@@ -75,7 +75,7 @@
             android:layout_toRightOf="@+id/iv_brand"
             android:text="Dr.JART+蒂佳婷"
             android:textColor="@color/textColor"
-            android:textSize="@dimen/x15"
+            android:textSize="13sp"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

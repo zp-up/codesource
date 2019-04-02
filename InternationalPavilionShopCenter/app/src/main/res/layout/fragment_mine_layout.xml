@@ -20,7 +20,7 @@
                 <RelativeLayout
                     android:background="@drawable/bg_mine_head_1"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/x160">
+                    android:layout_height="@dimen/x132">
                     <ImageView
                         android:id="@+id/civ_head"
                         android:src="@mipmap/icon_mine_defaul_head"
@@ -54,6 +54,11 @@
                             android:layout_height="wrap_content" />
                     </LinearLayout>
                 </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/ll_to_wait_all_order"
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginTop="12dp">
                 <TextView
                     android:textSize="@dimen/x12"
                     android:textColor="@color/black"
@@ -63,15 +68,26 @@
                     android:text="我的订单"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
+                <ImageView
+                    android:src="@mipmap/icon_home_right"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="@dimen/x20"
+
+                    android:layout_width="@dimen/x20"
+                    android:layout_height="@dimen/x20" />
+            </RelativeLayout>
                 <View
                     android:layout_marginLeft="@dimen/x15"
                     android:background="@color/gainsboro"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/x1"></View>
+                    android:layout_height="@dimen/x1"
+                    android:layout_marginTop="11dp"
+                    ></View>
                 <LinearLayout
                     android:layout_marginTop="@dimen/x20"
-                    android:layout_marginRight="@dimen/x20"
-                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <LinearLayout
@@ -87,7 +103,7 @@
                             android:layout_width="@dimen/x20"
                             android:layout_height="@dimen/x20" />
                         <TextView
-                            android:layout_marginTop="@dimen/x3"
+                            android:layout_marginTop="@dimen/x4"
                             android:layout_gravity="center_horizontal"
                             android:text="待付款"
                             android:textSize="@dimen/x13"
@@ -161,8 +177,8 @@
                 </LinearLayout>
                 <LinearLayout
                     android:layout_marginTop="@dimen/x20"
-                    android:layout_marginRight="@dimen/x20"
-                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <LinearLayout
@@ -251,12 +267,14 @@
                     android:height="@dimen/x30"
                     android:layout_marginLeft="@dimen/x20"
                     android:text="我的服务"
+                    android:layout_marginTop="21dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <View
                     android:layout_marginLeft="@dimen/x15"
                     android:background="@color/gainsboro"
                     android:layout_width="match_parent"
+                    android:layout_marginTop="11dp"
                     android:layout_height="@dimen/x1"></View>
                 <LinearLayout
                     android:layout_marginTop="@dimen/x20"

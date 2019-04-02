@@ -11,7 +11,7 @@
             android:layout_marginLeft="@dimen/x15"
             android:layout_centerVertical="true"
             android:textColor="@color/black"
-            android:textSize="@dimen/x16"
+            android:textSize="14sp"
             android:text="心愿清单"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -25,7 +25,7 @@
             <TextView
                 android:text="更多 >"
                 android:textColor="@color/gray"
-                android:textSize="@dimen/x13"
+                android:textSize="10sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
