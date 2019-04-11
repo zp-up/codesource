@@ -48,6 +48,7 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.
 public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoodsCallBack {
     // APP_ID 替换为你的应用从官方网站申请到的合法appID
     private static final String APP_ID = "wx936ef706f9fb1fe7";
+    private static final String TAG = "[IPSC][PayWayActivity]";
 
     // IWXAPI 是第三方app和微信通信的openApi接口
     private IWXAPI api;
@@ -109,7 +110,7 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
         regToWx();
         commonPresenter = new CommonGoodsImp();
         if (!TextUtils.isEmpty(getIntent().getStringExtra("oderId"))) {
-            Log.e("TAG","订单Id:"+getIntent().getStringExtra("oderId"));
+            Log.e(TAG, "订单Id:" + getIntent().getStringExtra("oderId"));
             orderId = getIntent().getStringExtra("oderId");
             initData(getIntent().getStringExtra("oderId"));
         }
@@ -179,17 +180,22 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
             params.addBodyParameter("method", "APP");
             commonPresenter.getCommonGoodsData(params, this);
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, "confirmSetPayWay() occur an exception!", e);
         }
     }
 
     private void selectPayWay() {
         flag = 2;
-        RequestParams params = new RequestParams(MainUrls.setPayWayUrl);
-        params.addBodyParameter("access_token", IPSCApplication.accessToken);
-        params.addBodyParameter("order", orderId);
-        params.addBodyParameter("fin_pay", currentId + "");
-        commonPresenter.getCommonGoodsData(params, this);
+        try {
+            RequestParams params = new RequestParams(MainUrls.setPayWayUrl);
+            params.addBodyParameter("access_token", IPSCApplication.accessToken);
+            params.addBodyParameter("order", orderId);
+            params.addBodyParameter("fin_pay", currentId + "");
+            commonPresenter.getCommonGoodsData(params, this);
+        } catch (Exception e) {
+            Log.e(TAG, "selectPayWay() occur an exception!", e);
+        }
+
     }
 
     @Override
@@ -209,12 +215,12 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
 
     @Override
     public void onError(String error) {
-        Log.e("TAG", "网络请求出错PayWayActivity->onError:" + error);
+        Log.e(TAG, "网络请求出错PayWayActivity->onError:" + error);
     }
 
     @Override
     public void onCommonGoodsCallBack(String result) {
-        Log.e("TAG", "支付信息:" + result);
+        Log.e(TAG, "支付信息:" + result + ",flag:" + flag);
         try {
             JSONObject jsonObject = new JSONObject(result);
             int code = jsonObject.getInt("code");
@@ -263,17 +269,17 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
         try {
             JSONObject jsonObject = new JSONObject(orderInfo);
             JSONObject pay = jsonObject.getJSONObject("pay");
-            String appId = pay.getString("appId");
-            String timeStamp = pay.getString("timeStamp");
-            String nonceStr = pay.getString("nonceStr");
+            String appId = pay.getString("appid");
+            String timeStamp = pay.getString("timestamp");
+            String nonceStr = pay.getString("noncestr");
             String packageStr = pay.getString("package");
-            String signType = pay.getString("signType");
-            String paySign = pay.getString("paySign");
+            String signType = jsonObject.getString("type");
+            String paySign = pay.getString("sign");
             String prepayid = pay.getString("prepayid");
-            String mch_id = pay.getString("mch_id");
+            String mch_id = pay.getString("partnerid");
             wxpay(paySign, mch_id, prepayid, nonceStr, appId, timeStamp, packageStr, signType);
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, "make weixin parameter occur an exception!", e);
         }
 
     } //唤起微信支付
@@ -321,7 +327,7 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
         for (int i = 0; i < apps.size(); i++) {
             ResolveInfo info = apps.get(i);
             String packageName = info.activityInfo.packageName;
-            Log.e("TAG", "包名：" + packageName);
+//            Log.e(TAG, "包名：" + packageName);
             if (packageName.equalsIgnoreCase("com.tencent.mm")) {
                 return true;
             }
