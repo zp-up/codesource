@@ -13,6 +13,7 @@ android {
         multiDexEnabled true
     }
     dexOptions{
+        // 忽略方法数限制的检查
         jumboMode true
     }
     signingConfigs {
