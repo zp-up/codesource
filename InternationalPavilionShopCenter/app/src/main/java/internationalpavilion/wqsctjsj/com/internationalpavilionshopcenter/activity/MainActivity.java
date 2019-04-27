@@ -273,10 +273,10 @@ public class MainActivity extends BaseAppcompatActivity {
     }
 
     private void oneKeyLogin() {
-        if (((IPSCApplication) getApplication()).getUserInfo() == null) {
+        final UserBean userBean = ((IPSCApplication) getApplication()).getUserInfo();
+        if (userBean == null) {
             return;
         }
-        final UserBean userBean = ((IPSCApplication) getApplication()).getUserInfo();
         if (userBean != null && userBean.getPassword() != null && userBean.getUserPhone() != null) {
             RequestParams params = new RequestParams(MainUrls.userLoginUrl);
             params.addBodyParameter("access_token", IPSCApplication.accessToken);
@@ -300,6 +300,11 @@ public class MainActivity extends BaseAppcompatActivity {
 
                 @Override
                 public void onGetCodeSuccess(String result) {
+
+                }
+
+                @Override
+                public void onCommonSuccess(String result, int type) {
 
                 }
 

@@ -16,16 +16,17 @@
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
         <TextView
-            android:text="申请售后 >"
-            android:textSize="@dimen/x12"
-            android:textColor="#636363"
-            android:id="@+id/tv_apply_after_sale"
+            android:id="@+id/info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/x10"
-            android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:text="包裹1"
+            android:textColor="#636363"
+            android:textSize="@dimen/x12" />
     </RelativeLayout>
     <View
         android:layout_marginRight="@dimen/x10"
@@ -112,14 +113,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:layout_marginBottom="@dimen/x3"
-                    android:layout_gravity="center_horizontal"
-                    android:text="包裹1"
-                    android:textColor="@color/gray"
-                    android:textSize="@dimen/x14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <TextView
                     android:id="@+id/tv_status"
                     android:layout_marginTop="@dimen/x3"
                     android:layout_gravity="center_horizontal"
@@ -183,9 +176,22 @@
                 android:textSize="@dimen/x12"
                 android:layout_marginLeft="@dimen/x15"
                 android:layout_centerVertical="true"
-                android:layout_width="@dimen/x90"
+                android:layout_width="@dimen/x70"
                 android:layout_height="@dimen/x30" />
 
+            <TextView
+                android:id="@+id/tv_apply_after_sale"
+                android:layout_width="@dimen/x70"
+                android:layout_height="@dimen/x30"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/x15"
+                android:layout_marginRight="@dimen/x10"
+                android:background="@drawable/shape_of_verify_code_btn"
+                android:gravity="center"
+                android:text="退货"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/x12" />
         </RelativeLayout>
     </LinearLayout>
     <View

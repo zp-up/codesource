@@ -121,7 +121,7 @@
                     android:gravity="center"
                     android:layout_marginTop="@dimen/x3"
                     android:layout_gravity="center_horizontal"
-                    android:text=""
+                    android:text="已收货"
                     android:textColor="@color/red"
                     android:textSize="@dimen/x14"
                     android:layout_width="wrap_content"

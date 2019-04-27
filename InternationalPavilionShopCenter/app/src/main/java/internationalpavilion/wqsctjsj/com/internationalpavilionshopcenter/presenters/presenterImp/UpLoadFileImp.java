@@ -111,6 +111,38 @@ public class UpLoadFileImp implements UpLoadFileInterface{
     }
 
     @Override
+    public void verifyIdCardByInput(RequestParams params, final OnUpLoadFileCallback callback) {
+        if (netRequest == null){
+            netRequest = new NetRequestImp();
+        }
+        netRequest.doNetRequest(params, new NetCallBack() {
+            @Override
+            public void onStart() {
+                callback.onStarted();
+            }
+
+            @Override
+            public void onFinished() {
+                callback.onFinished();
+            }
+
+            @Override
+            public void onError(Throwable error) {
+                try {
+                    callback.onError(error.toString());
+                }catch (Exception ew){
+                    ew.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onSuccess(String result) {
+                callback.onVerifyIdCardByInput(result);
+            }
+        });
+    }
+
+    @Override
     public void onDestroyed() {
         if (netRequest != null){
             netRequest = null;

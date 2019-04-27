@@ -13,12 +13,12 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.
  * Created by wuqaing on 2018/12/26.
  */
 
-public class OrderDealImp implements OrderDealInterface{
+public class OrderDealImp implements OrderDealInterface {
     private NetRequestInterface netRequest;
 
     @Override
     public void buyAgain(RequestParams params, final OnOrderDealCallBack callBack) {
-        if (netRequest == null){
+        if (netRequest == null) {
             netRequest = new NetRequestImp();
         }
         netRequest.doNetRequest(params, new NetCallBack() {
@@ -46,7 +46,7 @@ public class OrderDealImp implements OrderDealInterface{
 
     @Override
     public void cancelOrder(RequestParams params, final OnOrderDealCallBack callBack) {
-        if (netRequest == null){
+        if (netRequest == null) {
             netRequest = new NetRequestImp();
         }
         netRequest.doNetRequest(params, new NetCallBack() {
@@ -74,7 +74,7 @@ public class OrderDealImp implements OrderDealInterface{
 
     @Override
     public void backMoneyOnly(RequestParams params, final OnOrderDealCallBack callBack) {
-        if (netRequest == null){
+        if (netRequest == null) {
             netRequest = new NetRequestImp();
         }
         netRequest.doNetRequest(params, new NetCallBack() {
@@ -102,7 +102,7 @@ public class OrderDealImp implements OrderDealInterface{
 
     @Override
     public void confirmReceived(RequestParams params, final OnOrderDealCallBack callBack) {
-        if (netRequest == null){
+        if (netRequest == null) {
             netRequest = new NetRequestImp();
         }
         netRequest.doNetRequest(params, new NetCallBack() {

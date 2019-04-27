@@ -51,6 +51,9 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.
  */
 
 public class CartFragment extends Fragment implements OnCommonGoodsCallBack, CartAdapter.OnShoppingCartOperationCallBack, OnCartOperationCallBack {
+
+    public static final String TAG = "[IPSC][CartFragment]";
+
     private Unbinder unbinder;
     @BindView(R.id.rv_cart_content)
     RecyclerView rvCartContent;
@@ -264,6 +267,7 @@ public class CartFragment extends Fragment implements OnCommonGoodsCallBack, Car
                                     JSONObject goods = goodsList.getJSONObject(j);
                                     CartGood cartGood = new CartGood();
                                     cartGood.setId(goods.getInt("id"));
+                                    cartGood.setGoodsPriceId(goods.getJSONObject("store_price").getInt("id"));
                                     cartGood.setChecked(goods.getInt("cart_state") == 1 ? true : false);
                                     cartGood.setImagePath(goods.getJSONObject("store_price").getJSONObject("goods_goods")
                                             .getJSONArray("img").getString(0));
@@ -341,6 +345,10 @@ public class CartFragment extends Fragment implements OnCommonGoodsCallBack, Car
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
         params.addBodyParameter("id", goodsCartId + "");
         params.addBodyParameter("number", number + "");
+        if(((IPSCApplication) getActivity().getApplication()).getUserInfo()!=null){
+            params.addBodyParameter("user", ((IPSCApplication) getActivity().getApplication()).getUserInfo().getId() + "");
+        }
+        Log.d(TAG, "onNumSub() goodsCartId:" + goodsCartId + " ,number:" + number);
         cartOperationPresenter.cartAdd(params, this);
     }
 
@@ -356,6 +364,10 @@ public class CartFragment extends Fragment implements OnCommonGoodsCallBack, Car
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
         params.addBodyParameter("id", goodsCartId + "");
         params.addBodyParameter("number", number + "");
+        if (((IPSCApplication) getActivity().getApplication()).getUserInfo() != null) {
+            params.addBodyParameter("user", ((IPSCApplication) getActivity().getApplication()).getUserInfo().getId() + "");
+        }
+        Log.d(TAG, "onNumSub() goodsCartId:" + goodsCartId + " ,number:" + number);
         cartOperationPresenter.cartAdd(params, this);
     }
 

@@ -117,4 +117,36 @@ public class UserOptionImp implements UserOptionInterface{
             System.gc();
         }
     }
+
+    @Override
+    public void commonData(RequestParams params, final OnNetCallBack callBack, final int type) {
+        if (netRequest == null){
+            netRequest = new NetRequestImp();
+        }
+        netRequest.doNetRequest(params, new NetCallBack() {
+            @Override
+            public void onStart() {
+                callBack.onStarted();
+            }
+
+            @Override
+            public void onFinished() {
+                callBack.onFinished();
+            }
+
+            @Override
+            public void onError(Throwable error) {
+                try {
+                    callBack.onError(error.toString());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onSuccess(String result) {
+                callBack.onCommonSuccess(result, type);
+            }
+        });
+    }
 }

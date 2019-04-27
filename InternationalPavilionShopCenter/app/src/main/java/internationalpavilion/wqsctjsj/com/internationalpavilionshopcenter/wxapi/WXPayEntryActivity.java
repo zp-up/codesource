@@ -14,9 +14,8 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import org.greenrobot.eventbus.EventBus;
 
-import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.eventBusBean.WxPayEvent;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.eventBusBean.WxEvent;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
-
 
 /**
  * Created by wuqaing on 2018/8/28.
@@ -24,6 +23,14 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.
 
 public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
     private IWXAPI api;
+
+    // 微信事件编码
+    /** 微信支付成功 */
+    public static final int WX_EVENT_ID_PAY_SUCCESS = 0x1;
+    /** 微信支付失败 */
+    public static final int WX_EVENT_ID_PAY_FAILED = 0x2;
+    /** 用户取消支付 */
+    public static final int WX_EVENT_ID_PAY_CANCEL = 0x3;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,21 +54,21 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
                 case 0:
                     ToastUtils.show(WXPayEntryActivity.this, "支付成功");
                     Log.e("TAG", resp.errCode + "");
-                    EventBus.getDefault().post(new WxPayEvent(1, "支付成功"));
+                    EventBus.getDefault().post(new WxEvent(WX_EVENT_ID_PAY_SUCCESS, "支付成功"));
                     finish();
                     break;
                 //错误
                 case -1:
                     Log.e("TAG", resp.errCode + "");
                     ToastUtils.show(WXPayEntryActivity.this, "支付失败");
-                    EventBus.getDefault().post(new WxPayEvent(-1, "支付失败"));
+                    EventBus.getDefault().post(new WxEvent(WX_EVENT_ID_PAY_FAILED, "支付失败"));
                     finish();
                     break;
                 //取消
                 case -2:
                     ToastUtils.show(WXPayEntryActivity.this, "用户取消支付");
                     Log.e("TAG", resp.errCode + "");
-                    EventBus.getDefault().post(new WxPayEvent(-2, "用户取消支付"));
+                    EventBus.getDefault().post(new WxEvent(WX_EVENT_ID_PAY_CANCEL, "用户取消支付"));
                     finish();
                     break;
             }

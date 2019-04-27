@@ -1,5 +1,7 @@
 package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.xutils.http.RequestParams;
@@ -143,6 +145,7 @@ public class GoodsDetailImp implements GoodsDetailInterface {
                 if (result != null) {
                     try {
                         JSONObject jsonObject = new JSONObject(result);
+                        Log.d("[IPSC][]", "collection success! result:" + result);
                         int code = jsonObject.getInt("code");
                         int state = jsonObject.getInt("state");
                         String msg = jsonObject.has("msg") ? jsonObject.getString("msg") : "";

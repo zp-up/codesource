@@ -44,7 +44,7 @@ public class GoodsPropsSelectPop implements View.OnClickListener {
     private internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.LinearLayout llStorageContainer;
     private TextView tvAdd, tvSub, tvNum;
 
-    private TextView tvAddGoodsToCart;
+//    private TextView tvAddGoodsToCart;
 
     private int currentSpecId = -1;
     private int currentStoreType = -1;
@@ -99,7 +99,7 @@ public class GoodsPropsSelectPop implements View.OnClickListener {
         if (pop == null) {
             return;
         }
-        pop.showAtLocation(root, Gravity.BOTTOM, 0, 0);
+        pop.showAtLocation(root, Gravity.CENTER, 0, 0);
 
         this.click = click;
     }
@@ -162,7 +162,7 @@ public class GoodsPropsSelectPop implements View.OnClickListener {
         tvGoodsPrice = v.findViewById(R.id.tv_price);
         tvSelectedGoodsSpec = v.findViewById(R.id.tv_selected);
         llStorageContainer = v.findViewById(R.id.ll_storage_type_container);
-        tvAddGoodsToCart = v.findViewById(R.id.tv_add_goods);
+//        tvAddGoodsToCart = v.findViewById(R.id.tv_add_goods);
         tvAdd = v.findViewById(R.id.tv_add);
         tvNum = v.findViewById(R.id.tv_num);
         tvSub = v.findViewById(R.id.tv_sub);
@@ -198,7 +198,50 @@ public class GoodsPropsSelectPop implements View.OnClickListener {
             }
         });
 
-        tvAddGoodsToCart.setOnClickListener(new View.OnClickListener() {
+//        tvAddGoodsToCart.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (Integer.valueOf(tvNum.getText().toString()) > goodsBean.getData().getUsenumber()) {
+//                    ToastUtils.show(context, "库存不足");
+//                } else {
+//                    ((GoodsDetailActivity) context).addToCart(currentSpecId, currentStoreType, Integer.valueOf(tvNum.getText().toString()));
+//                }
+//            }
+//        });
+
+        // bottom bar click event
+        v.findViewById(R.id.rl_contact_service).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((GoodsDetailActivity) context).contactService();
+            }
+        });
+        v.findViewById(R.id.rl_car).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((GoodsDetailActivity) context).openShoppingCar();
+            }
+        });
+        v.findViewById(R.id.rl_add_to_collection).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((GoodsDetailActivity) context).addToCollection();
+            }
+        });
+        v.findViewById(R.id.tv_buy_immediately).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TOD 立即购买
+//                ((GoodsDetailActivity) context).buyImmediately();
+                if (Integer.valueOf(tvNum.getText().toString()) > goodsBean.getData().getUsenumber()) {
+                    ToastUtils.show(context, "库存不足");
+                } else {
+                    ((GoodsDetailActivity) context).buyImmediately(currentSpecId, currentStoreType, Integer.valueOf(tvNum.getText().toString()));
+//                    ((GoodsDetailActivity) context).addToCart(currentSpecId, currentStoreType, Integer.valueOf(tvNum.getText().toString()));
+                }
+            }
+        });
+        v.findViewById(R.id.tv_add_to_cart).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (Integer.valueOf(tvNum.getText().toString()) > goodsBean.getData().getUsenumber()) {
@@ -208,6 +251,7 @@ public class GoodsPropsSelectPop implements View.OnClickListener {
                 }
             }
         });
+
         initGoodsInfo(goodsBean);
         llTagsContainer = v.findViewById(R.id.ll_tags_container);
         ivClosePop = v.findViewById(R.id.iv_close_select);

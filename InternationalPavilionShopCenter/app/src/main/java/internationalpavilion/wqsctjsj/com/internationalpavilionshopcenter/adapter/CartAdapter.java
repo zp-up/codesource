@@ -144,7 +144,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                 @Override
                 public void onClick(View v) {
                     if (listener != null) {
-                        listener.onNumAdd(goods.getId(), goods.getNum());
+//                        listener.onNumAdd(goods.getId(), goods.getNum());
+                        listener.onNumAdd(goods.getGoodsPriceId(), goods.getNum());
                     }
                 }
             });
@@ -152,7 +153,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                 @Override
                 public void onClick(View v) {
                     if (listener != null) {
-                        listener.onNumSub(goods.getId(), goods.getNum());
+                        listener.onNumSub(goods.getGoodsPriceId(), goods.getNum());
                     }
                 }
             });

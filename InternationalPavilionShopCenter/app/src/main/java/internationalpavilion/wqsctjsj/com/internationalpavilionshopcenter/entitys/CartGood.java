@@ -13,7 +13,8 @@ public class CartGood {
     private double originalPrice;//原价
     private double taxation;
     private int num;
-    private int id;
+    private int id;// 购物车明细ID
+    private int goodsPriceId;//商品价格ID
 
     public CartGood(boolean isChecked,String imagePath, String name, String info, double price, double originalPrice, double taxation, int num) {
         this.isChecked = isChecked;
@@ -100,5 +101,14 @@ public class CartGood {
 
     public void setNum(int num) {
         this.num = num;
+    }
+
+
+    public int getGoodsPriceId() {
+        return goodsPriceId;
+    }
+
+    public void setGoodsPriceId(int goodsPriceId) {
+        this.goodsPriceId = goodsPriceId;
     }
 }

@@ -21,11 +21,8 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.adapter.ClassBrandAdapter;
-import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.adapter.RightClassAdapter;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.application.IPSCApplication;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.RightClassBean;
-import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.RightClassInChildBean;
-import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.classBrandBean.ClassBrandBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp.ClassDataImp;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.ClassDataInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
@@ -67,7 +64,7 @@ public class ClassInBrandFragment extends Fragment implements OnClassCallback{
             rvBrand.setAdapter(classBrandAdapter);
         }
         if (data.size() == 0) {
-            RequestParams params = new RequestParams(MainUrls.getClassBrandUrl);
+            RequestParams params = new RequestParams(MainUrls.getAllClassBrandUrl);
             params.addBodyParameter("access_token", IPSCApplication.accessToken);
             params.addBodyParameter("page","1");
             params.addBodyParameter("limit","100");

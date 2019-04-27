@@ -40,6 +40,7 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presen
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.AddressDaoConfig;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.PhoneNumberCheckUtils;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.StringUtil;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnAreaOrCityOrProvenceDataCallBack;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.dialog.SweetAlertDialog;
@@ -48,6 +49,8 @@ import static internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter
 
 
 public class AddOrEditAddressActivity extends BaseAppcompatActivity implements OnAreaOrCityOrProvenceDataCallBack {
+
+    private static final String TAG = "[IPSC][AddOrEditAddressActivity]";
     @BindView(R.id.ll_parent)
     LinearLayout llParent;
     @BindView(R.id.tv_select_city)
@@ -89,11 +92,13 @@ public class AddOrEditAddressActivity extends BaseAppcompatActivity implements O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate() isEdit:" + getIntent().getBooleanExtra("isEdit", false));
         if (getIntent().getBooleanExtra("isEdit", false)) {
             isEdit = true;
             addressBean = (AddressBean) getIntent().getSerializableExtra("addressInfo");
             bindDataToViews();
         }
+        Log.d(TAG, "addressBean:" + (addressBean != null ? addressBean.toString() : ""));
         StatusBarUtil.setTranslucentForImageViewInFragment(this, 0, null);
         initViews();
         addressDaoConfig = AddressDaoConfig.getInstance();
@@ -107,11 +112,12 @@ public class AddOrEditAddressActivity extends BaseAppcompatActivity implements O
                 initData();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, "init data", e);
         }
     }
 
     private void bindDataToViews() {
+        tvSelectCity.setText(addressBean.getProvince() + "-" + addressBean.getCity() + "-" + addressBean.getArea());
         etDetailPlace.setText(addressBean.getDetailPlace());
         etReceivePhone.setText(addressBean.getReceivePhone());
         etReceiveName.setText(addressBean.getReceiveName());
@@ -163,9 +169,17 @@ public class AddOrEditAddressActivity extends BaseAppcompatActivity implements O
     }
 
     private void initData() {
-        RequestParams params = new RequestParams(MainUrls.getCityAreaProvienceUrl);
+        // 原有接口有问题
+/*        RequestParams params = new RequestParams(MainUrls.getCityAreaProvienceUrl);
         params.addBodyParameter("jf", "childsArea");
-        locationOperationPresenter.getAreaOrCityOrProvence(params, this);
+        locationOperationPresenter.getAreaOrCityOrProvence(params, this);*/
+        // 改为读取本地数据
+        try {
+            String provinceJson = StringUtil.inputStream2String(this.getAssets().open("province.json"));
+            onAreaInfoCallBack(provinceJson);
+        } catch (Exception e) {
+            Log.e(TAG, "init Data occur exception!", e);
+        }
     }
 
     @OnClick({R.id.iv_back, R.id.tv_select_city, R.id.rl_check, R.id.iv_checked, R.id.tv_submit,R.id.tv_delete})
@@ -292,6 +306,7 @@ public class AddOrEditAddressActivity extends BaseAppcompatActivity implements O
         params.addBodyParameter("area", area);
         params.addBodyParameter("address", etDetailPlace.getText().toString());
         params.addBodyParameter("status", isChecked ? "0" : "1");
+        Log.d(TAG, "doModify() params:" + params);
         locationOperationPresenter.editOrAddLocationInfo(params, this);
 
     }
@@ -351,21 +366,23 @@ public class AddOrEditAddressActivity extends BaseAppcompatActivity implements O
 
     @Override
     public void onError(String error) {
-        Log.e("TAG", "获取地址信息失败");
+        Log.e(TAG, "获取地址信息失败");
     }
 
     @Override
     public void onAreaInfoCallBack(String result) {
+//        Log.d(TAG, "onAreaInfoCallBack() result：" + result);
         if (result != null) {
             try {
-                JSONObject jsonObject = new JSONObject(result);
+/*                JSONObject jsonObject = new JSONObject(result);
                 String jsonData = jsonObject.getString("resultList");
                 initJsonData(jsonData);
                 if (addressDaoConfig != null) {
                     addressDaoConfig.CreateOrUpdateAddressTable(jsonData, "1");
-                }
+                }*/
+                initJsonData(result);
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.e(TAG, "onAreaInfoCallBack() ", e);
             }
         }
     }
@@ -379,9 +396,10 @@ public class AddOrEditAddressActivity extends BaseAppcompatActivity implements O
                 int code = jsonObject.getInt("code");
                 int state = jsonObject.getInt("state");
                 String msg = "添加收货地址失败";
-                if (jsonObject.has("data")) {
+/*                if (jsonObject.has("data")) {
                     msg = jsonObject.getJSONObject("data").getString("msg");
-                }
+                }*/
+                msg = jsonObject.getString("msg");
                 if (code == 0 && state == 0) {
                     AddressUpdateEvent event =new AddressUpdateEvent();
                     event.setRes(true);
@@ -399,7 +417,7 @@ public class AddOrEditAddressActivity extends BaseAppcompatActivity implements O
                     ToastUtils.show(AddOrEditAddressActivity.this, msg);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.e(TAG, "onAddressInfoAddOrChangedCallBack() ", e);
             }
         }
     }
@@ -421,7 +439,7 @@ public class AddOrEditAddressActivity extends BaseAppcompatActivity implements O
                 ToastUtils.show(AddOrEditAddressActivity.this,msg);
             }
         }catch (Exception e){
-            e.printStackTrace();
+            Log.e(TAG, "onAddressDeleteCallBack() ", e);
         }
     }
 
@@ -447,20 +465,21 @@ public class AddOrEditAddressActivity extends BaseAppcompatActivity implements O
             ArrayList<String> CityList = new ArrayList<>();//该省的城市列表（第二级）
             ArrayList<ArrayList<String>> Province_AreaList = new ArrayList<>();//该省的所有地区列表（第三极）
 
-            for (int c = 0; c < jsonBean.get(i).getCityList().size(); c++) {//遍历该省份的所有城市
-                String CityName = jsonBean.get(i).getCityList().get(c).getName();
+//            Log.d(TAG,"" + jsonBean.get(i).getName());
+            for (int c = 0; c < jsonBean.get(i).getCity().size(); c++) {//遍历该省份的所有城市
+                String CityName = jsonBean.get(i).getCity().get(c).getName();
                 CityList.add(CityName);//添加城市
 
                 ArrayList<String> City_AreaList = new ArrayList<>();//该城市的所有地区列表
 
                 //如果无地区数据，建议添加空字符串，防止数据为null 导致三个选项长度不匹配造成崩溃
-                if (jsonBean.get(i).getCityList().get(c).getArea() == null
-                        || jsonBean.get(i).getCityList().get(c).getArea().size() == 0) {
+                if (jsonBean.get(i).getCity().get(c).getArea() == null
+                        || jsonBean.get(i).getCity().get(c).getArea().size() == 0) {
                     City_AreaList.add("");
                 } else {
 
-                    for (int d = 0; d < jsonBean.get(i).getCityList().get(c).getArea().size(); d++) {//该城市对应地区所有数据
-                        String AreaName = jsonBean.get(i).getCityList().get(c).getArea().get(d).getName();
+                    for (int d = 0; d < jsonBean.get(i).getCity().get(c).getArea().size(); d++) {//该城市对应地区所有数据
+                        String AreaName = jsonBean.get(i).getCity().get(c).getArea().get(d)/*.getName()*/;
 
                         City_AreaList.add(AreaName);//添加该城市所有地区数据
                     }
@@ -488,11 +507,12 @@ public class AddOrEditAddressActivity extends BaseAppcompatActivity implements O
             JSONArray data = new JSONArray(result);
             Gson gson = new Gson();
             for (int i = 0; i < data.length(); i++) {
+//                Log.d(TAG, "" + data.optJSONObject(i).toString());
                 JsonBean entity = gson.fromJson(data.optJSONObject(i).toString(), JsonBean.class);
                 detail.add(entity);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, "parseData() ", e);
         }
         return detail;
     }

@@ -1,5 +1,7 @@
 package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp;
 
+import android.util.Log;
+
 import org.xutils.http.RequestParams;
 
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.models.modelsImp.NetRequestImp;
@@ -7,6 +9,7 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.models
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.models.modelsInterface.NetRequestInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.IGoodsListPresenter;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.NetCallback;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnOverseasGoodsCallBack;
 
 /**
  * Author:chris - jason
@@ -26,12 +29,12 @@ public class GoodsListPresenterImp implements IGoodsListPresenter {
         netRequest.doNetRequest(params, new NetCallBack() {
             @Override
             public void onStart() {
-
+                callBack.onStart();
             }
 
             @Override
             public void onFinished() {
-
+                callBack.onFinished();
             }
 
             @Override
@@ -43,6 +46,7 @@ public class GoodsListPresenterImp implements IGoodsListPresenter {
 
             @Override
             public void onSuccess(String result) {
+                Log.d("IPSC", "getNewlyGoodsList() onSuccess() result:" + result);
                 if(callBack!=null){
                     callBack.onSuccess(result);
                 }
@@ -69,13 +73,19 @@ public class GoodsListPresenterImp implements IGoodsListPresenter {
 
             @Override
             public void onError(Throwable error) {
-                if(callback!=null){
-                    callback.onFailed(error);
+                try {
+                    if (callback != null) {
+                        callback.onFailed(error);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
+
             }
 
             @Override
             public void onSuccess(String result) {
+                Log.d("IPSC", "getDiscountGoodsList() onSuccess() result:" + result);
                 if(callback!=null){
                     callback.onSuccess(result);
                 }
@@ -83,4 +93,33 @@ public class GoodsListPresenterImp implements IGoodsListPresenter {
         });
     }
 
+    @Override
+    public void getBrandData(RequestParams params, final NetCallback callBack) {
+        if (netRequest == null) {
+            netRequest = new NetRequestImp();
+        }
+        netRequest.doNetRequest(params, new NetCallBack() {
+            @Override
+            public void onStart() {
+            }
+
+            @Override
+            public void onFinished() {
+            }
+
+            @Override
+            public void onError(Throwable error) {
+                try {
+                    callBack.onFailed(error);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onSuccess(String result) {
+                callBack.onSuccess(result);
+            }
+        });
+    }
 }

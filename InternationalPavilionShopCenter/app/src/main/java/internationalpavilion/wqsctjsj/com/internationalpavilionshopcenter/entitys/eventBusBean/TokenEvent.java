@@ -7,5 +7,14 @@ import java.io.Serializable;
  */
 
 public class TokenEvent implements Serializable{
-    public int code;//code == 0(获取token)  code == 2(获取用户信息)
+    public int code;//code == 0(获取token) code == 1(获取缓存的用户信息) code == 2(获取用户信息)
+    private String msg;
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
 }

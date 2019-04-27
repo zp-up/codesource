@@ -80,4 +80,19 @@ public class AddressBean implements Serializable{
     public String getReceivePhone() {
         return receivePhone;
     }
+
+
+    @Override
+    public String toString() {
+        return "AddressBean{" +
+                "id=" + id +
+                ", province='" + province + '\'' +
+                ", area='" + area + '\'' +
+                ", city='" + city + '\'' +
+                ", detailPlace='" + detailPlace + '\'' +
+                ", isChecked=" + isChecked +
+                ", receiveName='" + receiveName + '\'' +
+                ", receivePhone='" + receivePhone + '\'' +
+                '}';
+    }
 }

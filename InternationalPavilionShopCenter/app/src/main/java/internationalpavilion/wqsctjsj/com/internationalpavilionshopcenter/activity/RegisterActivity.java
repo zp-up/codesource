@@ -275,6 +275,11 @@ public class RegisterActivity extends BaseAppcompatActivity implements OnNetCall
     }
 
     @Override
+    public void onCommonSuccess(String result, int type) {
+
+    }
+
+    @Override
     public void onLoginSuccess(String result) {
 
     }

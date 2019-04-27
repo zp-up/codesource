@@ -1,14 +1,10 @@
 package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity;
 
-import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.graphics.Color;
 import android.os.Handler;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -42,14 +38,12 @@ import org.json.JSONObject;
 import org.xutils.http.RequestParams;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.adapter.BondedGoodsListAdapter;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.application.IPSCApplication;
-import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.BondedGoodsBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.PriceData;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.RightClassBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.RightClassInChildBean;
@@ -60,7 +54,9 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.M
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnBondedGoodsCallBack;
 
-
+/**
+ * 保税商品列表
+ */
 public class BondedGoodsListActivity extends BaseAppcompatActivity implements OnBondedGoodsCallBack {
     @BindView(R.id.rv_bonded_goods)
     RecyclerView rvBondedGoods;
@@ -143,7 +139,7 @@ public class BondedGoodsListActivity extends BaseAppcompatActivity implements On
         windowManager.getDefaultDisplay().getMetrics(displayMetrics);
         screenWidth = displayMetrics.widthPixels;
         initView();
-        RequestParams paramsBrand = new RequestParams(MainUrls.getClassBrandUrl);
+        RequestParams paramsBrand = new RequestParams(MainUrls.getAllClassBrandUrl);
         paramsBrand.addBodyParameter("access_token", IPSCApplication.accessToken);
         paramsBrand.addBodyParameter("page", "1");
         paramsBrand.addBodyParameter("limit", "100");

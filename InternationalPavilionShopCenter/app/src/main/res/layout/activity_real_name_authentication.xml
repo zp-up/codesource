@@ -42,6 +42,36 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/x45">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:text="识别模式"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/x13" />
+
+                <Switch
+                    android:id="@+id/switch_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/x20"
+                    android:showText="true"
+                    android:checked="true"
+                    android:text="自动识别"
+                    android:textSize="@dimen/x13" />
+            </RelativeLayout>
+            <View
+                android:background="@color/gainsboro"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"></View>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x45">
                 <TextView
                     android:layout_marginLeft="@dimen/x20"
                     android:text="证件类型"
@@ -59,6 +89,7 @@
                     android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
+
             </RelativeLayout>
             <View
                 android:background="@color/gainsboro"
@@ -75,15 +106,20 @@
                     android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-                <TextView
+                <EditText
+                    android:maxEms="12"
+                    android:maxLines="2"
+                    android:background="@color/white"
+                    android:id="@+id/tv_realNname"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="@dimen/x20"
-                    android:text="由系统自动识别"
+                    android:hint="由系统自动识别"
+                    android:textAlignment="viewEnd"
                     android:textColor="@color/textColor"
                     android:textSize="@dimen/x13"
                     android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent" />
             </RelativeLayout>
             <View
                 android:background="@color/gainsboro"
@@ -100,15 +136,20 @@
                     android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-                <TextView
+                <EditText
+                    android:id="@+id/tv_idNo"
+                    android:maxEms="12"
+                    android:maxLines="2"
+                    android:background="@color/white"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="@dimen/x20"
-                    android:text="由系统自动识别"
+                    android:hint="由系统自动识别"
+                    android:textAlignment="viewEnd"
                     android:textColor="@color/textColor"
                     android:textSize="@dimen/x13"
                     android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent" />
             </RelativeLayout>
             <View
                 android:background="@color/gainsboro"
@@ -121,6 +162,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/x140">
                 <ImageView
+                    android:id="@+id/img_front"
                     android:scaleType="fitXY"
                     android:src="@mipmap/icon_idcard_off"
                     android:layout_width="match_parent"
@@ -147,6 +189,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/x140">
                 <ImageView
+                    android:id="@+id/img_back"
                     android:scaleType="fitXY"
                     android:src="@mipmap/icon_idcard_on"
                     android:layout_width="match_parent"

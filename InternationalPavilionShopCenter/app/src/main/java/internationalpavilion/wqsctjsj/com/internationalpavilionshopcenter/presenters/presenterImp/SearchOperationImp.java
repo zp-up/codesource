@@ -80,12 +80,12 @@ public class SearchOperationImp implements SearchOperationInterface {
         netRequest.doNetRequest(params, new NetCallBack() {
             @Override
             public void onStart() {
-
+                callback.onStart();
             }
 
             @Override
             public void onFinished() {
-
+                callback.onFinished();
             }
 
             @Override

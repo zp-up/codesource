@@ -40,6 +40,8 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnCommonGoodsCallBack;
 
 public class ReceivedAddressListActivity extends BaseAppcompatActivity implements OnCommonGoodsCallBack {
+
+    public static final String TAG = "[IPSC][ReceivedAddressListActivity]";
     @BindView(R.id.rv_address)
     RecyclerView rvAddress;
     @BindView(R.id.srl_content)
@@ -109,7 +111,7 @@ public class ReceivedAddressListActivity extends BaseAppcompatActivity implement
             adapter.setListener(new AddressAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(int id) {
-                    Log.e("TAG", "地址Id:" + id);
+                    Log.e(TAG, "地址Id:" + id);
                     RequestParams params = new RequestParams(MainUrls.setAddressDefaultUrl);
                     params.addBodyParameter("access_token", IPSCApplication.accessToken);
                     params.addBodyParameter("id", id + "");
@@ -131,7 +133,7 @@ public class ReceivedAddressListActivity extends BaseAppcompatActivity implement
 
                         @Override
                         public void onSuccess(String result) {
-                            Log.e("TAG", "设置默认地址:" + result);
+                            Log.e(TAG, "设置默认地址:" + result);
                             try {
                                 JSONObject jsonObject = new JSONObject(result);
                                 int code = jsonObject.getInt("code");
@@ -203,12 +205,12 @@ public class ReceivedAddressListActivity extends BaseAppcompatActivity implement
 
     @Override
     public void onError(String error) {
-        Log.e("TAG", "获取数据中...");
+        Log.e(TAG, "获取数据中...");
     }
 
     @Override
     public void onCommonGoodsCallBack(String result) {
-
+        Log.d(TAG, "onCommonGoodsCallBack() result:" + result);
         if (result != null) {
             try {
                 JSONObject jsonObject = new JSONObject(result);
@@ -260,7 +262,7 @@ public class ReceivedAddressListActivity extends BaseAppcompatActivity implement
                             }
                         } else {
                             //刷新或首次加载失败
-                            ToastUtils.show(this, "数据加载失败");
+                            ToastUtils.show(this, "无数据可以加载");
                         }
 
                     } else if (pageIndex > 1) {
@@ -287,7 +289,7 @@ public class ReceivedAddressListActivity extends BaseAppcompatActivity implement
                     adapter.notifyDataSetChanged();
                 }
             } catch (Exception e) {
-
+                Log.e(TAG, "onCommonGoodsCallBack() occur an Exception!", e);
             }
 
         }

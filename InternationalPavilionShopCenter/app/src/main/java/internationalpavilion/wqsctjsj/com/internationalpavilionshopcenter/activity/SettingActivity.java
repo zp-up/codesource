@@ -425,4 +425,9 @@ public class SettingActivity extends BaseAppcompatActivity implements TakePhoto.
             }
         }
     }
+
+    @Override
+    public void onVerifyIdCardByInput(String result) {
+
+    }
 }

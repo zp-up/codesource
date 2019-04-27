@@ -3,6 +3,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,5 +53,27 @@ public class JSONUtils {
         return list;
     }
 
+
+    public static <T> T jsonFormat(String result, Class<T> className) {
+        if (result != null) {
+            try {
+                JSONObject jsonObject = new JSONObject(result);
+                int code = jsonObject.getInt("code");
+                int state = jsonObject.getInt("state");
+                if (code == 0 && state == 0) {
+                    Gson gson = new Gson();
+                    T t = gson.fromJson(result, className);
+                    return t;
+                } else {
+                    return null;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
 
 }

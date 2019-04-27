@@ -11,4 +11,6 @@ public interface OnUpLoadFileCallback {
     void onLoadFileSuccess(String result);
     void onModifyUserHeadSuccess(String result);
     void onModifyUserNickName(String result);
+
+    void onVerifyIdCardByInput(String result);// 通过手动输入内容进行验证身份证
 }

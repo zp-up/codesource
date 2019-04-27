@@ -57,6 +57,7 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.LinearLayout;
 
 public class SearchActivity extends BaseAppcompatActivity implements OnSearchCallback {
+    private static final String TAG = "[IPSC][SearchActivity]";
     @BindView(R.id.ll_history_record)
     LinearLayout llHistoryRecord;
     @BindView(R.id.ll_hot_keyword)
@@ -149,6 +150,7 @@ public class SearchActivity extends BaseAppcompatActivity implements OnSearchCal
     }
 
     private void doSearch() {
+        Log.d(TAG, "doSearch()");
         if (searchOperationPresenter != null) {
             RequestParams params = new RequestParams(MainUrls.searchProduct);
 
@@ -162,7 +164,18 @@ public class SearchActivity extends BaseAppcompatActivity implements OnSearchCal
             params.addBodyParameter("search", etSearchInput.getText().toString());
             searchOperationPresenter.doSearch(params, new NetCallback() {
                 @Override
+                public void onStart() {
+                    showLoading(false, "搜索中...");
+                }
+
+                @Override
+                public void onFinished() {
+                    dismissLoading();
+                }
+
+                @Override
                 public void onSuccess(String result) {
+                    Log.d(TAG, "doSearch onSuccess! result:" + result);
                     stopRefreshAndLoadMore();
                     if (result != null) {
                         try {
@@ -290,6 +303,9 @@ public class SearchActivity extends BaseAppcompatActivity implements OnSearchCal
                                         }
 
 
+                                    } else {
+                                        Log.i(TAG,"没有查询到");
+                                        ToastUtils.show(SearchActivity.this, "没有查询到该商品！");
                                     }
 
                                 }
@@ -303,6 +319,7 @@ public class SearchActivity extends BaseAppcompatActivity implements OnSearchCal
 
                 @Override
                 public void onFailed(Throwable e) {
+                    Log.d(TAG, "doSearch onFailed:", e);
                     stopRefreshAndLoadMore();
                 }
             });
@@ -418,7 +435,7 @@ public class SearchActivity extends BaseAppcompatActivity implements OnSearchCal
 
     @Override
     public void onHistorySearchLoaded(String result) {
-        Log.e("TAG", "历史收索:" + result);
+        Log.e(TAG, "历史收索:" + result);
         try {
             JSONObject jsonObject = new JSONObject(result);
             int code = jsonObject.getInt("code");
@@ -452,6 +469,7 @@ public class SearchActivity extends BaseAppcompatActivity implements OnSearchCal
                     @Override
                     public void onClick(View v) {
                         etSearchInput.setText(historySearch.get(index));
+                        doSearch();
                     }
                 });
                 class1.setText(historySearch.get(i));
@@ -465,7 +483,7 @@ public class SearchActivity extends BaseAppcompatActivity implements OnSearchCal
 
     @Override
     public void onHotSearchLoaded(String result) {
-        Log.e("TAG", "热门搜索:" + result);
+        Log.e(TAG, "热门搜索:" + result);
         try {
             JSONObject jsonObject = new JSONObject(result);
             int code = jsonObject.getInt("code");
@@ -498,6 +516,7 @@ public class SearchActivity extends BaseAppcompatActivity implements OnSearchCal
                     @Override
                     public void onClick(View v) {
                         etSearchInput.setText(hotSearch.get(index));
+                        doSearch();
                     }
                 });
                 class1.setText(hotSearch.get(i));

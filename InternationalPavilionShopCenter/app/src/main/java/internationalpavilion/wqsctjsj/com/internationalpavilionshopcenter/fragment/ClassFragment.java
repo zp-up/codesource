@@ -1,6 +1,7 @@
 package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.fragment;
 
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.chrisjason.baseui.util.DpUtils;
@@ -24,6 +26,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.SearchActivity;
 
 /**
  * Created by wuqaing on 2018/11/29.
@@ -41,6 +44,8 @@ public class ClassFragment extends Fragment{
     View viewScroll;
     @BindView(R.id.vp_class_container)
     ViewPager vpContainer;
+    @BindView(R.id.rl_search_container)
+    RelativeLayout rlSearchContainer;
 
     private Fragment classInClassFragment;
     private Fragment classInBrandFragment;
@@ -93,7 +98,7 @@ public class ClassFragment extends Fragment{
         });
     }
 
-    @OnClick({R.id.tv_all_class,R.id.tv_brand,R.id.tv_popularity})
+    @OnClick({R.id.tv_all_class, R.id.tv_brand, R.id.tv_popularity, R.id.rl_search_container})
     public void onClick(View view){
         switch (view.getId()){
             case R.id.tv_all_class:
@@ -104,6 +109,10 @@ public class ClassFragment extends Fragment{
                 break;
             case R.id.tv_popularity:
                 change(3);
+                break;
+            case R.id.rl_search_container:
+                Intent intent = new Intent(getActivity(), SearchActivity.class);
+                startActivity(intent);
                 break;
         }
     }

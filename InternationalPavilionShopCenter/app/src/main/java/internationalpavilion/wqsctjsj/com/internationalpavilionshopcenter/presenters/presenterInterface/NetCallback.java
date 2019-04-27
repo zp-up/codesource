@@ -7,6 +7,8 @@ package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.prese
  */
 
 public interface NetCallback {
+    void onStart();
+    void onFinished();
     void onSuccess(String result);
     void onFailed(Throwable e);
 }

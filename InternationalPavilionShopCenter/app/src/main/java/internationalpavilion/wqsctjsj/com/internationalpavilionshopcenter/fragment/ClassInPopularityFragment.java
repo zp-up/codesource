@@ -53,6 +53,8 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.
  */
 
 public class ClassInPopularityFragment extends Fragment implements OnHomeDataCallBack{
+
+    public static final String TAG = "[IPSC][ClassInPopularityFragment]";
     private Unbinder unbinder;
     @BindView(R.id.rv_class_in_popularity)
     RecyclerView rvClassInPopularity;
@@ -197,7 +199,7 @@ public class ClassInPopularityFragment extends Fragment implements OnHomeDataCal
     @Override
     public void onPopularityGoodsLoaded(String result) {
         if (result != null) {
-            Log.e("TAG", "人气榜:" + result);
+            Log.e(TAG, "人气榜:" + result);
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");

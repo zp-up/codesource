@@ -46,69 +46,78 @@
                 android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
         </com.scwang.smartrefresh.layout.SmartRefreshLayout>
     </LinearLayout>
+
     <RelativeLayout
         android:id="@+id/rl_bottom_container"
-        android:background="@color/white"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x50">
+        android:layout_height="@dimen/x50"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/white">
+
         <View
-            android:background="@color/gainsboro"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/x1"></View>
+            android:layout_height="@dimen/x1"
+            android:background="@color/gainsboro"></View>
+
         <TextView
             android:id="@+id/tv_submit_cart"
+            android:layout_width="@dimen/x100"
+            android:layout_height="match_parent"
             android:layout_alignParentRight="true"
+            android:background="@color/red"
             android:gravity="center"
-            android:textSize="@dimen/x14"
             android:text="结算"
             android:textColor="@color/white"
-            android:background="@color/red"
-            android:layout_width="@dimen/x100"
-            android:layout_height="match_parent" />
+            android:textSize="@dimen/x14" />
+
         <ImageView
             android:id="@+id/iv_all_selected"
-            android:src="@mipmap/icon_cart_box_unselected"
-            android:layout_marginLeft="@dimen/x20"
-            android:layout_centerVertical="true"
             android:layout_width="@dimen/x15"
-            android:layout_height="@dimen/x15" />
+            android:layout_height="@dimen/x15"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x20"
+            android:src="@mipmap/icon_cart_box_unselected" />
+
         <TextView
-            android:text="全选"
-            android:textColor="@color/gray"
-            android:textSize="@dimen/x13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/x10"
             android:layout_toRightOf="@+id/iv_all_selected"
-            android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:text="全选"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/x13" />
+
         <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/x6"
             android:layout_toLeftOf="@+id/tv_submit_cart"
-            android:layout_centerVertical="true"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:orientation="vertical">
+
             <TextView
                 android:id="@+id/tv_total_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
                 android:layout_marginBottom="@dimen/x2"
                 android:lines="1"
-                android:layout_gravity="right"
                 android:text="合计:￥750.00"
-                android:textSize="@dimen/x10"
                 android:textColor="@color/red"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:textSize="@dimen/x10" />
+
             <TextView
                 android:id="@+id/tv_discount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
                 android:layout_marginTop="@dimen/x2"
                 android:lines="1"
-                android:layout_gravity="right"
                 android:text="活动优惠:￥50.00"
-                android:textSize="@dimen/x10"
                 android:textColor="@color/gray"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:textSize="@dimen/x10" />
         </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

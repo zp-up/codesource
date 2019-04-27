@@ -4,5 +4,5 @@ package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entit
  * Created by wuqaing on 2018/12/13.
  */
 
-public class AfterSaleGoodsBean {
+public class AfterSaleGoodsBean extends OrderRootBean {
 }

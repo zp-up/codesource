@@ -13,4 +13,5 @@ public interface UserOptionInterface {
     void getVerifyCode(RequestParams params, OnNetCallBack callBack);
     void doRegister(RequestParams params,OnNetCallBack callBack);
     void onDestroyed();
+    void commonData(RequestParams params, OnNetCallBack callBack, int type);// 获取通用数据
 }

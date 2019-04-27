@@ -232,6 +232,16 @@ public class ContactCustomerServiceActivity extends BaseAppcompatActivity {
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
         presenter.getInitMessage(params, new NetCallback() {
             @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+
+            @Override
             public void onSuccess(String result) {
                 if (result != null) {
                     try {
@@ -320,6 +330,16 @@ public class ContactCustomerServiceActivity extends BaseAppcompatActivity {
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
         params.addBodyParameter("text", msg);
         presenter.sendMessage(params, new NetCallback() {
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+
             @Override
             public void onSuccess(String result) {
                 if (result != null) {

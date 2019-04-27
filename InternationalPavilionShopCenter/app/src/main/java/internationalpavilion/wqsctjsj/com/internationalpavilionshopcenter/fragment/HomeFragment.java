@@ -61,6 +61,7 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entity
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.homeOverseasGoodsList.HomeOverSeasGoodsBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.homePopularityGoods.HomePopularityGoodsBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.homeWishGoodsBean.HomeWishGoodsBean;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.userInfo.UserBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp.HomeDataImp;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.HomeDataInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
@@ -171,8 +172,9 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
         params.addBodyParameter("page", "1");
         params.addBodyParameter("limit", "9");
-        if (((IPSCApplication) getActivity().getApplicationContext()).getUserInfo() != null) {
-            params.addBodyParameter("user", ((IPSCApplication) getActivity().getApplicationContext()).getUserInfo().getId() + "");
+        UserBean userInfo = ((IPSCApplication) getActivity().getApplicationContext()).getUserInfo();
+        if (userInfo != null) {
+            params.addBodyParameter("user", userInfo.getId() + "");
         }
         homePresenter.getWishGoodsList(params, this);
     }
@@ -467,29 +469,35 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
                     if (jsonObject.has("data")) {
                         ArrayList<LimitTimeGoodsBean> goodsList = new ArrayList<>();
                         JSONArray jsonArray = jsonObject.getJSONArray("data");
-                        limitTimeGoodsData.clear();
-                        homeAdapter3.notifyDataSetChanged();
-                        for (int i = 0; i < jsonArray.length(); i++) {
-                            int id = jsonArray.getJSONObject(i).getJSONObject("goods_goods").getInt("id");
-                            String goodsName = jsonArray.getJSONObject(i).getJSONObject("goods_goods").getString("name");
-                            double price = jsonArray.getJSONObject(i).getDouble("price");
-                            String picUrl = jsonArray.getJSONObject(i).getJSONObject("goods_goods").getJSONArray("img").getString(0);
-                            long startTimes = jsonArray.getJSONObject(i).getLong("pron_add_time");
-                            long endTimes = jsonArray.getJSONObject(i).getLong("pron_end_time");
-                            LimitTimeGoodsBean goodsBean = new LimitTimeGoodsBean();
-                            goodsBean.setEndTime(endTimes);
-                            goodsBean.setGoodsImg(picUrl);
-                            goodsBean.setGoodsName(goodsName);
-                            goodsBean.setId(id);
-                            goodsBean.setEndHour(endTime);
-                            goodsBean.setPrice(price);
-                            goodsBean.setStartTime(startTimes);
-                            goodsList.add(goodsBean);
+                        if(jsonArray.length()>0){
+                            limitTimeGoodsData.clear();
+                            homeAdapter3.notifyDataSetChanged();
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                int id = jsonArray.getJSONObject(i).getJSONObject("goods_goods").getInt("id");
+                                String goodsName = jsonArray.getJSONObject(i).getJSONObject("goods_goods").getString("name");
+                                double price = jsonArray.getJSONObject(i).getDouble("price");
+                                String picUrl = jsonArray.getJSONObject(i).getJSONObject("goods_goods").getJSONArray("img").getString(0);
+                                long startTimes = jsonArray.getJSONObject(i).getLong("pron_add_time");
+                                long endTimes = jsonArray.getJSONObject(i).getLong("pron_end_time");
+                                LimitTimeGoodsBean goodsBean = new LimitTimeGoodsBean();
+                                goodsBean.setEndTime(endTimes);
+                                goodsBean.setGoodsImg(picUrl);
+                                goodsBean.setGoodsName(goodsName);
+                                goodsBean.setId(id);
+                                goodsBean.setEndHour(endTime);
+                                goodsBean.setPrice(price);
+                                goodsBean.setStartTime(startTimes);
+                                goodsList.add(goodsBean);
+                            }
+                            HashMap<String, Object> map = new HashMap<>();
+                            map.put("limitTimeGoods", goodsList);
+                            limitTimeGoodsData.add(map);
+                            homeAdapter3.notifyDataSetChanged();
+                        }else{
+                            adapter.removeAdapter(homeAdapter3);
+                            adapter.notifyDataSetChanged();
                         }
-                        HashMap<String, Object> map = new HashMap<>();
-                        map.put("limitTimeGoods", goodsList);
-                        limitTimeGoodsData.add(map);
-                        homeAdapter3.notifyDataSetChanged();
+
                     }
                 }
             } catch (Exception e) {

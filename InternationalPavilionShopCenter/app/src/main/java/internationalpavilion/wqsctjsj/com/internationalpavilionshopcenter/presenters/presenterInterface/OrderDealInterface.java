@@ -14,5 +14,7 @@ public interface OrderDealInterface {
     void cancelOrder(RequestParams params,OnOrderDealCallBack callBack);
     void backMoneyOnly(RequestParams params,OnOrderDealCallBack callBack);
     void confirmReceived(RequestParams params,OnOrderDealCallBack callBack);
+//    void requestAfterSale(RequestParams params, OnOrderDealCallBack callBack);
+//    void setExpressInfo(RequestParams params, OnOrderDealCallBack callBack);
     void onDestroyed();
 }

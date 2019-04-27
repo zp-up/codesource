@@ -63,85 +63,94 @@
                 android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="43dp">
+
                 <LinearLayout
-                    android:orientation="horizontal"
-                    android:background="@color/white"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp">
-                    <TextView
-                        android:gravity="center"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:id="@+id/tv_filter_popularity"
-                        android:text="人气"
-                        android:textColor="#ff7d66"
-                        android:textSize="14sp"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content" />
+                    android:layout_height="40dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:gravity="center"
+                        android:id="@+id/tv_filter_popularity"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="人气"
+                        android:textColor="#ff7d66"
+                        android:textSize="14sp" />
+
+                    <TextView
                         android:id="@+id/tv_filter_discount"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="center"
                         android:text="折扣"
                         android:textColor="#636363"
-                        android:textSize="14sp"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content" />
+                        android:textSize="14sp" />
+
                     <RelativeLayout
-                        android:layout_weight="1"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
                         <LinearLayout
                             android:id="@+id/ll_filter_price"
-                            android:orientation="horizontal"
-                            android:layout_centerInParent="true"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:orientation="horizontal">
+
                             <TextView
-                                android:gravity="center"
-                                android:layout_gravity="center_vertical"
                                 android:id="@+id/tv_filter_price"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center"
                                 android:text="价格"
                                 android:textColor="#636363"
-                                android:textSize="14sp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:textSize="14sp" />
+
                             <ImageView
                                 android:id="@+id/iv_price_pointer"
-                                android:src="@mipmap/icon_filter_price"
-                                android:layout_gravity="center_vertical"
                                 android:layout_width="@dimen/x12"
-                                android:layout_height="@dimen/x12" />
+                                android:layout_height="@dimen/x12"
+                                android:layout_gravity="center_vertical"
+                                android:src="@mipmap/icon_filter_price" />
                         </LinearLayout>
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:layout_weight="1"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
                         <LinearLayout
                             android:id="@+id/ll_filter_screen"
-                            android:orientation="horizontal"
-                            android:layout_centerInParent="true"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:orientation="horizontal">
+
                             <TextView
-                                android:gravity="center"
-                                android:layout_gravity="center_vertical"
                                 android:id="@+id/tv_filter_screen"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center"
                                 android:text="筛选"
                                 android:textColor="#636363"
-                                android:textSize="14sp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:textSize="14sp" />
+
                             <ImageView
                                 android:id="@+id/iv_filter_screen_pointer"
-                                android:src="@mipmap/icon_filter_screen"
-                                android:layout_gravity="center_vertical"
                                 android:layout_width="@dimen/x12"
-                                android:layout_height="@dimen/x12" />
+                                android:layout_height="@dimen/x12"
+                                android:layout_gravity="center_vertical"
+                                android:src="@mipmap/icon_filter_screen" />
                         </LinearLayout>
                     </RelativeLayout>
                 </LinearLayout>

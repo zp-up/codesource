@@ -224,4 +224,32 @@ public class OrderRootBean {
     public int getCount() {
         return count;
     }
+
+    @Override
+    public String toString() {
+        return "OrderRootBean{" +
+                "id=" + id +
+                ", orderNumber='" + orderNumber + '\'' +
+                ", status='" + status + '\'' +
+                ", state=" + state +
+                ", count=" + count +
+                ", type=" + type +
+                ", afterSaleState='" + afterSaleState + '\'' +
+                ", refund_goods='" + refund_goods + '\'' +
+                ", refund_goods_time=" + refund_goods_time +
+                ", refund_state='" + refund_state + '\'' +
+                ", refund_time=" + refund_time +
+                ", storeType='" + storeType + '\'' +
+                ", create_time='" + create_time + '\'' +
+                ", pay_total=" + pay_total +
+                ", goodsBeans=" + goodsBeans +
+                ", post='" + post + '\'' +
+                ", total_tax=" + total_tax +
+                ", total_goods=" + total_goods +
+                ", total_total=" + total_total +
+                ", addressBean=" + addressBean +
+                ", postPrice=" + postPrice +
+                ", weight=" + weight +
+                '}';
+    }
 }

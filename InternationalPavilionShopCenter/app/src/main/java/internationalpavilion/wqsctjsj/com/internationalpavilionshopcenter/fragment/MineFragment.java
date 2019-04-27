@@ -41,6 +41,7 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activi
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.MyIntegralActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.OrderActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.RealNameAuthenticationActivity;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.RealNameAuthenticationListActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.ReceivedAddressListActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.SettingActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.application.IPSCApplication;
@@ -266,7 +267,7 @@ public class MineFragment extends Fragment {
                 break;
             case R.id.ll_to_real_name_auther:
                 if(isLogin()){
-                    Intent intentToRealNameAuthor = new Intent(getActivity(), RealNameAuthenticationActivity.class);
+                    Intent intentToRealNameAuthor = new Intent(getActivity(), RealNameAuthenticationListActivity.class);
                     startActivity(intentToRealNameAuthor);
                 }else {
                     if(getActivity()!=null){

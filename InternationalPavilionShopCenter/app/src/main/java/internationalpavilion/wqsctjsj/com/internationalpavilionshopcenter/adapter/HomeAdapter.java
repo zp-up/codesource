@@ -203,10 +203,15 @@ public class HomeAdapter extends DelegateAdapter.Adapter<HomeAdapter.ViewHolder>
                     }
                 });
                 break;
-            case TYPE_3:
+            case TYPE_3:// 限时购
                 if (data.get(position).containsKey("limitTimeGoods") && data.get(position).get("limitTimeGoods") != null) {
                     final ArrayList<LimitTimeGoodsBean> goodsList = (ArrayList<LimitTimeGoodsBean>) data.get(position).get("limitTimeGoods");
                     if (goodsList != null && goodsList.size() != 0) {
+
+                        // default visibility is visible
+                        holder.itemView.setVisibility(View.VISIBLE);
+                        holder.itemView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
+
                         if (holder.llGoodsContainer != null) {
                             holder.llGoodsContainer.removeAllViews();
                             for (int i = 0; i < goodsList.size(); i++) {
@@ -246,6 +251,10 @@ public class HomeAdapter extends DelegateAdapter.Adapter<HomeAdapter.ViewHolder>
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
+                    } else {
+                        // 无数据的情况下隐藏
+                        holder.itemView.setVisibility(View.GONE);
+                        holder.itemView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 0));
                     }
                 }
                 holder.llMore.setOnClickListener(new View.OnClickListener() {

@@ -41,6 +41,8 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget
  */
 
 public class ClassPopularityAdapter extends DelegateAdapter.Adapter<ClassPopularityAdapter.ViewHolder> {
+
+    public static final String TAG = "[IPSC][ClassPopularityAdapter]";
     private final int TYPE_1 = 1;
     private final int TYPE_2 = 2;
 
@@ -119,6 +121,7 @@ public class ClassPopularityAdapter extends DelegateAdapter.Adapter<ClassPopular
             case TYPE_2:
                 if (data.get(position).containsKey("popularityGoods") && data.get(position).get("popularityGoods") != null) {
                     final HomePopularityGoodsBean goodsBean = (HomePopularityGoodsBean) data.get(position).get("popularityGoods");
+                    Log.d(TAG, "onclick 1 goodID:" + goodsBean.getGoodsId() + ",name" + goodsBean.getGoodsName());
                     if (goodsBean != null) {
                         Glide.with(context).load(goodsBean.getGoodsPic()).apply(new RequestOptions().error(R.drawable.bg_home_lay10_1).placeholder(R.drawable.bg_home_lay10_1).override(300, 300)).into(holder.ivPopGoodsPic);
                         holder.tvPopGoodsName.setText(goodsBean.getGoodsName());
@@ -134,6 +137,7 @@ public class ClassPopularityAdapter extends DelegateAdapter.Adapter<ClassPopular
                         @Override
                         public void onClick(View view) {
                             Intent intent = new Intent(context, GoodsDetailActivity.class);
+                            Log.d(TAG, "onclick goodID:" + goodsBean.getGoodsId() + ",name" + goodsBean.getGoodsName());
                             intent.putExtra("goodsId", goodsBean.getGoodsId());
                             context.startActivity(intent);
                         }
@@ -153,13 +157,6 @@ public class ClassPopularityAdapter extends DelegateAdapter.Adapter<ClassPopular
                 int width = dm.widthPixels;
                 layoutParamsP.width = width / 2 - (int) (leftMargin * 2);
                 holder.llParent.setLayoutParams(layoutParamsP);
-                holder.llParent.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(context, GoodsDetailActivity.class);
-                        context.startActivity(intent);
-                    }
-                });
                 break;
         }
 

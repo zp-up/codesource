@@ -85,6 +85,8 @@ import static internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter
 import static internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.TimerView.TIMETYPE_S;
 
 public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGoodsDetailInfoCallback {
+
+    private static final String TAG = "[IPSC][GoodsDetailActivity]";
     @BindView(R.id.slidingTabLayout)
     SlidingTabLayout slidingTabLayout;
     @BindView(R.id.goods_banner)
@@ -182,7 +184,7 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
         StatusBarUtil.setTranslucentForImageViewInFragment(this, 0, null);
         Intent intent = getIntent();
         goodsId = intent.getIntExtra("goodsId", -1);
-        Log.e("TAG", "商品Id:" + goodsId);
+        Log.e(TAG, "商品Id:" + goodsId);
         goodsDetailPresenter = new GoodsDetailImp();
         initData(goodsId);
     }
@@ -223,7 +225,7 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
         }
         //商品信息数据
         tvGoodsName.setText(goodsBean.getData().getGoods_goods().getName());
-        Log.e("TAG","goodsname:"+tvGoodsName.getText() );
+        Log.e(TAG,"goodsname:"+tvGoodsName.getText() );
         tvGoodsDescription.setText(goodsBean.getData().getGoods_goods().getDescribe());
         tvNowPrice.setText("" + new DecimalFormat("######0.00").format(goodsBean.getData().getPrice()));
         tvOriginalPrice.setText("￥" + new DecimalFormat("######0.00").format(goodsBean.getData().getPrice_m()));
@@ -273,7 +275,7 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
                 double endTime = ((long) goodsBean.getData().getPron_end_time()) * 1000;
                 double nowTime = (new Date()).getTime();
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                Log.e("TAG", "结束时间:" + simpleDateFormat.format(new Date((long) endTime)) + "  现在时间:" + simpleDateFormat.format(new Date((long) nowTime)) + "----:" + nowTime);
+                Log.e(TAG, "结束时间:" + simpleDateFormat.format(new Date((long) endTime)) + "  现在时间:" + simpleDateFormat.format(new Date((long) nowTime)) + "----:" + nowTime);
 
                 double sub = endTime - nowTime;
                 llKilling.setVisibility(View.VISIBLE);
@@ -338,90 +340,154 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
         return R.layout.activity_goods_detail;
     }
 
+    /**
+     * 联系客服
+     */
+    public void contactService() {
+        if (isLogin()) {
+            startActivity(new Intent(this, ContactCustomerServiceActivity.class));
+        } else {
+            startActivity(new Intent(this, LoginByPasswordActivity.class));
+        }
+    }
+
+    /**
+     * 打开选择面板
+     */
+    public void openSelectSpec() {
+        if (goodsPropsSelectPop == null) {
+            goodsPropsSelectPop = new GoodsPropsSelectPop(this, goodsBean, specLists, storeLists);
+        }
+        goodsPropsSelectPop.show(rlParent, new GoodsPropsSelectPop.ShoppingCartClick() {
+            @Override
+            public void onClick(int type, double rentPrice, double buyPrice) {
+
+            }
+        });
+    }
+
+    /**
+     * 跳转到评价列表界面
+     */
+    public void toEvaluateList() {
+        Intent intent = new Intent(GoodsDetailActivity.this, GoodsEvalateListActivity.class);
+        intent.putExtra("goodsId", goodsId);
+        startActivity(intent);
+    }
+
+    /**
+     * 添加购物车
+     */
+    public void addToCart() {
+        if (isLogin()) {
+            if (goodsPropsSelectPop == null) {
+                goodsPropsSelectPop = new GoodsPropsSelectPop(this, goodsBean, specLists, storeLists);
+            }
+            goodsPropsSelectPop.show(rlParent, new GoodsPropsSelectPop.ShoppingCartClick() {
+                @Override
+                public void onClick(int type, double rentPrice, double buyPrice) {
+
+                }
+            });
+        } else {
+            startActivity(new Intent(this, LoginByPasswordActivity.class));
+        }
+    }
+
+    /**
+     * 打开购物车
+     */
+    public void openShoppingCar() {
+        if (isLogin()) {
+            EventBus.getDefault().post(new MainSwitchEvent(3));
+
+            finish();
+        } else {
+            startActivity(new Intent(this, LoginByPasswordActivity.class));
+        }
+    }
+
+    /**
+     * 收藏
+     */
+    public void addToCollection() {
+        if (isLogin()) {
+            RequestParams params = new RequestParams(MainUrls.addToCollectionUrl);
+            params.addBodyParameter("access_token", IPSCApplication.accessToken);
+            params.addBodyParameter("user", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
+            params.addBodyParameter("goods", goodsId + "");
+            Log.d(TAG, " addToCollection user:" + ((IPSCApplication) getApplication()).getUserInfo().getId() + ",goods:" + goodsId);
+            goodsDetailPresenter.addGoodsToCollection(params, this, isCollection == 0 ? 1 : 2);
+        } else {
+            ToastUtils.show(GoodsDetailActivity.this, "请先登录");
+            Intent intentToCollection = new Intent(GoodsDetailActivity.this, LoginByPasswordActivity.class);
+            startActivityForResult(intentToCollection, 100);
+        }
+    }
+
+    private boolean isBuyImmediately = false;// 是否是立即购买
+    /**
+     * 立即购买
+     */
+    public void buyImmediately(int currentSpecId, int currentStoreType, int number) {
+        if (isLogin()) {
+            isBuyImmediately = true;
+            addToCart(currentSpecId, currentStoreType, number);
+        } else {
+            startActivity(new Intent(this, LoginByPasswordActivity.class));
+        }
+    }
+
+    /**
+     * 立即购买
+     */
+    public void buyImmediately() {
+        if (isLogin()) {
+            if (goodsPropsSelectPop == null) {
+                goodsPropsSelectPop = new GoodsPropsSelectPop(this, goodsBean, specLists, storeLists);
+            }
+            goodsPropsSelectPop.show(rlParent, new GoodsPropsSelectPop.ShoppingCartClick() {
+                @Override
+                public void onClick(int type, double rentPrice, double buyPrice) {
+
+                }
+            });
+        } else {
+            startActivity(new Intent(this, LoginByPasswordActivity.class));
+        }
+    }
+
     @OnClick({R.id.iv_back, R.id.rl_open_select_spec, R.id.rl_to_evaluate_list, R.id.tv_add_to_cart, R.id.rl_add_to_collection,
             R.id.tv_buy_immediately, R.id.rl_car, R.id.rl_contact_service})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rl_contact_service:
-                if (isLogin()) {
-                    startActivity(new Intent(this, ContactCustomerServiceActivity.class));
-                } else {
-                    startActivity(new Intent(this, LoginByPasswordActivity.class));
-                }
+                contactService();
                 break;
             case R.id.iv_back:
                 finish();
                 break;
             case R.id.rl_open_select_spec:
-                goodsPropsSelectPop = new GoodsPropsSelectPop(this, goodsBean, specLists, storeLists);
-                goodsPropsSelectPop.show(rlParent, new GoodsPropsSelectPop.ShoppingCartClick() {
-                    @Override
-                    public void onClick(int type, double rentPrice, double buyPrice) {
-
-                    }
-                });
+                openSelectSpec();
                 break;
             case R.id.rl_to_evaluate_list:
-                Intent intent = new Intent(GoodsDetailActivity.this, GoodsEvalateListActivity.class);
-                intent.putExtra("goodsId", goodsId);
-                startActivity(intent);
+                toEvaluateList();
                 break;
             //添加购物车
             case R.id.tv_add_to_cart:
-
-                if (isLogin()) {
-                    goodsPropsSelectPop = new GoodsPropsSelectPop(this, goodsBean, specLists, storeLists);
-                    goodsPropsSelectPop.show(rlParent, new GoodsPropsSelectPop.ShoppingCartClick() {
-                        @Override
-                        public void onClick(int type, double rentPrice, double buyPrice) {
-
-                        }
-                    });
-                } else {
-                    startActivity(new Intent(this, LoginByPasswordActivity.class));
-                }
-
+                addToCart();
                 break;
-
             //打开购物车
             case R.id.rl_car:
-
-                if (isLogin()) {
-                    EventBus.getDefault().post(new MainSwitchEvent(3));
-
-                    finish();
-                } else {
-                    startActivity(new Intent(this, LoginByPasswordActivity.class));
-                }
-
+                openShoppingCar();
                 break;
-
+            // 收藏
             case R.id.rl_add_to_collection:
-                if (isLogin()) {
-                    RequestParams params = new RequestParams(MainUrls.addToCollectionUrl);
-                    params.addBodyParameter("access_token", IPSCApplication.accessToken);
-                    params.addBodyParameter("user", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
-                    params.addBodyParameter("goods", goodsId + "");
-                    goodsDetailPresenter.addGoodsToCollection(params, this, isCollection == 0 ? 1 : 2);
-                } else {
-                    ToastUtils.show(GoodsDetailActivity.this, "请先登录");
-                    Intent intentToCollection = new Intent(GoodsDetailActivity.this, LoginByPasswordActivity.class);
-                    startActivityForResult(intentToCollection, 100);
-                }
+                addToCollection();
                 break;
+            // 立即购买
             case R.id.tv_buy_immediately:
-                if (isLogin()) {
-                    goodsPropsSelectPop = new GoodsPropsSelectPop(this, goodsBean, specLists, storeLists);
-                    goodsPropsSelectPop.show(rlParent, new GoodsPropsSelectPop.ShoppingCartClick() {
-                        @Override
-                        public void onClick(int type, double rentPrice, double buyPrice) {
-
-                        }
-                    });
-                } else {
-                    startActivity(new Intent(this, LoginByPasswordActivity.class));
-                }
-
+                buyImmediately();
                 break;
         }
     }
@@ -443,13 +509,13 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
 
     @Override
     public void onError(String error) {
-
+        Log.d(TAG, "onError() " + error);
     }
 
     @Override
     public void onGoodsInfoLoaded(String result) {
         if (result != null) {
-            Log.e("TAG", "商品信息:" + result);
+            Log.e(TAG, "商品信息:" + result);
             try {
                 Gson gson = new Gson();
                 goodsBean = gson.fromJson(result, GoodsDetailRootBean.class);
@@ -488,7 +554,7 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
     @Override
     public void onGoodsEvaluateLoaded(String result) {
         if (result != null) {
-            Log.e("TAG", "商品评论:" + result);
+            Log.e(TAG, "商品评论:" + result);
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");
@@ -552,7 +618,7 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
     @Override
     public void onGoodsAddedToCart(String result) {
         if (result != null) {
-            Log.e("TAG", "添加购物车:" + result);
+            Log.e(TAG, "添加购物车:" + result);
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");
@@ -561,11 +627,16 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
                 if (code == 0 && state == 0) {
                     ToastUtils.show(GoodsDetailActivity.this, "添加购物车成功!");
                     goodsPropsSelectPop.dismiss();
+                    if (isBuyImmediately) {
+                        openShoppingCar();
+                    }
                 } else {
                     ToastUtils.show(GoodsDetailActivity.this, "添加购物车失败:" + msg);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+            } finally {
+                isBuyImmediately = false;
             }
         }
     }
@@ -645,5 +716,4 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
         }
         return false;
     }
-
 }

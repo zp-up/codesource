@@ -81,6 +81,7 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
         if (getIntent().getStringExtra("id") != null) {
             orderId = getIntent().getStringExtra("id");
         }
+        Log.d("IPSC", "orderId:" + orderId);
     }
 
     @Override

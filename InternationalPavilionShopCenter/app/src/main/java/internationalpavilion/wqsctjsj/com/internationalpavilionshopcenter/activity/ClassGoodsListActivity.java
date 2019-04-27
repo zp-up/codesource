@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -46,20 +45,15 @@ import butterknife.OnClick;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.adapter.BondedGoodsListAdapter;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.application.IPSCApplication;
-import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.BondedGoodsBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.PriceData;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.RightClassBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.RightClassInChildBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.homeBondedGoodsBean.HomeBondedGoodsBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp.BondedGoodsImp;
-import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp.CommonGoodsImp;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.BondedGoodsInterface;
-import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.CommonDataInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnBondedGoodsCallBack;
-import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnBrandGoodsLoaded;
-import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnCommonGoodsCallBack;
 
 
 public class ClassGoodsListActivity extends BaseAppcompatActivity implements OnBondedGoodsCallBack {
@@ -156,7 +150,7 @@ public class ClassGoodsListActivity extends BaseAppcompatActivity implements OnB
         initView();
 
 
-        RequestParams paramsBrand = new RequestParams(MainUrls.getClassBrandUrl);
+        RequestParams paramsBrand = new RequestParams(MainUrls.getAllClassBrandUrl);
         paramsBrand.addBodyParameter("access_token", IPSCApplication.accessToken);
         paramsBrand.addBodyParameter("page", "1");
         paramsBrand.addBodyParameter("limit", "100");
@@ -355,6 +349,7 @@ public class ClassGoodsListActivity extends BaseAppcompatActivity implements OnB
                     break;
             }
         }
+        Log.d("[IPSC][]", "initData() params:" + params.toString());
         bondedGoodsPresenter.getBondedGoods(params, this);
 
         if (adapter == null) {
@@ -422,6 +417,7 @@ public class ClassGoodsListActivity extends BaseAppcompatActivity implements OnB
                     break;
             }
         }
+        Log.d("[IPSC][]", "loadMore() params:" + params.toString());
         bondedGoodsPresenter.getBondedGoods(params, this);
     }
 

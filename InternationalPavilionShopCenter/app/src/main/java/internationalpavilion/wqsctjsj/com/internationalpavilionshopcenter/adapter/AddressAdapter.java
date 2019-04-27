@@ -92,7 +92,9 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
         holder.llItemClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onItemClick(data.get(position).getId());
+                if (listener != null) {
+                    listener.onItemClick(data.get(position).getId());
+                }
             }
         });
     }

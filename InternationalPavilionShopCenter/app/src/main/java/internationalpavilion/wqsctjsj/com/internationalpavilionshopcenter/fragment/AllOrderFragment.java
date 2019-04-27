@@ -96,6 +96,7 @@ public class AllOrderFragment extends Fragment implements OnCommonGoodsCallBack 
         if(getActivity()!=null && isAdded()){
             if(((IPSCApplication) getActivity().getApplication()).getUserInfo()!=null){
                 params.addBodyParameter("user", ((IPSCApplication)getActivity().getApplication()).getUserInfo().getId() + "");
+                Log.d("IPSC", "userID:" + ((IPSCApplication) getActivity().getApplication()).getUserInfo().getId() + "");
             }
         }
 

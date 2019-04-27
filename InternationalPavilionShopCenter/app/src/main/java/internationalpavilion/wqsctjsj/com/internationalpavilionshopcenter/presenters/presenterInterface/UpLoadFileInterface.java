@@ -12,5 +12,6 @@ public interface UpLoadFileInterface {
     void upLoadFile(RequestParams params, OnUpLoadFileCallback callback);
     void modifyUserHead(RequestParams params,OnUpLoadFileCallback callback);
     void modifyUserNickName(RequestParams params,OnUpLoadFileCallback callback);
+    void verifyIdCardByInput(RequestParams params,OnUpLoadFileCallback callback);
     void onDestroyed();
 }

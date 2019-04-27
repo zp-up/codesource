@@ -4,7 +4,7 @@ package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views
  * Created by wuqaing on 2019/1/8.
  */
 
-public interface OnCommonGoodsCallBack {
+public interface OnCommonGoodsCallBack  {
     void onStarted();
 
     void onFinished();
@@ -12,4 +12,5 @@ public interface OnCommonGoodsCallBack {
     void onError(String error);
 
     void onCommonGoodsCallBack(String result);
+//    void onRequestAfterSale(String result);// 申请售后
 }

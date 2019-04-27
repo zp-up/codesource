@@ -27,27 +27,23 @@ import org.xutils.http.RequestParams;
 
 import java.util.List;
 import java.util.Map;
-import java.util.SortedMap;
-import java.util.TreeMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.application.IPSCApplication;
-import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.eventBusBean.WxPayEvent;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.eventBusBean.WxEvent;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp.CommonGoodsImp;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.CommonDataInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.EasyPermissionsEx;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.PayResult;
-import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.RandCharsUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
-import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.WXSignUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnCommonGoodsCallBack;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.wxapi.WXEntryActivity;
 
 public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoodsCallBack {
-    // APP_ID 替换为你的应用从官方网站申请到的合法appID
-    private static final String APP_ID = "wx936ef706f9fb1fe7";
+
     private static final String TAG = "[IPSC][PayWayActivity]";
 
     // IWXAPI 是第三方app和微信通信的openApi接口
@@ -81,10 +77,7 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
                     String resultStatus = payResult.getResultStatus();
                     // 判断resultStatus 为9000则代表支付成功
                     if (TextUtils.equals(resultStatus, "9000")) {
-                        // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
-                        ToastUtils.show(PayWayActivity.this, "支付成功");
-                        Intent intent = new Intent(PayWayActivity.this, PayResultActivity.class);
-                        startActivity(intent);
+                        getPayResult();
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
                         ToastUtils.show(PayWayActivity.this, "支付失败:" + resultInfo);
@@ -96,10 +89,10 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
 
     private void regToWx() {
         // 通过WXAPIFactory工厂，获取IWXAPI的实例
-        api = WXAPIFactory.createWXAPI(this, APP_ID, false);
+        api = WXAPIFactory.createWXAPI(this, WXEntryActivity.WX_APP_ID, false);
 
         // 将应用的appId注册到微信
-        api.registerApp(APP_ID);
+        api.registerApp(WXEntryActivity.WX_APP_ID);
     }
 
     @Override
@@ -135,9 +128,10 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
     }
 
     @Subscribe
-    public void onEvent(WxPayEvent event) {
+    public void onEvent(WxEvent event) {
         if (event != null) {
-            if (event.getCode() == 1) {
+            if (event.getCode() == 1) {// 支付成功
+                getPayResult();
                 Intent intent = new Intent(PayWayActivity.this, PayResultActivity.class);
                 startActivity(intent);
             }
@@ -154,8 +148,6 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
         switch (view.getId()) {
             case R.id.tv_confirm:
                 confirmSetPayWay();
-//                Intent intent = new Intent(PayWayActivity.this, PayResultActivity.class);
-//                startActivity(intent);
                 break;
             case R.id.iv_back:
                 finish();
@@ -196,6 +188,21 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
             Log.e(TAG, "selectPayWay() occur an exception!", e);
         }
 
+    }
+
+    /**
+     * 查询支付结果
+     */
+    private void getPayResult() {
+        flag = 4;
+        try {
+            RequestParams params = new RequestParams(MainUrls.getPayResultUrl);
+            params.addBodyParameter("access_token", IPSCApplication.accessToken);
+            params.addBodyParameter("id", orderId);
+            commonPresenter.getCommonGoodsData(params, this);
+        } catch (Exception e) {
+            Log.e(TAG, "selectPayWay() occur an exception!", e);
+        }
     }
 
     @Override
@@ -253,6 +260,16 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
                         payWithAlipay(orderInfo);
                     } else if (currentId == wechatId) {
                         payWithWechat(orderInfo);
+                    }
+                } else if (flag == 4) {
+                    JSONObject orderInfoJSON = jsonObject.getJSONObject("data");
+                    // 后台支付结果校验
+                    if ("10000".equals(orderInfoJSON.getString("code"))) { // 支付成功
+                        toPayResult();
+                        // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
+                        ToastUtils.show(PayWayActivity.this, "支付成功");
+                    } else {
+                        Log.e(TAG, "background pay result is failed! result:" + result);
                     }
                 }
             }
@@ -353,5 +370,13 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
         // 必须异步调用
         Thread payThread = new Thread(payRunnable);
         payThread.start();
+    }
+
+    /**
+     * 跳转支付结果
+     */
+    private void toPayResult() {
+        Intent intent = new Intent(PayWayActivity.this, PayResultActivity.class);
+        startActivity(intent);
     }
 }

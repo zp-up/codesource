@@ -30,7 +30,7 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entity
 
 
 /**
- * Created by wuqaing on 2018/12/5.
+ * 分类商品列表
  */
 
 public class BondedGoodsListAdapter extends RecyclerView.Adapter<BondedGoodsListAdapter.ViewHolder> {

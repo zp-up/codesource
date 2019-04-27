@@ -42,6 +42,8 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.
  */
 
 public class IPSCApplication extends Application implements OnNetCallBack{
+
+    private static final String TAG = "[IPSC][IPSCApplication]";
     public static String accessToken = "";
     public static int id = -1;
     private String token;
@@ -130,6 +132,7 @@ public class IPSCApplication extends Application implements OnNetCallBack{
 
     }
     public void saveUserInfo(String userJson){
+        Log.d(TAG, "saveUserInfo() userJson:" + userJson);
         if (userJson == null){
             return;
         }
@@ -147,6 +150,7 @@ public class IPSCApplication extends Application implements OnNetCallBack{
         }catch (Exception e){
             e.printStackTrace();
         }
+        Log.d(TAG, "getUserInfo() userJson:" + userJson.toString());
         return userBean;
     }
     public void removeUserInfo(){
@@ -157,13 +161,19 @@ public class IPSCApplication extends Application implements OnNetCallBack{
     }
     @Override
     public void onError(String error) {
-        Log.e("TAG","error:"+error);
+        Log.e(TAG,"error:"+error);
     }
 
     @Override
     public void onGetCodeSuccess(String result) {
 
     }
+
+    @Override
+    public void onCommonSuccess(String result, int type) {
+
+    }
+
     public DisplayImageOptions getDisplayOptions() {
         DisplayImageOptions options;
         options = new DisplayImageOptions.Builder()
@@ -189,7 +199,7 @@ public class IPSCApplication extends Application implements OnNetCallBack{
     @Override
     public void onLoginSuccess(String result) {
         if (result != null){
-            Log.e("TAG","登录结果:"+result);
+            Log.e(TAG,"登录结果:"+result);
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");
