@@ -58,11 +58,10 @@ public class AfterSaleFormSubmitActivity extends BaseAppcompatActivity implement
         super.onCreate(savedInstanceState);
         if (getIntent().getIntExtra("orderId", -1) != -1) {
             orderId = getIntent().getIntExtra("orderId", -1);
-            Log.e(TAG, "订单id：" + orderId);
         }
+        Log.e(TAG, "订单id：" + orderId);
         if (getIntent().getByteArrayExtra("orderRootBean") != null) {
             rootBean = getIntent().getByteArrayExtra("orderRootBean");
-            Log.e(TAG, "订单id：" + orderId);
         }
         commonPresenter = new CommonGoodsImp();
         orderDealPresenter = new OrderDealImp();

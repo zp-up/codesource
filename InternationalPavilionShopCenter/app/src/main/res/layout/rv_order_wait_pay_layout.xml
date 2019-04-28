@@ -185,7 +185,7 @@
                 android:id="@+id/tv_to_pay"
                 android:layout_marginRight="@dimen/x10"
                 android:layout_alignParentRight="true"
-                android:background="@color/red"
+                android:background="@drawable/shape_of_red_btn_small"
                 android:gravity="center"
                 android:layout_gravity="center_vertical"
                 android:text="付款"

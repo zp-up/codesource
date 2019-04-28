@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.chrisjason.baseui.ui.BaseAppcompatActivity;
+import com.google.gson.Gson;
 import com.jaeger.library.StatusBarUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -48,6 +49,7 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presen
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.NetCallback;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.SearchOperationInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.LogUtil;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.PasswordCheckUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.PhoneNumberCheckUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ScreenUtil;
@@ -175,7 +177,7 @@ public class SearchActivity extends BaseAppcompatActivity implements OnSearchCal
 
                 @Override
                 public void onSuccess(String result) {
-                    Log.d(TAG, "doSearch onSuccess! result:" + result);
+                    LogUtil.d(TAG, "doSearch onSuccess! result:" + result);
                     stopRefreshAndLoadMore();
                     if (result != null) {
                         try {
@@ -198,6 +200,7 @@ public class SearchActivity extends BaseAppcompatActivity implements OnSearchCal
                                             GroupProductEntity.GoodsGoodsBean goodsGoodsBean = new GroupProductEntity.GoodsGoodsBean();
                                             GroupProductEntity.StoreStoreBean storeStoreBean = new GroupProductEntity.StoreStoreBean();
 
+                                            storeStoreBean = new Gson().fromJson(obj_i.getString("store_store"), GroupProductEntity.StoreStoreBean.class);
 
                                             JSONObject goods_goods = obj_i.getJSONObject("goods_goods");
 
@@ -345,6 +348,15 @@ public class SearchActivity extends BaseAppcompatActivity implements OnSearchCal
                 TextView tvProductName = holder.getView(R.id.tv_name);
                 TextView tvDescribe= holder.getView(R.id.tv_describe);
                 TextView tvSinglePrice = holder.getView(R.id.tv_price);
+                TextView tvStoreType = holder.getView(R.id.tv_store_type);
+
+                // 仓库类型
+                if (productEntity.getStore_store() != null && TextUtils.isEmpty(productEntity.getStore_store().getType())) {
+                    tvStoreType.setVisibility(View.GONE);
+                } else {
+                    tvStoreType.setVisibility(View.VISIBLE);
+                    tvStoreType.setText(productEntity.getStore_store().getType());
+                }
 
                 //商品名字
                 tvProductName.setText(productEntity.getGoods_goods().getName());

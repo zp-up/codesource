@@ -9,16 +9,32 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <RelativeLayout
-        android:background="#fff4f4f4"
-        android:padding="5dp"
         android:layout_width="match_parent"
-        android:layout_height="171dp">
+        android:layout_height="171dp"
+        android:background="#fff4f4f4"
+        android:padding="5dp">
+
         <ImageView
             android:id="@+id/iv_product"
-            tools:src="@mipmap/ic_launcher"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_centerInParent="true"
+            android:scaleType="fitXY"
+            tools:src="@drawable/bg_home_lay10_1" />
+
+        <TextView
+            android:id="@+id/tv_store_type"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x20"
+            android:background="@drawable/shape_of_text_left"
+            android:paddingBottom="@dimen/x2"
+            android:paddingLeft="@dimen/x10"
+            android:paddingRight="@dimen/x10"
+            android:paddingTop="@dimen/x2"
+            android:textColor="@color/white"
+            android:textSize="@dimen/x10"
+            tools:text="保税商品" />
     </RelativeLayout>
     
     <RelativeLayout
@@ -42,22 +58,25 @@
 
     <TextView
         android:id="@+id/tv_name"
-        android:singleLine="true"
-        android:layout_marginTop="18dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Gucci Bloom Acqua..."
-        android:textColor="#ff333333"
-        android:textSize="14dp" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/x5"
+        android:ellipsize="end"
+        android:lines="1"
+        android:singleLine="true"
+        android:textColor="@color/gray"
+        android:textSize="11sp"
+        tools:text="Gucci Bloom Acqua..." />
 
     <TextView
         android:id="@+id/tv_price"
-        android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="¥820"
-        android:textColor="#ff232323"
-        android:textSize="10dp"
-        />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/x5"
+        android:textColor="@color/black"
+        android:textSize="@dimen/x14"
+        tools:text="¥820" />
 
 </LinearLayout>

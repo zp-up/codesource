@@ -73,6 +73,8 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.fragme
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp.GoodsDetailImp;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.GoodsDetailInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.LogUtil;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.StringUtil;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnGoodsDetailInfoCallback;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.CustomScrollViewPager;
@@ -219,13 +221,13 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
     }
 
     private void initView() {
-        Log.e("goods:","goodsbean:"+goodsBean);
+        Log.e("goods:", "goodsbean == null:" + (goodsBean == null));
         if (goodsBean == null) {
             return;
         }
         //商品信息数据
         tvGoodsName.setText(goodsBean.getData().getGoods_goods().getName());
-        Log.e(TAG,"goodsname:"+tvGoodsName.getText() );
+        Log.e(TAG, "goodsname:" + tvGoodsName.getText());
         tvGoodsDescription.setText(goodsBean.getData().getGoods_goods().getDescribe());
         tvNowPrice.setText("" + new DecimalFormat("######0.00").format(goodsBean.getData().getPrice()));
         tvOriginalPrice.setText("￥" + new DecimalFormat("######0.00").format(goodsBean.getData().getPrice_m()));
@@ -237,7 +239,7 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
         }
         tvStock.setText("库存:" + goodsBean.getData().getUsenumber());
         llGoodsTagContainer.removeAllViews();
-        if (goodsBean.getData().getStore_store().getType() != null) {
+        if (goodsBean.getData().getStore_store() != null && goodsBean.getData().getStore_store().getType() != null) {
             View view = LayoutInflater.from(GoodsDetailActivity.this).inflate(R.layout.store_type_tag_layout, null);
             ImageView ivTagIcon = view.findViewById(R.id.iv_tag_icon);
             TextView tvTagName = view.findViewById(R.id.tv_tag_name);
@@ -293,8 +295,9 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
             }
 
         }
-        initBanner(banner, goodsBean.getData().getGoods_goods().getImg());
-        tvPicIndex.setText("1" + "/" + goodsBean.getData().getGoods_goods().getImg().size());
+
+        initBanner(banner, goodsBean.getData().getGoods_goods().getGoods_temp().getImg());
+        tvPicIndex.setText("1" + "/" + goodsBean.getData().getGoods_goods().getGoods_temp().getImg().size());
         banner.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -305,7 +308,7 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
             public void onPageSelected(int position) {
                 //TODO
                 if (tvPicIndex != null) {
-                    tvPicIndex.setText((position + 1) + "/" + goodsBean.getData().getGoods_goods().getImg().size());
+                    tvPicIndex.setText((position + 1) + "/" + goodsBean.getData().getGoods_goods().getGoods_temp().getImg().size());
                 }
             }
 
@@ -515,7 +518,7 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
     @Override
     public void onGoodsInfoLoaded(String result) {
         if (result != null) {
-            Log.e(TAG, "商品信息:" + result);
+            LogUtil.d(TAG, "商品信息:" + result);
             try {
                 Gson gson = new Gson();
                 goodsBean = gson.fromJson(result, GoodsDetailRootBean.class);
@@ -528,7 +531,11 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        initView();
+                        try {
+                            initView();
+                        } catch (Exception e) {
+                            LogUtil.e(TAG, "occur Exception: ", e);
+                        }
                         if (goodsPropsSelectPop != null) {
                             goodsPropsSelectPop.setGoodsBean(goodsBean);
                         }
@@ -536,7 +543,7 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
                 });
                 getGoodsEvaluate(goodsId);
             } catch (Exception e) {
-                e.printStackTrace();
+                LogUtil.e(TAG, "onGoodsInfoLoaded() occur Exception: ", e);
             }
         }
     }
@@ -671,6 +678,7 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
     }
 
     private void initBanner(Banner banner, List<String> bannerBeanList) {
+        LogUtil.d(TAG, "initBanner() bannerBeanList:" + StringUtil.listToString(bannerBeanList));
         //显示圆形指示器
         banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
         //指示器居中

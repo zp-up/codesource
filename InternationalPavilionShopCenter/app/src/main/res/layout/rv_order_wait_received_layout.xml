@@ -175,7 +175,7 @@
                 android:id="@+id/tv_confirm_received"
                 android:layout_marginRight="@dimen/x10"
                 android:layout_alignParentRight="true"
-                android:background="@color/red"
+                android:background="@drawable/shape_of_red_btn_small"
                 android:gravity="center"
                 android:layout_gravity="center_vertical"
                 android:text="确认收货"

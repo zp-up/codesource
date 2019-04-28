@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
@@ -43,20 +44,23 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:id="@+id/cart_good_name"
-                    android:text="雅诗兰黛心沁水粉底液"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
                     android:textColor="#636363"
                     android:textSize="@dimen/x13"
-                    android:lines="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    tools:text="雅诗兰黛心沁水粉底液" />
+
                 <TextView
                     android:id="@+id/cart_good_info"
-                    android:text="SPF20/PA+++"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
                     android:textColor="#aaaaaa"
                     android:textSize="@dimen/x13"
-                    android:lines="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    tools:text="SPF20/PA+++" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="vertical"
@@ -71,16 +75,16 @@
                     <TextView
                         android:id="@+id/cart_good_price"
                         android:textColor="#636363"
-                        android:text="￥320"
-                        android:textSize="@dimen/x12"
+                        tools:text="￥320"
+                        android:textSize="@dimen/x10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
                         android:id="@+id/cart_good_originalPrice"
                         android:layout_marginLeft="@dimen/x6"
                         android:textColor="#636363"
-                        android:text="￥500"
-                        android:textSize="@dimen/x11"
+                        tools:text="￥500"
+                        android:textSize="@dimen/x8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
@@ -98,7 +102,7 @@
                         android:id="@+id/cart_good_taxation"
                         android:layout_marginLeft="@dimen/x6"
                         android:textColor="#aaaaaa"
-                        android:text="￥10.00"
+                        tools:text="￥10.00"
                         android:textSize="@dimen/x10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />

@@ -36,11 +36,14 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entity
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp.ConfirmOrderImp;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.ConfirmOrderInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.LogUtil;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnConfirmDataCallback;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.dialog.WalletDialog;
 
 public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnConfirmDataCallback {
+
+    private static final String TAG = "[IPSC][ConfirmOrderActivity]";
     private String orderId = "-1";
     private ConfirmOrderInterface confirmPresenter;
     private OrderRootBean orderRootBean;
@@ -165,9 +168,9 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
 
     @Subscribe
     public void onSub(AddressUpdateEvent event) {
-        Log.e("TAG", "hah");
+        Log.e(TAG, "hah");
         if (event != null) {
-            Log.e("TAG", "hah:" + event.getOp());
+            Log.e(TAG, "hah:" + event.getOp());
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -199,12 +202,12 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
 
     @Override
     public void onError(String error) {
-        Log.e("TAG", "ConfirmOrderActivity->访问网络错误:" + error);
+        Log.e(TAG, "ConfirmOrderActivity->访问网络错误:" + error);
     }
 
     @Override
     public void onOrderInfoLoaded(String result) {
-        Log.e("TAG","数据:"+result);
+        LogUtil.d(TAG, "onOrderInfoLoaded() result:" + result);
         try {
             JSONObject jsonObject = new JSONObject(result);
             int code = jsonObject.getInt("code");
@@ -252,7 +255,7 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
                         orderGoodsBeans.add(orderGoodsBean);
                     }
                 }
-                if (data.has("address") && data.getJSONObject("address") != null) {
+                if (data.has("address") && data.get("address") != null && !data.get("address").toString().equals("null") && data.getJSONObject("address") != null) {
                     AddressBean addressBean = new AddressBean();
                     addressBean.setId(data.getJSONObject("address").getInt("id"));
                     addressBean.setReceiveName(data.getJSONObject("address").getString("name"));
@@ -267,7 +270,7 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
             }
             bindDataToView();
         } catch (Exception e) {
-            e.printStackTrace();
+            LogUtil.e(TAG, "onOrderInfoLoaded()", e);
         }
     }
 
@@ -282,12 +285,13 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
                 walletMoney = (int) Math.floor(data.getDouble("money"));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LogUtil.e(TAG, "onWalletDataLoaded()", e);
         }
     }
 
     @Override
     public void onWalletSetSuccessed(String result) {
+        LogUtil.d(TAG, "onWalletSetSuccessed() result:" + result);
         try {
             JSONObject jsonObject = new JSONObject(result);
             int code = jsonObject.getInt("code");
@@ -296,7 +300,7 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
                 tvDiscount.setText("-￥" + setMoney);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LogUtil.e(TAG, "onWalletSetSuccessed()", e);
         }
     }
 
@@ -304,7 +308,7 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
     public void onCheckInfoCallBack(String result) {
 
         try {
-            Log.e("TAG", "checkInfo:" + result);
+            Log.e(TAG, "checkInfo:" + result);
             JSONObject jsonObject = new JSONObject(result);
             int code = jsonObject.getInt("code");
             int state = jsonObject.getInt("state");
@@ -315,7 +319,7 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
                 ToastUtils.show(ConfirmOrderActivity.this, msg);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LogUtil.e(TAG, "onCheckInfoCallBack()", e);
         }
     }
 

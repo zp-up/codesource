@@ -232,7 +232,7 @@ public class OrderActivity extends BaseAppcompatActivity implements OnOrderDealC
                 if (code == 0 && state == 0) {
                     ToastUtils.show(OrderActivity.this, "再次购买订单已生成，请确认并完成支付。");
                     Intent intent = new Intent(OrderActivity.this, ConfirmOrderActivity.class);
-                    intent.putExtra("id", buyAgainOrderId);
+                    intent.putExtra("id", buyAgainOrderId + "");
                     startActivity(intent);
                 } else {
                     ToastUtils.show(OrderActivity.this, "再次购买失败:" + msg);
@@ -598,11 +598,11 @@ public class OrderActivity extends BaseAppcompatActivity implements OnOrderDealC
     private int buyAgainOrderId = -1;
 
     public void buyAgain(int orderId) {
+        buyAgainOrderId = orderId;
         RequestParams params = new RequestParams(MainUrls.buyAgainUrl);
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
         params.addBodyParameter("id", orderId + "");
         orderDealPresenter.buyAgain(params, this);
-        buyAgainOrderId = orderId;
     }
     public void cancelOrder(int orderId) {
         RequestParams params = new RequestParams(MainUrls.cancelOrderUrl);

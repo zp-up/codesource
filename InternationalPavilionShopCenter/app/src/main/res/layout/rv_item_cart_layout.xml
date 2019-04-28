@@ -46,7 +46,7 @@
                 <TextView
                     android:id="@+id/tv_store_total"
                     android:layout_marginLeft="@dimen/x10"
-                    android:text="￥420"
+                    android:text="￥0.0"
                     android:textSize="@dimen/x13"
                     android:textColor="@color/gray"
                     android:layout_gravity="center_vertical"

@@ -157,7 +157,7 @@
            </LinearLayout>
            <LinearLayout
                android:layout_marginBottom="@dimen/x40"
-               android:layout_marginTop="@dimen/x10"
+               android:layout_marginTop="@dimen/x29"
                android:layout_marginLeft="@dimen/x25"
                android:orientation="horizontal"
                android:layout_width="match_parent"

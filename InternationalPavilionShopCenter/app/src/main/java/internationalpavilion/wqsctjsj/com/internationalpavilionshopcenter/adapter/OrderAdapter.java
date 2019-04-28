@@ -212,83 +212,84 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                 holder.tvBackMoney.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        AfterSaleSelectPop pop = new AfterSaleSelectPop(context);
-                        pop.show(((OrderActivity) context).llParent, new AfterSaleSelectPop.ItemClick() {
-                            @Override
-                            public void onClick(int type, double rentPrice, double buyPrice) {
-                                switch (type) {
-                                    case 1:
-                                        final SweetAlertDialog dialog = new SweetAlertDialog(context, WARNING_TYPE);
-                                        dialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                            @Override
-                                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                                dialog.dismissWithAnimation();
-                                                ((OrderActivity) context).backMoneyOnly(data.get(position).getId());
-                                            }
-                                        });
-                                        dialog.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                            @Override
-                                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                                dialog.dismissWithAnimation();
-                                            }
-                                        });
-                                        dialog.showCancelButton(true);
-                                        dialog.setCancelText("取消");
-                                        dialog.setConfirmText("确定");
-                                        dialog.setTitleText("注意");
-                                        dialog.setContentText("当前订单状态只能申请退款，是否要进行退款操作?");
-                                        dialog.setCancelable(false);
-                                        dialog.show();
-                                        break;
-                                    case 2:
-                                        final SweetAlertDialog dialog1 = new SweetAlertDialog(context, WARNING_TYPE);
-                                        dialog1.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                            @Override
-                                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                                dialog1.dismissWithAnimation();
-                                                ((OrderActivity) context).backMoneyOnly(data.get(position).getId());
-                                            }
-                                        });
-                                        dialog1.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                            @Override
-                                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                                dialog1.dismissWithAnimation();
-                                            }
-                                        });
-                                        dialog1.showCancelButton(true);
-                                        dialog1.setCancelText("取消");
-                                        dialog1.setConfirmText("确定");
-                                        dialog1.setTitleText("注意");
-                                        dialog1.setContentText("当前订单状态只能申请退款，是否要进行退款操作?");
-                                        dialog1.setCancelable(false);
-                                        dialog1.show();
-                                        break;
-                                    case 3:
-                                        final SweetAlertDialog dialog2 = new SweetAlertDialog(context, WARNING_TYPE);
-                                        dialog2.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                            @Override
-                                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                                dialog2.dismissWithAnimation();
-                                                ((OrderActivity) context).backMoneyOnly(data.get(position).getId());
-                                            }
-                                        });
-                                        dialog2.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                            @Override
-                                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                                dialog2.dismissWithAnimation();
-                                            }
-                                        });
-                                        dialog2.showCancelButton(true);
-                                        dialog2.setCancelText("取消");
-                                        dialog2.setConfirmText("确定");
-                                        dialog2.setTitleText("注意");
-                                        dialog2.setContentText("是否要进行退款操作?");
-                                        dialog2.setCancelable(false);
-                                        dialog2.show();
-                                        break;
-                                }
-                            }
-                        });
+                        ((OrderActivity) context).showRequestAfterSale(data.get(position).getId());
+//                        AfterSaleSelectPop pop = new AfterSaleSelectPop(context);
+//                        pop.show(((OrderActivity) context).llParent, new AfterSaleSelectPop.ItemClick() {
+//                            @Override
+//                            public void onClick(int type, double rentPrice, double buyPrice) {
+//                                switch (type) {
+//                                    case 1:
+//                                        final SweetAlertDialog dialog = new SweetAlertDialog(context, WARNING_TYPE);
+//                                        dialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+//                                            @Override
+//                                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+//                                                dialog.dismissWithAnimation();
+//                                                ((OrderActivity) context).backMoneyOnly(data.get(position).getId());
+//                                            }
+//                                        });
+//                                        dialog.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+//                                            @Override
+//                                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+//                                                dialog.dismissWithAnimation();
+//                                            }
+//                                        });
+//                                        dialog.showCancelButton(true);
+//                                        dialog.setCancelText("取消");
+//                                        dialog.setConfirmText("确定");
+//                                        dialog.setTitleText("注意");
+//                                        dialog.setContentText("当前订单状态只能申请退款，是否要进行退款操作?");
+//                                        dialog.setCancelable(false);
+//                                        dialog.show();
+//                                        break;
+//                                    case 2:
+//                                        final SweetAlertDialog dialog1 = new SweetAlertDialog(context, WARNING_TYPE);
+//                                        dialog1.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+//                                            @Override
+//                                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+//                                                dialog1.dismissWithAnimation();
+//                                                ((OrderActivity) context).backMoneyOnly(data.get(position).getId());
+//                                            }
+//                                        });
+//                                        dialog1.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+//                                            @Override
+//                                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+//                                                dialog1.dismissWithAnimation();
+//                                            }
+//                                        });
+//                                        dialog1.showCancelButton(true);
+//                                        dialog1.setCancelText("取消");
+//                                        dialog1.setConfirmText("确定");
+//                                        dialog1.setTitleText("注意");
+//                                        dialog1.setContentText("当前订单状态只能申请退款，是否要进行退款操作?");
+//                                        dialog1.setCancelable(false);
+//                                        dialog1.show();
+//                                        break;
+//                                    case 3:
+//                                        final SweetAlertDialog dialog2 = new SweetAlertDialog(context, WARNING_TYPE);
+//                                        dialog2.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+//                                            @Override
+//                                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+//                                                dialog2.dismissWithAnimation();
+//                                                ((OrderActivity) context).backMoneyOnly(data.get(position).getId());
+//                                            }
+//                                        });
+//                                        dialog2.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+//                                            @Override
+//                                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+//                                                dialog2.dismissWithAnimation();
+//                                            }
+//                                        });
+//                                        dialog2.showCancelButton(true);
+//                                        dialog2.setCancelText("取消");
+//                                        dialog2.setConfirmText("确定");
+//                                        dialog2.setTitleText("注意");
+//                                        dialog2.setContentText("是否要进行退款操作?");
+//                                        dialog2.setCancelable(false);
+//                                        dialog2.show();
+//                                        break;
+//                                }
+//                            }
+//                        });
                     }
                 });
                 holder.tvBuyAgain.setOnClickListener(new View.OnClickListener() {

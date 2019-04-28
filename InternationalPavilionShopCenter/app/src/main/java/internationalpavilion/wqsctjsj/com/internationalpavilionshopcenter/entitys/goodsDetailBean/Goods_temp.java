@@ -13,7 +13,7 @@ public class Goods_temp {
 
     private int id;
     private String name;
-//    private List<String> img;
+    private List<String> img;
     private String video;
     private String detail;
     private String update_time;
@@ -33,12 +33,12 @@ public class Goods_temp {
          return name;
      }
 
-//    public void setImg(List<String> img) {
-//         this.img = img;
-//     }
-//     public List<String> getImg() {
-//         return img;
-//     }
+    public void setImg(List<String> img) {
+         this.img = img;
+     }
+     public List<String> getImg() {
+         return img;
+     }
 
     public void setVideo(String video) {
          this.video = video;
