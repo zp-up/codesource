@@ -34,6 +34,7 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presen
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.OrderAfterSaleDealInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.OrderDealInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.LogUtil;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnAfterSaleOrderCallBack;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnCommonGoodsCallBack;
@@ -135,7 +136,7 @@ public class AfterSaleFormSubmitActivity extends BaseAppcompatActivity implement
     @Override
     public void onCommonGoodsCallBack(String result) {
         if (result != null) {
-            Log.e(TAG, "订单信息:" + result);
+            LogUtil.d(TAG, "订单信息:" + result);
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");
@@ -190,7 +191,7 @@ public class AfterSaleFormSubmitActivity extends BaseAppcompatActivity implement
                 }
 //                bindDataToView();
             } catch (Exception e) {
-                e.printStackTrace();
+                LogUtil.e(TAG, "onCommonGoodsCallBack()", e);
             }
         }
     }
@@ -218,7 +219,7 @@ public class AfterSaleFormSubmitActivity extends BaseAppcompatActivity implement
     @Override
     public void onRequestAfterSale(String result) {
         if (result != null) {
-            Log.e(TAG, "申请售后结果:" + result);
+            LogUtil.d(TAG, "申请售后结果:" + result);
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");
@@ -234,7 +235,7 @@ public class AfterSaleFormSubmitActivity extends BaseAppcompatActivity implement
                     ToastUtils.show(this, "申请售后失败:" + msg);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                LogUtil.e(TAG, "onRequestAfterSale()", e);
             }
         }
     }
