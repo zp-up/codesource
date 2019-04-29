@@ -45,6 +45,7 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entity
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp.UpLoadFileImp;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.UpLoadFileInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.LogUtil;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnUpLoadFileCallback;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.dialog.SweetAlertDialog;
@@ -52,6 +53,8 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget
 import static internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.dialog.SweetAlertDialog.WARNING_TYPE;
 
 public class SettingActivity extends BaseAppcompatActivity implements TakePhoto.TakeResultListener, InvokeListener, OnUpLoadFileCallback {
+
+    private static final String TAG = "[IPSC][SettingActivity]";
     private TakePhoto takePhoto;
     private File file;
     private InvokeParam invokeParam;
@@ -61,6 +64,8 @@ public class SettingActivity extends BaseAppcompatActivity implements TakePhoto.
     TextView tvNickName;
     @BindView(R.id.tv_account)
     TextView tvAccount;
+    @BindView(R.id.tv_mobile)
+    TextView tvMobile;
     @BindView(R.id.iv_head)
     ImageView civHead;
     @BindView(R.id.ll_parent)
@@ -219,6 +224,9 @@ public class SettingActivity extends BaseAppcompatActivity implements TakePhoto.
                 options.placeholder(R.mipmap.icon_mine_defaul_head);
                 options.error(R.mipmap.icon_mine_defaul_head);
                 Glide.with(this).load(userBean.getImg()).apply(options).into(civHead);
+            }
+            if (userBean != null && userBean.getUserPhone() != null) {
+                tvMobile.setText(userBean.getUserPhone());
             }
         }
     }
@@ -403,9 +411,9 @@ public class SettingActivity extends BaseAppcompatActivity implements TakePhoto.
     //修改昵称
     @Override
     public void onModifyUserNickName(String result) {
+        LogUtil.d("TAG", "修改昵称:" + result);
         if (result != null){
             try {
-                Log.e("TAG","修改昵称:"+result);
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");
                 int state = jsonObject.getInt("state");
@@ -421,7 +429,7 @@ public class SettingActivity extends BaseAppcompatActivity implements TakePhoto.
                     ToastUtils.show(SettingActivity.this,msg);
                 }
             }catch (Exception e){
-                e.printStackTrace();
+                LogUtil.e(TAG, "onModifyUserNickName()", e);
             }
         }
     }

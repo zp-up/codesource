@@ -191,7 +191,7 @@ public class LoginByPasswordActivity extends BaseAppcompatActivity implements On
         }
     }
 
-    @OnClick({R.id.tv_to_register, R.id.tv_to_verify_login, R.id.iv_back, R.id.tv_login, R.id.iv_wechat_login, R.id.tv_wechat_login, R.id.iv_alipay_login, R.id.tv_alipay_login})
+    @OnClick({R.id.tv_to_register, R.id.tv_to_verify_login, R.id.iv_back, R.id.tv_login, R.id.rl_wechat_login, R.id.rl_alipay_login})
     public void onClick(View view){
         switch (view.getId()){
             case R.id.tv_to_register:
@@ -215,12 +215,10 @@ public class LoginByPasswordActivity extends BaseAppcompatActivity implements On
                     userOptionPresenter.doLogin(params,this);
                 }
                 break;
-            case R.id.iv_wechat_login:// 微信三方登录
-            case R.id.tv_wechat_login:
+            case R.id.rl_wechat_login:// 微信三方登录
                 wechatLogin();
                 break;
-            case R.id.iv_alipay_login:// 支付宝三方登录
-            case R.id.tv_alipay_login:
+            case R.id.rl_alipay_login:// 支付宝三方登录
                 alipayLogin();
                 break;
         }

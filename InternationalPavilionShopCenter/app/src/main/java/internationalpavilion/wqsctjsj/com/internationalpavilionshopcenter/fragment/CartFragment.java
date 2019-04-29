@@ -42,6 +42,7 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presen
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.CartOperationInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.CommonDataInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.LogUtil;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnCartOperationCallBack;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnCommonGoodsCallBack;
@@ -189,10 +190,10 @@ public class CartFragment extends Fragment implements OnCommonGoodsCallBack, Car
     @Override
     public void onCommonDealCallBack(String result) {
         try {
-            Log.e("TAG", "用户操作结果:" + result);
+            Log.e(TAG, "用户操作结果:" + result);
             initData();
         } catch (Exception e) {
-            e.printStackTrace();
+            LogUtil.e(TAG, "onCommonDealCallBack()", e);
         }
     }
 
@@ -204,7 +205,7 @@ public class CartFragment extends Fragment implements OnCommonGoodsCallBack, Car
 
     @Override
     public void onSubmitCallBack(String result) {
-        Log.e("TAG", "提交购物车返回:" + result);
+        LogUtil.d(TAG, "提交购物车返回:" + result);
         try {
             JSONObject jsonObject = new JSONObject(result);
             int code = jsonObject.getInt("code");
@@ -228,14 +229,14 @@ public class CartFragment extends Fragment implements OnCommonGoodsCallBack, Car
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LogUtil.e(TAG, "onSubmitCallBack()", e);
         }
     }
 
     @Override
     public void onCommonGoodsCallBack(String result) {
         if (result != null) {
-            Log.e("TAG", "cartInfo:" + result);
+            LogUtil.d(TAG, "cartInfo:" + result);
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 int state = jsonObject.getInt("state");
@@ -256,9 +257,11 @@ public class CartFragment extends Fragment implements OnCommonGoodsCallBack, Car
                         for (int i = 0; i < storeList.length(); i++) {
                             CartRootBean cartRootBean = new CartRootBean();
                             JSONObject carRoot = storeList.getJSONObject(i);
-                            cartRootBean.setCartGoodsName(carRoot.getJSONObject("store_store").getString("name"));
-                            cartRootBean.setStoreType(carRoot.getJSONObject("store_store").getString("type"));
-                            cartRootBean.setId(carRoot.getJSONObject("store_store").getInt("id"));
+                            if (carRoot.get("store_store") != null && carRoot.get("store_store").toString() != "null" && carRoot.getJSONObject("store_store") != null) {
+                                cartRootBean.setCartGoodsName(carRoot.getJSONObject("store_store").getString("name"));
+                                cartRootBean.setStoreType(carRoot.getJSONObject("store_store").getString("type"));
+                                cartRootBean.setId(carRoot.getJSONObject("store_store").getInt("id"));
+                            }
                             cartRootBean.setTotalPrice(carRoot.getDouble("total"));
                             JSONArray goodsList = carRoot.getJSONArray("list");
                             ArrayList<CartGood> cartGoodsList = new ArrayList<>();
@@ -294,7 +297,7 @@ public class CartFragment extends Fragment implements OnCommonGoodsCallBack, Car
                     }
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                LogUtil.e(TAG, "onCommonGoodsCallBack()", e);
             }
         }
     }

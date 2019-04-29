@@ -20,6 +20,9 @@ public class StringUtil {
     }
 
     public static String listToString(List<String> list) {
+        if (list.size() <= 0) {
+            return "";
+        }
         String[] strArray = list.toArray(new String[list.size()]);
         StringBuffer stringBuffer = new StringBuffer();
         for (String s : strArray) {

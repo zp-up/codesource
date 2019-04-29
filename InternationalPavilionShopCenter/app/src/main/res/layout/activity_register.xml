@@ -159,7 +159,7 @@
         <TextView
             android:id="@+id/tv_register"
             android:gravity="center"
-            android:background="#aaaaaa"
+            android:background="@drawable/shape_of_red_btn"
             android:text="注册"
             android:textSize="@dimen/x14"
             android:textColor="@color/white"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/ll_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/gainsboro"
     tools:context="internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.SettingActivity">
     <include layout="@layout/status_bar_layout"></include>
     <RelativeLayout
@@ -32,6 +32,7 @@
             android:textSize="@dimen/x14" />
     </RelativeLayout>
     <RelativeLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x120">
         <LinearLayout
@@ -121,7 +122,102 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/x1"></View>
     </RelativeLayout>
+    <!-- 手机 -->
     <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x45">
+        <TextView
+            android:layout_marginLeft="@dimen/x15"
+            android:text="手机"
+            android:textSize="@dimen/x14"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_mobile"
+            tools:text="18010570755"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/x13"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x20"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_marginRight="@dimen/x15"
+            android:layout_marginLeft="@dimen/x15"
+            android:layout_alignParentBottom="true"
+            android:background="@color/gainsboro"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x1"></View>
+    </RelativeLayout>
+    <!-- 邮箱 -->
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x45">
+        <TextView
+            android:layout_marginLeft="@dimen/x15"
+            android:text="邮箱"
+            android:textSize="@dimen/x14"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_email_status"
+            android:text="绑定"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/x13"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x20"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_marginRight="@dimen/x15"
+            android:layout_marginLeft="@dimen/x15"
+            android:layout_alignParentBottom="true"
+            android:background="@color/gainsboro"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x1"></View>
+    </RelativeLayout>
+    <!-- 密码 -->
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x45">
+        <TextView
+            android:id="@+id/tv_pws"
+            android:layout_marginLeft="@dimen/x15"
+            android:text="密码  ******"
+            android:textSize="@dimen/x14"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_pws_reset"
+            android:text="重置"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/x13"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x20"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_marginRight="@dimen/x15"
+            android:layout_marginLeft="@dimen/x15"
+            android:layout_alignParentBottom="true"
+            android:background="@color/gainsboro"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x1"></View>
+    </RelativeLayout>
+    <RelativeLayout
+        android:visibility="gone"
         android:id="@+id/rl_to_forgot_password"
         android:background="@color/white"
         android:layout_width="match_parent"
@@ -152,6 +248,7 @@
             android:layout_height="@dimen/x1"></View>
     </RelativeLayout>
     <RelativeLayout
+        android:visibility="gone"
         android:id="@+id/rl_to_about_us"
         android:background="@color/white"
         android:layout_width="match_parent"
@@ -182,6 +279,7 @@
             android:layout_height="@dimen/x1"></View>
     </RelativeLayout>
     <RelativeLayout
+        android:visibility="gone"
         android:id="@+id/rl_clear_cache"
         android:background="@color/white"
         android:layout_width="match_parent"
@@ -220,6 +318,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:layout_marginTop="@dimen/x9"
         android:visibility="visible"
         android:id="@+id/activity_set_rl_logout"
         android:layout_width="match_parent"
@@ -232,11 +331,10 @@
         <TextView
             android:id="@+id/tv_logout"
             android:textColor="@color/black"
-            android:layout_alignParentBottom="true"
             android:background="@color/white"
             android:textSize="@dimen/x14"
             android:gravity="center"
-            android:text="退出当前账户"
+            android:text="退出登录"
             android:layout_width="match_parent"
             android:layout_height="50dp" />
     </RelativeLayout>

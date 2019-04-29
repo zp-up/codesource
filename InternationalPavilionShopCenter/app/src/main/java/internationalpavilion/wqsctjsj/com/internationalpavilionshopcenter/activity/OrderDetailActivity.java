@@ -32,10 +32,13 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entity
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp.CommonGoodsImp;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.CommonDataInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.LogUtil;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnCommonGoodsCallBack;
 
 public class OrderDetailActivity extends BaseAppcompatActivity implements OnCommonGoodsCallBack {
+
+    private static final String TAG = "[IPSC][OrderDetailActivity]";
     private int orderId = -1;
     private CommonDataInterface commonPresenter;
     private OrderRootBean orderRootBean;
@@ -49,8 +52,8 @@ public class OrderDetailActivity extends BaseAppcompatActivity implements OnComm
     TextView tvAddressDetail;
     @BindView(R.id.tv_order_number)
     TextView tvOrderNumber;
-    @BindView(R.id.tv_status)
-    TextView tvStatus;
+//    @BindView(R.id.tv_status)
+//    TextView tvStatus;
     @BindView(R.id.tv_store_type)
     TextView tvStoreType;
     @BindView(R.id.tv_goods_count)
@@ -80,7 +83,7 @@ public class OrderDetailActivity extends BaseAppcompatActivity implements OnComm
         Intent intent = getIntent();
         if (intent.getIntExtra("orderId", -1) != -1) {
             orderId = intent.getIntExtra("orderId", -1);
-            Log.e("TAG", "订单id：" + orderId);
+            Log.e(TAG, "订单id：" + orderId);
         }
         initData();
     }
@@ -129,13 +132,13 @@ public class OrderDetailActivity extends BaseAppcompatActivity implements OnComm
 
     @Override
     public void onError(String error) {
-        Log.e("TAG", "获取订单信息出错:" + error);
+        Log.e(TAG, "获取订单信息出错:" + error);
     }
 
     @Override
     public void onCommonGoodsCallBack(String result) {
+        LogUtil.d(TAG, "onCommonGoodsCallBack() 订单信息:" + result);
         if (result != null) {
-            Log.e("TAG", "订单信息:" + result);
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");
@@ -175,22 +178,23 @@ public class OrderDetailActivity extends BaseAppcompatActivity implements OnComm
                             orderGoodsBeans.add(orderGoodsBean);
                         }
                     }
-                    if (data.has("address") && data.getJSONObject("address") != null){
+                    if (data.has("store") && data.get("store") != null &&
+                            data.get("store").toString() != "null" && data.getJSONObject("store") != null) {
                         AddressBean addressBean = new AddressBean();
-                        addressBean.setId(data.getJSONObject("address").getInt("id"));
-                        addressBean.setReceiveName(data.getJSONObject("address").getString("name"));
-                        addressBean.setReceivePhone(data.getJSONObject("address").getString("telphone"));
-                        addressBean.setDetailPlace(data.getJSONObject("address").getString("address"));
-                        addressBean.setProvince(data.getJSONObject("address").getString("province"));
-                        addressBean.setCity(data.getJSONObject("address").getString("city"));
-                        addressBean.setArea(data.getJSONObject("address").getString("area"));
+                        addressBean.setId(data.getJSONObject("store").getInt("id"));
+                        addressBean.setReceiveName(data.getJSONObject("store").getString("name"));
+                        addressBean.setReceivePhone(data.getJSONObject("store").getString("telphone"));
+                        addressBean.setDetailPlace(data.getJSONObject("store").getString("address"));
+                        addressBean.setProvince(data.getJSONObject("store").getString("province"));
+                        addressBean.setCity(data.getJSONObject("store").getString("city"));
+                        addressBean.setArea(data.getJSONObject("store").getString("area"));
                         orderRootBean.setAddressBean(addressBean);
                     }
                     orderRootBean.setGoodsBeans(orderGoodsBeans);
                 }
                 bindDataToView();
             } catch (Exception e) {
-                e.printStackTrace();
+                LogUtil.e(TAG, "onCommonGoodsCallBack() ", e);
             }
         }
     }
@@ -200,13 +204,14 @@ public class OrderDetailActivity extends BaseAppcompatActivity implements OnComm
             llAddressContainer.setVisibility(View.GONE);
         }else {
             llAddressContainer.setVisibility(View.VISIBLE);
+            tvOrderNumber.setText("" + orderRootBean.getOrderNumber());
             tvAddressName.setText(orderRootBean.getAddressBean().getReceiveName());
             tvAddressPhone.setText(orderRootBean.getAddressBean().getReceivePhone());
             tvAddressDetail.setText(orderRootBean.getAddressBean().getProvince()
                     +orderRootBean.getAddressBean().getCity()+orderRootBean.getAddressBean().getArea()
                     +orderRootBean.getAddressBean().getDetailPlace());
             tvCreateTime.setText(orderRootBean.getCreate_time());
-            tvStatus.setText(orderRootBean.getStatus());
+//            tvStatus.setText(orderRootBean.getStatus());
             tvStoreType.setText(orderRootBean.getStoreType());
             tvGoodsCount.setText("共"+(orderRootBean.getGoodsBeans() == null ? 0 : orderRootBean.getGoodsBeans().size())+"种"+getGoodsCount(orderRootBean.getGoodsBeans())+"件商品");
             llGoodsListContainer.removeAllViews();

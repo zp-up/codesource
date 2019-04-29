@@ -30,12 +30,14 @@ import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
 import com.alibaba.android.vlayout.layout.StickyLayoutHelper;
+import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.chrisjason.baseui.ui.BaseAppcompatActivity;
 import com.chrisjason.baseui.util.DpUtils;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.jaeger.library.StatusBarUtil;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -217,6 +219,7 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
         params.addBodyParameter("id", currentSpecId + "");
         params.addBodyParameter("number", number + "");
         params.addBodyParameter("user", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
+        Log.d(TAG, "addToCart() params:" + params.toString());
         goodsDetailPresenter.addGoodsToCart(params, this);
     }
 
@@ -520,8 +523,19 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
         if (result != null) {
             LogUtil.d(TAG, "商品信息:" + result);
             try {
-                Gson gson = new Gson();
-                goodsBean = gson.fromJson(result, GoodsDetailRootBean.class);
+                Gson gson = new GsonBuilder().serializeNulls().create();
+                // 后台反馈数据不和协议一致，本应该提供数组array对象，结果反馈空字符串“”，解析不过，为了兼容，特殊处理
+                // 此处使用fastjson是为了应急处理，后续需要跟进处理
+                com.alibaba.fastjson.JSONObject resultJson = JSON.parseObject(result);
+                try {
+                    if (resultJson.getJSONObject("data").getJSONObject("goods_goods").getJSONObject("goods_temp").get("img").toString().isEmpty()) {
+                        resultJson.getJSONObject("data").getJSONObject("goods_goods").getJSONObject("goods_temp").put("img", new com.alibaba.fastjson.JSONArray());
+                    }
+                } catch (Exception e) {
+                    LogUtil.e(TAG, "onGoodsInfoLoaded() parse img node exception!", e);
+                }
+
+                goodsBean = gson.fromJson(resultJson.toJSONString(), GoodsDetailRootBean.class);
                 isCollection = goodsBean.getData().getColle();
                 if (cunt == 0) {
                     specLists.addAll(goodsBean.getData().getSpeclist());

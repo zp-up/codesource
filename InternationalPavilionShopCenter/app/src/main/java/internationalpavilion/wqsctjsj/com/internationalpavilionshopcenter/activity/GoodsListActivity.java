@@ -1040,11 +1040,12 @@ public class GoodsListActivity extends BaseAppcompatActivity {
             case R.id.ll_filter_price:// 价格排序
                 if (priceState == 1) {
                     priceState = 2;
+                    ivPricePointer.setImageResource(R.mipmap.icon_filter_price_down);
                 } else if (priceState == 2) {
                     priceState = 1;
+                    ivPricePointer.setImageResource(R.mipmap.icon_filter_price_up);
                 }
                 change(3);
-                ivPricePointer.setImageResource(R.mipmap.icon_filter_price_up);
                 ivFilterScreenPointer.setImageResource(R.mipmap.icon_filter_screen);
                 pageIndex = 1;
                 initData();

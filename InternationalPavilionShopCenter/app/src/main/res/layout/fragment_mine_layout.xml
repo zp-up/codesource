@@ -278,8 +278,8 @@
                     android:layout_height="@dimen/x1"></View>
                 <LinearLayout
                     android:layout_marginTop="@dimen/x20"
-                    android:layout_marginRight="@dimen/x20"
-                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginRight="@dimen/x15"
+                    android:layout_marginLeft="@dimen/x15"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <LinearLayout
@@ -369,31 +369,10 @@
                 </LinearLayout>
                 <LinearLayout
                     android:layout_marginTop="@dimen/x20"
-                    android:layout_marginRight="@dimen/x20"
-                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginLeft="@dimen/x15"
+                    android:layout_marginRight="@dimen/x15"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:id="@+id/ll_to_setting"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-                        <ImageView
-                            android:src="@mipmap/icon_mine_setting"
-                            android:layout_marginBottom="@dimen/x3"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_width="@dimen/x20"
-                            android:layout_height="@dimen/x20" />
-                        <TextView
-                            android:layout_marginTop="@dimen/x3"
-                            android:layout_gravity="center_horizontal"
-                            android:text="设置"
-                            android:textSize="@dimen/x13"
-                            android:textColor="#636363"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
                     <LinearLayout
                         android:id="@+id/ll_to_address_manage"
                         android:layout_weight="1"
@@ -457,11 +436,32 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                     </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/ll_to_setting"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:src="@mipmap/icon_mine_setting"
+                            android:layout_marginBottom="@dimen/x3"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_width="@dimen/x20"
+                            android:layout_height="@dimen/x20" />
+                        <TextView
+                            android:layout_marginTop="@dimen/x3"
+                            android:layout_gravity="center_horizontal"
+                            android:text="设置"
+                            android:textSize="@dimen/x13"
+                            android:textColor="#636363"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_marginTop="@dimen/x20"
-                    android:layout_marginRight="@dimen/x20"
-                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginRight="@dimen/x15"
+                    android:layout_marginLeft="@dimen/x15"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <LinearLayout

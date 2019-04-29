@@ -96,7 +96,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                 holder.tvGoodsCount1.setText("共" + (data.get(position).getGoodsBeans() != null ? data.get(position).getGoodsBeans().size() : 0) + "种商品");
                 holder.tvStoreType1.setText(data.get(position).getStoreType());
                 holder.tvStatus.setText(data.get(position).getStatus());
-                holder.tvOrderCreateTime1.setText("订单时间:" + data.get(position).getCreate_time());
+//                holder.tvOrderCreateTime1.setText("订单时间:" + data.get(position).getCreate_time());
+                holder.tvOrderCreateTime1.setText("订单编号:" + data.get(position).getOrderNumber());
                 if (data.get(position).getGoodsBeans() != null && data.get(position).getGoodsBeans().size() == 1) {
                     holder.tvGoodsName1.setText(data.get(position).getGoodsBeans().get(0).getGoodsName());
                     holder.tvDescription1.setText(data.get(position).getGoodsBeans().get(0).getGoodsDescription());
@@ -323,7 +324,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                 holder.tvGoodsCount3.setText("共" + (data.get(position).getGoodsBeans() != null ? data.get(position).getGoodsBeans().size() : 0) + "件商品");
                 holder.tvStoreType3.setText(data.get(position).getStoreType());
                 holder.tvStatus.setText(data.get(position).getStatus());
-                holder.tvOrderCreateTime3.setText("订单时间:" + data.get(position).getCreate_time());
+//                holder.tvOrderCreateTime3.setText("订单时间:" + data.get(position).getCreate_time());
+                holder.tvOrderCreateTime3.setText("订单编号:" + data.get(position).getOrderNumber());
                 if (data.get(position).getGoodsBeans() != null && data.get(position).getGoodsBeans().size() == 1) {
                     holder.tvGoodsName3.setText(data.get(position).getGoodsBeans().get(0).getGoodsName());
                     holder.tvDescription3.setText(data.get(position).getGoodsBeans().get(0).getGoodsDescription());
@@ -411,7 +413,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                 holder.tvGoodsCount4.setText("共" + (data.get(position).getGoodsBeans() != null ? data.get(position).getGoodsBeans().size() : 0) + "件商品");
                 holder.tvStoreType4.setText(data.get(position).getStoreType());
                 holder.tvStatus.setText(data.get(position).getStatus());
-                holder.tvOrderCreateTime4.setText("订单时间:" + data.get(position).getCreate_time());
+//                holder.tvOrderCreateTime4.setText("订单时间:" + data.get(position).getCreate_time());
+                holder.tvOrderCreateTime4.setText("订单编号:" + data.get(position).getOrderNumber());
                 if (data.get(position).getGoodsBeans() != null && data.get(position).getGoodsBeans().size() == 1) {
                     holder.tvGoodsName4.setText(data.get(position).getGoodsBeans().get(0).getGoodsName());
                     holder.tvDescription4.setText(data.get(position).getGoodsBeans().get(0).getGoodsDescription());
@@ -455,25 +458,26 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                 holder.tvApplyAfterSale.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        AfterSaleSelectPop pop = new AfterSaleSelectPop(context);
-                        pop.show(((OrderActivity) context).llParent, new AfterSaleSelectPop.ItemClick() {
-                            @Override
-                            public void onClick(int type, double rentPrice, double buyPrice) {
-                                switch (type) {
-                                    case 1:
-                                        Intent intent = new Intent(context, ApplyAfterSaleActivity.class);
-                                        intent.putExtra("orderId", data.get(position).getId());
-                                        context.startActivity(intent);
-                                        break;
-                                    case 2:
-
-                                        break;
-                                    case 3:
-
-                                        break;
-                                }
-                            }
-                        });
+                        ((OrderActivity) context).showRequestAfterSale(data.get(position).getId());
+//                        AfterSaleSelectPop pop = new AfterSaleSelectPop(context);
+//                        pop.show(((OrderActivity) context).llParent, new AfterSaleSelectPop.ItemClick() {
+//                            @Override
+//                            public void onClick(int type, double rentPrice, double buyPrice) {
+//                                switch (type) {
+//                                    case 1:
+//                                        Intent intent = new Intent(context, ApplyAfterSaleActivity.class);
+//                                        intent.putExtra("orderId", data.get(position).getId());
+//                                        context.startActivity(intent);
+//                                        break;
+//                                    case 2:
+//
+//                                        break;
+//                                    case 3:
+//
+//                                        break;
+//                                }
+//                            }
+//                        });
                     }
                 });
                 break;
@@ -507,7 +511,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                 holder.tvGoodsCount5.setText("共" + (data.get(position).getGoodsBeans() != null ? data.get(position).getGoodsBeans().size() : 0) + "件商品");
                 holder.tvStoreType5.setText(data.get(position).getStoreType());
 //                holder.tvOrderCreateTime5.setText("订单时间:" + data.get(position).getCreate_time());
-                holder.tvOrderCreateTime5.setText("订单变化:" + data.get(position).getOrderNumber());
+                holder.tvOrderCreateTime5.setText("订单编号:" + data.get(position).getOrderNumber());
                 holder.tvStatus.setText(data.get(position).getStatus());
                 if (data.get(position).getGoodsBeans() != null && data.get(position).getGoodsBeans().size() == 1) {
                     holder.tvGoodsName5.setText(data.get(position).getGoodsBeans().get(0).getGoodsName());

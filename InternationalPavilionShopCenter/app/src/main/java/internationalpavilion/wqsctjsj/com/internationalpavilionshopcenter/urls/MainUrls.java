@@ -144,6 +144,7 @@ public class MainUrls {
 
     public static final String selectedAllGoodsUrl = ServerIp + "?api=order.orderlist.AllCartState";
 
+    // 订单系统-》订单明细-》购物车结算
     public static final String cartSubmitUrl = ServerIp + "?api=order.orderlist.checkout";
 
     public static final String getHistorySearchUrl = ServerIp + "?api=goods.search.userlog";
