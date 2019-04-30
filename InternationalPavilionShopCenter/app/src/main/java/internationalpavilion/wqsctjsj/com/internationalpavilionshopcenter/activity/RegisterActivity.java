@@ -176,10 +176,12 @@ public class RegisterActivity extends BaseAppcompatActivity implements OnNetCall
         }
         if (phoneIsOk && passwordIsOk && verifyCodeIsOk) {
             tvRegister.setEnabled(true);
-            tvRegister.setBackgroundColor(Color.parseColor("#ff0000"));
+//            tvRegister.setBackgroundColor(Color.parseColor("#ff0000"));
+            tvRegister.setBackgroundResource(R.drawable.shape_of_red_btn);
         } else {
             tvRegister.setEnabled(false);
-            tvRegister.setBackgroundColor(Color.parseColor("#aaaaaa"));
+//            tvRegister.setBackgroundColor(Color.parseColor("#aaaaaa"));
+            tvRegister.setBackgroundResource(R.drawable.shape_of_gray_btn);
         }
     }
 

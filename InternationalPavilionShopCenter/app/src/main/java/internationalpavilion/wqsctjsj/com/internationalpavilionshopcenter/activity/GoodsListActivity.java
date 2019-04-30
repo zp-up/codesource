@@ -314,6 +314,15 @@ public class GoodsListActivity extends BaseAppcompatActivity {
                 TextView tvProductName = holder.getView(R.id.tv_name);
                 TextView tvDescribe = holder.getView(R.id.tv_describe);
                 TextView tvSinglePrice = holder.getView(R.id.tv_price);
+                TextView tvStoreType = holder.getView(R.id.tv_store_type);
+
+                // 仓库类型
+                if (productEntity.getStore_store() != null && TextUtils.isEmpty(productEntity.getStore_store().getType())) {
+                    tvStoreType.setVisibility(View.GONE);
+                } else {
+                    tvStoreType.setVisibility(View.VISIBLE);
+                    tvStoreType.setText(productEntity.getStore_store().getType());
+                }
 
                 //商品名字
                 tvProductName.setText(productEntity.getGoods_goods().getName());

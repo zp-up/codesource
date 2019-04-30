@@ -203,6 +203,8 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
         RequestParams params = new RequestParams(MainUrls.getGoodsDetailUrl);
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
         params.addBodyParameter("id", goodsId + "");
+        params.addBodyParameter("user", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
+        Log.d(TAG, "getGoodsDetailUrl params:" + params.toString());
         goodsDetailPresenter.getGoodsBaseInfo(params, this);
     }
 
@@ -333,7 +335,7 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
             viewPager.setOffscreenPageLimit(3);
             slidingTabLayout.setViewPager(viewPager, strings);
         }
-        if (isCollection == 0) {
+        if (isCollection == 0) {// 未收藏
             ivCollection.setImageResource(R.mipmap.icon_goods_detail_collection);
         } else {
             ivCollection.setImageResource(R.mipmap.icon_mine_collection);

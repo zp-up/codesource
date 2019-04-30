@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/x1"></View>
     <LinearLayout
+        android:visibility="gone"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x30">

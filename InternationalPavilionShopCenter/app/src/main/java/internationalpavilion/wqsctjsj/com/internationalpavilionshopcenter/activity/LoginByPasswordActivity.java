@@ -42,6 +42,7 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presen
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.UserOptionInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.AuthResult;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.LogUtil;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.PasswordCheckUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.PhoneNumberCheckUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
@@ -184,10 +185,12 @@ public class LoginByPasswordActivity extends BaseAppcompatActivity implements On
         }
         if (phoneIsOk && passwordIsOk){
             tvLogin.setEnabled(true);
-            tvLogin.setBackgroundColor(Color.parseColor("#ff0000"));
+//            tvLogin.setBackgroundColor(Color.parseColor("#ff0000"));
+            tvLogin.setBackgroundResource(R.drawable.shape_of_red_btn);
         }else {
             tvLogin.setEnabled(false);
-            tvLogin.setBackgroundColor(Color.parseColor("#aaaaaa"));
+//            tvLogin.setBackgroundColor(Color.parseColor("#aaaaaa"));
+            tvLogin.setBackgroundResource(R.drawable.shape_of_gray_btn);
         }
     }
 
@@ -266,6 +269,9 @@ public class LoginByPasswordActivity extends BaseAppcompatActivity implements On
                 int code = jsonObject.getInt("code");
                 int state = jsonObject.getInt("state");
                 String msg = jsonObject.has("msg") ? jsonObject.getString("msg") : "";
+                if (isTokenExpired(msg)) {
+                    return;
+                }
                 if (code == 0 && state == 0) {
                     if (jsonObject.has("data") && jsonObject.getString("data") != null && !jsonObject.getString("data").equals("null")) {
                         JSONObject data = jsonObject.getJSONObject("data");
@@ -328,6 +334,9 @@ public class LoginByPasswordActivity extends BaseAppcompatActivity implements On
                 int code = jsonObject.getInt("code");
                 int state = jsonObject.getInt("state");
                 String msg = jsonObject.has("msg")?jsonObject.getString("msg"):"";
+                if (isTokenExpired(msg)) {
+                    return;
+                }
                 if (code == 0 && state == 0){
                     if (jsonObject.has("data") && jsonObject.getString("data") != null && !jsonObject.getString("data").equals("null")){
                         JSONObject data = jsonObject.getJSONObject("data");
@@ -339,6 +348,19 @@ public class LoginByPasswordActivity extends BaseAppcompatActivity implements On
                         userBean.setNickName(data.has("nickname")?data.getString("nickname"):"");
                         userBean.setImg(data.has("img")?data.getString("img"):"");
                         ((IPSCApplication)getApplication()).saveUserInfo(new Gson().toJson(userBean));
+
+                        // 更新token和userid
+                        try {
+                            if (code == 0 && state == 0 && jsonObject.has("data") && jsonObject.getJSONObject("data").has("token")) {
+                                String token = jsonObject.getJSONObject("data").getJSONObject("token").getString("token");
+                                int id = jsonObject.getJSONObject("data").getJSONObject("token").getInt("user_id");
+                                ((IPSCApplication) getApplication()).setAppToken(token);
+                                IPSCApplication.id = id;
+                            }
+                        } catch (Exception e) {
+                            Log.e(TAG, "onLoginSuccess()", e);
+                        }
+
                         ToastUtils.show(LoginByPasswordActivity.this,"登录成功");
                         TokenEvent event = new TokenEvent();
                         event.code = 1;
@@ -456,7 +478,7 @@ public class LoginByPasswordActivity extends BaseAppcompatActivity implements On
         params.addBodyParameter("app", "Android");// Android
         params.addBodyParameter("type", loginWay == LOGIN_WAY_WECHAT ? "wechat" : "alipay");
         params.addBodyParameter("account", account);
-        params.addBodyParameter("code", code);//微信openid,支付宝auth_token
+        params.addBodyParameter("code", code);//微信openid,支付宝auth_token 真实的授权id
 //        params.addBodyParameter("app", "Android");
 //        params.addBodyParameter("type", loginWay == LOGIN_WAY_WECHAT ? "wechat" : "alipay");
 //        params.addBodyParameter("account", "wx936ef706f9fb1fe7");
@@ -527,4 +549,12 @@ public class LoginByPasswordActivity extends BaseAppcompatActivity implements On
             }
         };
     };
+
+    private Boolean isTokenExpired(String msg) {
+        if (msg.contains("接口无权限")) {
+            ((IPSCApplication) getApplication()).getTokenFromNet();
+            return true;
+        }
+        return false;
+    }
 }

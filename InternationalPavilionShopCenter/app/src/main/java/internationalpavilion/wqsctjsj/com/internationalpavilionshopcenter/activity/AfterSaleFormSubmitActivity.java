@@ -4,10 +4,15 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.OptionsPickerView;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.chrisjason.baseui.ui.BaseAppcompatActivity;
 import com.jaeger.library.StatusBarUtil;
 
@@ -53,6 +58,8 @@ public class AfterSaleFormSubmitActivity extends BaseAppcompatActivity implement
     private int orderId = -1;
     private byte[] rootBean = null;
     private OrderRootBean orderRootBean;
+    @BindView(R.id.ll_goods_list_container)
+    LinearLayout llGoodsListContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -189,10 +196,31 @@ public class AfterSaleFormSubmitActivity extends BaseAppcompatActivity implement
                     }
                     orderRootBean.setGoodsBeans(orderGoodsBeans);
                 }
-//                bindDataToView();
+                bindDataToView();
             } catch (Exception e) {
                 LogUtil.e(TAG, "onCommonGoodsCallBack()", e);
             }
+        }
+    }
+
+    private void bindDataToView() {
+        llGoodsListContainer.removeAllViews();
+        for (int i = 0; i < orderRootBean.getGoodsBeans().size(); i++) {
+            View view = LayoutInflater.from(AfterSaleFormSubmitActivity.this).inflate(R.layout.item_confirm_activity_goods, null);
+            ImageView ivGoodsPic = view.findViewById(R.id.iv_goods_pic);
+            Glide.with(AfterSaleFormSubmitActivity.this).load(orderRootBean.getGoodsBeans()
+                    .get(i).getImageUrl()).apply(new RequestOptions().error(R.drawable.bg_home_lay10_1)).into(ivGoodsPic);
+            TextView tvGoodsName = view.findViewById(R.id.tv_goods_name);
+            tvGoodsName.setText(orderRootBean.getGoodsBeans().get(i).getGoodsName());
+            TextView tvGoodsSpec = view.findViewById(R.id.tv_goods_spec);
+            tvGoodsSpec.setText(orderRootBean.getGoodsBeans().get(i).getGoodsDescription());
+            TextView tvGoodsPrice = view.findViewById(R.id.tv_goods_price);
+            tvGoodsPrice.setText("￥" + orderRootBean.getGoodsBeans().get(i).getGoodsPrice());
+            TextView tvBandedPrice = view.findViewById(R.id.tv_banded_price);
+            tvBandedPrice.setText("税费:￥" + orderRootBean.getGoodsBeans().get(i).getBondedPrice());
+            TextView tvCount = view.findViewById(R.id.tv_goods_count);
+            tvCount.setText("x" + orderRootBean.getGoodsBeans().get(i).getCount());
+            llGoodsListContainer.addView(view);
         }
     }
 

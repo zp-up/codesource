@@ -45,6 +45,7 @@ public class IPSCApplication extends Application implements OnNetCallBack{
 
     private static final String TAG = "[IPSC][IPSCApplication]";
     public static String accessToken = "";
+    public static String appToken = "";
     public static int id = -1;
     private String token;
     private UserOptionInterface userOptionPresenter;
@@ -108,10 +109,36 @@ public class IPSCApplication extends Application implements OnNetCallBack{
     }
 
     public void setAccessToken(String accessToken) {
+        Log.d(TAG, "setAccessToken() accessToken:" + accessToken);
         IPSCApplication.accessToken = accessToken;
         IPSCApplication.this.saveSPAccessToken(accessToken);
     }
-    private void getTokenFromNet(){
+
+    // 应用token
+    private String getSPAppToken() {
+        SharedPreferences sp = getSharedPreferences("Token", MODE_PRIVATE);
+        String appToken = sp.getString("appToken", "");
+        return appToken;
+    }
+
+    public void setAppToken(String appToken) {
+        Log.d(TAG, "setAppToken() appToken:" + appToken);
+        IPSCApplication.appToken = appToken;
+        IPSCApplication.this.saveSPAppToken(appToken);
+    }
+
+    private void saveSPAppToken(String appToken) {
+        Log.d(TAG, "saveSPAppToken() appToken:" + appToken);
+        if (appToken == null) {
+            return;
+        }
+        SharedPreferences sp = getSharedPreferences("Token", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("appToken", appToken);
+        editor.commit();
+    }
+
+    public void getTokenFromNet(){
         if (userOptionPresenter == null){
             userOptionPresenter = new UserOptionImp();
         }
@@ -150,7 +177,7 @@ public class IPSCApplication extends Application implements OnNetCallBack{
         }catch (Exception e){
             e.printStackTrace();
         }
-        Log.d(TAG, "getUserInfo() userJson:" + userJson.toString());
+//        Log.d(TAG, "getUserInfo() userJson:" + userJson.toString());
         return userBean;
     }
     public void removeUserInfo(){

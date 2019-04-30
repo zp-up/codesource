@@ -75,6 +75,7 @@ public class MainUrls {
     // 商品系统-》品牌管理-》指定品牌列表
     public static final String getGoodsDataWithBrandUrl = ServerIp + "?api=goods.brand.getdata";
 
+    // 门店系统-》门店商品价格-》获取商品
     public static final String getGoodsDetailUrl = ServerIp + "?api=store.price.goods";
 
     public static final String getGoodsEvaluateUrl = ServerIp + "?api=goods.comment.commentlist";

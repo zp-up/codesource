@@ -49,7 +49,7 @@ public class CollectionGoodsAdapter extends RecyclerView.Adapter<CollectionGoods
                 .apply(new RequestOptions().error(R.mipmap.ic_launcher)).into(holder.ivGoodsPic);
         holder.tvGoodsName.setText(data.get(position).getGoodsName());
         holder.tvGoodsPrice.setText("￥"+data.get(position).getGoodsPrice());
-        holder.tvGoodsSpec.setText(data.get(position).getDescription());
+//        holder.tvGoodsSpec.setText(data.get(position).getDescription());
         holder.tvToBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

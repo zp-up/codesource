@@ -60,6 +60,7 @@
             android:background="@drawable/bg_red_rectangle"
             android:orientation="horizontal">
             <ImageView
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/icon_mine_true_name_confirm"/>
@@ -67,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_color_red_little"
-                android:text="添加实名认证人员"
+                android:text="+ 添加实名认证人员"
                 android:layout_marginLeft="@dimen/x20"
                 android:gravity="center"/>
         </LinearLayout>

@@ -11,6 +11,9 @@ public final class LogUtil {
 
     //把字符串转中文输出log.i日志
     public static void d(String tag, String string) {
+        if (!isDebug) {
+            return;
+        }
         String newString = "";
         for (int i = 0; i < string.length(); i++) {
             if (string.charAt(i) == '\\') {
@@ -31,9 +34,7 @@ public final class LogUtil {
         for (int i = 0; i < num; i++) {
             int idexEnd = newString.length() < 3000 * (i + 1) ? newString.length() : 3000 * (i + 1);
             int idexStart = 3000 * i;
-            if (!isDebug) {
-                return;
-            }
+
             StackTraceElement[] sElements = new Throwable().getStackTrace();
             className = sElements[1].getFileName();
             methodName = sElements[1].getMethodName();
@@ -45,6 +46,9 @@ public final class LogUtil {
 
     //把字符串转中文输出log.e日志
     public static void e(String tag, String string, Exception e) {
+//        if (!isDebug) {
+//            return;
+//        }
         String newString = "";
         for (int i = 0; i < string.length(); i++) {
             if (string.charAt(i) == '\\') {
@@ -65,9 +69,7 @@ public final class LogUtil {
         for (int i = 0; i < num; i++) {
             int idexEnd = newString.length() < 3000 * (i + 1) ? newString.length() : 3000 * (i + 1);
             int idexStart = 3000 * i;
-            if (!isDebug) {
-                return;
-            }
+
             StackTraceElement[] sElements = new Throwable().getStackTrace();
             className = sElements[1].getFileName();
             methodName = sElements[1].getMethodName();

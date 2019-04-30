@@ -101,7 +101,7 @@ public class RealNameAuthenticationListActivity extends BaseAppcompatActivity im
                     // TODO 缺少电话字段
                     phoneTv.setText(dataEntity.getCard() == null ? "" : dataEntity.getCard());
                     // TODO 缺少判断是否认证标准
-                    isAuthTv.setText(dataEntity.getStatus() == 1 ? "默认" : "已认证");
+                    isAuthTv.setText("已认证");
                     llList.addView(view);
                 }
             } else {

@@ -65,6 +65,7 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entity
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp.HomeDataImp;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.HomeDataInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.LogUtil;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnHomeDataCallBack;
 
@@ -73,6 +74,8 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.
  */
 
 public class HomeFragment extends Fragment implements OnHomeDataCallBack {
+
+    private static final String TAG = "[IPSC][HomeFragment]";
     private Unbinder unbinder;
     private DelegateAdapter adapter;
     private HomeAdapter homeAdapter1, homeAdapter2, homeAdapter3, homeAdapter4, homeAdapter5, homeAdapter6, homeAdapter7, homeAdapter8, homeAdapter9, homeAdapter10;
@@ -220,7 +223,7 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
             startTime = hour;
         }
         endTime = startTime + 4;
-        Log.e("TAG", "startTime:" + startTime + " ---  endTime:" + endTime);
+        Log.e(TAG, "startTime:" + startTime + " ---  endTime:" + endTime);
         RequestParams params = new RequestParams(MainUrls.getLimitTimeGoodsUrl);
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
         params.addBodyParameter("time", "" + startTime);
@@ -403,13 +406,13 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
     //请求错误
     @Override
     public void onError(String error) {
-        Log.e("TAG", "出错:" + error);
+        Log.e(TAG, "出错:" + error);
     }
 
     //请求成功
     @Override
     public void onGetBannerData(String result) {
-        Log.e("TAG", "banner请求结果:" + result);
+        Log.e(TAG, "banner请求结果:" + result);
         if (result != null) {
             try {
                 JSONObject jsonObject = new JSONObject(result);
@@ -442,7 +445,7 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
     //获取限时购的商品
     @Override
     public void onLimitTimeGoodsLoaded(String result) {
-        Log.e("TAG", "限时购商品:" + result);
+        Log.e(TAG, "限时购商品:" + result);
         if (result != null) {
             long time = System.currentTimeMillis();
             final Calendar mCalendar = Calendar.getInstance();
@@ -460,7 +463,7 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
                 startTime = hour;
             }
             endTime = startTime + 4;
-            Log.e("TAG", "startTime:" + startTime + " ---  endTime:" + endTime);
+            Log.e(TAG, "startTime:" + startTime + " ---  endTime:" + endTime);
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");
@@ -473,7 +476,7 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
                             limitTimeGoodsData.clear();
                             homeAdapter3.notifyDataSetChanged();
                             for (int i = 0; i < jsonArray.length(); i++) {
-                                int id = jsonArray.getJSONObject(i).getJSONObject("goods_goods").getInt("id");
+                                int id = jsonArray.getJSONObject(i).getInt("id");
                                 String goodsName = jsonArray.getJSONObject(i).getJSONObject("goods_goods").getString("name");
                                 double price = jsonArray.getJSONObject(i).getDouble("price");
                                 String picUrl = jsonArray.getJSONObject(i).getJSONObject("goods_goods").getJSONArray("img").getString(0);
@@ -510,7 +513,7 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
     @Override
     public void onHotSaleGoodsLoaded(String result) {
         if (result != null) {
-            Log.e("TAG", "热门商品获取:" + result);
+            Log.e(TAG, "热门商品获取:" + result);
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");
@@ -523,7 +526,7 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
                             homeAdapter5.notifyDataSetChanged();
                             for (int i = 0; i < data.length(); i++) {
                                 HotGoodsBean bean = new HotGoodsBean();
-                                int id = data.getJSONObject(i).getJSONObject("goods_goods").getInt("id");
+                                int id = data.getJSONObject(i).getInt("id");
                                 String name = data.getJSONObject(i).getJSONObject("goods_goods").getString("name");
                                 double price = data.getJSONObject(i).getDouble("price_m");
                                 String goodsPic = TextUtils.isEmpty(data.getJSONObject(i).getJSONObject("goods_goods").getString("img"))?"":data.getJSONObject(i).getJSONObject("goods_goods").getJSONArray("img").getString(0);
@@ -549,7 +552,7 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
     @Override
     public void onBondedGoodsLoaded(String result) {
         if (result != null) {
-            Log.e("TAG", "保税商品列表:" + result);
+            Log.e(TAG, "保税商品列表:" + result);
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");
@@ -563,7 +566,7 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
                             ArrayList<HomeBondedGoodsBean> goodsBeans = new ArrayList<>();
                             for (int i = 0; i < data.length(); i++) {
                                 HomeBondedGoodsBean bean = new HomeBondedGoodsBean();
-                                int id = data.getJSONObject(i).getJSONObject("goods_goods").getInt("id");
+                                int id = data.getJSONObject(i).getInt("id");
                                 String name = data.getJSONObject(i).getJSONObject("goods_goods").getString("name");
                                 double price = data.getJSONObject(i).getDouble("price_m");
                                 String goodsPic = data.getJSONObject(i).getJSONObject("goods_goods").getJSONArray("img").getString(0);
@@ -589,7 +592,7 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
     @Override
     public void onOverseasGoodsLoaded(String result) {
         if (result != null) {
-            Log.e("TAG", "海外直邮商品列表:" + result);
+            Log.e(TAG, "海外直邮商品列表:" + result);
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");
@@ -603,7 +606,7 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
                             ArrayList<HomeOverSeasGoodsBean> goodsBeans = new ArrayList<>();
                             for (int i = 0; i < data.length(); i++) {
                                 HomeOverSeasGoodsBean bean = new HomeOverSeasGoodsBean();
-                                int id = data.getJSONObject(i).getJSONObject("goods_goods").getInt("id");
+                                int id = data.getJSONObject(i).getInt("id");
                                 String name = data.getJSONObject(i).getJSONObject("goods_goods").getString("name");
                                 double price = data.getJSONObject(i).getDouble("price_m");
                                 String goodsPic = data.getJSONObject(i).getJSONObject("goods_goods").getJSONArray("img").getString(0);
@@ -630,7 +633,7 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
     @Override
     public void onWishGoodsLoaded(String result) {
         if (result != null) {
-            Log.e("TAG", "心愿清单:" + result);
+            Log.e(TAG, "心愿清单:" + result);
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");
@@ -644,7 +647,7 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
                             ArrayList<HomeWishGoodsBean> goodsBeans = new ArrayList<>();
                             for (int i = 0; i < data.length(); i++) {
                                 HomeWishGoodsBean bean = new HomeWishGoodsBean();
-                                int id = data.getJSONObject(i).getJSONObject("goods_goods").getInt("id");
+                                int id = data.getJSONObject(i).getInt("id");
                                 String name = data.getJSONObject(i).getJSONObject("goods_goods").getString("name");
                                 double price = data.getJSONObject(i).getDouble("price_m");
                                 String goodsPic = data.getJSONObject(i).getJSONObject("goods_goods").getJSONArray("img").getString(0);
@@ -671,7 +674,7 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
     @Override
     public void onPopularityGoodsLoaded(String result) {
         if (result != null) {
-            Log.e("TAG", "人气榜:" + result);
+            Log.e(TAG, "人气榜:" + result);
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");
@@ -686,7 +689,7 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
                             }
                             for (int i = 0; i < data.length(); i++) {
                                 HomePopularityGoodsBean bean = new HomePopularityGoodsBean();
-                                int id = data.getJSONObject(i).getJSONObject("goods_goods").getInt("id");
+                                int id = data.getJSONObject(i).getInt("id");
                                 String name = data.getJSONObject(i).getJSONObject("goods_goods").getString("name");
                                 double price = data.getJSONObject(i).getDouble("price_m");
                                 String goodsPic = !TextUtils.isEmpty(data.getJSONObject(i).getJSONObject("goods_goods").getString("img"))?data.getJSONObject(i).getJSONObject("goods_goods").getJSONArray("img").getString(0):"";

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
@@ -27,7 +28,7 @@
                 <TextView
                     android:id="@+id/tv_goods_name"
                     android:ellipsize="end"
-                    android:text="雅诗兰黛新沁水粉底液雅诗兰黛新沁水粉底液"
+                    tools:text="雅诗兰黛新沁水粉底液雅诗兰黛新沁水粉底液"
                     android:textColor="#636363"
                     android:textSize="@dimen/x14"
                     android:lines="2"
@@ -37,7 +38,7 @@
                 <TextView
                     android:id="@+id/tv_goods_spec"
                     android:ellipsize="end"
-                    android:text="SPF20/SP+++"
+                    tools:text="SPF20/SP+++"
                     android:textColor="@color/gray"
                     android:textSize="@dimen/x13"
                     android:lines="1"
@@ -47,7 +48,7 @@
                 <TextView
                     android:id="@+id/tv_goods_price"
                     android:ellipsize="end"
-                    android:text="￥320.00"
+                    tools:text="￥320.00"
                     android:textColor="@color/black"
                     android:textSize="@dimen/x12"
                     android:lines="1"

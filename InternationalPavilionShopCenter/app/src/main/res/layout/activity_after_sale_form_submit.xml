@@ -51,12 +51,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <LinearLayout
+                android:id="@+id/ll_goods_list_container"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <include layout="@layout/item_after_sale_confirm_goods_layout"></include>
-                <include layout="@layout/item_after_sale_confirm_goods_layout"></include>
-                <include layout="@layout/item_after_sale_confirm_goods_layout"></include>
+
             </LinearLayout>
             <RelativeLayout
                 android:id="@+id/rl_reason_select"

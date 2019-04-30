@@ -33,6 +33,7 @@ import butterknife.Unbinder;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.ConfirmOrderActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.LoginByPasswordActivity;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.OrderActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.adapter.CartAdapter;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.application.IPSCApplication;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.CartGood;
@@ -46,6 +47,9 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnCartOperationCallBack;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnCommonGoodsCallBack;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.dialog.SweetAlertDialog;
+
+import static internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.dialog.SweetAlertDialog.NORMAL_TYPE;
 
 /**
  * Created by wuqaing on 2018/11/29.
@@ -140,6 +144,11 @@ public class CartFragment extends Fragment implements OnCommonGoodsCallBack, Car
                 if (isLogin()) {
                     if (carts != null && carts.size() > 0) {
                         submitCart();
+//                        if (countChecked(carts) == 1) {
+//                            submitCart();
+//                        } else {
+//                            showMultiOrderDialog();
+//                        }
                     } else {
                         if (getActivity() != null && isAdded()) {
                             Toast.makeText(getActivity(), "当前购物车为空", Toast.LENGTH_SHORT).show();
@@ -153,6 +162,31 @@ public class CartFragment extends Fragment implements OnCommonGoodsCallBack, Car
 
                 break;
         }
+    }
+
+    /**
+     * 提示多订单
+     */
+    private void showMultiOrderDialog() {
+        final SweetAlertDialog dialog = new SweetAlertDialog(getContext(), NORMAL_TYPE);
+        dialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                dialog.dismissWithAnimation();
+                submitCart();
+//                //跳转到代付款界面
+//                Intent intentToWaitPayOrder = new Intent(getActivity(), OrderActivity.class);
+//                intentToWaitPayOrder.putExtra("index", 1);
+//                startActivity(intentToWaitPayOrder);
+                sweetAlertDialog.hide();
+            }
+        });
+        dialog.showCancelButton(false);
+        dialog.setConfirmText("确定");
+        dialog.setTitleText("多订单支付提示");
+        dialog.setContentText("您有保税区发货或海外直邮的订单\n需分别支付并报送海关。");
+        dialog.setCancelable(false);
+        dialog.show();
     }
 
     private void submitCart() {
@@ -315,6 +349,32 @@ public class CartFragment extends Fragment implements OnCommonGoodsCallBack, Car
             }
         }
         return true;
+    }
+
+    /**
+     * 选中的订单的仓库数量
+     * @param rootBean
+     * @return
+     */
+    private int countChecked(ArrayList<CartRootBean> rootBean) {
+        int checkedCount = 0;
+        try {
+            for (int i = 0; i < rootBean.size(); i++) {
+                if (rootBean.get(i).getmCartGood() != null && rootBean.get(i).getmCartGood().size() != 0) {
+                    Log.d(TAG, "countChecked() StoreType:" + rootBean.get(i).getStoreType());
+                    for (int j = 0; j < rootBean.get(i).getmCartGood().size(); j++) {
+                        if (rootBean.get(i).getmCartGood().get(j).isChecked()) {
+                            checkedCount++;
+                            break;
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "countChecked()", e);
+        }
+        Log.d(TAG, "countChecked() checkedCount:" + checkedCount);
+        return checkedCount;
     }
 
     @Override

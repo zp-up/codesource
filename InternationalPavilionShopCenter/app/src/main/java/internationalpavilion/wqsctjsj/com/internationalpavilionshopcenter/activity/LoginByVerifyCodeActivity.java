@@ -133,10 +133,13 @@ public class LoginByVerifyCodeActivity extends BaseAppcompatActivity implements 
         }
         if (phoneIsOk && verifyCodeIsOk) {
             tvLogin.setEnabled(true);
-            tvLogin.setBackgroundColor(Color.parseColor("#ff0000"));
+//            tvLogin.setBackgroundColor(Color.parseColor("#ff0000"));
+            tvLogin.setBackgroundResource(R.drawable.shape_of_red_btn);
         } else {
             tvLogin.setEnabled(false);
-            tvLogin.setBackgroundColor(Color.parseColor("#aaaaaa"));
+//            tvLogin.setBackgroundColor(Color.parseColor("#aaaaaa"));
+            tvLogin.setBackgroundResource(R.drawable.shape_of_gray_btn);
+
         }
     }
 
@@ -223,6 +226,9 @@ public class LoginByVerifyCodeActivity extends BaseAppcompatActivity implements 
                 int code = jsonObject.getInt("code");
                 int state = jsonObject.getInt("state");
                 String msg = jsonObject.has("msg") ? jsonObject.getString("msg") : "";
+                if (isTokenExpired(msg)) {
+                    return;
+                }
                 if (code == 0 && state == 0) {
                     TimerButton timerButton = new TimerButton(60 * 1000, 1000, tvGetCode, "获取验证码");
                     ToastUtils.show(this, "验证码已发送");
@@ -254,6 +260,9 @@ public class LoginByVerifyCodeActivity extends BaseAppcompatActivity implements 
                 int code = jsonObject.getInt("code");
                 int state = jsonObject.getInt("state");
                 String msg = jsonObject.has("msg") ? jsonObject.getString("msg") : "";
+                if (isTokenExpired(msg)) {
+                    return;
+                }
                 if (code == 0 && state == 0) {
                     if (jsonObject.has("data") && jsonObject.getString("data") != null && !jsonObject.getString("data").equals("null")) {
                         JSONObject data = jsonObject.getJSONObject("data");
@@ -268,11 +277,17 @@ public class LoginByVerifyCodeActivity extends BaseAppcompatActivity implements 
                         ((IPSCApplication)getApplication()).saveUserInfo(new Gson().toJson(userBean));
                         ToastUtils.show(this,"登录成功");
 
-                        String token = data.getString("token");
-//                        int id = data.getInt("user_id");
-//                        IPSCApplication.this.setAccessToken(token);
-                        IPSCApplication.accessToken = token;
-//                        IPSCApplication.id = id;
+                        // 更新token和userid
+                        try {
+                            if (code == 0 && state == 0 && jsonObject.has("data") && jsonObject.getJSONObject("data").has("token")) {
+                                String token = jsonObject.getJSONObject("data").getString("token");
+                                int id = jsonObject.getJSONObject("data").getInt("user_id");
+                                ((IPSCApplication) getApplication()).setAppToken(token);
+                                IPSCApplication.id = id;
+                            }
+                        } catch (Exception e) {
+                            Log.e(TAG, "onLoginSuccess()", e);
+                        }
 
                         TokenEvent event = new TokenEvent();
                         event.code = 1;
@@ -294,5 +309,13 @@ public class LoginByVerifyCodeActivity extends BaseAppcompatActivity implements 
     @Override
     public void onRegisterSuccess(String result) {
 
+    }
+
+    private Boolean isTokenExpired(String msg) {
+        if (msg.contains("接口无权限")) {
+            ((IPSCApplication) getApplication()).getTokenFromNet();
+            return true;
+        }
+        return false;
     }
 }
