@@ -78,6 +78,7 @@ public class CartFragment extends Fragment implements OnCommonGoodsCallBack, Car
 
     private CommonDataInterface commonPresenter;
     private CartOperationInterface cartOperationPresenter;
+    private boolean isMultiOrder = false;
 
     @Nullable
     @Override
@@ -143,12 +144,13 @@ public class CartFragment extends Fragment implements OnCommonGoodsCallBack, Car
             case R.id.tv_submit_cart:
                 if (isLogin()) {
                     if (carts != null && carts.size() > 0) {
-                        submitCart();
-//                        if (countChecked(carts) == 1) {
-//                            submitCart();
-//                        } else {
-//                            showMultiOrderDialog();
-//                        }
+                        if (countChecked(carts) == 1) {
+                            isMultiOrder = false;
+                            submitCart();
+                        } else {
+                            isMultiOrder = true;
+                            showMultiOrderDialog();
+                        }
                     } else {
                         if (getActivity() != null && isAdded()) {
                             Toast.makeText(getActivity(), "当前购物车为空", Toast.LENGTH_SHORT).show();
@@ -174,10 +176,6 @@ public class CartFragment extends Fragment implements OnCommonGoodsCallBack, Car
             public void onClick(SweetAlertDialog sweetAlertDialog) {
                 dialog.dismissWithAnimation();
                 submitCart();
-//                //跳转到代付款界面
-//                Intent intentToWaitPayOrder = new Intent(getActivity(), OrderActivity.class);
-//                intentToWaitPayOrder.putExtra("index", 1);
-//                startActivity(intentToWaitPayOrder);
                 sweetAlertDialog.hide();
             }
         });
@@ -189,6 +187,15 @@ public class CartFragment extends Fragment implements OnCommonGoodsCallBack, Car
         dialog.show();
     }
 
+    /**
+     *  跳转到待付款界面
+     */
+    private void toWaitPayActivity() {
+        //跳转到代付款界面
+        Intent intentToWaitPayOrder = new Intent(getActivity(), OrderActivity.class);
+        intentToWaitPayOrder.putExtra("index", 1);
+        startActivity(intentToWaitPayOrder);
+    }
     private void submitCart() {
         RequestParams params = new RequestParams(MainUrls.cartSubmitUrl);
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
@@ -249,6 +256,11 @@ public class CartFragment extends Fragment implements OnCommonGoodsCallBack, Car
                 if (jsonObject.has("data")) {
                     JSONObject data = jsonObject.getJSONObject("data");
                     String orderId = data.has("0") ? data.getString("0") : "-1";
+                    if (isMultiOrder) {// 提交购物车成功后，如果是多订单，则会跳转到待付款界面
+                        isMultiOrder = false;
+                        toWaitPayActivity();
+                        return;
+                    }
                     if (!orderId.equals("-1")) {
                         Intent intent = new Intent(getActivity(), ConfirmOrderActivity.class);
                         intent.putExtra("id", orderId);
@@ -362,6 +374,7 @@ public class CartFragment extends Fragment implements OnCommonGoodsCallBack, Car
             for (int i = 0; i < rootBean.size(); i++) {
                 if (rootBean.get(i).getmCartGood() != null && rootBean.get(i).getmCartGood().size() != 0) {
                     Log.d(TAG, "countChecked() StoreType:" + rootBean.get(i).getStoreType());
+                    // TODO这里存在潜在问题，后台反馈的数据有时候会存在没有对应仓库，当前我们默认后台数据正常
                     for (int j = 0; j < rootBean.get(i).getmCartGood().size(); j++) {
                         if (rootBean.get(i).getmCartGood().get(j).isChecked()) {
                             checkedCount++;

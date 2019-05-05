@@ -59,6 +59,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         ArrayList<CartGood> goodsList = data.get(position).getmCartGood();
+        if (data.get(position).getCartGoodsName() == null || data.get(position).getCartGoodsName().isEmpty()) {
+            ((View) holder.itemCarts.getParent()).setVisibility(View.GONE);
+        }
         holder.itemCarts.setText(data.get(position).getCartGoodsName());
         holder.cartContentLinearLayout.removeAllViews();
         holder.tvStoreGoodsTotalPrice.setText("￥" + data.get(position).getTotalPrice());

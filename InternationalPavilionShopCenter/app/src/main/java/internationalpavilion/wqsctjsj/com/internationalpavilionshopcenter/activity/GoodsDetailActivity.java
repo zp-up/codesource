@@ -179,6 +179,9 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
     private ArrayList<Speclist> specLists = new ArrayList<>();
     private ArrayList<Storelist> storeLists = new ArrayList<>();
     private int cunt = 0;
+    /**
+     *  0 未收藏  1 已收藏
+      */
     private int isCollection = 0;
 
 
@@ -423,7 +426,7 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
             RequestParams params = new RequestParams(MainUrls.addToCollectionUrl);
             params.addBodyParameter("access_token", IPSCApplication.accessToken);
             params.addBodyParameter("user", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
-            params.addBodyParameter("goods", goodsId + "");
+            params.addBodyParameter("goods", goodsBean.getData().getGoods_goods().getId() + "");
             Log.d(TAG, " addToCollection user:" + ((IPSCApplication) getApplication()).getUserInfo().getId() + ",goods:" + goodsId);
             goodsDetailPresenter.addGoodsToCollection(params, this, isCollection == 0 ? 1 : 2);
         } else {
