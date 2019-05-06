@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -48,6 +49,7 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.applic
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.eventBusBean.TokenEvent;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.userInfo.UserBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
 
 /**
  * Created by wuqaing on 2018/11/29.
@@ -234,8 +236,9 @@ public class MineFragment extends Fragment {
                 break;
             case R.id.ll_to_friends:
                 if(isLogin()){
-                    Intent intentToFriends = new Intent(getActivity(), FriendsActivity.class);
-                    startActivity(intentToFriends);
+//                    Intent intentToFriends = new Intent(getActivity(), FriendsActivity.class);
+//                    startActivity(intentToFriends);
+                    ToastUtils.show(getContext(), "暂未开通！");
                 }else {
                     if(getActivity()!=null){
                         getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));

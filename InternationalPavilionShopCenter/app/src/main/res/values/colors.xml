@@ -27,4 +27,5 @@
     <color name="material_deep_teal_50">#ff009688</color>
     <color name="line_bg">#e5e5e5</color>
     <color name="activity_gray">#f3f4f9</color>
+    <color name="header_line_color">#c0c0c0</color>
 </resources>

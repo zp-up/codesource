@@ -113,12 +113,15 @@ public class RealNameAuthenticationListActivity extends BaseAppcompatActivity im
 
     }
 
-    @OnClick({R.id.ll_add_auth_man})
+    @OnClick({R.id.ll_add_auth_man, R.id.iv_back})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ll_add_auth_man:
                 Intent intentToRealNameAuthor = new Intent(this, RealNameAuthenticationActivity.class);
                 startActivity(intentToRealNameAuthor);
+                break;
+            case R.id.iv_back:
+                RealNameAuthenticationListActivity.this.finish();
                 break;
         }
     }

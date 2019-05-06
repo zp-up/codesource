@@ -31,6 +31,11 @@
             android:textColor="@color/black"
             android:textSize="@dimen/x14" />
     </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"
+        android:background="@color/header_line_color"></View>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
