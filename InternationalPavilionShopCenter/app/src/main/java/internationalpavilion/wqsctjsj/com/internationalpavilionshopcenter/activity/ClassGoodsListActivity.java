@@ -52,11 +52,14 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entity
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp.BondedGoodsImp;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.BondedGoodsInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.LogUtil;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnBondedGoodsCallBack;
 
 
 public class ClassGoodsListActivity extends BaseAppcompatActivity implements OnBondedGoodsCallBack {
+
+    private static final String TAG = "[IPSC][ClassGoodsListActivity]";
     @BindView(R.id.rv_bonded_goods)
     RecyclerView rvBondedGoods;
     @BindView(R.id.ll_screen_container)
@@ -150,44 +153,15 @@ public class ClassGoodsListActivity extends BaseAppcompatActivity implements OnB
         initView();
 
 
-        RequestParams paramsBrand = new RequestParams(MainUrls.getAllClassBrandUrl);
-        paramsBrand.addBodyParameter("access_token", IPSCApplication.accessToken);
-        paramsBrand.addBodyParameter("page", "1");
-        paramsBrand.addBodyParameter("limit", "100");
-        bondedGoodsPresenter.getBrandData(paramsBrand, this);
+//        RequestParams paramsBrand = new RequestParams(MainUrls.getAllClassBrandUrl);
+//        paramsBrand.addBodyParameter("access_token", IPSCApplication.accessToken);
+//        paramsBrand.addBodyParameter("page", "1");
+//        paramsBrand.addBodyParameter("limit", "100");
+//        bondedGoodsPresenter.getBrandData(paramsBrand, this);
         initData();
-        if (priceData.size() == 0) {
-            PriceData pd = new PriceData();
-            pd.setId(1);
-            pd.setPriceSection("200以下");
-            pd.setChecked(false);
-            priceData.add(pd);
 
-            PriceData pd1 = new PriceData();
-            pd1.setId(2);
-            pd1.setChecked(false);
-            pd1.setPriceSection("200-499");
-            priceData.add(pd1);
-
-            PriceData pd2 = new PriceData();
-            pd2.setId(3);
-            pd2.setChecked(false);
-            pd2.setPriceSection("500-999");
-            priceData.add(pd2);
-
-            PriceData pd3 = new PriceData();
-            pd3.setId(4);
-            pd3.setChecked(false);
-            pd3.setPriceSection("1000-1999");
-            priceData.add(pd3);
-
-            PriceData pd4 = new PriceData();
-            pd4.setId(5);
-            pd4.setPriceSection("2000以上");
-            priceData.add(pd4);
-
-        }
         //添加价格
+        initPriceSection();
         initPriceData();
     }
 
@@ -294,6 +268,16 @@ public class ClassGoodsListActivity extends BaseAppcompatActivity implements OnB
     }
 
     private void initData() {
+        if (adapter == null) {
+            adapter = new BondedGoodsListAdapter(this, data);
+            rvBondedGoods.setLayoutManager(new GridLayoutManager(this, 2));
+            rvBondedGoods.setAdapter(adapter);
+        }
+        request();
+
+    }
+
+    private void request() {
         RequestParams params = new RequestParams(MainUrls.getClassGoodsListUrl);
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
         params.addBodyParameter("id", classId + "");
@@ -327,98 +311,35 @@ public class ClassGoodsListActivity extends BaseAppcompatActivity implements OnB
         if (etMaxPrice.getText().toString().trim().length() != 0) {
             params.addBodyParameter("pricemax", etMaxPrice.getText().toString().trim());
         }
-        if (currentPriceId != -1){
-            switch (currentPriceId){
+        if (currentPriceId != -1) {
+            switch (currentPriceId) {
                 case 1:
-                    params.addBodyParameter("pricemax","200");
+                    params.addBodyParameter("pricemax", "200");
                     break;
                 case 2:
-                    params.addBodyParameter("pricemin","200");
-                    params.addBodyParameter("pricemax","499");
+                    params.addBodyParameter("pricemin", "200");
+                    params.addBodyParameter("pricemax", "499");
                     break;
                 case 3:
-                    params.addBodyParameter("pricemin","500");
-                    params.addBodyParameter("pricemax","999");
+                    params.addBodyParameter("pricemin", "500");
+                    params.addBodyParameter("pricemax", "999");
                     break;
                 case 4:
-                    params.addBodyParameter("pricemin","1000");
-                    params.addBodyParameter("pricemax","1999");
+                    params.addBodyParameter("pricemin", "1000");
+                    params.addBodyParameter("pricemax", "1999");
                     break;
                 case 5:
-                    params.addBodyParameter("pricemin","2000");
+                    params.addBodyParameter("pricemin", "2000");
                     break;
             }
         }
-        Log.d("[IPSC][]", "initData() params:" + params.toString());
+        Log.d(TAG, "request() params:" + params.toString());
         bondedGoodsPresenter.getBondedGoods(params, this);
-
-        if (adapter == null) {
-            adapter = new BondedGoodsListAdapter(this, data);
-            rvBondedGoods.setLayoutManager(new GridLayoutManager(this, 2));
-            rvBondedGoods.setAdapter(adapter);
-        } else {
-            adapter.notifyDataSetChanged();
-        }
-
     }
+
     private void loadMore() {
         pageIndex++;
-        RequestParams params = new RequestParams(MainUrls.getClassGoodsListUrl);
-        params.addBodyParameter("access_token", IPSCApplication.accessToken);
-        params.addBodyParameter("page", "" + pageIndex);
-        params.addBodyParameter("limit", "10");
-        if (currentPosition == 1) {
-            params.addBodyParameter("num_r", "1");
-        }
-        if (currentPosition == 2) {
-            params.addBodyParameter("is_full", "1");
-        }
-        if (currentPosition == 3) {
-            if (priceState == 1) {
-                params.addBodyParameter("price", "0");
-                Log.e("TAG", "升序");
-            } else if (priceState == 2) {
-                params.addBodyParameter("price", "1");
-                Log.e("TAG", "降序");
-            }
-        }
-
-        if (currentBrandId != -1) {
-            params.addBodyParameter("brand", currentBrandId + "");
-        }
-        if (currentClassId != -1) {
-            params.addBodyParameter("cate", currentClassId + "");
-        }
-        if (etMinPrice.getText().toString().trim().length() != 0) {
-            params.addBodyParameter("pricemin", etMinPrice.getText().toString().trim());
-        }
-        if (etMaxPrice.getText().toString().trim().length() != 0) {
-            params.addBodyParameter("pricemax", etMaxPrice.getText().toString().trim());
-        }
-        if (currentPriceId != -1){
-            switch (currentPriceId){
-                case 1:
-                    params.addBodyParameter("pricemax","200");
-                    break;
-                case 2:
-                    params.addBodyParameter("pricemin","200");
-                    params.addBodyParameter("pricemax","499");
-                    break;
-                case 3:
-                    params.addBodyParameter("pricemin","500");
-                    params.addBodyParameter("pricemax","999");
-                    break;
-                case 4:
-                    params.addBodyParameter("pricemin","1000");
-                    params.addBodyParameter("pricemax","1999");
-                    break;
-                case 5:
-                    params.addBodyParameter("pricemin","2000");
-                    break;
-            }
-        }
-        Log.d("[IPSC][]", "loadMore() params:" + params.toString());
-        bondedGoodsPresenter.getBondedGoods(params, this);
+        request();
     }
 
     @OnClick({R.id.iv_back, R.id.ll_filter_screen, R.id.tv_filter_popularity, R.id.tv_filter_discount, R.id.ll_filter_price,
@@ -703,6 +624,69 @@ public class ClassGoodsListActivity extends BaseAppcompatActivity implements OnB
                                 }
                             }, 2000);
                         }
+
+                        // 筛选的品牌、分类数据获取
+                        com.alibaba.fastjson.JSONObject obj = com.alibaba.fastjson.JSONObject.parseObject(result);
+                        com.alibaba.fastjson.JSONObject list = obj.getJSONObject("list");
+                        Log.d(TAG, "品牌分类:");
+                        try {
+//                            if (pageIndex == 1) {
+//                            }
+                            branList.clear();
+                            if (list.keySet().contains("brand") && !TextUtils.isEmpty(list.getString("brand"))) {
+                                com.alibaba.fastjson.JSONArray brandList = list.getJSONArray("brand");
+                                if (brandList != null && brandList.size() != 0) {
+                                    ArrayList<RightClassInChildBean> childBeans = new ArrayList<>();
+                                    for (int j = 0; j < brandList.size(); j++) {
+                                        RightClassInChildBean childBean = new RightClassInChildBean();
+                                        int childId = brandList.getJSONObject(j).getIntValue("id");
+                                        String childName = brandList.getJSONObject(j).getString("name");
+                                        String childLogo = brandList.getJSONObject(j).getString("logo");
+                                        childBean.setClassName(childName);
+                                        childBean.setId(childId);
+                                        childBean.setImgUrl(childLogo);
+                                        childBean.setChecked(false);
+                                        if (childBean.getClassName() != null && !TextUtils.isEmpty(childBean.getClassName())) {
+                                            childBeans.add(childBean);
+                                        }
+                                    }
+                                    branList.addAll(childBeans);
+                                }
+                            }
+                            initBrand();
+                        } catch (Exception e) {
+                            LogUtil.e(TAG, "update brand data occur an exception!", e);
+                        }
+
+                        Log.d(TAG, "商品种类:");
+                        try {
+/*                            if (pageIndex == 1) {
+                            }*/
+                            rightClassData.clear();
+                            if (list.keySet().contains("cate") && !TextUtils.isEmpty(list.getString("cate"))) {
+                                com.alibaba.fastjson.JSONArray cateList = list.getJSONArray("cate");
+                                if (cateList != null && cateList.size() != 0) {
+                                    ArrayList<RightClassInChildBean> childBeans = new ArrayList<>();
+                                    for (int j = 0; j < cateList.size(); j++) {
+                                        RightClassInChildBean childBean = new RightClassInChildBean();
+                                        int childId = cateList.getJSONObject(j).getIntValue("id");
+                                        String childName = cateList.getJSONObject(j).getString("name");
+                                        String childLogo = cateList.getJSONObject(j).getString("logo");
+                                        childBean.setClassName(childName);
+                                        childBean.setId(childId);
+                                        childBean.setImgUrl(childLogo);
+                                        childBean.setChecked(false);
+                                        if (childBean.getClassName() != null && !TextUtils.isEmpty(childBean.getClassName())) {
+                                            childBeans.add(childBean);
+                                        }
+                                    }
+                                    rightClassData.addAll(childBeans);
+                                }
+                            }
+                            initClassData();
+                        } catch (Exception e) {
+                            LogUtil.e(TAG, "update cate data occur an exception!", e);
+                        }
                     }
                 }
             } catch (Exception e) {
@@ -774,7 +758,7 @@ public class ClassGoodsListActivity extends BaseAppcompatActivity implements OnB
             final int index = i;
             final View price = LayoutInflater.from(this).inflate(R.layout.text_tag_view, null);
             TextView tag = price.findViewById(R.id.tv_tag_name);
-            if (priceData.get(i).isChecked()) {
+            if (priceData.get(i).isChecked() || currentPriceId == priceData.get(index).getId()) {
                 tag.setTextColor(Color.parseColor("#ff0000"));
                 tag.setBackgroundResource(R.drawable.shape_of_goods_spe_selected);
             } else {
@@ -785,8 +769,13 @@ public class ClassGoodsListActivity extends BaseAppcompatActivity implements OnB
                 @Override
                 public void onClick(View v) {
                     notifyAllPriceUnChecked();
-                    priceData.get(index).setChecked(true);
-                    currentPriceId = priceData.get(index).getId();
+                    if (currentPriceId == priceData.get(index).getId()) {
+                        priceData.get(index).setChecked(false);
+                        currentPriceId = -1;
+                    } else {
+                        priceData.get(index).setChecked(true);
+                        currentPriceId = priceData.get(index).getId();
+                    }
                     initPriceData();
                     etMinPrice.setText("");
                     etMaxPrice.setText("");
@@ -804,7 +793,7 @@ public class ClassGoodsListActivity extends BaseAppcompatActivity implements OnB
                 final int index = i;
                 View classView = LayoutInflater.from(this).inflate(R.layout.text_tag_view, null);
                 TextView classes = classView.findViewById(R.id.tv_tag_name);
-                if (rightClassData.get(i).isChecked()) {
+                if (rightClassData.get(i).isChecked() || rightClassData.get(index).getId() == currentClassId) {
                     classes.setTextColor(Color.parseColor("#ff0000"));
                     classes.setBackgroundResource(R.drawable.shape_of_goods_spe_selected);
                 } else {
@@ -816,8 +805,13 @@ public class ClassGoodsListActivity extends BaseAppcompatActivity implements OnB
                     @Override
                     public void onClick(View v) {
                         notifyAllClassUnChecked();
-                        rightClassData.get(index).setChecked(true);
-                        currentClassId = rightClassData.get(index).getId();
+                        if (currentClassId == rightClassData.get(index).getId()) {
+                            rightClassData.get(index).setChecked(false);
+                            currentClassId = -1;
+                        } else {
+                            rightClassData.get(index).setChecked(true);
+                            currentClassId = rightClassData.get(index).getId();
+                        }
                         initClassData();
                     }
                 });
@@ -852,7 +846,7 @@ public class ClassGoodsListActivity extends BaseAppcompatActivity implements OnB
                 final View brandView = LayoutInflater.from(this).inflate(R.layout.text_tag_view, null);
 
                 TextView brand = brandView.findViewById(R.id.tv_tag_name);
-                if (branList.get(i).isChecked()) {
+                if (branList.get(i).isChecked() || currentBrandId == branList.get(index).getId()) {
                     brand.setTextColor(Color.parseColor("#ff0000"));
                     brand.setBackgroundResource(R.drawable.shape_of_goods_spe_selected);
                 } else {
@@ -863,8 +857,13 @@ public class ClassGoodsListActivity extends BaseAppcompatActivity implements OnB
                     @Override
                     public void onClick(View v) {
                         notifyAllUnChecked();
-                        branList.get(index).setChecked(true);
-                        currentBrandId = branList.get(index).getId();
+                        if (currentBrandId == branList.get(index).getId()) {
+                            branList.get(index).setChecked(false);
+                            currentBrandId = -1;
+                        } else {
+                            branList.get(index).setChecked(true);
+                            currentBrandId = branList.get(index).getId();
+                        }
                         initBrand();
                     }
                 });
@@ -873,5 +872,42 @@ public class ClassGoodsListActivity extends BaseAppcompatActivity implements OnB
             }
         }
 
+    }
+
+    /**
+     * 初始化价格区间
+     */
+    private void initPriceSection() {
+        if (priceData.size() == 0) {
+            PriceData pd = new PriceData();
+            pd.setId(1);
+            pd.setPriceSection("200以下");
+            pd.setChecked(false);
+            priceData.add(pd);
+
+            PriceData pd1 = new PriceData();
+            pd1.setId(2);
+            pd1.setChecked(false);
+            pd1.setPriceSection("200-499");
+            priceData.add(pd1);
+
+            PriceData pd2 = new PriceData();
+            pd2.setId(3);
+            pd2.setChecked(false);
+            pd2.setPriceSection("500-999");
+            priceData.add(pd2);
+
+            PriceData pd3 = new PriceData();
+            pd3.setId(4);
+            pd3.setChecked(false);
+            pd3.setPriceSection("1000-1999");
+            priceData.add(pd3);
+
+            PriceData pd4 = new PriceData();
+            pd4.setId(5);
+            pd4.setPriceSection("2000以上");
+            priceData.add(pd4);
+
+        }
     }
 }

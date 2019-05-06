@@ -179,7 +179,7 @@ public class MainUrls {
 
     public static final String deleteAddressUrl = ServerIp + "?api=user.address.del";
 
-    //查询新品列表
+    //门店系统-》门店商品价格-》查询新品列表
     public static final String getNewlyGoodsListUrl =ServerIp +"?api=store.price.newgoods";
     //查询折扣商品列表
     public static final String getDiscountGoodsListUrl = ServerIp +"?api=store.price.agio";

@@ -46,7 +46,6 @@ public class GoodsListPresenterImp implements IGoodsListPresenter {
 
             @Override
             public void onSuccess(String result) {
-                Log.d("IPSC", "getNewlyGoodsList() onSuccess() result:" + result);
                 if(callBack!=null){
                     callBack.onSuccess(result);
                 }

@@ -38,8 +38,6 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.xutils.http.RequestParams;
 
 import java.util.ArrayList;
@@ -51,7 +49,6 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.application.IPSCApplication;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.GroupProductEntity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.PriceData;
-import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.RightClassBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.RightClassInChildBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.multitype.Items;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.multitype.MultiTypeAdapter;
@@ -61,6 +58,7 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presen
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.IGoodsListPresenter;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.NetCallback;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.LogUtil;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ScreenUtil;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.SpannableUtil;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
@@ -85,7 +83,7 @@ public class GoodsListActivity extends BaseAppcompatActivity {
     RelativeLayout rlAnimal;
 
     @BindView(R.id.ll_touch)
-    LinearLayout llTouch;
+    LinearLayout llTouch;// 筛选面板右侧touch区域
 
     @BindView(R.id.tv_filter_popularity)
     TextView tvFilterPopularity;
@@ -105,8 +103,6 @@ public class GoodsListActivity extends BaseAppcompatActivity {
     internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.LinearLayout llBrandsContainer;
     @BindView(R.id.ll_goods_tag_container_class)
     internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.LinearLayout llClassContainer;
-//    @BindView(R.id.tv_class_name)
-//    TextView tvClassName;
 
     @BindView(R.id.v_scroll)
     View viewScroll;
@@ -168,102 +164,13 @@ public class GoodsListActivity extends BaseAppcompatActivity {
             type = getIntent().getIntExtra("type", 1);
         }
 
-        if (1 == type) {
-            mTvTitle.setText("新品列表");
-        } else if (2 == type) {
-            mTvTitle.setText("折扣商品");
-        }
-
         // 初始化右侧筛选的产品品牌
-        initBrandData();
         initView();
         initData();
 
-        initPriceSection();
         //添加价格
+        initPriceSection();
         initPriceData();
-    }
-
-    /**
-     * 初始化右侧筛选的产品品牌
-     */
-    private void initBrandData() {
-        RequestParams paramsBrand = new RequestParams(MainUrls.getAllClassBrandUrl);
-        paramsBrand.addBodyParameter("access_token", IPSCApplication.accessToken);
-        paramsBrand.addBodyParameter("page", "1");
-        paramsBrand.addBodyParameter("limit", "100");
-        presenter.getBrandData(paramsBrand, new NetCallback() {
-            @Override
-            public void onStart() {
-                showLoading(false, "获取数据中...");
-            }
-
-            @Override
-            public void onFinished() {
-                srlContent.finishRefresh();
-                srlContent.finishLoadmore();
-                dismissLoading();
-            }
-
-            @Override
-            public void onSuccess(String result) {
-                if (result != null) {
-                    Log.e("TAG", "品牌分类:" + result);
-                    try {
-                        JSONObject jsonObject = new JSONObject(result);
-                        int code = jsonObject.getInt("code");
-                        int state = jsonObject.getInt("state");
-                        if (code == 0 && state == 0) {
-                            if (jsonObject.has("data")) {
-                                JSONArray data = jsonObject.getJSONArray("data");
-                                branList.clear();
-                                if (data != null && data.length() != 0) {
-                                    for (int i = 0; i < data.length(); i++) {
-                                        RightClassBean rightClassBean = new RightClassBean();
-                                        int id = data.getJSONObject(i).getInt("id");
-                                        String name = data.getJSONObject(i).getString("name");
-
-                                        rightClassBean.setId(id);
-                                        rightClassBean.setMainClassName(name);
-
-                                        if (data.getJSONObject(i).has("list") && !TextUtils.isEmpty(data.getJSONObject(i).getString("list"))) {
-                                            JSONArray list = data.getJSONObject(i).getJSONArray("list");
-                                            if (list != null && list.length() != 0) {
-                                                ArrayList<RightClassInChildBean> childBeans = new ArrayList<>();
-                                                for (int j = 0; j < list.length(); j++) {
-                                                    RightClassInChildBean childBean = new RightClassInChildBean();
-                                                    int childId = list.getJSONObject(j).getInt("id");
-                                                    String childName = list.getJSONObject(j).getString("name");
-                                                    String childLogo = list.getJSONObject(j).getString("logo");
-                                                    childBean.setClassName(childName);
-                                                    childBean.setId(childId);
-                                                    childBean.setImgUrl(childLogo);
-                                                    childBean.setChecked(false);
-                                                    if (childBean.getClassName() != null && !TextUtils.isEmpty(childBean.getClassName())) {
-                                                        childBeans.add(childBean);
-                                                    }
-                                                }
-                                                rightClassBean.setChildBeans(childBeans);
-                                            }
-                                        }
-                                        branList.addAll(rightClassBean.getChildBeans());
-                                        initBrand();
-                                    }
-                                }
-                            }
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailed(Throwable e) {
-                Log.e("GoodsListActivity", "出错:", e);
-                stopRefreshAndLoadMore();
-            }
-        });
     }
 
     /**
@@ -382,19 +289,9 @@ public class GoodsListActivity extends BaseAppcompatActivity {
 
     }
 
-//    @OnClick({R.id.iv_back})
-//    public void onClick(View v) {
-//        switch (v.getId()) {
-//            case R.id.iv_back:
-//                finish();
-//                break;
-//        }
-//    }
-
     private void request(final int type) {
 
         switch (type) {
-
             case 1: // 新品
                 presenter.getNewlyGoodsList(generateParams(type), new NetCallback() {
                     @Override
@@ -532,8 +429,73 @@ public class GoodsListActivity extends BaseAppcompatActivity {
                                         }
 
 
+                                    } else {
+                                        // 当没有数据时，也需要刷新
+                                        items.clear();
+                                        adapter.notifyDataSetChanged();
                                     }
 
+                                    // 筛选的品牌、分类数据获取
+                                    com.alibaba.fastjson.JSONObject list = obj.getJSONObject("list");
+                                    Log.d(TAG, "品牌分类:");
+                                    try {
+//                                        if (pageIndex == 1) {
+//                                        }
+                                        branList.clear();
+                                        if (list.keySet().contains("brand") && !TextUtils.isEmpty(list.getString("brand"))) {
+                                            com.alibaba.fastjson.JSONArray brandList = list.getJSONArray("brand");
+                                            if (brandList != null && brandList.size() != 0) {
+                                                ArrayList<RightClassInChildBean> childBeans = new ArrayList<>();
+                                                for (int j = 0; j < brandList.size(); j++) {
+                                                    RightClassInChildBean childBean = new RightClassInChildBean();
+                                                    int childId = brandList.getJSONObject(j).getIntValue("id");
+                                                    String childName = brandList.getJSONObject(j).getString("name");
+                                                    String childLogo = brandList.getJSONObject(j).getString("logo");
+                                                    childBean.setClassName(childName);
+                                                    childBean.setId(childId);
+                                                    childBean.setImgUrl(childLogo);
+                                                    childBean.setChecked(false);
+                                                    if (childBean.getClassName() != null && !TextUtils.isEmpty(childBean.getClassName())) {
+                                                        childBeans.add(childBean);
+                                                    }
+                                                }
+                                                branList.addAll(childBeans);
+                                            }
+                                        }
+                                        initBrand();
+                                    } catch (Exception e) {
+                                        LogUtil.e(TAG, "update brand data occur an exception!", e);
+                                    }
+
+                                    Log.d(TAG, "商品种类:");
+                                    try {
+//                                        if (pageIndex == 1) {
+//                                        }
+                                        rightClassData.clear();
+                                        if (list.keySet().contains("cate") && !TextUtils.isEmpty(list.getString("cate"))) {
+                                            com.alibaba.fastjson.JSONArray cateList = list.getJSONArray("cate");
+                                            if (cateList != null && cateList.size() != 0) {
+                                                ArrayList<RightClassInChildBean> childBeans = new ArrayList<>();
+                                                for (int j = 0; j < cateList.size(); j++) {
+                                                    RightClassInChildBean childBean = new RightClassInChildBean();
+                                                    int childId = cateList.getJSONObject(j).getIntValue("id");
+                                                    String childName = cateList.getJSONObject(j).getString("name");
+                                                    String childLogo = cateList.getJSONObject(j).getString("logo");
+                                                    childBean.setClassName(childName);
+                                                    childBean.setId(childId);
+                                                    childBean.setImgUrl(childLogo);
+                                                    childBean.setChecked(false);
+                                                    if (childBean.getClassName() != null && !TextUtils.isEmpty(childBean.getClassName())) {
+                                                        childBeans.add(childBean);
+                                                    }
+                                                }
+                                                rightClassData.addAll(childBeans);
+                                            }
+                                        }
+                                        initClassData();
+                                    } catch (Exception e) {
+                                        LogUtil.e(TAG, "update cate data occur an exception!", e);
+                                    }
                                 }
 
                             }
@@ -792,7 +754,7 @@ public class GoodsListActivity extends BaseAppcompatActivity {
             final int index = i;
             final View price = LayoutInflater.from(this).inflate(R.layout.text_tag_view, null);
             TextView tag = price.findViewById(R.id.tv_tag_name);
-            if (priceData.get(i).isChecked()) {
+            if (priceData.get(i).isChecked() || currentPriceId == priceData.get(index).getId()) {
                 tag.setTextColor(Color.parseColor("#ff0000"));
                 tag.setBackgroundResource(R.drawable.shape_of_goods_spe_selected);
             } else {
@@ -822,7 +784,7 @@ public class GoodsListActivity extends BaseAppcompatActivity {
                 final int index = i;
                 View classView = LayoutInflater.from(this).inflate(R.layout.text_tag_view, null);
                 TextView classes = classView.findViewById(R.id.tv_tag_name);
-                if (rightClassData.get(i).isChecked()) {
+                if (rightClassData.get(i).isChecked() || currentClassId == rightClassData.get(index).getId()) {
                     classes.setTextColor(Color.parseColor("#ff0000"));
                     classes.setBackgroundResource(R.drawable.shape_of_goods_spe_selected);
                 } else {
@@ -870,7 +832,7 @@ public class GoodsListActivity extends BaseAppcompatActivity {
                 final View brandView = LayoutInflater.from(this).inflate(R.layout.text_tag_view, null);
 
                 TextView brand = brandView.findViewById(R.id.tv_tag_name);
-                if (branList.get(i).isChecked()) {
+                if (branList.get(i).isChecked() || currentBrandId == branList.get(index).getId()) {
                     brand.setTextColor(Color.parseColor("#ff0000"));
                     brand.setBackgroundResource(R.drawable.shape_of_goods_spe_selected);
                 } else {
@@ -894,7 +856,12 @@ public class GoodsListActivity extends BaseAppcompatActivity {
     }
 
     private void initView() {
-//        mTvTitle.setText(className);
+        if (1 == type) {
+            mTvTitle.setText("新品列表");
+        } else if (2 == type) {
+            mTvTitle.setText("折扣商品");
+        }
+
         llTouch.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -904,6 +871,8 @@ public class GoodsListActivity extends BaseAppcompatActivity {
                 return true;
             }
         });
+
+        // 下拉刷新和上拉
         srlContent.setEnableLoadmore(true);
         srlContent.setOnRefreshListener(new OnRefreshListener() {
             @Override
@@ -997,24 +966,16 @@ public class GoodsListActivity extends BaseAppcompatActivity {
     }
 
     private void initData() {
-        request(type);
-//        bondedGoodsPresenter.getBondedGoods(params, this);
-
         if (adapter == null) {
-//            adapter = new BondedGoodsListAdapter(this, data);
-//            mRV.setLayoutManager(new GridLayoutManager(this, 2));
-//            mRV.setAdapter(adapter);
             initRV();
-        } else {
-            adapter.notifyDataSetChanged();
         }
+        request(type);
     }
 
     private void loadMore() {
-//        pageIndex++;
+        pageIndex++;
         Log.d(TAG, "loadMore() pageIndex:" + pageIndex);
         request(type);
-//        bondedGoodsPresenter.getBondedGoods(params, this);
     }
 
     @OnClick({R.id.iv_back, R.id.ll_filter_screen, R.id.tv_filter_popularity, R.id.tv_filter_discount, R.id.ll_filter_price,
@@ -1131,6 +1092,7 @@ public class GoodsListActivity extends BaseAppcompatActivity {
 
     /**
      * 当前选择线滚动动画
+     *
      * @param position
      */
     private void scrollAnimal(int position) {

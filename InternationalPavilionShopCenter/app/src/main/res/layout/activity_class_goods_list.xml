@@ -275,7 +275,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="80dp"></internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.LinearLayout>
                     <RelativeLayout
-                        android:visibility="gone"
+                        android:visibility="visible"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <TextView
@@ -310,7 +310,7 @@
                     </RelativeLayout>
                     <internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.LinearLayout
                         android:layout_marginTop="@dimen/x15"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         android:id="@+id/ll_goods_tag_container_class"
                         android:padding="0dp"
                         app:grivate="left"
