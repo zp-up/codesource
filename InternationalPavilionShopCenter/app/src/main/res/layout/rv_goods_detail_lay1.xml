@@ -7,14 +7,14 @@
     android:layout_height="wrap_content">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x200">
+        android:layout_height="@dimen/x320">
         <com.youth.banner.Banner
             app:indicator_width="0dp"
             app:indicator_height="0dp"
             android:id="@+id/goods_banner"
-            app:image_scale_type="fit_xy"
+            app:image_scale_type="center_crop"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/x200">
+            android:layout_height="@dimen/x320">
 
         </com.youth.banner.Banner>
         <TextView
