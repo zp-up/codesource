@@ -11,13 +11,18 @@
         android:layout_height="@dimen/x50"
         android:background="@color/white">
 
-        <ImageView
+        <LinearLayout
             android:id="@+id/iv_back"
-            android:layout_width="@dimen/x35"
-            android:layout_height="@dimen/x15"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/x15"
-            android:src="@mipmap/icon_black_back" />
+            android:layout_width="@dimen/x50"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+            <ImageView
+                android:layout_width="@dimen/x35"
+                android:layout_height="@dimen/x15"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x15"
+                android:src="@mipmap/icon_black_back" />
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
