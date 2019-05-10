@@ -244,6 +244,10 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
         tvNowPrice.setText("" + new DecimalFormat("######0.00").format(goodsBean.getData().getPrice()));
         tvOriginalPrice.setText("￥" + new DecimalFormat("######0.00").format(goodsBean.getData().getPrice_m()));
         tvOriginalPrice.setPaintFlags(tvOriginalPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        // 新增需求,国内仓商品详情 去掉税费
+        if (goodsBean.getData().getStore_store() != null && goodsBean.getData().getStore_store().getType().equals("国内仓库")) {
+            tvTaxationPrice.setVisibility(View.GONE);
+        }
         if (goodsBean.getData().getIs_btax() == 0) {
             tvTaxationPrice.setText("税费:￥" + new DecimalFormat("#######0.00").format(goodsBean.getData().getPrice_tax()));
         } else {
