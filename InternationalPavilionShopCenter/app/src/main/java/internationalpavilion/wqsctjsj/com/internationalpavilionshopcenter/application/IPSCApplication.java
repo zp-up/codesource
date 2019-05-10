@@ -178,9 +178,6 @@ public class IPSCApplication extends Application implements OnNetCallBack{
             e.printStackTrace();
         }
 //        Log.d(TAG, "getUserInfo() userJson:" + userJson.toString());
-        if (userBean == null) {
-            userBean = new UserBean();
-        }
         return userBean;
     }
     public void removeUserInfo(){

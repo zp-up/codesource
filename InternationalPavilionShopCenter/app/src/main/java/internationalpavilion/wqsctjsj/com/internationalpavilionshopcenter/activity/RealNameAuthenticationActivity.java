@@ -454,7 +454,9 @@ public class RealNameAuthenticationActivity extends BaseAppcompatActivity implem
         params.addBodyParameter("card", "450923199310173774");// 身份证号
 //        params.addBodyParameter("name", tvName.getText().toString());// 姓名
 //        params.addBodyParameter("card", tvID.getText().toString());// 身份证号
-        params.addBodyParameter("user", ((IPSCApplication) this.getApplication()).getUserInfo().getId() + "");
+        if (((IPSCApplication) getApplication()).getUserInfo() != null) {
+            params.addBodyParameter("user", ((IPSCApplication) this.getApplication()).getUserInfo().getId() + "");
+        }
         Log.d(TAG, "verifyIdCardByInput() params:" + params.toString());
         upLoadFilePresenter.verifyIdCardByInput(params, this);
     }

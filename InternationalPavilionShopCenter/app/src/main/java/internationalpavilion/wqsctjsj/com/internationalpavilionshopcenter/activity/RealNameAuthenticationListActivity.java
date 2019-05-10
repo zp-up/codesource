@@ -52,7 +52,9 @@ public class RealNameAuthenticationListActivity extends BaseAppcompatActivity im
      */
     private void getAuthenticationList() {
         RequestParams params = new RequestParams(MainUrls.authenticationListUrl);
-        params.addBodyParameter("user", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
+        if (((IPSCApplication) getApplication()).getUserInfo() != null) {
+            params.addBodyParameter("user", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
+        }
         params.addBodyParameter("page", "1");
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
         params.addBodyParameter("limit", "10");

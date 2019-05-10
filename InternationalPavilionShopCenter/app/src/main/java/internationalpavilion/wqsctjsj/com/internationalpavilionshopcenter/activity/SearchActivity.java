@@ -409,7 +409,9 @@ public class SearchActivity extends BaseAppcompatActivity implements OnSearchCal
         if (((IPSCApplication) getApplication()).getUserInfo() != null) {
             RequestParams params = new RequestParams(MainUrls.getHistorySearchUrl);
             params.addBodyParameter("access_token", IPSCApplication.accessToken);
-            params.addBodyParameter("user", "" + ((IPSCApplication) getApplication()).getUserInfo().getId());
+            if (((IPSCApplication) getApplication()).getUserInfo() != null) {
+                params.addBodyParameter("user", "" + ((IPSCApplication) getApplication()).getUserInfo().getId());
+            }
             params.addBodyParameter("page", "1");
             params.addBodyParameter("limit", "10");
             searchOperationPresenter.getHistorySearch(params, this);

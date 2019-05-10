@@ -51,7 +51,7 @@
                     android:orientation="vertical"
                     app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed">
                     <ImageView
-                        android:src="@drawable/bg_brand_detail_1"
+                        android:id="@+id/iv_brand_detail"
                         android:scaleType="fitXY"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/x130" />
@@ -62,7 +62,7 @@
                         <ImageView
                             android:id="@+id/iv_shop_logo"
                             android:padding="@dimen/x1"
-                            android:src="@drawable/bg_home_lay10_1"
+                            android:src="@mipmap/ic_launcher"
                             android:background="@drawable/shape_of_verify_code_btn"
                             android:layout_marginLeft="@dimen/x20"
                             android:layout_width="@dimen/x80"
@@ -85,7 +85,8 @@
                             <TextView
                                 android:id="@+id/tv_goods_online"
                                 android:layout_marginTop="@dimen/x5"
-                                android:text="在售商品335个"
+                                tools:text="在售商品335个"
+                                android:text="在售商品"
                                 android:textColor="@color/gray"
                                 android:textSize="@dimen/x11"
                                 android:layout_width="wrap_content"

@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,6 +25,7 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.chrisjason.baseui.ui.BaseAppcompatActivity;
@@ -46,14 +48,18 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.adapter.BondedGoodsListAdapter;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.application.IPSCApplication;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.BondedGoodsBean;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.PriceData;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.homeBondedGoodsBean.HomeBondedGoodsBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp.BrandGoodsImp;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.BrandGoodsInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.LogUtil;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnBrandGoodsLoaded;
 
 
 public class BrandDetailActivity extends BaseAppcompatActivity implements OnBrandGoodsLoaded {
+
+    private static final String TAG = "[IPSC][BrandDetailActivity]";
     @BindView(R.id.rv_bonded_goods)
     RecyclerView rvBondedGoods;
     @BindView(R.id.ll_screen_container)
@@ -105,6 +111,8 @@ public class BrandDetailActivity extends BaseAppcompatActivity implements OnBran
     TextView tvBrandTitle;
     @BindView(R.id.iv_shop_logo)
     ImageView ivShopLogo;
+    @BindView(R.id.iv_brand_detail)
+    ImageView ivBrandDetail;
     @BindView(R.id.tv_goods_online)
     TextView tvGoodsOnline;
     @BindView(R.id.tv_shop_description)
@@ -144,6 +152,7 @@ public class BrandDetailActivity extends BaseAppcompatActivity implements OnBran
         RequestParams params = new RequestParams(MainUrls.getBrandInformationUrl);
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
         params.addBodyParameter("id", brandId + "");
+        LogUtil.d(TAG, "params:" + params.toString());
         brandGoodsPresenter.getBrandInformation(params, this);
 
         initData();
@@ -224,6 +233,9 @@ public class BrandDetailActivity extends BaseAppcompatActivity implements OnBran
         RequestParams params = new RequestParams(MainUrls.getBrandGoodsListUrl);
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
         params.addBodyParameter("id", brandId + "");
+        params.addBodyParameter("page", "" + pageIndex);
+        params.addBodyParameter("limit", "10");
+        LogUtil.d(TAG, "params:" + params.toString());
         brandGoodsPresenter.getBrandGoodsList(params, this);
 
         if (adapter == null) {
@@ -233,76 +245,6 @@ public class BrandDetailActivity extends BaseAppcompatActivity implements OnBran
         } else {
             adapter.notifyDataSetChanged();
         }
-        //添加价格
-        llPriceContainer.removeAllViews();
-        View price1 = LayoutInflater.from(this).inflate(R.layout.text_tag_view, null);
-        TextView tag1 = price1.findViewById(R.id.tv_tag_name);
-        tag1.setText("200以下");
-        llPriceContainer.addView(price1);
-        View price2 = LayoutInflater.from(this).inflate(R.layout.text_tag_view, null);
-        TextView tag2 = price2.findViewById(R.id.tv_tag_name);
-        tag2.setText("200-499");
-        llPriceContainer.addView(price2);
-        View price3 = LayoutInflater.from(this).inflate(R.layout.text_tag_view, null);
-        TextView tag3 = price3.findViewById(R.id.tv_tag_name);
-        tag3.setText("500-999");
-        llPriceContainer.addView(price3);
-        View price4 = LayoutInflater.from(this).inflate(R.layout.text_tag_view, null);
-        TextView tag4 = price4.findViewById(R.id.tv_tag_name);
-        tag4.setText("1000-1999");
-        llPriceContainer.addView(price4);
-        View price5 = LayoutInflater.from(this).inflate(R.layout.text_tag_view, null);
-        TextView tag5 = price5.findViewById(R.id.tv_tag_name);
-        tag5.setText("2000以上");
-        llPriceContainer.addView(price5);
-        //添加品牌
-        llBrandsContainer.removeAllViews();
-        View brandView1 = LayoutInflater.from(this).inflate(R.layout.text_tag_view, null);
-        TextView brand1 = brandView1.findViewById(R.id.tv_tag_name);
-        brand1.setText("CANMAKE 井田");
-        llBrandsContainer.addView(brandView1);
-        View brandView2 = LayoutInflater.from(this).inflate(R.layout.text_tag_view, null);
-        TextView brand2 = brandView2.findViewById(R.id.tv_tag_name);
-        brand2.setText("CHanel 香奈儿");
-        llBrandsContainer.addView(brandView2);
-        View brandView3 = LayoutInflater.from(this).inflate(R.layout.text_tag_view, null);
-        TextView brand3 = brandView3.findViewById(R.id.tv_tag_name);
-        brand3.setText("Clarins 娇诗韵");
-        llBrandsContainer.addView(brandView3);
-        View brandView4 = LayoutInflater.from(this).inflate(R.layout.text_tag_view, null);
-        TextView brand4 = brandView4.findViewById(R.id.tv_tag_name);
-        brand4.setText("Clinique 倩碧");
-        llBrandsContainer.addView(brandView4);
-        View brandView5 = LayoutInflater.from(this).inflate(R.layout.text_tag_view, null);
-        TextView brand5 = brandView5.findViewById(R.id.tv_tag_name);
-        brand5.setText("Dirao 迪奥");
-        llBrandsContainer.addView(brandView5);
-        //添加分类
-        llClassContainer.removeAllViews();
-        View classView1 = LayoutInflater.from(this).inflate(R.layout.text_tag_view, null);
-        TextView class1 = classView1.findViewById(R.id.tv_tag_name);
-        class1.setText("乳液/面霜");
-        llClassContainer.addView(classView1);
-        View classView2 = LayoutInflater.from(this).inflate(R.layout.text_tag_view, null);
-        TextView class2 = classView2.findViewById(R.id.tv_tag_name);
-        class2.setText("面膜");
-        llClassContainer.addView(classView2);
-        View classView3 = LayoutInflater.from(this).inflate(R.layout.text_tag_view, null);
-        TextView class3 = classView3.findViewById(R.id.tv_tag_name);
-        class3.setText("隔离/防晒");
-        llClassContainer.addView(classView3);
-        View classView4 = LayoutInflater.from(this).inflate(R.layout.text_tag_view, null);
-        TextView class4 = classView4.findViewById(R.id.tv_tag_name);
-        class4.setText("口红");
-        llClassContainer.addView(classView4);
-        View classView5 = LayoutInflater.from(this).inflate(R.layout.text_tag_view, null);
-        TextView class5 = classView5.findViewById(R.id.tv_tag_name);
-        class5.setText("精华");
-        llClassContainer.addView(classView5);
-        View classView6 = LayoutInflater.from(this).inflate(R.layout.text_tag_view, null);
-        TextView class6 = classView6.findViewById(R.id.tv_tag_name);
-        class6.setText("润肤");
-        llClassContainer.addView(classView6);
 
         llGoodsContainer.removeAllViews();
         for (int i = 0; i < 6; i++) {
@@ -557,7 +499,7 @@ public class BrandDetailActivity extends BaseAppcompatActivity implements OnBran
                                 String description = data.getJSONObject(i).getJSONObject("goods_goods").getString("keyword");
                                 String baseAreaName = data.getJSONObject(i).getJSONObject("goods_goods").getString("base_area").contains("0") ? "国内" : data.getJSONObject(i).getJSONObject("goods_goods").getJSONObject("base_area").getString("name");
                                 double price = data.getJSONObject(i).getDouble("price");
-                                String goodsPic = data.getJSONObject(i).getJSONObject("goods_goods").getJSONArray("img").getString(0);
+                                String goodsPic = data.getJSONObject(i).getJSONObject("goods_goods").getJSONObject("goods_temp").getJSONArray("img").getString(0);
                                 bean.setGoodsId(id);
                                 bean.setGoodsName(name);
                                 bean.setBrandName(baseAreaName);
@@ -584,7 +526,7 @@ public class BrandDetailActivity extends BaseAppcompatActivity implements OnBran
                     }
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                LogUtil.e(TAG, "parse data occur an exception!", e);
             }
         }
     }
@@ -601,12 +543,23 @@ public class BrandDetailActivity extends BaseAppcompatActivity implements OnBran
                     JSONObject data = jsonObject.getJSONObject("data");
                     if (data != null && data.has("data")) {
                         String logo = data.getJSONObject("data").getJSONArray("logo").getString(0);
+
+                        // 后台数据不稳定，json数组有时候会以空字符串来反馈
+                        String imgExtend = "";
+                        if (!TextUtils.isEmpty(data.getJSONObject("data").getString("img_extend"))) {
+                            imgExtend = data.getJSONObject("data").getJSONArray("img_extend").getString(0);
+                        }
                         String title = data.getJSONObject("data").getString("name");
                         int goodsUp = data.getJSONObject("data").getInt("goodsup");
                         tvBrandTitle.setText(title);
                         Glide.with(BrandDetailActivity.this).load(logo).apply(new RequestOptions().placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher))
                                 .into(ivShopLogo);
-                        tvGoodsOnline.setText("在售商品"+goodsUp);
+                        if (!imgExtend.isEmpty()) {
+                            Glide.with(BrandDetailActivity.this).load(imgExtend).apply(new RequestOptions().placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher))
+                                    .into(ivBrandDetail);
+                        }
+                        int goodsCount = data.getInt("count");
+                        tvGoodsOnline.setText("在售商品" + goodsCount + "个");
                         String description = data.getJSONObject("data").getString("descript");
                         tvDescription.setText(description);
 

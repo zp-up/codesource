@@ -206,7 +206,9 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
         RequestParams params = new RequestParams(MainUrls.getGoodsDetailUrl);
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
         params.addBodyParameter("id", goodsId + "");
-        params.addBodyParameter("user", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
+        if (((IPSCApplication) getApplication()).getUserInfo() != null) {
+            params.addBodyParameter("user", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
+        }
         Log.d(TAG, "getGoodsDetailUrl params:" + params.toString());
         goodsDetailPresenter.getGoodsBaseInfo(params, this);
     }
@@ -223,7 +225,9 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
         params.addBodyParameter("id", currentSpecId + "");
         params.addBodyParameter("number", number + "");
-        params.addBodyParameter("user", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
+        if (((IPSCApplication) getApplication()).getUserInfo() != null) {
+            params.addBodyParameter("user", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
+        }
         Log.d(TAG, "addToCart() params:" + params.toString());
         goodsDetailPresenter.addGoodsToCart(params, this);
     }
@@ -425,7 +429,9 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
         if (isLogin()) {
             RequestParams params = new RequestParams(MainUrls.addToCollectionUrl);
             params.addBodyParameter("access_token", IPSCApplication.accessToken);
-            params.addBodyParameter("user", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
+            if (((IPSCApplication) getApplication()).getUserInfo() != null) {
+                params.addBodyParameter("user", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
+            }
             params.addBodyParameter("goods", goodsBean.getData().getGoods_goods().getId() + "");
             Log.d(TAG, " addToCollection user:" + ((IPSCApplication) getApplication()).getUserInfo().getId() + ",goods:" + goodsId);
             goodsDetailPresenter.addGoodsToCollection(params, this, isCollection == 0 ? 1 : 2);

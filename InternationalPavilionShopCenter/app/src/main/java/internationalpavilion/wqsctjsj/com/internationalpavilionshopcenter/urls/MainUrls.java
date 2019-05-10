@@ -97,8 +97,10 @@ public class MainUrls {
 
     public static final String getAllThreeLevelClassUrl = ServerIp + "?api=goods.cate.cata3";
 
+    // 商品系统-》品牌管理-》指定品牌列表
     public static final String getBrandGoodsListUrl = ServerIp + "?api=goods.brand.getdata";
 
+    // 商品系统-》品牌管理-》品牌主界面统计数据
     public static final String getBrandInformationUrl = ServerIp + "?api=goods.brand.brand";
 
     public static final String getCityAreaProvienceUrl = "http://www.everynew.cn/test/log$ajax.htm";

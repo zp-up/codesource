@@ -131,7 +131,9 @@ public class CartFragment extends Fragment implements OnCommonGoodsCallBack, Car
             params.addBodyParameter("access_token", IPSCApplication.accessToken);
             params.addBodyParameter("page", "1");
             params.addBodyParameter("limit", "10000");
-            params.addBodyParameter("user", ((IPSCApplication) getActivity().getApplication()).getUserInfo().getId() + "");
+            if (((IPSCApplication) getActivity().getApplication()).getUserInfo() != null) {
+                params.addBodyParameter("user", ((IPSCApplication) getActivity().getApplication()).getUserInfo().getId() + "");
+            }
             commonPresenter.getCommonGoodsData(params, this);
         }
 
@@ -395,7 +397,9 @@ public class CartFragment extends Fragment implements OnCommonGoodsCallBack, Car
         RequestParams params = new RequestParams(MainUrls.cartGoodsChangedUrl);
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
         params.addBodyParameter("id", goodsCartId + "");
-        params.addBodyParameter("user", ((IPSCApplication) getActivity().getApplication()).getUserInfo().getId() + "");
+        if (((IPSCApplication) getActivity().getApplication()).getUserInfo() != null) {
+            params.addBodyParameter("user", ((IPSCApplication) getActivity().getApplication()).getUserInfo().getId() + "");
+        }
         cartOperationPresenter.cartAdd(params, this);
     }
 
