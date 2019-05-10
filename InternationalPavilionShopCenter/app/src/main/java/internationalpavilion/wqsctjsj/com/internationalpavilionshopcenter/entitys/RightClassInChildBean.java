@@ -44,4 +44,14 @@ public class RightClassInChildBean {
     public String getImgUrl() {
         return imgUrl;
     }
+
+    @Override
+    public String toString() {
+        return "RightClassInChildBean{" +
+                "className='" + className + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", id=" + id +
+                ", isChecked=" + isChecked +
+                '}';
+    }
 }

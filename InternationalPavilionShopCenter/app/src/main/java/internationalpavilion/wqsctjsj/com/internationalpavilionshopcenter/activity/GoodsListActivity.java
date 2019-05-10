@@ -41,7 +41,9 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import org.xutils.http.RequestParams;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -138,9 +140,10 @@ public class GoodsListActivity extends BaseAppcompatActivity {
     private int pageIndex = 1;
     private int priceState = 2;// 1 升序 2 降序
 
-
-    private int currentBrandId = -1;
-    private int currentClassId = -1;
+    public static final int FILTER_TYPE_BRAND = 0x01;
+    public static final int FILTER_TYPE_CLASS = 0x02;
+    private Set<Integer> currentBrandIdSet = new HashSet<>();
+    private Set<Integer> currentClassIdSet = new HashSet<>();
     private int currentPriceId = -1;
 
     private ArrayList<RightClassInChildBean> branList = new ArrayList<>();
@@ -706,15 +709,13 @@ public class GoodsListActivity extends BaseAppcompatActivity {
                 Log.e("TAG", "降序");
             }
         }
+        String brandId = currentBrandIdSet.toString().replace(" ", "");
+        Log.d(TAG, "currentBrandIdSet origin:" + brandId + ",handled:" + brandId.substring(1, brandId.length() - 1));
+        params.addBodyParameter("brand", brandId.substring(1, brandId.length() - 1) + "");
 
-        /***************特别参数：分类列表才有***********************/
-        if (currentBrandId != -1) {
-            params.addBodyParameter("brand", currentBrandId + "");
-        }
-        if (currentClassId != -1) {
-            params.addBodyParameter("cate", currentClassId + "");
-        }
-        /**************************************/
+        String classId = currentClassIdSet.toString().replace(" ", "");
+        Log.d(TAG, "currentClassIdSet origin:" + classId + ",handled:" + classId.substring(1, classId.length() - 1));
+        params.addBodyParameter("cate", classId.substring(1, classId.length() - 1) + "");
         if (etMinPrice.getText().toString().trim().length() != 0) {
             params.addBodyParameter("pricemin", etMinPrice.getText().toString().trim());
         }
@@ -764,9 +765,13 @@ public class GoodsListActivity extends BaseAppcompatActivity {
             tag.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    notifyAllPriceUnChecked();
-                    priceData.get(index).setChecked(true);
-                    currentPriceId = priceData.get(index).getId();
+                    if (currentPriceId == priceData.get(index).getId()) {
+                        priceData.get(index).setChecked(false);
+                        currentPriceId = -1;
+                    } else {
+                        priceData.get(index).setChecked(true);
+                        currentPriceId = priceData.get(index).getId();
+                    }
                     initPriceData();
                     etMinPrice.setText("");
                     etMaxPrice.setText("");
@@ -783,44 +788,24 @@ public class GoodsListActivity extends BaseAppcompatActivity {
             for (int i = 0; i < rightClassData.size(); i++) {
                 final int index = i;
                 View classView = LayoutInflater.from(this).inflate(R.layout.text_tag_view, null);
-                TextView classes = classView.findViewById(R.id.tv_tag_name);
-                if (rightClassData.get(i).isChecked() || currentClassId == rightClassData.get(index).getId()) {
-                    classes.setTextColor(Color.parseColor("#ff0000"));
-                    classes.setBackgroundResource(R.drawable.shape_of_goods_spe_selected);
-                } else {
-                    classes.setTextColor(Color.parseColor("#aaaaaa"));
-                    classes.setBackgroundResource(R.drawable.shape_of_verify_code_btn);
-                }
-                classes.setText(rightClassData.get(i).getClassName());
+                final TextView classes = classView.findViewById(R.id.tv_tag_name);
+                final RightClassInChildBean childBean = rightClassData.get(index);
+                changeCheckedState(FILTER_TYPE_CLASS, classes, childBean);
+                classes.setText(childBean.getClassName());
                 classes.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        notifyAllClassUnChecked();
-                        rightClassData.get(index).setChecked(true);
-                        currentClassId = rightClassData.get(index).getId();
-                        initClassData();
+                        if (currentClassIdSet.contains(childBean.getId())) {
+                            currentClassIdSet.remove(childBean.getId());
+                            changeCheckedState(FILTER_TYPE_CLASS, classes, childBean);
+                        } else {
+                            currentClassIdSet.add(childBean.getId());
+                            changeCheckedState(FILTER_TYPE_CLASS, classes, childBean);
+                        }
                     }
                 });
                 llClassContainer.addView(classView);
             }
-        }
-    }
-
-    private void notifyAllClassUnChecked() {
-        for (int i = 0; i < rightClassData.size(); i++) {
-            rightClassData.get(i).setChecked(false);
-        }
-    }
-
-    private void notifyAllPriceUnChecked() {
-        for (int i = 0; i < priceData.size(); i++) {
-            priceData.get(i).setChecked(false);
-        }
-    }
-
-    private void notifyAllUnChecked() {
-        for (int i = 0; i < branList.size(); i++) {
-            branList.get(i).setChecked(false);
         }
     }
 
@@ -831,21 +816,19 @@ public class GoodsListActivity extends BaseAppcompatActivity {
                 final int index = i;
                 final View brandView = LayoutInflater.from(this).inflate(R.layout.text_tag_view, null);
 
-                TextView brand = brandView.findViewById(R.id.tv_tag_name);
-                if (branList.get(i).isChecked() || currentBrandId == branList.get(index).getId()) {
-                    brand.setTextColor(Color.parseColor("#ff0000"));
-                    brand.setBackgroundResource(R.drawable.shape_of_goods_spe_selected);
-                } else {
-                    brand.setTextColor(Color.parseColor("#aaaaaa"));
-                    brand.setBackgroundResource(R.drawable.shape_of_verify_code_btn);
-                }
+                final TextView brand = brandView.findViewById(R.id.tv_tag_name);
+                final RightClassInChildBean childBean = branList.get(index);
+                changeCheckedState(FILTER_TYPE_BRAND, brand, childBean);
                 brand.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        notifyAllUnChecked();
-                        branList.get(index).setChecked(true);
-                        currentBrandId = branList.get(index).getId();
-                        initBrand();
+                        if (currentBrandIdSet.contains(childBean.getId())) {
+                            currentBrandIdSet.remove(childBean.getId());
+                            changeCheckedState(FILTER_TYPE_BRAND, brand, childBean);
+                        } else {
+                            currentBrandIdSet.add(childBean.getId());
+                            changeCheckedState(FILTER_TYPE_BRAND, brand, childBean);
+                        }
                     }
                 });
                 brand.setText(branList.get(i).getClassName());
@@ -853,6 +836,36 @@ public class GoodsListActivity extends BaseAppcompatActivity {
             }
         }
 
+    }
+
+    /**
+     * 改变品牌和分类的样式
+     *
+     * @param type      品牌或分类
+     * @param tv
+     * @param childBean
+     */
+    private void changeCheckedState(int type, TextView tv, RightClassInChildBean childBean) {
+        switch (type) {
+            case 1:
+                if (currentBrandIdSet.contains(childBean.getId())) {
+                    tv.setTextColor(Color.parseColor("#ff0000"));
+                    tv.setBackgroundResource(R.drawable.shape_of_goods_spe_selected);
+                } else {
+                    tv.setTextColor(Color.parseColor("#aaaaaa"));
+                    tv.setBackgroundResource(R.drawable.shape_of_verify_code_btn);
+                }
+                break;
+            case 2:
+                if (currentClassIdSet.contains(childBean.getId())) {
+                    tv.setTextColor(Color.parseColor("#ff0000"));
+                    tv.setBackgroundResource(R.drawable.shape_of_goods_spe_selected);
+                } else {
+                    tv.setTextColor(Color.parseColor("#aaaaaa"));
+                    tv.setBackgroundResource(R.drawable.shape_of_verify_code_btn);
+                }
+                break;
+        }
     }
 
     private void initView() {
@@ -891,11 +904,8 @@ public class GoodsListActivity extends BaseAppcompatActivity {
         tvReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                notifyAllClassUnChecked();
-                notifyAllUnChecked();
-                notifyAllPriceUnChecked();
-                currentClassId = -1;
-                currentBrandId = -1;
+                currentBrandIdSet.clear();
+                currentClassIdSet.clear();
                 currentPriceId = -1;
                 initPriceData();
                 initClassData();

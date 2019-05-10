@@ -85,6 +85,7 @@ public class MainUrls {
     // 商品系统-》收藏管理-》用户收藏或取消
     public static final String addToCollectionUrl = ServerIp + "?api=goods.colle.add";
 
+    // 商品系统-》分类管理-》三级分类的商品列表
     public static final String getClassGoodsListUrl = ServerIp + "?api=goods.cate.data";
 
     // 订单系统-》订单明细-》用户购物车

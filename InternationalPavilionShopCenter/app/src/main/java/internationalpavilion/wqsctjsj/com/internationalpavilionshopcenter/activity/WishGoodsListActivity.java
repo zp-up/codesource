@@ -38,6 +38,8 @@ import org.json.JSONObject;
 import org.xutils.http.RequestParams;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -51,11 +53,15 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entity
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp.OverseasGoodsImp;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.OverseasGoodsInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.LogUtil;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnOverseasGoodsCallBack;
 
 
 public class WishGoodsListActivity extends BaseAppcompatActivity implements OnOverseasGoodsCallBack {
+
+    private static final String TAG = "[IPSC][WishGoodsListActivity]";
+
     @BindView(R.id.rv_bonded_goods)
     RecyclerView rvBondedGoods;
     @BindView(R.id.ll_screen_container)
@@ -119,8 +125,10 @@ public class WishGoodsListActivity extends BaseAppcompatActivity implements OnOv
     private int priceState = 2;
     private OverseasGoodsInterface wishGoodsPresenter;
 
-    private int currentBrandId = -1;
-    private int currentClassId = -1;
+    public static final int FILTER_TYPE_BRAND = 0x01;
+    public static final int FILTER_TYPE_CLASS = 0x02;
+    private Set<Integer> currentBrandIdSet = new HashSet<>();
+    private Set<Integer> currentClassIdSet = new HashSet<>();
     private int currentPriceId = -1;
 
     private ArrayList<RightClassInChildBean> branList = new ArrayList<>();
@@ -147,38 +155,8 @@ public class WishGoodsListActivity extends BaseAppcompatActivity implements OnOv
         paramsClass.addBodyParameter("access_token", IPSCApplication.accessToken);
         wishGoodsPresenter.getClassData(paramsClass, this);
         initData();
-        if (priceData.size() == 0) {
-            PriceData pd = new PriceData();
-            pd.setId(1);
-            pd.setPriceSection("200以下");
-            pd.setChecked(false);
-            priceData.add(pd);
-
-            PriceData pd1 = new PriceData();
-            pd1.setId(2);
-            pd1.setChecked(false);
-            pd1.setPriceSection("200-499");
-            priceData.add(pd1);
-
-            PriceData pd2 = new PriceData();
-            pd2.setId(3);
-            pd2.setChecked(false);
-            pd2.setPriceSection("500-999");
-            priceData.add(pd2);
-
-            PriceData pd3 = new PriceData();
-            pd3.setId(4);
-            pd3.setChecked(false);
-            pd3.setPriceSection("1000-1999");
-            priceData.add(pd3);
-
-            PriceData pd4 = new PriceData();
-            pd4.setId(5);
-            pd4.setPriceSection("2000以上");
-            priceData.add(pd4);
-
-        }
         //添加价格
+        initPriceSection();
         initPriceData();
     }
 
@@ -210,11 +188,8 @@ public class WishGoodsListActivity extends BaseAppcompatActivity implements OnOv
         tvReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                notifyAllClassUnChecked();
-                notifyAllUnChecked();
-                notifyAllPriceUnChecked();
-                currentClassId = -1;
-                currentBrandId = -1;
+                currentBrandIdSet.clear();
+                currentClassIdSet.clear();
                 currentPriceId = -1;
                 initPriceData();
                 initClassData();
@@ -285,6 +260,15 @@ public class WishGoodsListActivity extends BaseAppcompatActivity implements OnOv
     }
 
     private void initData() {
+        if (adapter == null) {
+            adapter = new BondedGoodsListAdapter(this, data);
+            rvBondedGoods.setLayoutManager(new GridLayoutManager(this, 2));
+            rvBondedGoods.setAdapter(adapter);
+        }
+        request();
+    }
+
+    private void request() {
         RequestParams params = new RequestParams(MainUrls.getWishGoodsUrl);
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
         params.addBodyParameter("page", pageIndex + "");
@@ -304,12 +288,14 @@ public class WishGoodsListActivity extends BaseAppcompatActivity implements OnOv
                 Log.e("TAG","降序");
             }
         }
-        if (currentBrandId != -1) {
-            params.addBodyParameter("brand", currentBrandId + "");
-        }
-        if (currentClassId != -1) {
-            params.addBodyParameter("cate", currentClassId + "");
-        }
+        String brandId = currentBrandIdSet.toString().replace(" ", "");
+        Log.d(TAG, "currentBrandIdSet origin:" + brandId + ",handled:" + brandId.substring(1, brandId.length() - 1));
+        params.addBodyParameter("brand", brandId.substring(1, brandId.length() - 1) + "");
+
+        String classId = currentClassIdSet.toString().replace(" ", "");
+        Log.d(TAG, "currentClassIdSet origin:" + classId + ",handled:" + classId.substring(1, classId.length() - 1));
+        params.addBodyParameter("cate", classId.substring(1, classId.length() - 1) + "");
+
         if (etMinPrice.getText().toString().trim().length() != 0) {
             params.addBodyParameter("pricemin", etMinPrice.getText().toString().trim());
         }
@@ -339,13 +325,6 @@ public class WishGoodsListActivity extends BaseAppcompatActivity implements OnOv
             }
         }
         wishGoodsPresenter.getOverseasGoods(params, this);
-        if (adapter == null) {
-            adapter = new BondedGoodsListAdapter(this, data);
-            rvBondedGoods.setLayoutManager(new GridLayoutManager(this, 2));
-            rvBondedGoods.setAdapter(adapter);
-        } else {
-            adapter.notifyDataSetChanged();
-        }
     }
 
     @OnClick({R.id.iv_back, R.id.ll_filter_screen, R.id.tv_filter_popularity, R.id.tv_filter_discount, R.id.ll_filter_price,
@@ -629,6 +608,69 @@ public class WishGoodsListActivity extends BaseAppcompatActivity implements OnOv
                                 }
                             }, 2000);
                         }
+
+                        // 筛选的品牌、分类数据获取
+/*                        com.alibaba.fastjson.JSONObject obj = com.alibaba.fastjson.JSONObject.parseObject(result);
+                        com.alibaba.fastjson.JSONObject list = obj.getJSONObject("list");
+                        Log.d(TAG, "品牌分类:");
+                        try {
+//                            if (pageIndex == 1) {
+//                            }
+                            branList.clear();
+                            if (list.keySet().contains("brand") && !TextUtils.isEmpty(list.getString("brand"))) {
+                                com.alibaba.fastjson.JSONArray brandList = list.getJSONArray("brand");
+                                if (brandList != null && brandList.size() != 0) {
+                                    ArrayList<RightClassInChildBean> childBeans = new ArrayList<>();
+                                    for (int j = 0; j < brandList.size(); j++) {
+                                        RightClassInChildBean childBean = new RightClassInChildBean();
+                                        int childId = brandList.getJSONObject(j).getIntValue("id");
+                                        String childName = brandList.getJSONObject(j).getString("name");
+                                        String childLogo = brandList.getJSONObject(j).getString("logo");
+                                        childBean.setClassName(childName);
+                                        childBean.setId(childId);
+                                        childBean.setImgUrl(childLogo);
+                                        childBean.setChecked(false);
+                                        if (childBean.getClassName() != null && !TextUtils.isEmpty(childBean.getClassName())) {
+                                            childBeans.add(childBean);
+                                        }
+                                    }
+                                    branList.addAll(childBeans);
+                                }
+                            }
+                            initBrand();
+                        } catch (Exception e) {
+                            LogUtil.e(TAG, "update brand data occur an exception!", e);
+                        }
+
+                        Log.d(TAG, "商品种类:");
+                        try {
+*//*                            if (pageIndex == 1) {
+                            }*//*
+                            rightClassData.clear();
+                            if (list.keySet().contains("cate") && !TextUtils.isEmpty(list.getString("cate"))) {
+                                com.alibaba.fastjson.JSONArray cateList = list.getJSONArray("cate");
+                                if (cateList != null && cateList.size() != 0) {
+                                    ArrayList<RightClassInChildBean> childBeans = new ArrayList<>();
+                                    for (int j = 0; j < cateList.size(); j++) {
+                                        RightClassInChildBean childBean = new RightClassInChildBean();
+                                        int childId = cateList.getJSONObject(j).getIntValue("id");
+                                        String childName = cateList.getJSONObject(j).getString("name");
+                                        String childLogo = cateList.getJSONObject(j).getString("logo");
+                                        childBean.setClassName(childName);
+                                        childBean.setId(childId);
+                                        childBean.setImgUrl(childLogo);
+                                        childBean.setChecked(false);
+                                        if (childBean.getClassName() != null && !TextUtils.isEmpty(childBean.getClassName())) {
+                                            childBeans.add(childBean);
+                                        }
+                                    }
+                                    rightClassData.addAll(childBeans);
+                                }
+                            }
+                            initClassData();
+                        } catch (Exception e) {
+                            LogUtil.e(TAG, "update cate data occur an exception!", e);
+                        }*/
                     }
                 }
             } catch (Exception e) {
@@ -719,13 +761,51 @@ public class WishGoodsListActivity extends BaseAppcompatActivity implements OnOv
             }
         }
     }
+
+    /**
+     * 初始化价格区间
+     */
+    private void initPriceSection() {
+        if (priceData.size() == 0) {
+            PriceData pd = new PriceData();
+            pd.setId(1);
+            pd.setPriceSection("200以下");
+            pd.setChecked(false);
+            priceData.add(pd);
+
+            PriceData pd1 = new PriceData();
+            pd1.setId(2);
+            pd1.setChecked(false);
+            pd1.setPriceSection("200-499");
+            priceData.add(pd1);
+
+            PriceData pd2 = new PriceData();
+            pd2.setId(3);
+            pd2.setChecked(false);
+            pd2.setPriceSection("500-999");
+            priceData.add(pd2);
+
+            PriceData pd3 = new PriceData();
+            pd3.setId(4);
+            pd3.setChecked(false);
+            pd3.setPriceSection("1000-1999");
+            priceData.add(pd3);
+
+            PriceData pd4 = new PriceData();
+            pd4.setId(5);
+            pd4.setPriceSection("2000以上");
+            priceData.add(pd4);
+
+        }
+    }
+
     private void initPriceData() {
         llPriceContainer.removeAllViews();
         for (int i = 0; i < priceData.size(); i++) {
             final int index = i;
             final View price = LayoutInflater.from(this).inflate(R.layout.text_tag_view, null);
             TextView tag = price.findViewById(R.id.tv_tag_name);
-            if (priceData.get(i).isChecked()) {
+            if (priceData.get(i).isChecked() || currentPriceId == priceData.get(index).getId()) {
                 tag.setTextColor(Color.parseColor("#ff0000"));
                 tag.setBackgroundResource(R.drawable.shape_of_goods_spe_selected);
             } else {
@@ -735,9 +815,13 @@ public class WishGoodsListActivity extends BaseAppcompatActivity implements OnOv
             tag.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    notifyAllPriceUnChecked();
-                    priceData.get(index).setChecked(true);
-                    currentPriceId = priceData.get(index).getId();
+                    if (currentPriceId == priceData.get(index).getId()) {
+                        priceData.get(index).setChecked(false);
+                        currentPriceId = -1;
+                    } else {
+                        priceData.get(index).setChecked(true);
+                        currentPriceId = priceData.get(index).getId();
+                    }
                     initPriceData();
                     etMinPrice.setText("");
                     etMaxPrice.setText("");
@@ -754,44 +838,24 @@ public class WishGoodsListActivity extends BaseAppcompatActivity implements OnOv
             for (int i = 0; i < rightClassData.size(); i++) {
                 final int index = i;
                 View classView = LayoutInflater.from(this).inflate(R.layout.text_tag_view, null);
-                TextView classes = classView.findViewById(R.id.tv_tag_name);
-                if (rightClassData.get(i).isChecked()) {
-                    classes.setTextColor(Color.parseColor("#ff0000"));
-                    classes.setBackgroundResource(R.drawable.shape_of_goods_spe_selected);
-                } else {
-                    classes.setTextColor(Color.parseColor("#aaaaaa"));
-                    classes.setBackgroundResource(R.drawable.shape_of_verify_code_btn);
-                }
-                classes.setText(rightClassData.get(i).getClassName());
+                final TextView classes = classView.findViewById(R.id.tv_tag_name);
+                final RightClassInChildBean childBean = rightClassData.get(index);
+                changeCheckedState(FILTER_TYPE_CLASS, classes, childBean);
+                classes.setText(childBean.getClassName());
                 classes.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        notifyAllClassUnChecked();
-                        rightClassData.get(index).setChecked(true);
-                        currentClassId = rightClassData.get(index).getId();
-                        initClassData();
+                        if (currentClassIdSet.contains(childBean.getId())) {
+                            currentClassIdSet.remove(childBean.getId());
+                            changeCheckedState(FILTER_TYPE_CLASS, classes, childBean);
+                        } else {
+                            currentClassIdSet.add(childBean.getId());
+                            changeCheckedState(FILTER_TYPE_CLASS, classes, childBean);
+                        }
                     }
                 });
                 llClassContainer.addView(classView);
             }
-        }
-    }
-
-    private void notifyAllClassUnChecked() {
-        for (int i = 0; i < rightClassData.size(); i++) {
-            rightClassData.get(i).setChecked(false);
-        }
-    }
-
-    private void notifyAllPriceUnChecked() {
-        for (int i = 0; i < priceData.size(); i++) {
-            priceData.get(i).setChecked(false);
-        }
-    }
-
-    private void notifyAllUnChecked() {
-        for (int i = 0; i < branList.size(); i++) {
-            branList.get(i).setChecked(false);
         }
     }
 
@@ -802,21 +866,19 @@ public class WishGoodsListActivity extends BaseAppcompatActivity implements OnOv
                 final int index = i;
                 final View brandView = LayoutInflater.from(this).inflate(R.layout.text_tag_view, null);
 
-                TextView brand = brandView.findViewById(R.id.tv_tag_name);
-                if (branList.get(i).isChecked()) {
-                    brand.setTextColor(Color.parseColor("#ff0000"));
-                    brand.setBackgroundResource(R.drawable.shape_of_goods_spe_selected);
-                } else {
-                    brand.setTextColor(Color.parseColor("#aaaaaa"));
-                    brand.setBackgroundResource(R.drawable.shape_of_verify_code_btn);
-                }
+                final TextView brand = brandView.findViewById(R.id.tv_tag_name);
+                final RightClassInChildBean childBean = branList.get(index);
+                changeCheckedState(FILTER_TYPE_BRAND, brand, childBean);
                 brand.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        notifyAllUnChecked();
-                        branList.get(index).setChecked(true);
-                        currentBrandId = branList.get(index).getId();
-                        initBrand();
+                        if (currentBrandIdSet.contains(childBean.getId())) {
+                            currentBrandIdSet.remove(childBean.getId());
+                            changeCheckedState(FILTER_TYPE_BRAND, brand, childBean);
+                        } else {
+                            currentBrandIdSet.add(childBean.getId());
+                            changeCheckedState(FILTER_TYPE_BRAND, brand, childBean);
+                        }
                     }
                 });
                 brand.setText(branList.get(i).getClassName());
@@ -824,5 +886,35 @@ public class WishGoodsListActivity extends BaseAppcompatActivity implements OnOv
             }
         }
 
+    }
+
+    /**
+     * 改变品牌和分类的样式
+     *
+     * @param type      品牌或分类
+     * @param tv
+     * @param childBean
+     */
+    private void changeCheckedState(int type, TextView tv, RightClassInChildBean childBean) {
+        switch (type) {
+            case 1:
+                if (currentBrandIdSet.contains(childBean.getId())) {
+                    tv.setTextColor(Color.parseColor("#ff0000"));
+                    tv.setBackgroundResource(R.drawable.shape_of_goods_spe_selected);
+                } else {
+                    tv.setTextColor(Color.parseColor("#aaaaaa"));
+                    tv.setBackgroundResource(R.drawable.shape_of_verify_code_btn);
+                }
+                break;
+            case 2:
+                if (currentClassIdSet.contains(childBean.getId())) {
+                    tv.setTextColor(Color.parseColor("#ff0000"));
+                    tv.setBackgroundResource(R.drawable.shape_of_goods_spe_selected);
+                } else {
+                    tv.setTextColor(Color.parseColor("#aaaaaa"));
+                    tv.setBackgroundResource(R.drawable.shape_of_verify_code_btn);
+                }
+                break;
+        }
     }
 }

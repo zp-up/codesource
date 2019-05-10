@@ -51,6 +51,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:visibility="invisible"
                 android:id="@+id/rl_message_container"
                 android:layout_width="@dimen/x50"
                 android:layout_height="@dimen/x50"
