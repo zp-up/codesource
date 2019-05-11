@@ -412,7 +412,7 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
     //请求成功
     @Override
     public void onGetBannerData(String result) {
-        Log.e(TAG, "banner请求结果:" + result);
+        LogUtil.d(TAG, "banner请求结果:" + result);
         if (result != null) {
             try {
                 JSONObject jsonObject = new JSONObject(result);
@@ -445,7 +445,7 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
     //获取限时购的商品
     @Override
     public void onLimitTimeGoodsLoaded(String result) {
-        Log.e(TAG, "限时购商品:" + result);
+        LogUtil.d(TAG, "限时购商品:" + result);
         if (result != null) {
             long time = System.currentTimeMillis();
             final Calendar mCalendar = Calendar.getInstance();
@@ -463,7 +463,7 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
                 startTime = hour;
             }
             endTime = startTime + 4;
-            Log.e(TAG, "startTime:" + startTime + " ---  endTime:" + endTime);
+            LogUtil.d(TAG, "startTime:" + startTime + " ---  endTime:" + endTime);
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");
@@ -474,7 +474,10 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
                         JSONArray jsonArray = jsonObject.getJSONArray("data");
                         if(jsonArray.length()>0){
                             limitTimeGoodsData.clear();
-                            homeAdapter3.notifyDataSetChanged();
+                            if (!subAdapterList.contains(homeAdapter3)) {
+                                subAdapterList.add(homeAdapter3);
+                                adapter.setAdapters(subAdapterList);
+                            }
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 int id = jsonArray.getJSONObject(i).getInt("id");
                                 String goodsName = jsonArray.getJSONObject(i).getJSONObject("goods_goods").getString("name");
@@ -497,7 +500,8 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
                             limitTimeGoodsData.add(map);
                             homeAdapter3.notifyDataSetChanged();
                         }else{
-                            adapter.removeAdapter(homeAdapter3);
+                            subAdapterList.remove(homeAdapter3);
+                            adapter.setAdapters(subAdapterList);
                             adapter.notifyDataSetChanged();
                         }
 
@@ -513,7 +517,7 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
     @Override
     public void onHotSaleGoodsLoaded(String result) {
         if (result != null) {
-            Log.e(TAG, "热门商品获取:" + result);
+            LogUtil.d(TAG, "热门商品获取:" + result);
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");
@@ -552,7 +556,7 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
     @Override
     public void onBondedGoodsLoaded(String result) {
         if (result != null) {
-            Log.e(TAG, "保税商品列表:" + result);
+            LogUtil.d(TAG, "保税商品列表:" + result);
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");
@@ -592,7 +596,7 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
     @Override
     public void onOverseasGoodsLoaded(String result) {
         if (result != null) {
-            Log.e(TAG, "海外直邮商品列表:" + result);
+            LogUtil.d(TAG, "海外直邮商品列表:" + result);
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");
@@ -633,7 +637,7 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
     @Override
     public void onWishGoodsLoaded(String result) {
         if (result != null) {
-            Log.e(TAG, "心愿清单:" + result);
+            LogUtil.d(TAG, "心愿清单:" + result);
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");
@@ -674,7 +678,7 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
     @Override
     public void onPopularityGoodsLoaded(String result) {
         if (result != null) {
-            Log.e(TAG, "人气榜:" + result);
+            LogUtil.d(TAG, "人气榜:" + result);
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");

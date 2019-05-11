@@ -35,6 +35,7 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presen
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.UserOptionInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.CrashHandler;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.LogUtil;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnNetCallBack;
 
 /**
@@ -226,7 +227,7 @@ public class IPSCApplication extends Application implements OnNetCallBack{
     @Override
     public void onLoginSuccess(String result) {
         if (result != null){
-            Log.e(TAG,"登录结果:"+result);
+            LogUtil.d(TAG, "登录结果:" + result);
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");

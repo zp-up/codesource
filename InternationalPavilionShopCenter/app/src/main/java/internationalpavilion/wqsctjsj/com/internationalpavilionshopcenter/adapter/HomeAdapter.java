@@ -285,7 +285,7 @@ public class HomeAdapter extends DelegateAdapter.Adapter<HomeAdapter.ViewHolder>
 
                 VirtualLayoutManager.LayoutParams layoutParams = (VirtualLayoutManager.LayoutParams) holder.llClickParent5.getLayoutParams();
                 int leftMargin1 = DpUtils.dpToPx(context, 10);
-                Log.e("TAG", "宽度:" + leftMargin1);
+//                Log.e("TAG", "宽度:" + leftMargin1);
                 if (position % 3 == 0) {
                     layoutParams.setMargins(leftMargin1, leftMargin1, leftMargin1 / 2, 0);
 
