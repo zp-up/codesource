@@ -1,6 +1,7 @@
 package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity;
 
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -40,6 +41,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.xutils.http.RequestParams;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -117,6 +119,8 @@ public class BrandDetailActivity extends BaseAppcompatActivity implements OnBran
     TextView tvGoodsOnline;
     @BindView(R.id.tv_shop_description)
     TextView tvDescription;
+    @BindView(R.id.iv_desc_up_down)
+    ImageView ivDescUpDwon;
 
 
     private ArrayList<HomeBondedGoodsBean> data = new ArrayList<>();
@@ -125,6 +129,7 @@ public class BrandDetailActivity extends BaseAppcompatActivity implements OnBran
     private int currentPosition = 1;
     private boolean brandIsOpen = false;
     private boolean classIsOpen = false;
+    private boolean descIsOpen = false;
 
     private int pageIndex = 1;
     private int priceState = 2;
@@ -235,6 +240,16 @@ public class BrandDetailActivity extends BaseAppcompatActivity implements OnBran
         params.addBodyParameter("id", brandId + "");
         params.addBodyParameter("page", "" + pageIndex);
         params.addBodyParameter("limit", "10");
+        if (currentPosition == 2) {
+            params.addBodyParameter("is_full", "1");
+        }
+        if (currentPosition == 3) {
+            if (priceState == 1) {
+                params.addBodyParameter("order", "0");
+            } else if (priceState == 2) {
+                params.addBodyParameter("order", "1");
+            }
+        }
         LogUtil.d(TAG, "params:" + params.toString());
         brandGoodsPresenter.getBrandGoodsList(params, this);
 
@@ -242,48 +257,52 @@ public class BrandDetailActivity extends BaseAppcompatActivity implements OnBran
             adapter = new BondedGoodsListAdapter(this, data);
             rvBondedGoods.setLayoutManager(new GridLayoutManager(this, 2));
             rvBondedGoods.setAdapter(adapter);
-        } else {
-            adapter.notifyDataSetChanged();
-        }
-
-        llGoodsContainer.removeAllViews();
-        for (int i = 0; i < 6; i++) {
-            View view = LayoutInflater.from(this).inflate(R.layout.rv_home_item_goods, null);
-            llGoodsContainer.addView(view);
         }
     }
 
     @OnClick({R.id.iv_back, R.id.ll_filter_screen, R.id.tv_filter_popularity, R.id.tv_filter_discount, R.id.ll_filter_price,
-            R.id.ll_brand_more, R.id.ll_class_more
+            R.id.ll_brand_more, R.id.ll_class_more,R.id.iv_desc_up_down
     })
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
                 BrandDetailActivity.this.finish();
                 break;
-            case R.id.ll_filter_screen:
+            case R.id.ll_filter_screen:// 筛选
                 llScreenContainer.setVisibility(View.VISIBLE);
                 animalIn(rlAnimal);
                 change(4);
                 ivFilterScreenPointer.setImageResource(R.mipmap.icon_filter_screen_selected);
                 ivPricePointer.setImageResource(R.mipmap.icon_filter_price);
                 break;
-            case R.id.tv_filter_popularity:
+            case R.id.tv_filter_popularity:// 人气排序
                 change(1);
                 ivPricePointer.setImageResource(R.mipmap.icon_filter_price);
                 ivFilterScreenPointer.setImageResource(R.mipmap.icon_filter_screen);
+                pageIndex = 1;
+                initData();
                 break;
-            case R.id.tv_filter_discount:
+            case R.id.tv_filter_discount:// 折扣排序
                 change(2);
                 ivPricePointer.setImageResource(R.mipmap.icon_filter_price);
                 ivFilterScreenPointer.setImageResource(R.mipmap.icon_filter_screen);
+                pageIndex = 1;
+                initData();
                 break;
-            case R.id.ll_filter_price:
+            case R.id.ll_filter_price:// 价格排序
+                if (priceState == 1) {
+                    priceState = 2;
+                    ivPricePointer.setImageResource(R.mipmap.icon_filter_price_down);
+                } else if (priceState == 2) {
+                    priceState = 1;
+                    ivPricePointer.setImageResource(R.mipmap.icon_filter_price_up);
+                }
                 change(3);
-                ivPricePointer.setImageResource(R.mipmap.icon_filter_price_up);
                 ivFilterScreenPointer.setImageResource(R.mipmap.icon_filter_screen);
+                pageIndex = 1;
+                initData();
                 break;
-            case R.id.ll_brand_more:
+            case R.id.ll_brand_more:// 更多品牌
                 if (brandIsOpen) {
                     ViewGroup.LayoutParams params = llBrandsContainer.getLayoutParams();
                     params.height = DpUtils.dpToPx(this, 80);
@@ -300,7 +319,7 @@ public class BrandDetailActivity extends BaseAppcompatActivity implements OnBran
                     brandIsOpen = true;
                 }
                 break;
-            case R.id.ll_class_more:
+            case R.id.ll_class_more:// 更多分类
                 if (classIsOpen) {
                     ViewGroup.LayoutParams params = llClassContainer.getLayoutParams();
                     params.height = DpUtils.dpToPx(this, 80);
@@ -315,6 +334,23 @@ public class BrandDetailActivity extends BaseAppcompatActivity implements OnBran
                     llClassContainer.setLayoutParams(params);
                     ivClassMore.setImageResource(R.mipmap.icon_class_up);
                     classIsOpen = true;
+                }
+                break;
+            case R.id.iv_desc_up_down:// 品牌描述展开
+                if(descIsOpen) {
+                    ViewGroup.LayoutParams params = tvDescription.getLayoutParams();
+                    params.height = DpUtils.dpToPx(this, 35);
+                    params.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                    tvDescription.setLayoutParams(params);
+                    ivDescUpDwon.setImageResource(R.mipmap.icon_class_down);
+                    descIsOpen = false;
+                } else {
+                    ViewGroup.LayoutParams params = tvDescription.getLayoutParams();
+                    params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                    params.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                    tvDescription.setLayoutParams(params);
+                    ivDescUpDwon.setImageResource(R.mipmap.icon_class_up);
+                    descIsOpen = true;
                 }
                 break;
         }
@@ -354,7 +390,7 @@ public class BrandDetailActivity extends BaseAppcompatActivity implements OnBran
     }
 
     private void scrollAnimal(int position) {
-        int width = screenWidth / 4 - 2 * DpUtils.dpToPx(this, 20);
+        int width = screenWidth / 3 - 2 * DpUtils.dpToPx(this, 20);
         switch (position) {
             case 1:
                 int pL = DpUtils.dpToPx(this, 20);
@@ -469,7 +505,7 @@ public class BrandDetailActivity extends BaseAppcompatActivity implements OnBran
     @Override
     public void onBrandGoodsLoaded(String result) {
         if (result != null) {
-            Log.e("TAG", "品牌商品:" + result);
+            LogUtil.d("TAG", "品牌商品:" + result);
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");
@@ -478,16 +514,6 @@ public class BrandDetailActivity extends BaseAppcompatActivity implements OnBran
                     if (jsonObject.has("data")) {
                         JSONArray data = jsonObject.getJSONArray("data");
                         if (pageIndex == 1) {
-                            if (currentPosition == 3) {
-                                if (priceState == 1) {
-                                    ivPricePointer.setImageResource(R.mipmap.icon_filter_price_up);
-                                } else {
-                                    ivPricePointer.setImageResource(R.mipmap.icon_filter_price_down);
-                                }
-                            } else {
-                                ivPricePointer.setImageResource(R.mipmap.icon_filter_price);
-                                priceState = 2;
-                            }
                             BrandDetailActivity.this.data.clear();
                             adapter.notifyDataSetChanged();
                         }
@@ -508,6 +534,7 @@ public class BrandDetailActivity extends BaseAppcompatActivity implements OnBran
                                 bean.setGoodsPrice(price);
                                 BrandDetailActivity.this.data.add(bean);
                             }
+                            initHotGoods();
                             adapter.notifyDataSetChanged();
                         } else {
                             tvRemind.setVisibility(View.VISIBLE);
@@ -568,6 +595,40 @@ public class BrandDetailActivity extends BaseAppcompatActivity implements OnBran
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private void initHotGoods() {
+        llGoodsContainer.removeAllViews();
+        try {
+            for (int i = 0; i < 6 && i < data.size(); i++) {
+                View view = LayoutInflater.from(this).inflate(R.layout.rv_home_item_goods, null);
+                final HomeBondedGoodsBean goodsBean = data.get(i);
+                String imgSrc = goodsBean.getGoodsPic();
+                String goodsName = goodsBean.getGoodsName();
+                double goodsPrice = goodsBean.getGoodsPrice();
+                if (!imgSrc.isEmpty()) {
+                    Glide.with(BrandDetailActivity.this).load(imgSrc).apply(new RequestOptions().placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher))
+                            .into(((ImageView) view.findViewById(R.id.iv_goods_pic)));
+                }
+                if (goodsName != null && !goodsName.isEmpty()) {
+                    ((TextView) view.findViewById(R.id.tv_goods_name)).setText(goodsName);
+                }
+                if (goodsPrice != 0) {
+                    ((TextView) view.findViewById(R.id.tv_goods_price)).setText("￥" + new DecimalFormat("#######0.00").format(goodsPrice));
+                }
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(BrandDetailActivity.this, GoodsDetailActivity.class);
+                        intent.putExtra("goodsId", goodsBean.getGoodsId());
+                        BrandDetailActivity.this.startActivity(intent);
+                    }
+                });
+                llGoodsContainer.addView(view);
+            }
+        } catch (Exception e) {
+            LogUtil.e(TAG, "initHotGoods()", e);
         }
     }
 }

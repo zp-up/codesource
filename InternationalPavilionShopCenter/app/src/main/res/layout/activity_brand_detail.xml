@@ -113,6 +113,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
                             <ImageView
+                                android:id="@+id/iv_desc_up_down"
                                 android:src="@mipmap/icon_class_down"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_width="@dimen/x15"
@@ -288,7 +289,7 @@
                     <View
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
-                        android:visibility="invisible"
+                        android:visibility="gone"
                         android:background="@drawable/shape_of_view_scroll"
                         android:layout_weight="1"
                         android:layout_width="0dp"
