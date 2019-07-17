@@ -160,6 +160,7 @@
     </RelativeLayout>
     <!-- 邮箱 -->
     <RelativeLayout
+        android:visibility="gone"
         android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x45">
@@ -191,6 +192,7 @@
     </RelativeLayout>
     <!-- 密码 -->
     <RelativeLayout
+        android:visibility="gone"
         android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x45">

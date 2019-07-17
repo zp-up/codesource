@@ -46,6 +46,7 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.applic
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp.UpLoadFileImp;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.UpLoadFileInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.LogUtil;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnUpLoadFileCallback;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.popupwindow.ImageSelectPop;
@@ -117,59 +118,11 @@ public class RealNameAuthenticationActivity extends BaseAppcompatActivity implem
         switch (view.getId()){
             case R.id.rl_add_front:
                 currentPicPosition = 1;
-                ImageSelectPop pop = new ImageSelectPop(this);
-                pop.setCancelAble(false);
-                pop.show(llParent, new ImageSelectPop.ItemClick() {
-                    @Override
-                    public void onClick(int type, double rentPrice, double buyPrice) {
-                        switch (type) {
-                            case 1: // 查看大图
-
-                                break;
-                            case 2: // 打开相机
-                                //裁剪参数
-                                CropOptions cropOptions = new CropOptions.Builder().
-                                        setWithOwnCrop(false)
-                                        .setOutputX(800).setOutputY(800).create();
-                                getTakePhoto().onPickFromCaptureWithCrop(getUri(), cropOptions);
-                                break;
-                            case 3: // 打开相册
-                                //裁剪参数
-                                CropOptions cropOptions1 = new CropOptions.Builder()
-                                        .setWithOwnCrop(false)
-                                        .setOutputX(800).setOutputY(800).create();
-                                getTakePhoto().onPickFromGalleryWithCrop(getUri(), cropOptions1);
-                                break;
-                        }
-                    }
-                });
+                takePhoto();
                 break;
             case R.id.rl_add_back:
                 currentPicPosition = 2;
-                ImageSelectPop pop1 = new ImageSelectPop(this);
-                pop1.setCancelAble(false);
-                pop1.show(llParent, new ImageSelectPop.ItemClick() {
-                    @Override
-                    public void onClick(int type, double rentPrice, double buyPrice) {
-                        switch (type) {
-                            case 1:
-
-                                break;
-                            case 2:
-                                //裁剪参数
-                                CropOptions cropOptions = new CropOptions.Builder().
-                                        setWithOwnCrop(false).setOutputX(800).setOutputY(800).create();
-                                getTakePhoto().onPickFromCaptureWithCrop(getUri(), cropOptions);
-                                break;
-                            case 3:
-                                //裁剪参数
-                                CropOptions cropOptions1 = new CropOptions.Builder()
-                                        .setWithOwnCrop(false).setOutputX(800).setOutputY(800).create();
-                                getTakePhoto().onPickFromGalleryWithCrop(getUri(), cropOptions1);
-                                break;
-                        }
-                    }
-                });
+                takePhoto();
                 break;
         }
     }
@@ -438,6 +391,7 @@ public class RealNameAuthenticationActivity extends BaseAppcompatActivity implem
         }
         params.addBodyParameter("sha256", imageSHA256);
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
+        LogUtil.d(TAG, "verifyIdCard() params:" + params.toString());
         upLoadFilePresenter.modifyUserHead(params, this);
     }
 
@@ -450,10 +404,10 @@ public class RealNameAuthenticationActivity extends BaseAppcompatActivity implem
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
         params.addBodyParameter("status", "0");// 是否默认:0否,1是
         params.addBodyParameter("auto", "手动");// 是否手动:自动,手动
-        params.addBodyParameter("name", "朱觉烽");// 姓名
-        params.addBodyParameter("card", "450923199310173774");// 身份证号
-//        params.addBodyParameter("name", tvName.getText().toString());// 姓名
-//        params.addBodyParameter("card", tvID.getText().toString());// 身份证号
+//        params.addBodyParameter("name", "朱觉烽");// 姓名
+//        params.addBodyParameter("card", "450923199310173774");// 身份证号
+        params.addBodyParameter("name", tvName.getText().toString());// 姓名
+        params.addBodyParameter("card", tvID.getText().toString());// 身份证号
         if (((IPSCApplication) getApplication()).getUserInfo() != null) {
             params.addBodyParameter("user", ((IPSCApplication) this.getApplication()).getUserInfo().getId() + "");
         }
@@ -480,5 +434,36 @@ public class RealNameAuthenticationActivity extends BaseAppcompatActivity implem
                 tvID.setHint("请输入证件号码");
                 break;
         }
+    }
+
+    private void takePhoto() {
+        //打开相机、裁剪参数
+        CropOptions cropOptions = new CropOptions.Builder().
+                setWithOwnCrop(false).setOutputX(800).setOutputY(800).create();
+        getTakePhoto().onPickFromCaptureWithCrop(getUri(), cropOptions);
+        /*                ImageSelectPop pop1 = new ImageSelectPop(this);
+                pop1.setCancelAble(false);
+                pop1.show(llParent, new ImageSelectPop.ItemClick() {
+                    @Override
+                    public void onClick(int type, double rentPrice, double buyPrice) {
+                        switch (type) {
+                            case 1:
+
+                                break;
+                            case 2:
+                                //裁剪参数
+                                CropOptions cropOptions = new CropOptions.Builder().
+                                        setWithOwnCrop(false).setOutputX(800).setOutputY(800).create();
+                                getTakePhoto().onPickFromCaptureWithCrop(getUri(), cropOptions);
+                                break;
+                            case 3:
+                                //裁剪参数
+                                CropOptions cropOptions1 = new CropOptions.Builder()
+                                        .setWithOwnCrop(false).setOutputX(800).setOutputY(800).create();
+                                getTakePhoto().onPickFromGalleryWithCrop(getUri(), cropOptions1);
+                                break;
+                        }
+                    }
+                });*/
     }
 }

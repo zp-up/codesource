@@ -433,7 +433,7 @@ public class HomeAdapter extends DelegateAdapter.Adapter<HomeAdapter.ViewHolder>
                         Glide.with(context).load(goodsBean.getGoodsPic()).apply(new RequestOptions().error(R.drawable.bg_home_lay10_1).placeholder(R.drawable.bg_home_lay10_1).override(300, 300)).into(holder.ivPopGoodsPic);
                         holder.tvPopGoodsName.setText(goodsBean.getGoodsName());
                         holder.tvPopGoodsPrice.setText("￥" + new DecimalFormat("######0.00").format(goodsBean.getGoodsPrice()));
-                        if (TextUtils.isEmpty(goodsBean.getStoreType())) {
+                        if (TextUtils.isEmpty(goodsBean.getStoreType()) || "国内仓库".equals(goodsBean.getStoreType())) {
                             holder.tvPopStoreType.setVisibility(View.GONE);
                         } else {
                             holder.tvPopStoreType.setVisibility(View.VISIBLE);
