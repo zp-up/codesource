@@ -174,13 +174,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                     </LinearLayout>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_marginTop="@dimen/x20"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
                     <LinearLayout
                         android:id="@+id/ll_to_group_order"
                         android:layout_weight="1"
@@ -197,63 +190,6 @@
                             android:layout_marginTop="@dimen/x3"
                             android:layout_gravity="center_horizontal"
                             android:text="拼团中"
-                            android:textSize="@dimen/x13"
-                            android:textColor="#636363"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-                        <ImageView
-                            android:layout_marginBottom="@dimen/x3"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_width="@dimen/x20"
-                            android:layout_height="@dimen/x20" />
-                        <TextView
-                            android:layout_marginTop="@dimen/x3"
-                            android:layout_gravity="center_horizontal"
-                            android:text=""
-                            android:textSize="@dimen/x13"
-                            android:textColor="#636363"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-                        <ImageView
-                            android:layout_marginBottom="@dimen/x3"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_width="@dimen/x20"
-                            android:layout_height="@dimen/x20" />
-                        <TextView
-                            android:layout_marginTop="@dimen/x3"
-                            android:layout_gravity="center_horizontal"
-                            android:text=""
-                            android:textSize="@dimen/x13"
-                            android:textColor="#636363"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-                        <ImageView
-                            android:layout_marginBottom="@dimen/x3"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_width="@dimen/x20"
-                            android:layout_height="@dimen/x20" />
-                        <TextView
-                            android:layout_marginTop="@dimen/x3"
-                            android:layout_gravity="center_horizontal"
-                            android:text=""
                             android:textSize="@dimen/x13"
                             android:textColor="#636363"
                             android:layout_width="wrap_content"
@@ -352,7 +288,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content">
                         <ImageView
-                            android:src="@mipmap/icon_mine_group_buy"
+                            android:src="@mipmap/icon_mine_friend"
                             android:layout_marginBottom="@dimen/x3"
                             android:layout_gravity="center_horizontal"
                             android:layout_width="@dimen/x20"
