@@ -9,9 +9,9 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.BuildC
 public class MainUrls {
     public static final String areaUrl = "https://app.gjigbuy.com";
 
-    public static final String ServerIp = BuildConfig.DEBUG ? "https://www.gjigbuy.com/app/index/api" : "https://app.gjigbuy.com/app/index/api";
+    public static final String ServerIp = BuildConfig.DEBUG ? "https://www.gjigbuy.com/app/index/api" : "https://api.gjigbuy.com/app/index/api";
 
-    public static final String getAccessTokenUrl = BuildConfig.DEBUG ? "https://www.gjigbuy.com/app/index/login" : "https://app.gjigbuy.com/app/index/login";
+    public static final String getAccessTokenUrl = BuildConfig.DEBUG ? "https://www.gjigbuy.com/app/index/login" : "https://api.gjigbuy.com/app/index/login";
 
     // 基础系统-》配置管理-》发送注册验证码
     public static final String getVerifyCodeUrl = ServerIp + "?api=data.config.sendregsms";
