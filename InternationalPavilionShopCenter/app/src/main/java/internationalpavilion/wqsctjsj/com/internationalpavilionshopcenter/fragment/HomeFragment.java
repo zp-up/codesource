@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -100,6 +101,8 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
     SmartRefreshLayout srlContent;
     @BindView(R.id.tv_remind)
     TextView tvRemind;
+    @BindView(R.id.return_top)
+    ImageView ivTop;
 
     private HomeDataInterface homePresenter;
     private int pageIndex = 1;
@@ -284,6 +287,11 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
                     rlSearchContainer.setBackgroundResource(R.drawable.shape_of_search_cotainer);
                     viewStatusBar.setBackgroundColor(Color.parseColor("#00ffffff"));
                 }
+                if (layoutManager.findFirstVisibleItemPosition() >= 14) {
+                    ivTop.setVisibility(View.VISIBLE);
+                } else {
+                    ivTop.setVisibility(View.GONE);
+                }
             }
         });
         srlContent.setEnableLoadmore(true);
@@ -297,6 +305,13 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
                 getMorePopularityGoodsList();
+            }
+        });
+
+        ivTop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mRV.smoothScrollToPosition(0);
             }
         });
     }
