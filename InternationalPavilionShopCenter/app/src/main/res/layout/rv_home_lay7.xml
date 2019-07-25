@@ -44,7 +44,7 @@
         android:layout_height="@dimen/x20" />
     <RelativeLayout
         android:id="@+id/rl_to_bonded_goods"
-        android:layout_marginBottom="@dimen/x10"
+        android:layout_marginBottom="@dimen/x5"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x120">
         <ImageView
