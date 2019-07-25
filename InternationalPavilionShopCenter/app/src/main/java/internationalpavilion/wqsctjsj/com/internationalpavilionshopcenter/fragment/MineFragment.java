@@ -1,13 +1,10 @@
 package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.fragment;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,17 +12,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.BitmapImageViewTarget;
-import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
+import com.chrisjason.baseui.ui.BaseAppcompatActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.xutils.http.RequestParams;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,27 +35,31 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.CollectionActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.ContactCustomerServiceActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.CouponActivity;
-import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.FriendsActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.LoginByPasswordActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.MyBalanceActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.MyGroupActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.MyIntegralActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.OrderActivity;
-import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.RealNameAuthenticationActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.RealNameAuthenticationListActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.ReceivedAddressListActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.SettingActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.application.IPSCApplication;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.eventBusBean.TokenEvent;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.userInfo.UserBean;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp.MineDataImp;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.MineDataInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.LogUtil;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnMineDataCallBack;
 
 /**
  * Created by wuqaing on 2018/11/29.
  */
 
-public class MineFragment extends Fragment {
+public class MineFragment extends Fragment implements OnMineDataCallBack {
+
+    private static final String TAG = "[IPSC][MineFragment]";
     private Unbinder unbinder;
 
     @BindView(R.id.civ_head)
@@ -64,6 +68,19 @@ public class MineFragment extends Fragment {
     TextView tvNickName;
     @BindView(R.id.tv_account)
     TextView tvAccount;
+    @BindView(R.id.tv_wait_pay_order)
+    TextView tvWaitPayOrder;
+    @BindView(R.id.tv_wait_delivery_order)
+    TextView tvWaitDeliveryOrder;
+    @BindView(R.id.tv_wait_received_order)
+    TextView tvWaitReceivedOrder;
+    @BindView(R.id.tv_after_sale_order)
+    TextView tvAfterSaleOrder;
+    @BindView(R.id.tv_group_order)
+    TextView tvGroupOrder;
+
+    private MineDataInterface minePresenter;
+    private ArrayList<HashMap<String, Object>> userOrderData = new ArrayList<>();
 
     @Nullable
     @Override
@@ -71,6 +88,7 @@ public class MineFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_mine_layout, container, false);
         unbinder = ButterKnife.bind(this, view);
         EventBus.getDefault().register(this);
+        minePresenter = new MineDataImp();
         return view;
     }
 
@@ -79,6 +97,25 @@ public class MineFragment extends Fragment {
         super.onResume();
         if (((IPSCApplication) getActivity().getApplicationContext()).getUserInfo() != null) {
             getUserInfo();
+            getUserOrder();
+        }
+    }
+
+    private void getUserOrder() {
+        try {
+            if (TextUtils.isEmpty(IPSCApplication.accessToken)) {
+                ToastUtils.show(getActivity(), "程序出错，请重启应用。");
+                return;
+            }
+            RequestParams params = new RequestParams(MainUrls.getUserOrderUrl);
+            params.addBodyParameter("access_token", IPSCApplication.accessToken);
+            UserBean userInfo = ((IPSCApplication) getActivity().getApplicationContext()).getUserInfo();
+            if (userInfo != null) {
+                params.addBodyParameter("user", userInfo.getId() + "");
+            }
+            minePresenter.getUserOrderData(params, this);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -114,8 +151,8 @@ public class MineFragment extends Fragment {
 
     }
 
-    @OnClick({R.id.ll_account, R.id.ll_to_wait_pay_order, R.id.ll_to_wait_delivery_order,
-            R.id.ll_to_wait_received_order, R.id.ll_to_after_sale_order, R.id.ll_to_group_order, R.id.ll_to_my_balance, R.id.ll_to_integral,
+    @OnClick({R.id.ll_account, R.id.rl_to_wait_pay_order, R.id.rl_to_wait_delivery_order,
+            R.id.rl_to_wait_received_order, R.id.rl_to_after_sale_order, R.id.rl_to_group_order, R.id.ll_to_my_balance, R.id.ll_to_integral,
             R.id.ll_to_collection, R.id.ll_to_friends, R.id.ll_to_coupon, R.id.ll_to_address_manage, R.id.ll_to_real_name_auther, R.id.ll_to_custom_service,
             R.id.ll_to_setting,R.id.ll_to_wait_all_order
     })
@@ -142,7 +179,7 @@ public class MineFragment extends Fragment {
                 }
 
                 break;
-            case R.id.ll_to_wait_pay_order:
+            case R.id.rl_to_wait_pay_order:
                 if(isLogin()){
                     Intent intentToWaitPayOrder = new Intent(getActivity(), OrderActivity.class);
                     intentToWaitPayOrder.putExtra("index", 1);
@@ -154,7 +191,7 @@ public class MineFragment extends Fragment {
                 }
 
                 break;
-            case R.id.ll_to_wait_delivery_order:
+            case R.id.rl_to_wait_delivery_order:
                 if(isLogin()){
                     Intent intentToWaitDeliveryOrder = new Intent(getActivity(), OrderActivity.class);
                     intentToWaitDeliveryOrder.putExtra("index", 2);
@@ -166,7 +203,7 @@ public class MineFragment extends Fragment {
                 }
 
                 break;
-            case R.id.ll_to_wait_received_order:
+            case R.id.rl_to_wait_received_order:
                 if(isLogin()){
                     Intent intentToWaitReceivedOrder = new Intent(getActivity(), OrderActivity.class);
                     intentToWaitReceivedOrder.putExtra("index", 3);
@@ -178,7 +215,7 @@ public class MineFragment extends Fragment {
                 }
 
                 break;
-            case R.id.ll_to_after_sale_order:
+            case R.id.rl_to_after_sale_order:
                 if(isLogin()){
                     Intent intentToAfterSaleOrder = new Intent(getActivity(), OrderActivity.class);
                     intentToAfterSaleOrder.putExtra("index", 4);
@@ -190,7 +227,7 @@ public class MineFragment extends Fragment {
                 }
 
                 break;
-            case R.id.ll_to_group_order:
+            case R.id.rl_to_group_order:
                 if(isLogin()){
                     Intent intentToGroupOrder = new Intent(getActivity(), MyGroupActivity.class);
                     startActivity(intentToGroupOrder);
@@ -328,5 +365,74 @@ public class MineFragment extends Fragment {
             }
         }
         return false;
+    }
+
+    //请求开始
+    @Override
+    public void onStarted() {
+        ((BaseAppcompatActivity)getActivity()).showLoading(false,"获取数据中...");
+    }
+
+    //请求结束
+    @Override
+    public void onFinished() {
+        ((BaseAppcompatActivity)getActivity()).dismissLoading();
+    }
+
+    //请求错误
+    @Override
+    public void onError(String error) {
+        Log.e(TAG, "error:" + error);
+    }
+
+    //请求成功
+    @Override
+    public void onGetUserOrderData(String result) {
+        LogUtil.d(TAG, "getUserOrder result:" + result);
+        if (result != null) {
+            try {
+                JSONObject jsonObject = new JSONObject(result);
+                int code = jsonObject.getInt("code");
+                int state = jsonObject.getInt("state");
+                if (code == 0 && state == 0) {
+                    JSONArray data = jsonObject.getJSONArray("data");
+                    if (data != null && data.length() > 0) {
+                        for (int i = 0; i < data.length(); i++) {
+                            HashMap<String, Object> dataMap = new HashMap<>();
+                            dataMap.put("id", data.getJSONObject(i).getInt("id"));
+                            dataMap.put("name", data.getJSONObject(i).getString("name"));
+                            dataMap.put("count", data.getJSONObject(i).getInt("count"));
+                            userOrderData.add(dataMap);
+
+                            int count = (int) dataMap.get("count");
+                            switch ((int) dataMap.get("id")) {
+                                case 1:// 待付款
+                                    tvWaitPayOrder.setText(count + "");
+                                    tvWaitPayOrder.setVisibility(count == 0 ? View.GONE : View.VISIBLE);
+                                    break;
+                                case 2:// 拼团中
+                                    tvGroupOrder.setText(count + "");
+                                    tvGroupOrder.setVisibility(count == 0 ? View.GONE : View.VISIBLE);
+                                    break;
+                                case 3:// 待发货
+                                    tvWaitDeliveryOrder.setText(count + "");
+                                    tvWaitDeliveryOrder.setVisibility(count == 0 ? View.GONE : View.VISIBLE);
+                                    break;
+                                case 4:// 待收货
+                                    tvWaitReceivedOrder.setText(count + "");
+                                    tvWaitReceivedOrder.setVisibility(count == 0 ? View.GONE : View.VISIBLE);
+                                    break;
+                                case 5:// 售后单
+                                    tvAfterSaleOrder.setText(count + "");
+                                    tvAfterSaleOrder.setVisibility(count == 0 ? View.GONE : View.VISIBLE);
+                                    break;
+                            }
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                LogUtil.e(TAG, " parse user order occur exception!", e);
+            }
+        }
     }
 }

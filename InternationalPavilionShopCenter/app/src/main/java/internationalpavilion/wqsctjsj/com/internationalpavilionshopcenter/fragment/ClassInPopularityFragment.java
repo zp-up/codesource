@@ -1,6 +1,5 @@
 package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.fragment;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -20,7 +19,6 @@ import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.alibaba.android.vlayout.layout.GridLayoutHelper;
 import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
 import com.chrisjason.baseui.ui.BaseAppcompatActivity;
-import com.chrisjason.baseui.util.DpUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
@@ -40,7 +38,6 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.adapter.ClassPopularityAdapter;
-import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.adapter.HomeAdapter;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.application.IPSCApplication;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.homePopularityGoods.HomePopularityGoodsBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp.HomeDataImp;

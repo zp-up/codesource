@@ -99,117 +99,220 @@
                     android:layout_height="@dimen/x1"
                     android:layout_marginTop="11dp"
                     ></View>
+
                 <LinearLayout
-                    android:layout_marginTop="@dimen/x20"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginLeft="15dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:id="@+id/ll_to_wait_pay_order"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="@dimen/x20">
+
+                    <RelativeLayout
+                        android:id="@+id/rl_to_wait_pay_order"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content">
+                        android:layout_height="60dp"
+                        android:layout_weight="1">
+
                         <ImageView
-                            android:src="@mipmap/icon_mine_wait_pay"
-                            android:layout_marginBottom="@dimen/x3"
-                            android:layout_gravity="center_horizontal"
+                            android:id="@+id/iv_wait_pay_order"
                             android:layout_width="@dimen/x20"
-                            android:layout_height="@dimen/x20" />
+                            android:layout_height="@dimen/x20"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/x5"
+                            android:src="@mipmap/icon_mine_wait_pay" />
+
                         <TextView
-                            android:layout_marginTop="@dimen/x3"
-                            android:layout_gravity="center_horizontal"
+                            android:id="@+id/tv_wait_pay_order"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/x15"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginRight="@dimen/x5"
+                            android:layout_marginTop="@dimen/x1"
+                            android:background="@drawable/shape_of_notice_num"
+                            android:gravity="center"
+                            android:minWidth="@dimen/x15"
+                            android:paddingEnd="@dimen/x3"
+                            android:paddingStart="@dimen/x3"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/x8"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/x5"
                             android:text="待付款"
-                            android:textSize="@dimen/x13"
                             android:textColor="#636363"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:id="@+id/ll_to_wait_delivery_order"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
+                            android:textSize="@dimen/x13" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_to_wait_delivery_order"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content">
+                        android:layout_height="60dp"
+                        android:layout_weight="1">
+
                         <ImageView
-                            android:src="@mipmap/icon_mine_wait_delivery"
-                            android:layout_marginBottom="@dimen/x3"
-                            android:layout_gravity="center_horizontal"
                             android:layout_width="@dimen/x20"
-                            android:layout_height="@dimen/x20" />
+                            android:layout_height="@dimen/x20"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/x5"
+                            android:src="@mipmap/icon_mine_wait_delivery" />
+
                         <TextView
-                            android:layout_marginTop="@dimen/x3"
-                            android:layout_gravity="center_horizontal"
+                            android:id="@+id/tv_wait_delivery_order"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/x15"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginRight="@dimen/x5"
+                            android:layout_marginTop="@dimen/x1"
+                            android:background="@drawable/shape_of_notice_num"
+                            android:gravity="center"
+                            android:minWidth="@dimen/x15"
+                            android:paddingEnd="@dimen/x3"
+                            android:paddingStart="@dimen/x3"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/x8"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/x5"
                             android:text="待发货"
-                            android:textSize="@dimen/x13"
                             android:textColor="#636363"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:id="@+id/ll_to_wait_received_order"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
+                            android:textSize="@dimen/x13" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_to_wait_received_order"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content">
+                        android:layout_height="60dp"
+                        android:layout_weight="1">
+
                         <ImageView
-                            android:src="@mipmap/icon_mine_wait_received"
-                            android:layout_marginBottom="@dimen/x3"
-                            android:layout_gravity="center_horizontal"
                             android:layout_width="@dimen/x20"
-                            android:layout_height="@dimen/x20" />
+                            android:layout_height="@dimen/x20"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/x5"
+                            android:src="@mipmap/icon_mine_wait_received" />
+
                         <TextView
-                            android:layout_marginTop="@dimen/x3"
-                            android:layout_gravity="center_horizontal"
+                            android:id="@+id/tv_wait_received_order"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/x15"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginRight="@dimen/x5"
+                            android:layout_marginTop="@dimen/x1"
+                            android:background="@drawable/shape_of_notice_num"
+                            android:gravity="center"
+                            android:minWidth="@dimen/x15"
+                            android:paddingEnd="@dimen/x3"
+                            android:paddingStart="@dimen/x3"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/x8"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/x5"
                             android:text="待收货"
-                            android:textSize="@dimen/x13"
                             android:textColor="#636363"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:id="@+id/ll_to_after_sale_order"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
+                            android:textSize="@dimen/x13" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_to_after_sale_order"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content">
+                        android:layout_height="60dp"
+                        android:layout_weight="1">
+
                         <ImageView
-                            android:src="@mipmap/icon_mine_after_sale"
-                            android:layout_marginBottom="@dimen/x3"
-                            android:layout_gravity="center_horizontal"
                             android:layout_width="@dimen/x20"
-                            android:layout_height="@dimen/x20" />
+                            android:layout_height="@dimen/x20"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/x5"
+                            android:src="@mipmap/icon_mine_after_sale" />
+
                         <TextView
-                            android:layout_marginTop="@dimen/x3"
-                            android:layout_gravity="center_horizontal"
+                            android:id="@+id/tv_after_sale_order"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/x15"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginRight="@dimen/x5"
+                            android:layout_marginTop="@dimen/x1"
+                            android:background="@drawable/shape_of_notice_num"
+                            android:gravity="center"
+                            android:minWidth="@dimen/x15"
+                            android:paddingEnd="@dimen/x3"
+                            android:paddingStart="@dimen/x3"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/x8"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/x5"
                             android:text="售后单"
-                            android:textSize="@dimen/x13"
                             android:textColor="#636363"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:id="@+id/ll_to_group_order"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
+                            android:textSize="@dimen/x13" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_to_group_order"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content">
+                        android:layout_height="60dp"
+                        android:layout_weight="1">
+
                         <ImageView
-                            android:src="@mipmap/icon_mine_group_buy"
-                            android:layout_marginBottom="@dimen/x3"
-                            android:layout_gravity="center_horizontal"
                             android:layout_width="@dimen/x20"
-                            android:layout_height="@dimen/x20" />
+                            android:layout_height="@dimen/x20"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/x5"
+                            android:src="@mipmap/icon_mine_group_buy" />
+
                         <TextView
-                            android:layout_marginTop="@dimen/x3"
-                            android:layout_gravity="center_horizontal"
-                            android:text="拼团中"
-                            android:textSize="@dimen/x13"
-                            android:textColor="#636363"
+                            android:id="@+id/tv_group_order"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
+                            android:layout_height="@dimen/x15"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginRight="@dimen/x5"
+                            android:layout_marginTop="@dimen/x1"
+                            android:background="@drawable/shape_of_notice_num"
+                            android:gravity="center"
+                            android:minWidth="@dimen/x15"
+                            android:paddingEnd="@dimen/x3"
+                            android:paddingStart="@dimen/x3"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/x8"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/x5"
+                            android:text="拼团中"
+                            android:textColor="#636363"
+                            android:textSize="@dimen/x13" />
+
+                    </RelativeLayout>
+
                 </LinearLayout>
                 <TextView
                     android:textSize="@dimen/x12"

@@ -167,6 +167,9 @@ public class MainUrls {
 
     public static final String getUserWalletMoneyUrl = ServerIp + "?api=order.order.getmoney";
 
+    // 订单系统-》订单管理-》用户界面订单状态
+    public static final String getUserOrderUrl = ServerIp + "?api=order.order.userorder";
+
     public static final String setAddressDefaultUrl = ServerIp + "?api=user.address.setdefault";
 
     public static final String setWalletMoneyToOrderUrl = ServerIp + "?api=order.order.setmoney";
