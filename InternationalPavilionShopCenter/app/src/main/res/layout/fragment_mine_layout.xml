@@ -18,20 +18,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <RelativeLayout
-                    android:background="@drawable/bg_mine_head_1"
+                    android:background="@mipmap/bg_mine_head_1"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/x132">
-                    <ImageView
-                        android:id="@+id/civ_head"
-                        android:src="@mipmap/icon_mine_defaul_head"
+                    <RelativeLayout
+                        android:id="@+id/rl_civ_head"
                         android:layout_marginLeft="@dimen/x40"
                         android:layout_centerVertical="true"
+                        android:gravity="center"
                         android:layout_width="@dimen/x60"
-                        android:layout_height="@dimen/x60" />
+                        android:layout_height="@dimen/x60">
+                        <ImageView
+                            android:id="@+id/civ_head"
+                            android:src="@mipmap/icon_mine_defaul_head"
+                            android:layout_centerInParent="true"
+                            android:layout_width="@dimen/x60"
+                            android:layout_height="@dimen/x60" />
+                        <ImageView
+                            android:src="@drawable/icon_mine_defaul_head"
+                            android:layout_centerInParent="true"
+                            android:layout_width="@dimen/x60"
+                            android:layout_height="@dimen/x60" />
+                    </RelativeLayout>
                     <LinearLayout
                         android:id="@+id/ll_account"
                         android:orientation="vertical"
-                        android:layout_toRightOf="@+id/civ_head"
+                        android:layout_toRightOf="@+id/rl_civ_head"
                         android:layout_marginLeft="@dimen/x10"
                         android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
@@ -46,6 +58,9 @@
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/tv_account"
+                            android:paddingStart="@dimen/x10"
+                            android:paddingEnd="@dimen/x10"
+                            android:background="@drawable/gray_text_background"
                             android:layout_marginTop="@dimen/x3"
                             android:text="登录后查看"
                             android:textColor="@color/white"
