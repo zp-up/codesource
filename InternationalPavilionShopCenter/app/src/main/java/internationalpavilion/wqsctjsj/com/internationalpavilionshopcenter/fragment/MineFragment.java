@@ -134,8 +134,11 @@ public class MineFragment extends Fragment implements OnMineDataCallBack {
             if (userBean != null && userBean.getNickName() != null) {
                 tvNickName.setText(userBean.getNickName());
             }
-            if (userBean != null && userBean.getName() != null) {
-                tvAccount.setText(userBean.getName());
+            if (userBean != null && userBean.getUserPhone() != null) {
+                String phone = userBean.getUserPhone().toString();
+                tvAccount.setText(phone.isEmpty() ? "没有数据" : phone);
+            } else {
+                tvAccount.setText("没有数据");
             }
             if (userBean != null && userBean.getImg() != null) {
                 Log.e("TAG","头像地址:"+userBean.getImg());
