@@ -101,15 +101,15 @@ public class OrderActivity extends BaseAppcompatActivity implements OnOrderDealC
         DisplayMetrics displayMetrics = new DisplayMetrics();
         windowManager.getDefaultDisplay().getMetrics(displayMetrics);
         screenWidth = displayMetrics.widthPixels;
-        if (getIntent().getIntExtra("index", -1) == 1) {
-            change(2);
-        } else if (getIntent().getIntExtra("index", -1) == 2) {
-            change(3);
-        } else if (getIntent().getIntExtra("index", -1) == 3) {
-            change(4);
-        } else if (getIntent().getIntExtra("index", -1) == 4) {
-            change(5);
+
+        Intent intent = getIntent();
+        int index = 0;
+        if(intent!=null){
+            index = intent.getIntExtra("index",0);
         }
+
+        change(index+1);
+
     }
 
     @OnClick({R.id.tv_all, R.id.tv_wait_pay, R.id.tv_wait_delivery, R.id.tv_wait_received, R.id.tv_after_sale, R.id.iv_back})

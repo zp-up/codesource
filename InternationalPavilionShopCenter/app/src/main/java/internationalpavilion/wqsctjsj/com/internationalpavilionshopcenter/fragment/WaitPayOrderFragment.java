@@ -162,7 +162,13 @@ public class WaitPayOrderFragment extends Fragment implements OnCommonGoodsCallB
                                     orderGoodsBean.setGoodsId(list.getJSONObject(j).getJSONObject("goods_goods").getInt("id"));
                                     orderGoodsBean.setGoodsName(list.getJSONObject(j).getJSONObject("goods_goods").getString("name"));
                                     orderGoodsBean.setGoodsDescription(list.getJSONObject(j).getJSONObject("goods_goods").getString("spec"));
-                                    orderGoodsBean.setImageUrl(list.getJSONObject(j).getJSONObject("goods_goods").getJSONArray("img").getString(0));
+                                    JSONArray img = list.getJSONObject(j).getJSONObject("goods_goods").getJSONArray("img");
+                                    String imgUrl = "";
+                                    if(img!=null && img.length()>0){
+                                        imgUrl = img.getString(0);
+                                    }
+
+                                    orderGoodsBean.setImageUrl(imgUrl);
                                     orderGoodsBeans.add(orderGoodsBean);
                                 }
                             }

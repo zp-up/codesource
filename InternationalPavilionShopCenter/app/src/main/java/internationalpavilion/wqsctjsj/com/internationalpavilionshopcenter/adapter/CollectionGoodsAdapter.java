@@ -46,7 +46,7 @@ public class CollectionGoodsAdapter extends RecyclerView.Adapter<CollectionGoods
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Glide.with(context).load(data.get(position).getGoodsPic())
-                .apply(new RequestOptions().error(R.mipmap.ic_launcher)).into(holder.ivGoodsPic);
+                .apply(new RequestOptions().error(R.mipmap.ic_default)).into(holder.ivGoodsPic);
         holder.tvGoodsName.setText(data.get(position).getGoodsName());
         holder.tvGoodsPrice.setText("￥"+data.get(position).getGoodsPrice());
 //        holder.tvGoodsSpec.setText(data.get(position).getDescription());
