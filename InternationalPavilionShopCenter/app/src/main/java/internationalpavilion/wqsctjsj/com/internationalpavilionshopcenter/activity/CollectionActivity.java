@@ -157,12 +157,15 @@ public class CollectionActivity extends BaseAppcompatActivity implements OnCommo
 //                                String description = data.getJSONObject(i).getJSONObject("goods_goods").getString("keyword");
                                 String baseAreaName = data.getJSONObject(i).getJSONObject("goods_goods").getString("base_area").equals("0") ? "国内" : data.getJSONObject(i).getJSONObject("goods_goods").getJSONObject("base_area").getString("name");
                                 double price = data.getJSONObject(i).getDouble("price");
-                                String goodsPic = data.getJSONObject(i).getJSONObject("goods_goods").getJSONArray("img").getString(0);
+
+                                String imgUrl = data.getJSONObject(i).getJSONObject("goods_goods").getString("img");
+
+
                                 bean.setGoodsId(id);
                                 bean.setGoodsName(name);
                                 bean.setBrandName(baseAreaName);
 //                                bean.setDescription(description);
-                                bean.setGoodsPic(goodsPic);
+                                bean.setGoodsPic(imgUrl);
                                 bean.setGoodsPrice(price);
                                 CollectionActivity.this.data.add(bean);
                             }

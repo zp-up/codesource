@@ -6,3 +6,9 @@ build/
 .gradle/
 app/build/
 baseui/build/
+InternationalPavilionShopCenter/.gradle/buildOutputCleanup/cache.properties
+InternationalPavilionShopCenter/.gradle/buildOutputCleanup/cache.properties
+*.iml
+InternationalPavilionShopCenter/.idea/gradle.xml
+InternationalPavilionShopCenter/.gradle/buildOutputCleanup/cache.properties
+InternationalPavilionShopCenter/baseui/baseui.iml

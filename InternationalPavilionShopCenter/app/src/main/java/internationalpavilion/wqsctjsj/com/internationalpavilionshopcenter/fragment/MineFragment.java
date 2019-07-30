@@ -16,6 +16,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.chrisjason.baseui.ui.BaseAppcompatActivity;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -62,6 +65,8 @@ public class MineFragment extends Fragment implements OnMineDataCallBack {
     private static final String TAG = "[IPSC][MineFragment]";
     private Unbinder unbinder;
 
+    @BindView(R.id.refresh)
+    SmartRefreshLayout mRefresh;
     @BindView(R.id.civ_head)
     ImageView civHead;
     @BindView(R.id.tv_nick_name)
@@ -89,6 +94,18 @@ public class MineFragment extends Fragment implements OnMineDataCallBack {
         unbinder = ButterKnife.bind(this, view);
         EventBus.getDefault().register(this);
         minePresenter = new MineDataImp();
+
+        mRefresh.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                if (((IPSCApplication) getActivity().getApplicationContext()).getUserInfo() != null) {
+                    getUserInfo();
+                    getUserOrder();
+                }
+            }
+        });
+
+
         return view;
     }
 
@@ -401,14 +418,19 @@ public class MineFragment extends Fragment implements OnMineDataCallBack {
                     JSONArray data = jsonObject.getJSONArray("data");
                     if (data != null && data.length() > 0) {
                         for (int i = 0; i < data.length(); i++) {
+
+                            int id = data.getJSONObject(i).getInt("id");
+                            int count =data.getJSONObject(i).getInt("count");
+
                             HashMap<String, Object> dataMap = new HashMap<>();
-                            dataMap.put("id", data.getJSONObject(i).getInt("id"));
+                            dataMap.put("id",id);
                             dataMap.put("name", data.getJSONObject(i).getString("name"));
-                            dataMap.put("count", data.getJSONObject(i).getInt("count"));
+                            dataMap.put("count", count);
+
                             userOrderData.add(dataMap);
 
-                            int count = (int) dataMap.get("count");
-                            switch ((int) dataMap.get("id")) {
+
+                            switch (id) {
                                 case 1:// 待付款
                                     tvWaitPayOrder.setText(count + "");
                                     tvWaitPayOrder.setVisibility(count == 0 ? View.GONE : View.VISIBLE);

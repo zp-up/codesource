@@ -4,6 +4,7 @@
     android:background="@color/white"
     android:layout_height="match_parent">
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <com.scwang.smartrefresh.layout.header.ClassicsHeader
@@ -286,6 +287,7 @@
                             android:src="@mipmap/icon_mine_group_buy" />
 
                         <TextView
+
                             android:id="@+id/tv_group_order"
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/x15"

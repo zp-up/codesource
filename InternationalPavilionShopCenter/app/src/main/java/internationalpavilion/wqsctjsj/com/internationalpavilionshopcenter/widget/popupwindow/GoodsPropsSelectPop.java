@@ -329,7 +329,7 @@ public class GoodsPropsSelectPop implements View.OnClickListener {
 
     private void initGoodsInfo(GoodsDetailRootBean goodsBean) {
         try {
-            Glide.with(context).load(goodsBean.getData().getGoods_goods().getImg().get(0)).apply(new RequestOptions().placeholder(R.drawable.bg_home_lay10_1).error(R.drawable.bg_home_lay10_1).override(200, 200)).into(ivGoodsPic);
+            Glide.with(context).load(goodsBean.getData().getGoods_goods().getImg()).apply(new RequestOptions().placeholder(R.drawable.bg_home_lay10_1).error(R.drawable.bg_home_lay10_1).override(200, 200)).into(ivGoodsPic);
             tvGoodsName.setText(goodsBean.getData().getGoods_goods().getName());
             tvGoodsPrice.setText("" + goodsBean.getData().getPrice());
             tvSelectedGoodsSpec.setText("已选:" + goodsBean.getData().getGoods_goods().getSpec());

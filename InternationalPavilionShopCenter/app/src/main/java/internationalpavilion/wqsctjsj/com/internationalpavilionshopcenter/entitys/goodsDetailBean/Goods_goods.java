@@ -20,7 +20,7 @@ public class Goods_goods {
 //    private Base_area base_area;
     private Goods_cate goods_cate;
     private String spec;
-    private List<String> img;
+    private String img;
     private Base_unit base_unit;
     private String barcode;
     private String keyword;
@@ -121,11 +121,11 @@ public class Goods_goods {
         return spec;
     }
 
-    public void setImg(List<String> img) {
+    public void setImg(String img) {
         this.img = img;
     }
 
-    public List<String> getImg() {
+    public String getImg() {
         return img;
     }
 
