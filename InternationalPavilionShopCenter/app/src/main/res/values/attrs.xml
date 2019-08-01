@@ -39,4 +39,6 @@
         <attr name="pivotX" format="fraction"/>
         <attr name="pivotY" format="fraction" />
     </declare-styleable>
+
+
 </resources>
