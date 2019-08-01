@@ -5,8 +5,8 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.TypedValue;
 
-import com.iflow.karision.base.BaseApplication;
-import com.iflow.karision_baseui.R;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
+
 
 /**
  * 类说明：
@@ -19,8 +19,8 @@ public class DimenUtil {
      *
      * @return 屏幕宽
      */
-    public static int getScreenWidth() {
-        return BaseApplication.getInstance()
+    public static int getScreenWidth(Context context) {
+        return context
                 .getResources()
                 .getDisplayMetrics().widthPixels;
     }
@@ -30,8 +30,8 @@ public class DimenUtil {
      *
      * @return 屏幕高
      */
-    public static int getScreenHeight() {
-        return BaseApplication.getInstance()
+    public static int getScreenHeight(Context context) {
+        return context
                 .getResources()
                 .getDisplayMetrics().heightPixels;
     }
@@ -41,8 +41,8 @@ public class DimenUtil {
      *
      * @param dpVal
      */
-    public static int dp2px(int dpVal) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpVal, BaseApplication.getInstance()
+    public static int dp2px(int dpVal,Context context) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpVal, context
                 .getResources()
                 .getDisplayMetrics());
     }
@@ -52,8 +52,8 @@ public class DimenUtil {
      *
      * @param dpVal
      */
-    public static int dp2px(float dpVal) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpVal, BaseApplication.getInstance()
+    public static int dp2px(float dpVal,Context context) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpVal, context
                 .getResources()
                 .getDisplayMetrics());
     }
@@ -63,8 +63,8 @@ public class DimenUtil {
      *
      * @param sp
      */
-    public static int sp2px(int sp) {
-        float density = BaseApplication.getInstance()
+    public static int sp2px(int sp,Context context) {
+        float density = context
                 .getResources()
                 .getDisplayMetrics().scaledDensity;
         return (int) (sp * density + 0.5f);

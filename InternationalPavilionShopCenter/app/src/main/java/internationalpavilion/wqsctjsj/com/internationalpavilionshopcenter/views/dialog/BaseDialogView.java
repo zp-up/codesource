@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
+
 
 /**
  * Author:chris - jason

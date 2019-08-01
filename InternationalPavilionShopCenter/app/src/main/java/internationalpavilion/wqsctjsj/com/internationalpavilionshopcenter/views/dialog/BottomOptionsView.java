@@ -14,10 +14,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 
-
+import com.shengqf.view.round.RoundTextView;
 
 import java.util.List;
 
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.DimenUtil;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ListViewUtil;
 
 /**
@@ -139,18 +141,18 @@ public class BottomOptionsView extends BaseDialogView {
             });
 
             if (0 == position) {
-                holder.tvOption.getDelegate().setCornerRadius_TL(DimenUtil.dp2px(10));
-                holder.tvOption.getDelegate().setCornerRadius_TR(DimenUtil.dp2px(10));
+                holder.tvOption.getDelegate().setCornerRadius_TL(DimenUtil.dp2px(10,mContext));
+                holder.tvOption.getDelegate().setCornerRadius_TR(DimenUtil.dp2px(10,mContext));
                 holder.tvOption.getDelegate().setCornerRadius_BL(0);
                 holder.tvOption.getDelegate().setCornerRadius_BR(0);
 
                 LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) holder.tvOption.getLayoutParams();
                 if(hasTitle){
-                    lp.height = DimenUtil.dp2px(32);
+                    lp.height = DimenUtil.dp2px(32,mContext);
                     holder.tvOption.setTextColor(Color.parseColor("#999999"));
                     holder.tvOption.setTextSize(12);
                 }else {
-                    lp.height = DimenUtil.dp2px(48);
+                    lp.height = DimenUtil.dp2px(48,mContext);
                     holder.tvOption.setTextColor(Color.parseColor("#333333"));
                     holder.tvOption.setTextSize(16);
                 }
@@ -159,8 +161,8 @@ public class BottomOptionsView extends BaseDialogView {
             } else if ((options.size() - 1) == position) {
                 holder.tvOption.getDelegate().setCornerRadius_TL(0);
                 holder.tvOption.getDelegate().setCornerRadius_TR(0);
-                holder.tvOption.getDelegate().setCornerRadius_BL(DimenUtil.dp2px(10));
-                holder.tvOption.getDelegate().setCornerRadius_BR(DimenUtil.dp2px(10));
+                holder.tvOption.getDelegate().setCornerRadius_BL(DimenUtil.dp2px(10,mContext));
+                holder.tvOption.getDelegate().setCornerRadius_BR(DimenUtil.dp2px(10,mContext));
             } else {
                 holder.tvOption.getDelegate().setCornerRadius_TL(0);
                 holder.tvOption.getDelegate().setCornerRadius_TR(0);

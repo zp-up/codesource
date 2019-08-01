@@ -29,6 +29,7 @@ import org.xutils.http.RequestParams;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -55,6 +56,8 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.M
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.LogUtil;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnMineDataCallBack;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.dialog.BottomOptionsView;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.dialog.ItemClickCallback;
 
 /**
  * Created by wuqaing on 2018/11/29.
@@ -362,8 +365,23 @@ public class MineFragment extends Fragment implements OnMineDataCallBack {
 
                 //换头像
             case R.id.civ_head:
+                List<String> list = new ArrayList<>();
+                list.add("相册");
+                list.add("拍照");
+                BottomOptionsView b = new BottomOptionsView(getActivity(), list, new ItemClickCallback() {
+                    @Override
+                    public void onClick(String option, int position) {
+                        //相册
+                        if(0==position){
 
+                        }else if(1==position){
+                            //拍摄
+                            
 
+                        }
+                    }
+                });
+                b.show();
 
                 break;
         }

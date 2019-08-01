@@ -4,18 +4,18 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <com.iflow.karision.view.round.RoundTextView
-        app:base_ui_rv_backgroundColor="@color/common_white"
+    <com.shengqf.view.round.RoundTextView
+        app:rv_backgroundColor="#ffffff"
         android:id="@+id/rtv_option"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:gravity="center"
         android:text="拍照"
-        android:textColor="@color/color_333333"
+        android:textColor="#333333"
         android:textSize="16dp" />
     <TextView
         android:id="@+id/v_divider"
-        android:background="@color/color_ebebeb"
+        android:background="#ebebeb"
         android:layout_width="match_parent"
         android:layout_height="1px"/>
 </LinearLayout>

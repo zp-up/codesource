@@ -17,17 +17,17 @@
             android:layout_height="wrap_content">
         </ListView>
 
-    <Roundt
+    <com.shengqf.view.round.RoundTextView
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
-        app:base_ui_rv_backgroundColor="@color/common_white"
-        app:base_ui_rv_cornerRadius="8dp"
+        app:rv_backgroundColor="#ffffff"
+        app:rv_cornerRadius="8dp"
         android:id="@+id/rtv_cancel"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:gravity="center"
         android:text="取消"
-        android:textColor="@color/color_b52532"
-        android:textSize="@dimen/text_16_sp" />
+        android:textColor="#b52532"
+        android:textSize="16dp" />
 
 </LinearLayout>
