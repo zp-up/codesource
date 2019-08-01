@@ -19,6 +19,7 @@ import com.chrisjason.baseui.ui.BaseAppcompatActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.yanzhenjie.album.AlbumFile;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -53,6 +54,7 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entity
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp.MineDataImp;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.MineDataInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.AlbumUtil;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.LogUtil;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnMineDataCallBack;
@@ -373,10 +375,21 @@ public class MineFragment extends Fragment implements OnMineDataCallBack {
                     public void onClick(String option, int position) {
                         //相册
                         if(0==position){
+                            AlbumUtil.getInstance().openPhotoAlbum(1, new AlbumUtil.onPhotoListener() {
+                                @Override
+                                public void onAlbum(ArrayList<AlbumFile> result) {
+
+                                }
+                            });
 
                         }else if(1==position){
                             //拍摄
-                            
+                            AlbumUtil.getInstance().openCamera(new AlbumUtil.OnCameraListener() {
+                                @Override
+                                public void onCamera(String result) {
+
+                                }
+                            });
 
                         }
                     }

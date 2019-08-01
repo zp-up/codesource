@@ -1,16 +1,12 @@
 package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
+import android.support.v4.content.ContextCompat;
 
-import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
-
-import com.iflow.dfs.R;
-import com.iflow.karision.base.BaseApplication;
-import com.iflow.karision_baseui.utils.ActControl;
-import com.iflow.karision_baseui.utils.StorageUtils;
 import com.yanzhenjie.album.Action;
 import com.yanzhenjie.album.Album;
 import com.yanzhenjie.album.AlbumFile;
@@ -21,7 +17,8 @@ import com.yanzhenjie.durban.Durban;
 import java.io.File;
 import java.util.ArrayList;
 
-import static com.iflow.dfs.codes.RequestCode.open_clip;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
+
 
 /**
  * Author:chris - jason
@@ -43,16 +40,16 @@ public class AlbumUtil {
     }
 
     //打开相机
-    public void openCamera(final OnCameraListener listener) {
-        Album.camera(ActControl.getTop()) // 相机功能。
+    public void openCamera(final Context context, final OnCameraListener listener) {
+        Album.camera(context) // 相机功能。
                 .image() // 拍照。
                 .onResult(new Action<String>() {
                     @Override
-                    public void onAction(int requestCode, @NonNull String result) {
+                    public void onAction(int requestCode, String result) {
                         File file = new File(result);
                         //保存图片后发送广播通知更新数据库
                         Uri uri = Uri.fromFile(file);
-                        BaseApplication.getInstance().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri));
+                        context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri));
                         if (listener != null) {
                             listener.onCamera(result);
                         }
@@ -62,8 +59,8 @@ public class AlbumUtil {
     }
 
     //打开相册
-    public void openPhotoAlbum(int count,final onPhotoListener listener){
-        Album.image(ActControl.getTop()) // 选择图片。
+    public void openPhotoAlbum(Context context,int count,final onPhotoListener listener){
+        Album.image(context) // 选择图片。
                 .multipleChoice()
                 .widget(getWidget("相册"))
                 .camera(false)// 是否有拍照功能。
@@ -71,7 +68,7 @@ public class AlbumUtil {
                 .selectCount(count)// 最多选择几张图片。
                 .onResult(new Action<ArrayList<AlbumFile>>() {
                     @Override
-                    public void onAction(int requestCode, @NonNull ArrayList<AlbumFile> result) {
+                    public void onAction(int requestCode, ArrayList<AlbumFile> result) {
                         if (listener != null) {
                             listener.onAlbum(result);
                         }
@@ -85,9 +82,9 @@ public class AlbumUtil {
         Durban.with(activity)
                 // 裁剪界面的标题。
                 .title("头像裁剪")
-                .statusBarColor(ContextCompat.getColor(BaseApplication.getInstance(), R.color.colorPrimary))
-                .toolBarColor(ContextCompat.getColor(BaseApplication.getInstance(), R.color.colorPrimary))
-                .navigationBarColor(ContextCompat.getColor(BaseApplication.getInstance(), R.color.colorPrimary))
+                .statusBarColor(ContextCompat.getColor(activity, R.color.colorPrimary))
+                .toolBarColor(ContextCompat.getColor(activity, R.color.colorPrimary))
+                .navigationBarColor(ContextCompat.getColor(activity, R.color.colorPrimary))
                 // 图片路径list或者数组。
                 .inputImagePaths(imagePathList)
                 // 图片输出文件夹路径。
@@ -116,25 +113,6 @@ public class AlbumUtil {
     }
 
 
-    /**
-     * 打开画廊（长按点击事件）
-     *
-     * @param imagePathList 图片集合
-     * @param position      当前显示的哪一张
-     * @param title         显示的标题
-     */
-    public void openGallery(ArrayList<String> imagePathList, int position, String title) {
-        // 浏览一般的String路径
-        Album.gallery(ActControl.getTop())
-                .widget(getWidget(title))
-//                .longClickListener(onItemLongClickListener)
-                .currentPosition(position) // 默认打开第几张
-                .checkedList(imagePathList) // 要浏览的图片列表：ArrayList<String>。
-                .navigationAlpha(255) // Android5.0+的虚拟导航栏的透明度。
-//                .toolbarAlpha(0) // Android5.0+的虚拟导航栏的透明度。
-                .checkable(false) // 是否有浏览时的选择功能。
-                .start(); // 千万不要忘记调用start()方法。
-    }
 
 
     public interface OnCameraListener {
@@ -146,12 +124,12 @@ public class AlbumUtil {
     }
 
 
-    public Widget getWidget(String title) {
-        int color      = ContextCompat.getColor(BaseApplication.getInstance(), R.color.color_f9f9f9);
-        int checkColor = ContextCompat.getColor(BaseApplication.getInstance(), R.color.colorPrimary);
-        int nonColor   = ContextCompat.getColor(BaseApplication.getInstance(), R.color.color_333333);
+    public Widget getWidget(Context context,String title) {
+        int color      = Color.parseColor("#f9f9f9");
+        int checkColor = ContextCompat.getColor(context, R.color.colorPrimary);
+
         // 他们调用的方法和传的参数都是一致的：
-        Widget build = Widget.newLightBuilder(ActControl.getTop())
+        Widget build = Widget.newLightBuilder(context)
                 .title(title) // 标题。
                 .statusBarColor(color) // 状态栏颜色。
                 .toolBarColor(color) // Toolbar颜色。
