@@ -52,7 +52,7 @@
             android:id="@+id/tv_my_exp"
             android:textStyle="bold"
             android:layout_marginLeft="@dimen/x25"
-            android:text="29"
+            android:text=""
             android:textColor="@color/darkkhaki"
             android:textSize="@dimen/x25"
             android:layout_width="wrap_content"

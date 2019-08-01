@@ -85,4 +85,8 @@ dependencies {
     }
 
     implementation 'com.alibaba:fastjson:1.2.39'
+
+
+    api 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.3.0'
+    implementation 'com.yanzhenjie:album:2.1.3'
 }

@@ -19,8 +19,11 @@ import com.chrisjason.baseui.ui.BaseAppcompatActivity;
 import com.chrisjason.baseui.util.DpUtils;
 import com.jaeger.library.StatusBarUtil;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
+import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +70,57 @@ public class MyIntegralActivity extends BaseAppcompatActivity implements OnCommo
         commonPresenter = new CommonGoodsImp();
         initView();
         initData();
+
+        getExp();
+
+
+
     }
+
+    private void getExp() {
+
+        if (((IPSCApplication) getApplication()).getUserInfo() == null) {
+            return;
+        }
+        RequestParams params = new RequestParams(MainUrls.getUserInfoUrl);
+        params.addBodyParameter("access_token", IPSCApplication.accessToken);
+        if(((IPSCApplication) getApplication()).getUserInfo()!=null){
+            params.addBodyParameter("id", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
+        }
+        x.http().post(params, new Callback.CommonCallback<JSONObject>() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                if(result!=null){
+                    try {
+                        JSONObject data = result.getJSONObject("data");
+                        if(data!=null){
+                            int exp = data.getInt("exp");
+                            tvMyExp.setText(exp+"");
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
+    }
+
 
     private void initData() {
         RequestParams params = new RequestParams(MainUrls.getUserInfoUrl);

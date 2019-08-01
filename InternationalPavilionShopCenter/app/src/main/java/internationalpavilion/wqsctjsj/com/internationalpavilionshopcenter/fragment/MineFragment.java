@@ -174,7 +174,7 @@ public class MineFragment extends Fragment implements OnMineDataCallBack {
     @OnClick({R.id.ll_account, R.id.rl_to_wait_pay_order, R.id.rl_to_wait_delivery_order,
             R.id.rl_to_wait_received_order, R.id.rl_to_after_sale_order, R.id.rl_to_group_order, R.id.ll_to_my_balance, R.id.ll_to_integral,
             R.id.ll_to_collection, R.id.ll_to_friends, R.id.ll_to_coupon, R.id.ll_to_address_manage, R.id.ll_to_real_name_auther, R.id.ll_to_custom_service,
-            R.id.ll_to_setting,R.id.ll_to_wait_all_order
+            R.id.ll_to_setting,R.id.ll_to_wait_all_order,R.id.civ_head
     })
     public void onClick(View view) {
         switch (view.getId()) {
@@ -356,6 +356,14 @@ public class MineFragment extends Fragment implements OnMineDataCallBack {
                         getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
                     }
                 }
+
+
+                break;
+
+                //换头像
+            case R.id.civ_head:
+
+
 
                 break;
         }
