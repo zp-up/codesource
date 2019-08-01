@@ -19,6 +19,8 @@ import java.util.ArrayList;
 
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
 
+import static internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.CODE.open_clip;
+
 
 /**
  * Author:chris - jason
@@ -62,7 +64,7 @@ public class AlbumUtil {
     public void openPhotoAlbum(Context context,int count,final onPhotoListener listener){
         Album.image(context) // 选择图片。
                 .multipleChoice()
-                .widget(getWidget("相册"))
+                .widget(getWidget(context,"相册"))
                 .camera(false)// 是否有拍照功能。
                 .columnCount(3)// 相册展示列数，默认是2列。
                 .selectCount(count)// 最多选择几张图片。

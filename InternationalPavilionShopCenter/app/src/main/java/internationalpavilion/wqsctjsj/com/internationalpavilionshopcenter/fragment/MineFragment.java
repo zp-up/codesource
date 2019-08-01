@@ -12,10 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.chrisjason.baseui.ui.BaseAppcompatActivity;
+import com.google.gson.Gson;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -25,9 +28,13 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
+import org.xutils.x;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -145,7 +152,7 @@ public class MineFragment extends Fragment implements OnMineDataCallBack {
     public void onSubEventReceived(TokenEvent e) {
         if (e != null && e.code == 1) {
             getUserInfo();
-        }else if (e != null && e.code == 2){
+        } else if (e != null && e.code == 2) {
             initUserInfo();
         }
     }
@@ -163,7 +170,7 @@ public class MineFragment extends Fragment implements OnMineDataCallBack {
                 tvAccount.setText("没有数据");
             }
             if (userBean != null && userBean.getImg() != null) {
-                Log.e("TAG","头像地址:"+userBean.getImg());
+                Log.e("TAG", "头像地址:" + userBean.getImg());
                 RequestOptions options = new RequestOptions();
                 options.circleCrop();
                 options.placeholder(R.mipmap.icon_mine_defaul_head);
@@ -179,7 +186,7 @@ public class MineFragment extends Fragment implements OnMineDataCallBack {
     @OnClick({R.id.ll_account, R.id.rl_to_wait_pay_order, R.id.rl_to_wait_delivery_order,
             R.id.rl_to_wait_received_order, R.id.rl_to_after_sale_order, R.id.rl_to_group_order, R.id.ll_to_my_balance, R.id.ll_to_integral,
             R.id.ll_to_collection, R.id.ll_to_friends, R.id.ll_to_coupon, R.id.ll_to_address_manage, R.id.ll_to_real_name_auther, R.id.ll_to_custom_service,
-            R.id.ll_to_setting,R.id.ll_to_wait_all_order,R.id.civ_head
+            R.id.ll_to_setting, R.id.ll_to_wait_all_order, R.id.civ_head
     })
     public void onClick(View view) {
         switch (view.getId()) {
@@ -193,180 +200,185 @@ public class MineFragment extends Fragment implements OnMineDataCallBack {
                 }
                 break;
             case R.id.ll_to_wait_all_order:
-                if(isLogin()){
+                if (isLogin()) {
                     Intent intentToWaitPayOrder = new Intent(getActivity(), OrderActivity.class);
                     intentToWaitPayOrder.putExtra("index", 0);
                     startActivity(intentToWaitPayOrder);
-                }else {
-                    if(getActivity()!=null){
-                        getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
+                } else {
+                    if (getActivity() != null) {
+                        getActivity().startActivity(new Intent(getActivity(), LoginByPasswordActivity.class));
                     }
                 }
 
                 break;
             case R.id.rl_to_wait_pay_order:
-                if(isLogin()){
+                if (isLogin()) {
                     Intent intentToWaitPayOrder = new Intent(getActivity(), OrderActivity.class);
                     intentToWaitPayOrder.putExtra("index", 1);
                     startActivity(intentToWaitPayOrder);
-                }else {
-                    if(getActivity()!=null){
-                        getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
+                } else {
+                    if (getActivity() != null) {
+                        getActivity().startActivity(new Intent(getActivity(), LoginByPasswordActivity.class));
                     }
                 }
 
                 break;
             case R.id.rl_to_wait_delivery_order:
-                if(isLogin()){
+                if (isLogin()) {
                     Intent intentToWaitDeliveryOrder = new Intent(getActivity(), OrderActivity.class);
                     intentToWaitDeliveryOrder.putExtra("index", 2);
                     startActivity(intentToWaitDeliveryOrder);
-                }else {
-                    if(getActivity()!=null){
-                        getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
+                } else {
+                    if (getActivity() != null) {
+                        getActivity().startActivity(new Intent(getActivity(), LoginByPasswordActivity.class));
                     }
                 }
 
                 break;
             case R.id.rl_to_wait_received_order:
-                if(isLogin()){
+                if (isLogin()) {
                     Intent intentToWaitReceivedOrder = new Intent(getActivity(), OrderActivity.class);
                     intentToWaitReceivedOrder.putExtra("index", 3);
                     startActivity(intentToWaitReceivedOrder);
-                }else {
-                    if(getActivity()!=null){
-                        getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
+                } else {
+                    if (getActivity() != null) {
+                        getActivity().startActivity(new Intent(getActivity(), LoginByPasswordActivity.class));
                     }
                 }
 
                 break;
             case R.id.rl_to_after_sale_order:
-                if(isLogin()){
+                if (isLogin()) {
                     Intent intentToAfterSaleOrder = new Intent(getActivity(), OrderActivity.class);
                     intentToAfterSaleOrder.putExtra("index", 4);
                     startActivity(intentToAfterSaleOrder);
-                }else {
-                    if(getActivity()!=null){
-                        getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
+                } else {
+                    if (getActivity() != null) {
+                        getActivity().startActivity(new Intent(getActivity(), LoginByPasswordActivity.class));
                     }
                 }
 
                 break;
             case R.id.rl_to_group_order:
-                if(isLogin()){
+                if (isLogin()) {
                     Intent intentToGroupOrder = new Intent(getActivity(), MyGroupActivity.class);
                     startActivity(intentToGroupOrder);
-                }else {
-                    if(getActivity()!=null){
-                        getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
+                } else {
+                    if (getActivity() != null) {
+                        getActivity().startActivity(new Intent(getActivity(), LoginByPasswordActivity.class));
                     }
                 }
 
                 break;
             case R.id.ll_to_my_balance:
-                if(isLogin()){
+                if (isLogin()) {
                     Intent intentToMyBalance = new Intent(getActivity(), MyBalanceActivity.class);
                     startActivity(intentToMyBalance);
-                }else {
-                    if(getActivity()!=null){
-                        getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
+                } else {
+                    if (getActivity() != null) {
+                        getActivity().startActivity(new Intent(getActivity(), LoginByPasswordActivity.class));
                     }
                 }
 
                 break;
             case R.id.ll_to_integral:
-                if(isLogin()){
+                if (isLogin()) {
                     Intent intentToIntegral = new Intent(getActivity(), MyIntegralActivity.class);
                     startActivity(intentToIntegral);
-                }else {
-                    if(getActivity()!=null){
-                        getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
+                } else {
+                    if (getActivity() != null) {
+                        getActivity().startActivity(new Intent(getActivity(), LoginByPasswordActivity.class));
                     }
                 }
 
                 break;
             case R.id.ll_to_collection:
-                if(isLogin()){
+                if (isLogin()) {
                     Intent intentToCollection = new Intent(getActivity(), CollectionActivity.class);
                     startActivity(intentToCollection);
-                }else {
-                    if(getActivity()!=null){
-                        getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
+                } else {
+                    if (getActivity() != null) {
+                        getActivity().startActivity(new Intent(getActivity(), LoginByPasswordActivity.class));
                     }
                 }
 
                 break;
             case R.id.ll_to_friends:
-                if(isLogin()){
+                if (isLogin()) {
 //                    Intent intentToFriends = new Intent(getActivity(), FriendsActivity.class);
 //                    startActivity(intentToFriends);
                     ToastUtils.show(getContext(), "暂未开通！");
-                }else {
-                    if(getActivity()!=null){
-                        getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
+                } else {
+                    if (getActivity() != null) {
+                        getActivity().startActivity(new Intent(getActivity(), LoginByPasswordActivity.class));
                     }
                 }
 
                 break;
             case R.id.ll_to_coupon:
-                if(isLogin()){
+                if (isLogin()) {
                     Intent intentToCoupon = new Intent(getActivity(), CouponActivity.class);
                     startActivity(intentToCoupon);
-                }else {
-                    if(getActivity()!=null){
-                        getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
+                } else {
+                    if (getActivity() != null) {
+                        getActivity().startActivity(new Intent(getActivity(), LoginByPasswordActivity.class));
                     }
                 }
 
                 break;
             case R.id.ll_to_address_manage:
-                if(isLogin()){
+                if (isLogin()) {
                     Intent intentToAddressManage = new Intent(getActivity(), ReceivedAddressListActivity.class);
                     startActivity(intentToAddressManage);
-                }else {
-                    if(getActivity()!=null){
-                        getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
+                } else {
+                    if (getActivity() != null) {
+                        getActivity().startActivity(new Intent(getActivity(), LoginByPasswordActivity.class));
                     }
                 }
 
                 break;
             case R.id.ll_to_real_name_auther:
-                if(isLogin()){
+                if (isLogin()) {
                     Intent intentToRealNameAuthor = new Intent(getActivity(), RealNameAuthenticationListActivity.class);
                     startActivity(intentToRealNameAuthor);
-                }else {
-                    if(getActivity()!=null){
-                        getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
+                } else {
+                    if (getActivity() != null) {
+                        getActivity().startActivity(new Intent(getActivity(), LoginByPasswordActivity.class));
                     }
                 }
 
                 break;
             case R.id.ll_to_custom_service:
-                if(isLogin()){
+                if (isLogin()) {
                     Intent intentToCustomService = new Intent(getActivity(), ContactCustomerServiceActivity.class);
                     startActivity(intentToCustomService);
-                }else {
-                    if(getActivity()!=null){
-                        getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
+                } else {
+                    if (getActivity() != null) {
+                        getActivity().startActivity(new Intent(getActivity(), LoginByPasswordActivity.class));
                     }
                 }
 
                 break;
             case R.id.ll_to_setting:
-                if(isLogin()){
+                if (isLogin()) {
                     Intent intentToSetting = new Intent(getActivity(), SettingActivity.class);
                     startActivity(intentToSetting);
-                }else {
-                    if(getActivity()!=null){
-                        getActivity().startActivity(new Intent(getActivity(),LoginByPasswordActivity.class));
+                } else {
+                    if (getActivity() != null) {
+                        getActivity().startActivity(new Intent(getActivity(), LoginByPasswordActivity.class));
                     }
                 }
 
 
                 break;
 
-                //换头像
+            //换头像
             case R.id.civ_head:
+
+                if (!isLogin()) {
+                    return;
+                }
+
                 List<String> list = new ArrayList<>();
                 list.add("相册");
                 list.add("拍照");
@@ -374,20 +386,25 @@ public class MineFragment extends Fragment implements OnMineDataCallBack {
                     @Override
                     public void onClick(String option, int position) {
                         //相册
-                        if(0==position){
-                            AlbumUtil.getInstance().openPhotoAlbum(1, new AlbumUtil.onPhotoListener() {
+                        if (0 == position) {
+                            AlbumUtil.getInstance().openPhotoAlbum(getActivity(), 1, new AlbumUtil.onPhotoListener() {
                                 @Override
                                 public void onAlbum(ArrayList<AlbumFile> result) {
+                                    if (result != null && result.size() > 0) {
+                                        setPicResult(result.get(0).getPath());
+                                    }
 
                                 }
                             });
 
-                        }else if(1==position){
+                        } else if (1 == position) {
                             //拍摄
-                            AlbumUtil.getInstance().openCamera(new AlbumUtil.OnCameraListener() {
+                            AlbumUtil.getInstance().openCamera(getActivity(), new AlbumUtil.OnCameraListener() {
                                 @Override
                                 public void onCamera(String result) {
-
+                                    if (!TextUtils.isEmpty(result)) {
+                                        setPicResult(result);
+                                    }
                                 }
                             });
 
@@ -398,6 +415,105 @@ public class MineFragment extends Fragment implements OnMineDataCallBack {
 
                 break;
         }
+    }
+
+    private void setPicResult(String path) {
+
+
+        File file = new File(path);
+
+        if (file == null || !file.exists()) {
+            return;
+        }
+
+        RequestParams params = new RequestParams(MainUrls.upLoadImageUrl);
+        params.addBodyParameter("access_token", IPSCApplication.accessToken);
+        //mimeType/image/jpg
+        params.addBodyParameter("Content-Type", "image/jpeg");
+        params.addBodyParameter("file", file);
+        params.setMultipart(true);
+        x.http().post(params, new Callback.CommonCallback<JSONObject>() {
+            @Override
+            public void onSuccess(JSONObject result) {
+
+                if (result != null) {
+                    try {
+                        JSONObject data = result.getJSONObject("data");
+                        if (data != null) {
+                            String sha256 = data.getString("sha256");
+                            if (!TextUtils.isEmpty(sha256)) {
+                                setPortrait(sha256);
+                            }
+                        }
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
+
+    }
+
+    private void setPortrait(String sha256) {
+        RequestParams params = new RequestParams(MainUrls.modifyUserInfoUrl);
+        params.addBodyParameter("access_token", IPSCApplication.accessToken);
+        params.addBodyParameter("img", sha256);
+        params.addBodyParameter("id", ((IPSCApplication) getActivity().getApplication()).getUserInfo().getId() + "");
+        x.http().post(params, new Callback.CommonCallback<JSONObject>() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                if (result != null) {
+                    try {
+                        JSONObject data = result.getJSONObject("data");
+                        if (data != null) {
+                            String img = data.getString("img");
+                            if (!TextUtils.isEmpty(img)) {
+                                Toast.makeText(getActivity(), "修改成功", Toast.LENGTH_SHORT).show();
+
+                                getUser();
+                            }
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
     }
 
     private void initUserInfo() {
@@ -429,13 +545,18 @@ public class MineFragment extends Fragment implements OnMineDataCallBack {
     //请求开始
     @Override
     public void onStarted() {
-        ((BaseAppcompatActivity)getActivity()).showLoading(false,"获取数据中...");
+        ((BaseAppcompatActivity) getActivity()).showLoading(false, "获取数据中...");
     }
 
     //请求结束
     @Override
     public void onFinished() {
-        ((BaseAppcompatActivity)getActivity()).dismissLoading();
+        ((BaseAppcompatActivity) getActivity()).dismissLoading();
+
+        if (mRefresh != null) {
+            mRefresh.finishLoadmore();
+            mRefresh.finishRefresh(true);
+        }
     }
 
     //请求错误
@@ -459,10 +580,10 @@ public class MineFragment extends Fragment implements OnMineDataCallBack {
                         for (int i = 0; i < data.length(); i++) {
 
                             int id = data.getJSONObject(i).getInt("id");
-                            int count =data.getJSONObject(i).getInt("count");
+                            int count = data.getJSONObject(i).getInt("count");
 
                             HashMap<String, Object> dataMap = new HashMap<>();
-                            dataMap.put("id",id);
+                            dataMap.put("id", id);
                             dataMap.put("name", data.getJSONObject(i).getString("name"));
                             dataMap.put("count", count);
 
@@ -499,4 +620,64 @@ public class MineFragment extends Fragment implements OnMineDataCallBack {
             }
         }
     }
+
+
+    private void getUser() {
+        if (((IPSCApplication) getActivity().getApplication()).getUserInfo() == null) {
+            return;
+        }
+        RequestParams params = new RequestParams(MainUrls.getUserInfoUrl);
+        params.addBodyParameter("access_token", IPSCApplication.accessToken);
+        if (((IPSCApplication) getActivity().getApplication()).getUserInfo() != null) {
+            params.addBodyParameter("id", ((IPSCApplication) getActivity().getApplication()).getUserInfo().getId() + "");
+        }
+        x.http().post(params, new Callback.CommonCallback<JSONObject>() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                if (result != null) {
+                    try {
+                        JSONObject data = result.getJSONObject("data");
+                        if (data != null) {
+                            JSONArray imgA = data.getJSONArray("img");
+                            if(imgA!=null && imgA.length()>0){
+                                String img = imgA.getString(0);
+                                UserBean u = ((IPSCApplication) getActivity().getApplication()).getUserInfo();
+                                u.setImg(img);
+                                ((IPSCApplication) getActivity().getApplication()).saveUserInfo(JSON.toJSONString(u));
+
+                                RequestOptions options = new RequestOptions();
+                                options.circleCrop();
+                                options.placeholder(R.mipmap.icon_mine_defaul_head);
+                                options.error(R.mipmap.icon_mine_defaul_head);
+                                Glide.with(getActivity()).load(img).apply(options).into(civHead);
+                            }
+
+
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+    }
+
+
 }

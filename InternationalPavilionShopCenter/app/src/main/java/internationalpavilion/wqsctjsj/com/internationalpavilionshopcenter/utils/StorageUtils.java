@@ -66,7 +66,6 @@ public final class StorageUtils {
         }
         if (appCacheDir == null) {
             String cacheDirPath = "/data/data/" + context.getPackageName() + "/cache/";
-            LogUtils.w(TAG, "Can't define system cache directory! path will be used, path=" + cacheDirPath);
             appCacheDir = new File(cacheDirPath);
         }
         return appCacheDir;
@@ -125,7 +124,6 @@ public final class StorageUtils {
         //        }
         if (appCacheDir == null || (!appCacheDir.exists() && !appCacheDir.mkdirs())) {
             appCacheDir = context.getCacheDir();
-            LogUtils.e("缓存地址-->源" + appCacheDir.getPath());
             appCacheDir = new File(appCacheDir.getPath(), cacheDir);
         }
         return appCacheDir;
@@ -162,13 +160,11 @@ public final class StorageUtils {
         File appCacheDir = new File(new File(dataDir, context.getPackageName()), "cache");
         if (!appCacheDir.exists()) {
             if (!appCacheDir.mkdirs()) {
-                LogUtils.w(TAG, "Unable to create external cache directory");
                 return null;
             }
             try {
                 new File(appCacheDir, ".nomedia").createNewFile();
             } catch (IOException e) {
-                LogUtils.i(TAG, "Can't create \".nomedia\" file in application external cache directory");
             }
         }
         return appCacheDir;
@@ -179,7 +175,6 @@ public final class StorageUtils {
         File imgDir = new File(new File(Environment.getExternalStorageDirectory(), DIR_ROOT), DIR_IMAGE);
         if (!imgDir.exists()) {
             if (!imgDir.mkdirs()) {
-                LogUtils.w(TAG, "Unable to create external image directory");
                 return null;
             }
         }
