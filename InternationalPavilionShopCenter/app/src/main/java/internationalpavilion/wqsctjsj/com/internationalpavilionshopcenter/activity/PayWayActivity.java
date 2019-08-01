@@ -77,7 +77,7 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
                     String resultStatus = payResult.getResultStatus();
                     // 判断resultStatus 为9000则代表支付成功
                     if (TextUtils.equals(resultStatus, "9000")) {
-                        getPayResult();
+                        toPayResult();
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
                         ToastUtils.show(PayWayActivity.this, "支付失败:" + resultInfo);
@@ -131,9 +131,7 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
     public void onEvent(WxEvent event) {
         if (event != null) {
             if (event.getCode() == 1) {// 支付成功
-                getPayResult();
-                Intent intent = new Intent(PayWayActivity.this, PayResultActivity.class);
-                startActivity(intent);
+                toPayResult();
             }
         }
     }
@@ -192,14 +190,22 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
 
     /**
      * 查询支付结果
+     * 毫无意义
      */
     private void getPayResult() {
         flag = 4;
         try {
-            RequestParams params = new RequestParams(MainUrls.getPayResultUrl);
+            final RequestParams params = new RequestParams(MainUrls.getPayResultUrl);
             params.addBodyParameter("access_token", IPSCApplication.accessToken);
             params.addBodyParameter("id", orderId);
-            commonPresenter.getCommonGoodsData(params, this);
+            //延迟800毫秒查询，服务器异步可能延迟
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    commonPresenter.getCommonGoodsData(params, PayWayActivity.this);
+                }
+            },800);
+
         } catch (Exception e) {
             Log.e(TAG, "selectPayWay() occur an exception!", e);
         }
@@ -227,7 +233,6 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
 
     @Override
     public void onCommonGoodsCallBack(String result) {
-        Log.e(TAG, "支付信息:" + result + ",flag:" + flag);
         try {
             JSONObject jsonObject = new JSONObject(result);
             int code = jsonObject.getInt("code");
@@ -302,20 +307,6 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
     } //唤起微信支付
 
     private void wxpay(String signs, String partnerId, String prepayId, String nonceStr, String appId, String timeStamp, String packageStr, String signType) {
-//        String time=String.valueOf(System.currentTimeMillis()/1000);
-////        //随机字符串
-//        String ranStr= RandCharsUtils.getRandomString(16);
-        //生成签名
-//        SortedMap<Object,Object> parameters = new TreeMap<Object,Object>();
-//        parameters.put("appid",appId);
-//        parameters.put("noncestr",ranStr);
-//        parameters.put("partnerid", partnerId);
-//        parameters.put("prepayid", prepayId);
-//        String str="Sign=WXPay";
-//        parameters.put("package",str);
-//        parameters.put("timestamp",time);
-//        String xSign= WXSignUtils.createSign("UTF-8",parameters);
-
 
         PayReq req = new PayReq();
         //应用 wxd34f7dc698b271af
@@ -376,7 +367,10 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
      * 跳转支付结果
      */
     private void toPayResult() {
+
         Intent intent = new Intent(PayWayActivity.this, PayResultActivity.class);
+        intent.putExtra("orderId",orderId);
         startActivity(intent);
+        finish();
     }
 }

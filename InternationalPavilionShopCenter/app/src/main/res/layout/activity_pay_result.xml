@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/x15"
-        android:text="确认收货后,将获得24积分"
+        android:text="确认收货后,将获得0积分"
         android:textColor="@color/gray"
         android:textSize="@dimen/x14" />
 
@@ -72,6 +72,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/tv_check_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_of_verify_code_btn"
@@ -84,6 +85,7 @@
             android:textSize="@dimen/x13" />
 
         <TextView
+            android:id="@+id/tv_continue"
             android:layout_marginLeft="@dimen/x50"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -114,12 +116,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TextView
+                android:id="@+id/tv_receive_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="李某某"
+                tools:text="李某某"
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/x13" />
             <TextView
+                android:id="@+id/tv_receive_phone"
                 android:layout_marginLeft="@dimen/x20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -128,10 +132,11 @@
                 android:textSize="@dimen/x13" />
         </LinearLayout>
         <TextView
+            android:id="@+id/tv_receive_address"
             android:layout_marginTop="@dimen/x6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="四川省成都市武侯区人民南路三段36号3号"
+            tools:text="四川省成都市武侯区人民南路三段36号3号"
             android:textColor="@color/gray"
             android:textSize="@dimen/x13" />
         <LinearLayout
@@ -146,9 +151,10 @@
                 android:textColor="@color/gray"
                 android:textSize="@dimen/x13" />
             <TextView
+                android:id="@+id/tv_pay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="￥814.00"
+                tools:text="￥814.00"
                 android:textColor="@color/red"
                 android:textSize="@dimen/x13" />
         </LinearLayout>
