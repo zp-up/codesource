@@ -191,7 +191,6 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
         StatusBarUtil.setTranslucentForImageViewInFragment(this, 0, null);
         Intent intent = getIntent();
         goodsId = intent.getIntExtra("goodsId", -1);
-        Log.e(TAG, "商品Id:" + goodsId);
         goodsDetailPresenter = new GoodsDetailImp();
         initData(goodsId);
     }
@@ -209,7 +208,6 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
         if (((IPSCApplication) getApplication()).getUserInfo() != null) {
             params.addBodyParameter("user", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
         }
-        Log.d(TAG, "getGoodsDetailUrl params:" + params.toString());
         goodsDetailPresenter.getGoodsBaseInfo(params, this);
     }
 
@@ -228,18 +226,15 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
         if (((IPSCApplication) getApplication()).getUserInfo() != null) {
             params.addBodyParameter("user", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
         }
-        Log.d(TAG, "addToCart() params:" + params.toString());
         goodsDetailPresenter.addGoodsToCart(params, this);
     }
 
     private void initView() {
-        Log.e("goods:", "goodsbean == null:" + (goodsBean == null));
         if (goodsBean == null) {
             return;
         }
         //商品信息数据
         tvGoodsName.setText(goodsBean.getData().getGoods_goods().getName());
-        Log.e(TAG, "goodsname:" + tvGoodsName.getText());
         tvGoodsDescription.setText(goodsBean.getData().getGoods_goods().getDescribe());
         tvNowPrice.setText("" + new DecimalFormat("######0.00").format(goodsBean.getData().getPrice()));
         tvOriginalPrice.setText("￥" + new DecimalFormat("######0.00").format(goodsBean.getData().getPrice_m()));
@@ -293,7 +288,6 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
                 double endTime = ((long) goodsBean.getData().getPron_end_time()) * 1000;
                 double nowTime = (new Date()).getTime();
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                Log.e(TAG, "结束时间:" + simpleDateFormat.format(new Date((long) endTime)) + "  现在时间:" + simpleDateFormat.format(new Date((long) nowTime)) + "----:" + nowTime);
 
                 double sub = endTime - nowTime;
                 llKilling.setVisibility(View.VISIBLE);
@@ -437,7 +431,6 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
                 params.addBodyParameter("user", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
             }
             params.addBodyParameter("goods", goodsBean.getData().getGoods_goods().getId() + "");
-            Log.d(TAG, " addToCollection user:" + ((IPSCApplication) getApplication()).getUserInfo().getId() + ",goods:" + goodsId);
             goodsDetailPresenter.addGoodsToCollection(params, this, isCollection == 0 ? 1 : 2);
         } else {
             ToastUtils.show(GoodsDetailActivity.this, "请先登录");
@@ -530,7 +523,7 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
 
     @Override
     public void onError(String error) {
-        Log.d(TAG, "onError() " + error);
+
     }
 
     @Override
@@ -543,6 +536,7 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
                 // 此处使用fastjson是为了应急处理，后续需要跟进处理
                 com.alibaba.fastjson.JSONObject resultJson = JSON.parseObject(result);
                 try {
+
                     if (resultJson.getJSONObject("data").getJSONObject("goods_goods").getJSONObject("goods_temp").get("img").toString().isEmpty()) {
                         resultJson.getJSONObject("data").getJSONObject("goods_goods").getJSONObject("goods_temp").put("img", new com.alibaba.fastjson.JSONArray());
                     }
@@ -590,7 +584,7 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
     @Override
     public void onGoodsEvaluateLoaded(String result) {
         if (result != null) {
-            Log.e(TAG, "商品评论:" + result);
+
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");
@@ -654,7 +648,7 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
     @Override
     public void onGoodsAddedToCart(String result) {
         if (result != null) {
-            Log.e(TAG, "添加购物车:" + result);
+
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");
