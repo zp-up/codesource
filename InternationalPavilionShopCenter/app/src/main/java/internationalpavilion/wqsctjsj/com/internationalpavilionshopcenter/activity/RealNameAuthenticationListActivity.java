@@ -232,7 +232,7 @@ public class RealNameAuthenticationListActivity extends BaseAppcompatActivity im
             params.addBodyParameter("user", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
         }
         params.addBodyParameter("id", id+"");
-        params.addBodyParameter("status","是");
+
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
 
         x.http().post(params, new Callback.CommonCallback<JSONObject>() {
@@ -241,8 +241,8 @@ public class RealNameAuthenticationListActivity extends BaseAppcompatActivity im
             public void onSuccess(JSONObject result) {
                 if(result!=null){
                     try {
-                        boolean res = result.getBoolean("data");
-                        if(res){
+                        int res = result.getInt("data");
+                        if(1==res){
                             getAuthenticationList();
                             Toast.makeText(RealNameAuthenticationListActivity.this, "设置成功", Toast.LENGTH_SHORT).show();
                         }else {
