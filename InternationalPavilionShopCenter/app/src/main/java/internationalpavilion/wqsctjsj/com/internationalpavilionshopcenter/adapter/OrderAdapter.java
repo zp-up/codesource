@@ -103,7 +103,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                     holder.tvGoodsName1.setText(data.get(position).getGoodsBeans().get(0).getGoodsName());
                     holder.tvDescription1.setText(data.get(position).getGoodsBeans().get(0).getGoodsDescription());
                     Glide.with(context).load(data.get(position).getGoodsBeans().get(0).getImageUrl())
-                            .apply(new RequestOptions().error(R.drawable.bg_home_lay10_1)).into(holder.ivGoodsPic1);
+                            .apply(new RequestOptions().error(R.drawable.icon_no_image)).into(holder.ivGoodsPic1);
                     holder.hsvParent1.setVisibility(View.GONE);
                     holder.rlOneGoodsParent1.setVisibility(View.VISIBLE);
                     holder.rlOneGoodsParent1.setOnClickListener(new View.OnClickListener() {
@@ -122,7 +122,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                         View view = inflater.inflate(R.layout.rv_item_order_image_view, null);
                         ImageView ivGoodsPic = view.findViewById(R.id.iv_evaluate_pic);
                         Glide.with(context).load(data.get(position).getGoodsBeans().get(i).getImageUrl())
-                                .apply(new RequestOptions().error(R.drawable.bg_home_lay10_1)).into(ivGoodsPic);
+                                .apply(new RequestOptions().error(R.drawable.icon_no_image)).into(ivGoodsPic);
                         view.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -175,7 +175,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                     holder.tvGoodsName2.setText(data.get(position).getGoodsBeans().get(0).getGoodsName());
                     holder.tvDescription2.setText(data.get(position).getGoodsBeans().get(0).getGoodsDescription());
                     Glide.with(context).load(data.get(position).getGoodsBeans().get(0).getImageUrl())
-                            .apply(new RequestOptions().error(R.drawable.bg_home_lay10_1)).into(holder.ivGoodsPic2);
+                            .apply(new RequestOptions().error(R.drawable.icon_no_image)).into(holder.ivGoodsPic2);
                     holder.hsvParent2.setVisibility(View.GONE);
                     holder.rlOneGoodsParent2.setVisibility(View.VISIBLE);
                     holder.rlOneGoodsParent2.setOnClickListener(new View.OnClickListener() {
@@ -194,7 +194,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                         View view = inflater.inflate(R.layout.rv_item_order_image_view, null);
                         ImageView ivGoodsPic = view.findViewById(R.id.iv_evaluate_pic);
                         Glide.with(context).load(data.get(position).getGoodsBeans().get(i).getImageUrl())
-                                .apply(new RequestOptions().error(R.drawable.bg_home_lay10_1)).into(ivGoodsPic);
+                                .apply(new RequestOptions().error(R.drawable.icon_no_image)).into(ivGoodsPic);
                         view.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -331,7 +331,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                     holder.tvGoodsName3.setText(data.get(position).getGoodsBeans().get(0).getGoodsName());
                     holder.tvDescription3.setText(data.get(position).getGoodsBeans().get(0).getGoodsDescription());
                     Glide.with(context).load(data.get(position).getGoodsBeans().get(0).getImageUrl())
-                            .apply(new RequestOptions().error(R.drawable.bg_home_lay10_1)).into(holder.ivGoodsPic3);
+                            .apply(new RequestOptions().error(R.drawable.icon_no_image)).into(holder.ivGoodsPic3);
                     holder.hsvParent3.setVisibility(View.GONE);
                     holder.rlOneGoodsParent3.setVisibility(View.VISIBLE);
                     holder.rlOneGoodsParent3.setOnClickListener(new View.OnClickListener() {
@@ -350,7 +350,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                         View view = inflater.inflate(R.layout.rv_item_order_image_view, null);
                         ImageView ivGoodsPic = view.findViewById(R.id.iv_evaluate_pic);
                         Glide.with(context).load(data.get(position).getGoodsBeans().get(i).getImageUrl())
-                                .apply(new RequestOptions().error(R.drawable.bg_home_lay10_1)).into(ivGoodsPic);
+                                .apply(new RequestOptions().error(R.drawable.icon_no_image)).into(ivGoodsPic);
                         view.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -420,7 +420,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                     holder.tvGoodsName4.setText(data.get(position).getGoodsBeans().get(0).getGoodsName());
                     holder.tvDescription4.setText(data.get(position).getGoodsBeans().get(0).getGoodsDescription());
                     Glide.with(context).load(data.get(position).getGoodsBeans().get(0).getImageUrl())
-                            .apply(new RequestOptions().error(R.drawable.bg_home_lay10_1)).into(holder.ivGoodsPic4);
+                            .apply(new RequestOptions().error(R.drawable.icon_no_image)).into(holder.ivGoodsPic4);
                     holder.hsvParent4.setVisibility(View.GONE);
                     holder.rlOneGoodsParent4.setVisibility(View.VISIBLE);
                     holder.rlOneGoodsParent4.setOnClickListener(new View.OnClickListener() {
@@ -439,7 +439,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                         View view = inflater.inflate(R.layout.rv_item_order_image_view, null);
                         ImageView ivGoodsPic = view.findViewById(R.id.iv_evaluate_pic);
                         Glide.with(context).load(data.get(position).getGoodsBeans().get(i).getImageUrl())
-                                .apply(new RequestOptions().error(R.drawable.bg_home_lay10_1)).into(ivGoodsPic);
+                                .apply(new RequestOptions().error(R.drawable.icon_no_image)).into(ivGoodsPic);
                         view.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -518,7 +518,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                     holder.tvGoodsName5.setText(data.get(position).getGoodsBeans().get(0).getGoodsName());
                     holder.tvDescription5.setText(data.get(position).getGoodsBeans().get(0).getGoodsDescription());
                     Glide.with(context).load(data.get(position).getGoodsBeans().get(0).getImageUrl())
-                            .apply(new RequestOptions().error(R.drawable.bg_home_lay10_1)).into(holder.ivGoodsPic5);
+                            .apply(new RequestOptions().error(R.drawable.icon_no_image)).into(holder.ivGoodsPic5);
                     holder.hsvParent5.setVisibility(View.GONE);
                     holder.rlOneGoodsParent5.setVisibility(View.VISIBLE);
                     holder.rlOneGoodsParent5.setOnClickListener(new View.OnClickListener() {
@@ -537,7 +537,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                         View view = inflater.inflate(R.layout.rv_item_order_image_view, null);
                         ImageView ivGoodsPic = view.findViewById(R.id.iv_evaluate_pic);
                         Glide.with(context).load(data.get(position).getGoodsBeans().get(i).getImageUrl())
-                                .apply(new RequestOptions().error(R.drawable.bg_home_lay10_1)).into(ivGoodsPic);
+                                .apply(new RequestOptions().error(R.drawable.icon_no_image)).into(ivGoodsPic);
                         view.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {

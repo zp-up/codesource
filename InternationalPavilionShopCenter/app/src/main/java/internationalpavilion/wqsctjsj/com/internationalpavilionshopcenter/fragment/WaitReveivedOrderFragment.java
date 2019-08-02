@@ -158,13 +158,12 @@ public class WaitReveivedOrderFragment extends Fragment implements OnCommonGoods
                                     orderGoodsBean.setGoodsId(list.getJSONObject(j).getJSONObject("goods_goods").getInt("id"));
                                     orderGoodsBean.setGoodsName(list.getJSONObject(j).getJSONObject("goods_goods").getString("name"));
                                     orderGoodsBean.setGoodsDescription(list.getJSONObject(j).getJSONObject("goods_goods").getString("spec"));
-                                    JSONArray img = list.getJSONObject(j).getJSONObject("goods_goods").getJSONArray("img");
-                                    String imgUrl = "";
-                                    if(img!=null && img.length()>0){
-                                        imgUrl = img.getString(0);
+                                    //商品图片
+                                    String img = "";
+                                    if (list.getJSONObject(j).getJSONObject("goods_goods").getJSONArray("img") != null && list.getJSONObject(j).getJSONObject("goods_goods").getJSONArray("img").length() > 0) {
+                                        img = list.getJSONObject(j).getJSONObject("goods_goods").getJSONArray("img").getString(0);
                                     }
-
-                                    orderGoodsBean.setImageUrl(imgUrl);
+                                    orderGoodsBean.setImageUrl(img);
                                     orderGoodsBeans.add(orderGoodsBean);
                                 }
                             }

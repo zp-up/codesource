@@ -36,25 +36,6 @@
             android:textSize="@dimen/x10"
             tools:text="保税商品" />
     </RelativeLayout>
-    
-    <RelativeLayout
-        android:background="#ffdbe2ee"
-        android:layout_width="match_parent"
-        android:layout_height="25dp">
-        <TextView
-            android:id="@+id/tv_describe"
-            android:layout_centerInParent="true"
-            android:ellipsize="end"
-            android:singleLine="true"
-            android:layout_marginRight="3dp"
-            android:layout_marginLeft="3dp"
-            android:gravity="left"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:text="花漾淡香水，如同一袭繁花..."
-            android:textColor="#ff788aa6"
-            android:textSize="12dp" />
-    </RelativeLayout>
 
     <TextView
         android:id="@+id/tv_name"

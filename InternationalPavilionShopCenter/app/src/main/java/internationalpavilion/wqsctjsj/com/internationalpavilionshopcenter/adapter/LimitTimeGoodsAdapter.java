@@ -49,7 +49,7 @@ public class LimitTimeGoodsAdapter extends RecyclerView.Adapter<LimitTimeGoodsAd
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final LimitTimeBean bean = data.get(position);
-        Glide.with(context).load(bean.getGoodsImg()).apply(new RequestOptions().override(300,300).placeholder(R.drawable.bg_home_lay10_1).error(R.drawable.bg_home_lay10_1)).into(holder.ivGoodsPic);
+        Glide.with(context).load(bean.getGoodsImg()).apply(new RequestOptions().override(300,300).placeholder(R.drawable.icon_no_image).error(R.drawable.icon_no_image)).into(holder.ivGoodsPic);
         holder.tvStoreType.setText(bean.getStoreType());
         holder.tvGoodsName.setText(bean.getGoodsName());
         holder.tvPronPrice.setText("限时价 ￥"+new DecimalFormat("#####0.00").format(bean.getPron_price()));

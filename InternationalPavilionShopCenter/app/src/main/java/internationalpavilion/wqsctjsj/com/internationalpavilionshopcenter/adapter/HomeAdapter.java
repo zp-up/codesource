@@ -230,7 +230,7 @@ public class HomeAdapter extends DelegateAdapter.Adapter<HomeAdapter.ViewHolder>
                                 TextView tvGoodsPrice = view.findViewById(R.id.tv_goods_price);
                                 tvGoodsPrice.setText("￥" + new DecimalFormat("######0.00").format(goodsList.get(i).getPrice()));
                                 ImageView ivGoodsPic = view.findViewById(R.id.iv_goods_pic);
-                                Glide.with(context).load(goodsList.get(i).getGoodsImg()).apply(new RequestOptions().placeholder(R.drawable.bg_home_lay10_1).error(R.drawable.bg_home_lay10_1).override(300, 300))
+                                Glide.with(context).load(goodsList.get(i).getGoodsImg()).apply(new RequestOptions().placeholder(R.drawable.icon_no_image).error(R.drawable.icon_no_image).override(300, 300))
                                         .into(ivGoodsPic);
                                 holder.llGoodsContainer.addView(view);
                             }
@@ -271,7 +271,7 @@ public class HomeAdapter extends DelegateAdapter.Adapter<HomeAdapter.ViewHolder>
                     holder.tvHotGoodsPrice.setText("￥" + new DecimalFormat("######0.00").format(bean.getGoodsPrice()));
                     holder.tvHotGoodsName.setText(bean.getGoodsName());
                     Glide.with(context).load(bean.getGoodsPic())
-                            .apply(new RequestOptions().override(500, 500).placeholder(R.drawable.bg_home_lay10_1).error(R.drawable.bg_home_lay10_1))
+                            .apply(new RequestOptions().override(500, 500).placeholder(R.drawable.icon_no_image).error(R.drawable.icon_no_image))
                             .into(holder.ivHotGoodsPic);
                     holder.llClickParent5.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -323,7 +323,7 @@ public class HomeAdapter extends DelegateAdapter.Adapter<HomeAdapter.ViewHolder>
                                 TextView tvGoodsPrice = view.findViewById(R.id.tv_goods_price);
                                 tvGoodsPrice.setText("￥" + new DecimalFormat("######0.00").format(goodsList.get(i).getGoodsPrice()));
                                 ImageView ivGoodsPic = view.findViewById(R.id.iv_goods_pic);
-                                Glide.with(context).load(goodsList.get(i).getGoodsPic()).apply(new RequestOptions().placeholder(R.drawable.bg_home_lay10_1).error(R.drawable.bg_home_lay10_1).override(200, 200))
+                                Glide.with(context).load(goodsList.get(i).getGoodsPic()).apply(new RequestOptions().placeholder(R.drawable.icon_no_image).error(R.drawable.icon_no_image).override(200, 200))
                                         .into(ivGoodsPic);
                                 holder.llGoodsContainer6.addView(view);
                             }
@@ -369,7 +369,7 @@ public class HomeAdapter extends DelegateAdapter.Adapter<HomeAdapter.ViewHolder>
                                 TextView tvGoodsPrice = view.findViewById(R.id.tv_goods_price);
                                 tvGoodsPrice.setText("￥" + new DecimalFormat("######0.00").format(goodsList.get(i).getGoodsPrice()));
                                 ImageView ivGoodsPic = view.findViewById(R.id.iv_goods_pic);
-                                Glide.with(context).load(goodsList.get(i).getGoodsPic()).apply(new RequestOptions().placeholder(R.drawable.bg_home_lay10_1).error(R.drawable.bg_home_lay10_1).override(200, 200))
+                                Glide.with(context).load(goodsList.get(i).getGoodsPic()).apply(new RequestOptions().placeholder(R.drawable.icon_no_image).error(R.drawable.icon_no_image).override(200, 200))
                                         .into(ivGoodsPic);
                                 holder.llGoodsContainer7.addView(view);
                             }
@@ -409,7 +409,7 @@ public class HomeAdapter extends DelegateAdapter.Adapter<HomeAdapter.ViewHolder>
                                 TextView tvGoodsPrice = view.findViewById(R.id.tv_goods_price);
                                 tvGoodsPrice.setText("￥" + new DecimalFormat("######0.00").format(goodsList.get(i).getGoodsPrice()));
                                 ImageView ivGoodsPic = view.findViewById(R.id.iv_goods_pic);
-                                Glide.with(context).load(goodsList.get(i).getGoodsPic()).apply(new RequestOptions().placeholder(R.drawable.bg_home_lay10_1).error(R.drawable.bg_home_lay10_1).override(200, 200))
+                                Glide.with(context).load(goodsList.get(i).getGoodsPic()).apply(new RequestOptions().placeholder(R.drawable.icon_no_image).error(R.drawable.icon_no_image).override(200, 200))
                                         .into(ivGoodsPic);
                                 holder.llGoodsContainer8.addView(view);
                             }
@@ -430,7 +430,7 @@ public class HomeAdapter extends DelegateAdapter.Adapter<HomeAdapter.ViewHolder>
                 if (data.get(position).containsKey("popularityGoods") && data.get(position).get("popularityGoods") != null) {
                     final HomePopularityGoodsBean goodsBean = (HomePopularityGoodsBean) data.get(position).get("popularityGoods");
                     if (goodsBean != null) {
-                        Glide.with(context).load(goodsBean.getGoodsPic()).apply(new RequestOptions().error(R.drawable.bg_home_lay10_1).placeholder(R.drawable.bg_home_lay10_1).override(300, 300)).into(holder.ivPopGoodsPic);
+                        Glide.with(context).load(goodsBean.getGoodsPic()).apply(new RequestOptions().error(R.drawable.icon_no_image).placeholder(R.drawable.icon_no_image).override(300, 300)).into(holder.ivPopGoodsPic);
                         holder.tvPopGoodsName.setText(goodsBean.getGoodsName());
                         holder.tvPopGoodsPrice.setText("￥" + new DecimalFormat("######0.00").format(goodsBean.getGoodsPrice()));
                         if (TextUtils.isEmpty(goodsBean.getStoreType()) || "国内仓库".equals(goodsBean.getStoreType())) {

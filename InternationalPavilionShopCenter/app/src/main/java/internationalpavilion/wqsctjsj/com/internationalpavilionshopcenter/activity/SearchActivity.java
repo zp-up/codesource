@@ -346,23 +346,22 @@ public class SearchActivity extends BaseAppcompatActivity implements OnSearchCal
                 android.widget.LinearLayout llBox= holder.getView(R.id.ll_box);
                 ImageView ivProduct = holder.getView(R.id.iv_product);
                 TextView tvProductName = holder.getView(R.id.tv_name);
-                TextView tvDescribe= holder.getView(R.id.tv_describe);
                 TextView tvSinglePrice = holder.getView(R.id.tv_price);
                 TextView tvStoreType = holder.getView(R.id.tv_store_type);
 
                 // 仓库类型
-                if (productEntity.getStore_store() != null && TextUtils.isEmpty(productEntity.getStore_store().getType())) {
+                String storeType = productEntity.getStore_store().getType();
+                if(TextUtils.isEmpty(storeType) || "国内仓库".equals(storeType)){
                     tvStoreType.setVisibility(View.GONE);
-                } else {
+                }else {
                     tvStoreType.setVisibility(View.VISIBLE);
-                    tvStoreType.setText(productEntity.getStore_store().getType());
+                    tvStoreType.setText(storeType);
                 }
+
 
                 //商品名字
                 tvProductName.setText(productEntity.getGoods_goods().getName());
 
-                //商品描述
-                tvDescribe.setText(productEntity.getGoods_goods().getDescribe());
                 //商品单价
                 tvSinglePrice.setText(SpannableUtil.setSizeSpan(rmb+productEntity.getPrice_m(),0,1,0.8f));
 

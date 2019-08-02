@@ -262,7 +262,7 @@ public class LoginByPasswordActivity extends BaseAppcompatActivity implements On
      */
     @Override
     public void onCommonSuccess(String result, int resultType) {
-        Log.d(TAG, "onCommonSuccess() resultType:" + resultType + ",result:" + result);
+
         if (result != null) {
             try {
                 JSONObject jsonObject = new JSONObject(result);

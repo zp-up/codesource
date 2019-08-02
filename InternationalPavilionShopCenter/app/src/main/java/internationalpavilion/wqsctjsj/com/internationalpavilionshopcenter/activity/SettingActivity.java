@@ -18,6 +18,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.chrisjason.baseui.ui.BaseAppcompatActivity;
@@ -32,22 +35,37 @@ import com.jph.takephoto.model.TResult;
 import com.jph.takephoto.permission.InvokeListener;
 import com.jph.takephoto.permission.PermissionManager;
 import com.jph.takephoto.permission.TakePhotoInvocationHandler;
+import com.yanzhenjie.album.AlbumFile;
+
 import org.greenrobot.eventbus.EventBus;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
+import org.xutils.x;
+
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.application.IPSCApplication;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.compressor.callback.CompressCallback;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.compressor.core.EasyCompressor;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.eventBusBean.TokenEvent;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.userInfo.UserBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp.UpLoadFileImp;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.UpLoadFileInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.AlbumUtil;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.LogUtil;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnUpLoadFileCallback;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.dialog.BottomOptionsView;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.dialog.ItemClickCallback;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.dialog.SweetAlertDialog;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.popupwindow.ImageSelectPop;
 import static internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.dialog.SweetAlertDialog.WARNING_TYPE;
@@ -83,37 +101,46 @@ public class SettingActivity extends BaseAppcompatActivity implements TakePhoto.
         upLoadFilePresenter = new UpLoadFileImp();
     }
 
-    @OnClick({R.id.iv_back, R.id.ll_click_change_head,R.id.tv_nick_name,R.id.tv_logout})
+    @OnClick({R.id.iv_back, R.id.tv_change_logo,R.id.tv_nick_name,R.id.tv_logout})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
                 SettingActivity.this.finish();
                 break;
-            case R.id.ll_click_change_head:
-                ImageSelectPop pop = new ImageSelectPop(this);
-                pop.setCancelAble(false);
-                pop.show(llParent, new ImageSelectPop.ItemClick() {
-                    @Override
-                    public void onClick(int type, double rentPrice, double buyPrice) {
-                        switch (type) {
-                            case 1:
+            case R.id.tv_change_logo:
 
-                                break;
-                            case 2:
-                                //裁剪参数
-                                CropOptions cropOptions = new CropOptions.Builder().
-                                        setWithOwnCrop(false).create();
-                                getTakePhoto().onPickFromCaptureWithCrop(getUri(), cropOptions);
-                                break;
-                            case 3:
-                                //裁剪参数
-                                CropOptions cropOptions1 = new CropOptions.Builder()
-                                        .setWithOwnCrop(false).create();
-                                getTakePhoto().onPickFromGalleryWithCrop(getUri(), cropOptions1);
-                                break;
+                List<String> list = new ArrayList<>();
+                list.add("相册");
+                list.add("拍照");
+                BottomOptionsView b = new BottomOptionsView(this, list, new ItemClickCallback() {
+                    @Override
+                    public void onClick(String option, int position) {
+                        //相册
+                        if (0 == position) {
+                            AlbumUtil.getInstance().openPhotoAlbum(SettingActivity.this, 1, new AlbumUtil.onPhotoListener() {
+                                @Override
+                                public void onAlbum(ArrayList<AlbumFile> result) {
+                                    if (result != null && result.size() > 0) {
+                                        setPicResult(result.get(0).getPath());
+                                    }
+                                }
+                            });
+
+                        } else if (1 == position) {
+                            //拍摄
+                            AlbumUtil.getInstance().openCamera(SettingActivity.this, new AlbumUtil.OnCameraListener() {
+                                @Override
+                                public void onCamera(String result) {
+                                    if (!TextUtils.isEmpty(result)) {
+                                        setPicResult(result);
+                                    }
+                                }
+                            });
                         }
                     }
                 });
+                b.show();
+
                 break;
             case R.id.tv_nick_name:
                 AlertDialog.Builder builder = new AlertDialog.Builder(SettingActivity.this);
@@ -145,7 +172,6 @@ public class SettingActivity extends BaseAppcompatActivity implements TakePhoto.
                                 ToastUtils.show(SettingActivity.this,"请输入2-8位长度的昵称");
                             }
                         }
-
 
                         return true;
                     }
@@ -231,18 +257,6 @@ public class SettingActivity extends BaseAppcompatActivity implements TakePhoto.
         }
     }
 
-    /**
-     * 图片保存路径
-     *
-     * @return
-     */
-    private Uri getUri() {
-
-        file = new File(Environment.getExternalStorageDirectory(), "/shoes/images/" + System.currentTimeMillis() + ".jpg");
-        if (!file.getParentFile().exists()) file.getParentFile().mkdirs();
-        Uri imageUri = Uri.fromFile(file);
-        return imageUri;
-    }
 
     /**
      * 获取TakePhoto实例
@@ -339,7 +353,7 @@ public class SettingActivity extends BaseAppcompatActivity implements TakePhoto.
 
     @Override
     public void onStarted() {
-        showLoading(false, "上传图片中...");
+
     }
 
     @Override
@@ -438,4 +452,188 @@ public class SettingActivity extends BaseAppcompatActivity implements TakePhoto.
     public void onVerifyIdCardByInput(String result) {
 
     }
+
+
+    private void setPicResult(String path) {
+
+        File file = new File(path);
+
+        if (file == null || !file.exists()) {
+            return;
+        }
+
+        EasyCompressor.getInstance(null).compress(path, new CompressCallback() {
+            @Override
+            public void onSuccess(File compressedFile) {
+                upload(compressedFile);
+            }
+
+            @Override
+            public void onFailed(Throwable throwable) {
+
+            }
+        });
+
+
+    }
+
+    private void upload(File compressedFile){
+        RequestParams params = new RequestParams(MainUrls.upLoadImageUrl);
+        params.addBodyParameter("access_token", IPSCApplication.accessToken);
+        //mimeType/image/jpg
+        params.addBodyParameter("Content-Type", "image/jpeg");
+        params.addBodyParameter("file", compressedFile);
+        params.setMultipart(true);
+        x.http().post(params, new Callback.ProgressCallback<JSONObject>() {
+            @Override
+            public void onWaiting() {
+
+            }
+
+            @Override
+            public void onStarted() {
+                showLoading(true,"图片上传中...");
+            }
+
+            @Override
+            public void onLoading(long total, long current, boolean isDownloading) {
+
+            }
+
+            @Override
+            public void onSuccess(JSONObject result) {
+
+                if (result != null) {
+                    try {
+                        JSONObject data = result.getJSONObject("data");
+                        if (data != null) {
+                            String sha256 = data.getString("sha256");
+                            if (!TextUtils.isEmpty(sha256)) {
+                                setPortrait(sha256);
+                            }
+                        }
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+                dismissLoading();
+            }
+        });
+    }
+
+    private void setPortrait(String sha256) {
+        RequestParams params = new RequestParams(MainUrls.modifyUserInfoUrl);
+        params.addBodyParameter("access_token", IPSCApplication.accessToken);
+        params.addBodyParameter("img", sha256);
+        params.addBodyParameter("id", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
+        x.http().post(params, new Callback.CommonCallback<JSONObject>() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                if (result != null) {
+                    try {
+                        JSONObject data = result.getJSONObject("data");
+                        if (data != null) {
+                            String img = data.getString("img");
+                            if (!TextUtils.isEmpty(img)) {
+                                Toast.makeText(SettingActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
+                                getUser();
+                            }
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
+    }
+
+    private void getUser() {
+        if (((IPSCApplication) getApplication()).getUserInfo() == null) {
+            return;
+        }
+        RequestParams params = new RequestParams(MainUrls.getUserInfoUrl);
+        params.addBodyParameter("access_token", IPSCApplication.accessToken);
+        if (((IPSCApplication) getApplication()).getUserInfo() != null) {
+            params.addBodyParameter("id", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
+        }
+        x.http().post(params, new Callback.CommonCallback<JSONObject>() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                if (result != null) {
+                    try {
+                        JSONObject data = result.getJSONObject("data");
+                        if (data != null) {
+                            JSONArray imgA = data.getJSONArray("img");
+                            if(imgA!=null && imgA.length()>0){
+                                String img = imgA.getString(0);
+                                UserBean u = ((IPSCApplication)getApplication()).getUserInfo();
+                                u.setImg(img);
+                                ((IPSCApplication) getApplication()).saveUserInfo(JSON.toJSONString(u));
+
+                                RequestOptions options = new RequestOptions();
+                                options.circleCrop();
+                                options.placeholder(R.mipmap.icon_mine_defaul_head);
+                                options.error(R.mipmap.icon_mine_defaul_head);
+                                Glide.with(SettingActivity.this).load(img).apply(options).into(civHead);
+                            }
+
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+    }
+
 }

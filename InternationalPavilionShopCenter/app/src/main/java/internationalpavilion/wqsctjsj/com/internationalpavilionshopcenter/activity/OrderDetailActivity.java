@@ -52,7 +52,7 @@ public class OrderDetailActivity extends BaseAppcompatActivity implements OnComm
     TextView tvAddressDetail;
     @BindView(R.id.tv_order_number)
     TextView tvOrderNumber;
-//    @BindView(R.id.tv_status)
+    //    @BindView(R.id.tv_status)
 //    TextView tvStatus;
     @BindView(R.id.tv_store_type)
     TextView tvStoreType;
@@ -170,7 +170,14 @@ public class OrderDetailActivity extends BaseAppcompatActivity implements OnComm
                             orderGoodsBean.setGoodsId(list.getJSONObject(j).getJSONObject("goods_goods").getInt("id"));
                             orderGoodsBean.setGoodsName(list.getJSONObject(j).getJSONObject("goods_goods").getString("name"));
                             orderGoodsBean.setGoodsDescription(list.getJSONObject(j).getJSONObject("goods_goods").getString("spec"));
-                            orderGoodsBean.setImageUrl(list.getJSONObject(j).getJSONObject("goods_goods").getString("img"));
+
+                            //商品图片
+                            String img = "";
+                            if (list.getJSONObject(j).getJSONObject("goods_goods").getJSONArray("img") != null && list.getJSONObject(j).getJSONObject("goods_goods").getJSONArray("img").length() > 0) {
+                                img = list.getJSONObject(j).getJSONObject("goods_goods").getJSONArray("img").getString(0);
+                            }
+                            orderGoodsBean.setImageUrl(img);
+
                             orderGoodsBean.setCount(list.getJSONObject(j).getInt("number"));
                             orderGoodsBean.setGoodsPrice(list.getJSONObject(j).getDouble("price"));
                             orderGoodsBean.setBondedPrice(list.getJSONObject(j).getDouble("total_tax"));
@@ -199,51 +206,52 @@ public class OrderDetailActivity extends BaseAppcompatActivity implements OnComm
     }
 
     private void bindDataToView() {
-        if (orderRootBean.getAddressBean() == null){
+        if (orderRootBean.getAddressBean() == null) {
             llAddressContainer.setVisibility(View.GONE);
-        }else {
+        } else {
             llAddressContainer.setVisibility(View.VISIBLE);
             tvOrderNumber.setText("" + orderRootBean.getOrderNumber());
             tvAddressName.setText(orderRootBean.getAddressBean().getReceiveName());
             tvAddressPhone.setText(orderRootBean.getAddressBean().getReceivePhone());
             tvAddressDetail.setText(orderRootBean.getAddressBean().getProvince()
-                    +orderRootBean.getAddressBean().getCity()+orderRootBean.getAddressBean().getArea()
-                    +orderRootBean.getAddressBean().getDetailPlace());
+                    + orderRootBean.getAddressBean().getCity() + orderRootBean.getAddressBean().getArea()
+                    + orderRootBean.getAddressBean().getDetailPlace());
             tvCreateTime.setText(orderRootBean.getCreate_time());
 //            tvStatus.setText(orderRootBean.getStatus());
             tvStoreType.setText(orderRootBean.getStoreType());
-            tvGoodsCount.setText("共"+(orderRootBean.getGoodsBeans() == null ? 0 : orderRootBean.getGoodsBeans().size())+"种"+getGoodsCount(orderRootBean.getGoodsBeans())+"件商品");
+            tvGoodsCount.setText("共" + (orderRootBean.getGoodsBeans() == null ? 0 : orderRootBean.getGoodsBeans().size()) + "种" + getGoodsCount(orderRootBean.getGoodsBeans()) + "件商品");
             llGoodsListContainer.removeAllViews();
-            for (int i = 0;i < orderRootBean.getGoodsBeans().size();i++){
-                View view = LayoutInflater.from(OrderDetailActivity.this).inflate(R.layout.item_confirm_activity_goods,null);
+            for (int i = 0; i < orderRootBean.getGoodsBeans().size(); i++) {
+                View view = LayoutInflater.from(OrderDetailActivity.this).inflate(R.layout.item_confirm_activity_goods, null);
                 ImageView ivGoodsPic = view.findViewById(R.id.iv_goods_pic);
                 Glide.with(OrderDetailActivity.this).load(orderRootBean.getGoodsBeans()
-                        .get(i).getImageUrl()).apply(new RequestOptions().error(R.drawable.bg_home_lay10_1)).into(ivGoodsPic);
+                        .get(i).getImageUrl()).apply(new RequestOptions().error(R.drawable.icon_no_image)).into(ivGoodsPic);
                 TextView tvGoodsName = view.findViewById(R.id.tv_goods_name);
                 tvGoodsName.setText(orderRootBean.getGoodsBeans().get(i).getGoodsName());
                 TextView tvGoodsSpec = view.findViewById(R.id.tv_goods_spec);
                 tvGoodsSpec.setText(orderRootBean.getGoodsBeans().get(i).getGoodsDescription());
                 TextView tvGoodsPrice = view.findViewById(R.id.tv_goods_price);
-                tvGoodsPrice.setText("￥"+orderRootBean.getGoodsBeans().get(i).getGoodsPrice());
+                tvGoodsPrice.setText("￥" + orderRootBean.getGoodsBeans().get(i).getGoodsPrice());
                 TextView tvBandedPrice = view.findViewById(R.id.tv_banded_price);
-                tvBandedPrice.setText("税费:￥"+orderRootBean.getGoodsBeans().get(i).getBondedPrice());
-                TextView tvCount= view.findViewById(R.id.tv_goods_count);
-                tvCount.setText("x"+orderRootBean.getGoodsBeans().get(i).getCount());
+                tvBandedPrice.setText("税费:￥" + orderRootBean.getGoodsBeans().get(i).getBondedPrice());
+                TextView tvCount = view.findViewById(R.id.tv_goods_count);
+                tvCount.setText("x" + orderRootBean.getGoodsBeans().get(i).getCount());
                 llGoodsListContainer.addView(view);
             }
             tvCreateTime.setText(orderRootBean.getCreate_time());
-            tvGoodsTotalPrice.setText("商品金额:￥"+orderRootBean.getTotal_goods());
-            tvBondedPrice.setText("税收金额:￥"+orderRootBean.getTotal_tax());
-            tvPostType.setText("配送方式:"+orderRootBean.getPost());
-            tvPayTotal.setText("实付金额:￥"+orderRootBean.getPay_total());
-            tvPostPrice.setText("运费:￥"+orderRootBean.getPostPrice());
+            tvGoodsTotalPrice.setText("商品金额:￥" + orderRootBean.getTotal_goods());
+            tvBondedPrice.setText("税收金额:￥" + orderRootBean.getTotal_tax());
+            tvPostType.setText("配送方式:" + orderRootBean.getPost());
+            tvPayTotal.setText("实付金额:￥" + orderRootBean.getPay_total());
+            tvPostPrice.setText("运费:￥" + orderRootBean.getPostPrice());
             tvGoodsWeight.setText(orderRootBean.getWeight() + "KG");
         }
     }
-    private int getGoodsCount(List<OrderGoodsBean> goodsBeans){
+
+    private int getGoodsCount(List<OrderGoodsBean> goodsBeans) {
         int count = 0;
-        for (int i = 0; i < goodsBeans.size();i++){
-            count+=goodsBeans.get(i).getCount();
+        for (int i = 0; i < goodsBeans.size(); i++) {
+            count += goodsBeans.get(i).getCount();
         }
         return count;
     }

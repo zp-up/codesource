@@ -93,4 +93,7 @@ dependencies {
 
     implementation 'com.github.shengqf:RoundView:v1.0.1'
 
+    api "io.reactivex.rxjava2:rxandroid:${rootProject.ext.rxAndroidVersion}"
+    api "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxJavaVersion}"
+
 }

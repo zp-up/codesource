@@ -17,7 +17,7 @@
             android:layout_height="@dimen/x105"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/x10"
-            android:src="@drawable/bg_home_lay10_1" />
+            android:src="@drawable/icon_no_image" />
 
         <LinearLayout
             android:layout_width="match_parent"
