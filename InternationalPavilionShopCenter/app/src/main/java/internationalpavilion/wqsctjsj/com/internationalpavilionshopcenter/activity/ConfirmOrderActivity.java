@@ -84,7 +84,7 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
         if (getIntent().getStringExtra("id") != null) {
             orderId = getIntent().getStringExtra("id");
         }
-        Log.d("IPSC", "orderId:" + orderId);
+
     }
 
     @Override
@@ -248,7 +248,7 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
                         orderGoodsBean.setGoodsId(list.getJSONObject(j).getJSONObject("goods_goods").getInt("id"));
                         orderGoodsBean.setGoodsName(list.getJSONObject(j).getJSONObject("goods_goods").getString("name"));
                         orderGoodsBean.setGoodsDescription(list.getJSONObject(j).getJSONObject("goods_goods").getString("spec"));
-                        orderGoodsBean.setImageUrl(list.getJSONObject(j).getJSONObject("goods_goods").getJSONArray("img").getString(0));
+                        orderGoodsBean.setImageUrl(list.getJSONObject(j).getJSONObject("goods_goods").getString("img"));
                         orderGoodsBean.setCount(list.getJSONObject(j).getInt("number"));
                         orderGoodsBean.setGoodsPrice(list.getJSONObject(j).getDouble("price"));
                         orderGoodsBean.setBondedPrice(list.getJSONObject(j).getDouble("total_tax"));

@@ -321,7 +321,7 @@ public class CartFragment extends Fragment implements OnCommonGoodsCallBack, Car
                                     cartGood.setGoodsPriceId(goods.getJSONObject("store_price").getInt("id"));
                                     cartGood.setChecked(goods.getInt("cart_state") == 1 ? true : false);
                                     cartGood.setImagePath(goods.getJSONObject("store_price").getJSONObject("goods_goods")
-                                            .getJSONArray("img").getString(0));
+                                            .getString("img"));
                                     cartGood.setName(goods.getJSONObject("store_price").getJSONObject("goods_goods")
                                             .getString("name"));
                                     cartGood.setNum(goods.getInt("number"));

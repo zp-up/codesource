@@ -83,7 +83,6 @@ public class OrderDetailActivity extends BaseAppcompatActivity implements OnComm
         Intent intent = getIntent();
         if (intent.getIntExtra("orderId", -1) != -1) {
             orderId = intent.getIntExtra("orderId", -1);
-            Log.e(TAG, "订单id：" + orderId);
         }
         initData();
     }
@@ -132,7 +131,7 @@ public class OrderDetailActivity extends BaseAppcompatActivity implements OnComm
 
     @Override
     public void onError(String error) {
-        Log.e(TAG, "获取订单信息出错:" + error);
+
     }
 
     @Override
@@ -171,7 +170,7 @@ public class OrderDetailActivity extends BaseAppcompatActivity implements OnComm
                             orderGoodsBean.setGoodsId(list.getJSONObject(j).getJSONObject("goods_goods").getInt("id"));
                             orderGoodsBean.setGoodsName(list.getJSONObject(j).getJSONObject("goods_goods").getString("name"));
                             orderGoodsBean.setGoodsDescription(list.getJSONObject(j).getJSONObject("goods_goods").getString("spec"));
-                            orderGoodsBean.setImageUrl(list.getJSONObject(j).getJSONObject("goods_goods").getJSONArray("img").getString(0));
+                            orderGoodsBean.setImageUrl(list.getJSONObject(j).getJSONObject("goods_goods").getString("img"));
                             orderGoodsBean.setCount(list.getJSONObject(j).getInt("number"));
                             orderGoodsBean.setGoodsPrice(list.getJSONObject(j).getDouble("price"));
                             orderGoodsBean.setBondedPrice(list.getJSONObject(j).getDouble("total_tax"));

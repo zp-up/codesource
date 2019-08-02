@@ -203,4 +203,14 @@ public class MainUrls {
     // 退货地址
     public static final String getRefundGoodsAddressUrl = ServerIp + "?api=order.order.refundgoodsaddress";
 
+    //认证信息设为实名
+    public static final String setDefaultAuthInfoUrl = ServerIp + "?api=user.auth.editname";
+
+    //删除实名信息
+    public static final String deleteAuthUrl = ServerIp +"?api=user.auth.del";
+
+
+
+
+
 }
