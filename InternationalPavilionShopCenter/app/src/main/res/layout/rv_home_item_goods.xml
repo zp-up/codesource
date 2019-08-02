@@ -12,7 +12,7 @@
         <ImageView
             android:scaleType="fitXY"
             android:id="@+id/iv_goods_pic"
-            android:src="@drawable/bg_home_lay10_1"
+            android:src="@drawable/icon_no_image"
             android:layout_width="@dimen/x80"
             android:layout_height="@dimen/x80" />
     </LinearLayout>

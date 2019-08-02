@@ -123,7 +123,7 @@ public class ClassPopularityAdapter extends DelegateAdapter.Adapter<ClassPopular
                     final HomePopularityGoodsBean goodsBean = (HomePopularityGoodsBean) data.get(position).get("popularityGoods");
                     Log.d(TAG, "onclick 1 goodID:" + goodsBean.getGoodsId() + ",name" + goodsBean.getGoodsName());
                     if (goodsBean != null) {
-                        Glide.with(context).load(goodsBean.getGoodsPic()).apply(new RequestOptions().error(R.drawable.bg_home_lay10_1).placeholder(R.drawable.bg_home_lay10_1).override(300, 300)).into(holder.ivPopGoodsPic);
+                        Glide.with(context).load(goodsBean.getGoodsPic()).apply(new RequestOptions().error(R.drawable.icon_no_image).placeholder(R.drawable.icon_no_image).override(300, 300)).into(holder.ivPopGoodsPic);
                         holder.tvPopGoodsName.setText(goodsBean.getGoodsName());
                         holder.tvPopGoodsPrice.setText("￥" + new DecimalFormat("######0.00").format(goodsBean.getGoodsPrice()));
                         if (TextUtils.isEmpty(goodsBean.getStoreType())) {

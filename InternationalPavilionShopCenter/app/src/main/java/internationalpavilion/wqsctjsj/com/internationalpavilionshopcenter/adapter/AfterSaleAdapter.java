@@ -89,7 +89,7 @@ public class AfterSaleAdapter extends RecyclerView.Adapter<AfterSaleAdapter.View
             holder.tvGoodsName.setText(rootBean.getGoodsBeans().get(0).getGoodsName());
             holder.tvDescription.setText(rootBean.getGoodsBeans().get(0).getGoodsDescription());
             Glide.with(context).load(rootBean.getGoodsBeans().get(0).getImageUrl())
-                    .apply(new RequestOptions().error(R.drawable.bg_home_lay10_1)).into(holder.ivGoodsPic);
+                    .apply(new RequestOptions().error(R.drawable.icon_no_image)).into(holder.ivGoodsPic);
             holder.hsvParent.setVisibility(View.GONE);
             holder.rlOneGoodsParent.setVisibility(View.VISIBLE);
             holder.rlOneGoodsParent.setOnClickListener(new View.OnClickListener() {
@@ -108,7 +108,7 @@ public class AfterSaleAdapter extends RecyclerView.Adapter<AfterSaleAdapter.View
                 View view = inflater.inflate(R.layout.rv_item_order_image_view, null);
                 ImageView ivGoodsPic = view.findViewById(R.id.iv_evaluate_pic);
                 Glide.with(context).load(rootBean.getGoodsBeans().get(i).getImageUrl())
-                        .apply(new RequestOptions().error(R.drawable.bg_home_lay10_1)).into(ivGoodsPic);
+                        .apply(new RequestOptions().error(R.drawable.icon_no_image)).into(ivGoodsPic);
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

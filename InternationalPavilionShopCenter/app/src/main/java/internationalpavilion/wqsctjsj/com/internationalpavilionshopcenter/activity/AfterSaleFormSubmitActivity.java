@@ -209,7 +209,7 @@ public class AfterSaleFormSubmitActivity extends BaseAppcompatActivity implement
             View view = LayoutInflater.from(AfterSaleFormSubmitActivity.this).inflate(R.layout.item_confirm_activity_goods, null);
             ImageView ivGoodsPic = view.findViewById(R.id.iv_goods_pic);
             Glide.with(AfterSaleFormSubmitActivity.this).load(orderRootBean.getGoodsBeans()
-                    .get(i).getImageUrl()).apply(new RequestOptions().error(R.drawable.bg_home_lay10_1)).into(ivGoodsPic);
+                    .get(i).getImageUrl()).apply(new RequestOptions().error(R.drawable.icon_no_image)).into(ivGoodsPic);
             TextView tvGoodsName = view.findViewById(R.id.tv_goods_name);
             tvGoodsName.setText(orderRootBean.getGoodsBeans().get(i).getGoodsName());
             TextView tvGoodsSpec = view.findViewById(R.id.tv_goods_spec);

@@ -13,7 +13,7 @@
         <ImageView
             android:id="@+id/iv_goods_pic"
             android:scaleType="fitXY"
-            android:src="@drawable/bg_home_lay10_1"
+            android:src="@drawable/icon_no_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
         <TextView

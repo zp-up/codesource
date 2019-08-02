@@ -29,6 +29,7 @@ import org.xutils.x;
 import java.io.File;
 
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.compressor.core.EasyCompressor;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.eventBusBean.TokenEvent;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.userInfo.UserBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp.UserOptionImp;
@@ -85,6 +86,9 @@ public class IPSCApplication extends Application implements OnNetCallBack{
                 .build(); //开始构建
 
         ImageLoader.getInstance().init(config);
+
+        //初始化EasyCompressor
+        EasyCompressor.init(this);
     }
 
     @Override

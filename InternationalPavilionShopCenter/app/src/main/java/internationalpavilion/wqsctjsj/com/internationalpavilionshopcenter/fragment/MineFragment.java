@@ -56,6 +56,8 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activi
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.ReceivedAddressListActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.SettingActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.application.IPSCApplication;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.compressor.callback.CompressCallback;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.compressor.core.EasyCompressor;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.eventBusBean.TokenEvent;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.userInfo.UserBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp.MineDataImp;
@@ -419,20 +421,49 @@ public class MineFragment extends Fragment implements OnMineDataCallBack {
 
     private void setPicResult(String path) {
 
-
         File file = new File(path);
 
         if (file == null || !file.exists()) {
             return;
         }
 
+        EasyCompressor.getInstance(null).compress(path, new CompressCallback() {
+            @Override
+            public void onSuccess(File compressedFile) {
+                upload(compressedFile);
+            }
+
+            @Override
+            public void onFailed(Throwable throwable) {
+
+            }
+        });
+
+    }
+
+    private void upload(File compressedFile){
         RequestParams params = new RequestParams(MainUrls.upLoadImageUrl);
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
         //mimeType/image/jpg
         params.addBodyParameter("Content-Type", "image/jpeg");
-        params.addBodyParameter("file", file);
+        params.addBodyParameter("file", compressedFile);
         params.setMultipart(true);
-        x.http().post(params, new Callback.CommonCallback<JSONObject>() {
+        x.http().post(params, new Callback.ProgressCallback<JSONObject>() {
+            @Override
+            public void onWaiting() {
+
+            }
+
+            @Override
+            public void onStarted() {
+                Toast.makeText(getActivity(), "图片上传中...", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onLoading(long total, long current, boolean isDownloading) {
+
+            }
+
             @Override
             public void onSuccess(JSONObject result) {
 
@@ -469,8 +500,6 @@ public class MineFragment extends Fragment implements OnMineDataCallBack {
 
             }
         });
-
-
     }
 
     private void setPortrait(String sha256) {

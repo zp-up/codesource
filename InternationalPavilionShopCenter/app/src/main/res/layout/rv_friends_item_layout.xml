@@ -12,7 +12,7 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_marginLeft="@dimen/x20"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/bg_home_lay10_1"
+            android:src="@drawable/icon_no_image"
             android:layout_width="@dimen/x40"
             android:layout_height="@dimen/x40" />
         <LinearLayout
