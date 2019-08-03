@@ -131,7 +131,9 @@
                        android:background="@color/gray"
                        android:layout_width="@dimen/x1"
                        android:layout_height="match_parent"></View>
-                   <TextView
+                   <EditText
+                       android:inputType="number"
+                       android:background="@null"
                        android:id="@+id/tv_num"
                        android:gravity="center"
                        android:text="1"

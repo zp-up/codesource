@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -42,7 +43,8 @@ public class GoodsPropsSelectPop implements View.OnClickListener {
     private ImageView ivClosePop;
     private GoodsDetailRootBean goodsBean;
     private internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.LinearLayout llStorageContainer;
-    private TextView tvAdd, tvSub, tvNum;
+    private TextView tvAdd, tvSub;
+    private EditText cetNum;
 
 //    private TextView tvAddGoodsToCart;
 
@@ -164,7 +166,7 @@ public class GoodsPropsSelectPop implements View.OnClickListener {
         llStorageContainer = v.findViewById(R.id.ll_storage_type_container);
 //        tvAddGoodsToCart = v.findViewById(R.id.tv_add_goods);
         tvAdd = v.findViewById(R.id.tv_add);
-        tvNum = v.findViewById(R.id.tv_num);
+        cetNum = v.findViewById(R.id.tv_num);
         tvSub = v.findViewById(R.id.tv_sub);
         String num="";
         if(goodsBean!=null){
@@ -175,7 +177,7 @@ public class GoodsPropsSelectPop implements View.OnClickListener {
             }
         }
 
-        tvNum.setText(num);
+        cetNum.setText(num);
 
         tvSub.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -184,7 +186,7 @@ public class GoodsPropsSelectPop implements View.OnClickListener {
                 if (goodsBean.getData().getGoods_goods().getNum() > 1) {
                     goodsBean.getData().getGoods_goods().setNum(goodsBean.getData().getGoods_goods().getNum() - 1);
                 }
-                tvNum.setText("" + goodsBean.getData().getGoods_goods().getNum());
+                cetNum.setText("" + goodsBean.getData().getGoods_goods().getNum());
             }
         });
         tvAdd.setOnClickListener(new View.OnClickListener() {
@@ -194,7 +196,7 @@ public class GoodsPropsSelectPop implements View.OnClickListener {
                 if (goodsBean.getData().getGoods_goods().getNum() < goodsBean.getData().getUsenumber()) {
                     goodsBean.getData().getGoods_goods().setNum(goodsBean.getData().getGoods_goods().getNum() + 1);
                 }
-                tvNum.setText("" + goodsBean.getData().getGoods_goods().getNum());
+                cetNum.setText("" + goodsBean.getData().getGoods_goods().getNum());
             }
         });
 
@@ -233,10 +235,10 @@ public class GoodsPropsSelectPop implements View.OnClickListener {
             public void onClick(View v) {
                 // TOD 立即购买
 //                ((GoodsDetailActivity) context).buyImmediately();
-                if (Integer.valueOf(tvNum.getText().toString()) > goodsBean.getData().getUsenumber()) {
+                if (Integer.valueOf(cetNum.getText().toString()) > goodsBean.getData().getUsenumber()) {
                     ToastUtils.show(context, "库存不足");
                 } else {
-                    ((GoodsDetailActivity) context).buyImmediately(currentSpecId, currentStoreType, Integer.valueOf(tvNum.getText().toString()));
+                    ((GoodsDetailActivity) context).buyImmediately(currentSpecId, currentStoreType, Integer.valueOf(cetNum.getText().toString()));
 //                    ((GoodsDetailActivity) context).addToCart(currentSpecId, currentStoreType, Integer.valueOf(tvNum.getText().toString()));
                 }
             }
@@ -244,10 +246,10 @@ public class GoodsPropsSelectPop implements View.OnClickListener {
         v.findViewById(R.id.tv_add_to_cart).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Integer.valueOf(tvNum.getText().toString()) > goodsBean.getData().getUsenumber()) {
+                if (Integer.valueOf(cetNum.getText().toString()) > goodsBean.getData().getUsenumber()) {
                     ToastUtils.show(context, "库存不足");
                 } else {
-                    ((GoodsDetailActivity) context).addToCart(currentSpecId, currentStoreType, Integer.valueOf(tvNum.getText().toString()));
+                    ((GoodsDetailActivity) context).addToCart(currentSpecId, currentStoreType, Integer.valueOf(cetNum.getText().toString()));
                 }
             }
         });

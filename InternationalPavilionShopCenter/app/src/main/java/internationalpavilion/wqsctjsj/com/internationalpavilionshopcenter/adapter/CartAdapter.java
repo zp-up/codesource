@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -74,7 +75,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             ImageView ivDelete;
 
             ivGoodsPic = cartBean.findViewById(R.id.cart_good_image);
-            Glide.with(context).load(goods.getImagePath()).apply(new RequestOptions().error(R.mipmap.ic_launcher)).into(ivGoodsPic);
+            Glide.with(context).load(goods.getImagePath()).apply(new RequestOptions().error(R.drawable.icon_no_image)).into(ivGoodsPic);
             ivChecked = cartBean.findViewById(R.id.cart_good_checkImage);
             if (goods.isChecked()) {
                 ivChecked.setImageResource(R.mipmap.icon_cart_box_selected);
@@ -155,6 +156,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             cartSub.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+                    int currentNum = goods.getNum();
+                    if(currentNum==1){
+                        Toast.makeText(context, "该商品数量不能再减了哦", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
                     if (listener != null) {
                         listener.onNumSub(goods.getGoodsPriceId(), goods.getNum());
                     }

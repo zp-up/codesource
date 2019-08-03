@@ -301,11 +301,9 @@ public class ClassGoodsListActivity extends BaseAppcompatActivity implements OnB
         }
 
         String brandId = currentBrandIdSet.toString().replace(" ", "");
-        Log.d(TAG, "currentBrandIdSet origin:" + brandId + ",handled:" + brandId.substring(1, brandId.length() - 1));
         params.addBodyParameter("brand", brandId.substring(1, brandId.length() - 1) + "");
 
         String classId = currentClassIdSet.toString().replace(" ", "");
-        Log.d(TAG, "currentClassIdSet origin:" + classId + ",handled:" + classId.substring(1, classId.length() - 1));
         params.addBodyParameter("cate", classId.substring(1, classId.length() - 1) + "");
 
         if (etMinPrice.getText().toString().trim().length() != 0) {
@@ -336,7 +334,6 @@ public class ClassGoodsListActivity extends BaseAppcompatActivity implements OnB
                     break;
             }
         }
-        Log.d(TAG, "request() params:" + params.toString());
         bondedGoodsPresenter.getBondedGoods(params, this);
     }
 
@@ -631,7 +628,6 @@ public class ClassGoodsListActivity extends BaseAppcompatActivity implements OnB
                         // 筛选的品牌、分类数据获取
                         com.alibaba.fastjson.JSONObject obj = com.alibaba.fastjson.JSONObject.parseObject(result);
                         com.alibaba.fastjson.JSONObject list = obj.getJSONObject("list");
-                        Log.d(TAG, "品牌分类:");
                         try {
 //                            if (pageIndex == 1) {
 //                            }
@@ -661,7 +657,6 @@ public class ClassGoodsListActivity extends BaseAppcompatActivity implements OnB
                             LogUtil.e(TAG, "update brand data occur an exception!", e);
                         }
 
-                        Log.d(TAG, "商品种类:");
                         try {
 /*                            if (pageIndex == 1) {
                             }*/

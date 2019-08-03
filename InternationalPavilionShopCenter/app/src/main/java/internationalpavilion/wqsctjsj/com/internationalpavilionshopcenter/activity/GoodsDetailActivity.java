@@ -46,8 +46,11 @@ import com.youth.banner.loader.ImageLoader;
 
 import org.greenrobot.eventbus.EventBus;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
+import org.xutils.x;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -67,6 +70,7 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entity
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.HomeBannerBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.eventBusBean.MainSwitchEvent;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.goodsDetailBean.GoodsDetailRootBean;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.goodsDetailBean.Goods_brand;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.goodsDetailBean.Speclist;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.goodsDetailBean.Storelist;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.fragment.GoodsDetailFragment;
@@ -97,10 +101,8 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
     Banner banner;
     @BindView(R.id.rl_open_select_spec)
     RelativeLayout rlOpenSelectSpec;
-
     @BindView(R.id.rl_parent)
     RelativeLayout rlParent;
-
     @BindView(R.id.view_pager)
     ViewPager viewPager;
     @BindView(R.id.tv_pic_index)
@@ -164,11 +166,8 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
     TextView tvEvaluateTotal;
     @BindView(R.id.tv_evaluate_content)
     TextView tvEvaluateContent;
-
-
     @BindView(R.id.ll_goods_container)
     LinearLayout llEvaluatePicContainer;
-
 
     private ArrayList<Fragment> fgList = new ArrayList<>();
     private GoodsDetailInterface goodsDetailPresenter;
@@ -183,7 +182,6 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
      *  0 未收藏  1 已收藏
       */
     private int isCollection = 0;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -267,11 +265,11 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
             llGoodsTagContainer.addView(view);
         }
         if (TextUtils.isEmpty(goodsBean.getData().getGoods_goods().getGoods_brand().getName())) {
-            Glide.with(GoodsDetailActivity.this).load(goodsBean.getData().getGoods_goods().getGoods_brand().getLogo()).apply(new RequestOptions().override(100, 100).placeholder(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)).into(ivBrand);
+            Glide.with(GoodsDetailActivity.this).load(goodsBean.getData().getGoods_goods().getGoods_brand().getLogo()).apply(new RequestOptions().override(100, 100).placeholder(R.drawable.icon_no_image).placeholder(R.drawable.icon_no_image)).into(ivBrand);
             tvBrandName.setText("暂无品牌信息");
         } else {
 
-            Glide.with(GoodsDetailActivity.this).load(goodsBean.getData().getGoods_goods().getGoods_brand().getLogo()).apply(new RequestOptions().override(100, 100).placeholder(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)).into(ivBrand);
+            Glide.with(GoodsDetailActivity.this).load(goodsBean.getData().getGoods_goods().getGoods_brand().getLogo()).apply(new RequestOptions().override(100, 100).placeholder(R.drawable.icon_no_image).placeholder(R.drawable.icon_no_image)).into(ivBrand);
             tvBrandName.setText(goodsBean.getData().getGoods_goods().getGoods_brand().getName());
         }
 
@@ -347,7 +345,6 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
         }
     }
 
-
     @Override
     public int initLayout() {
         return R.layout.activity_goods_detail;
@@ -413,7 +410,8 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
     public void openShoppingCar() {
         if (isLogin()) {
             EventBus.getDefault().post(new MainSwitchEvent(3));
-
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
             finish();
         } else {
             startActivity(new Intent(this, LoginByPasswordActivity.class));
@@ -446,10 +444,56 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
     public void buyImmediately(int currentSpecId, int currentStoreType, int number) {
         if (isLogin()) {
             isBuyImmediately = true;
+            //todo 立即购买 ，接口未定
+            //submit();
             addToCart(currentSpecId, currentStoreType, number);
         } else {
             startActivity(new Intent(this, LoginByPasswordActivity.class));
         }
+    }
+
+
+    private void submit() {
+        RequestParams params = new RequestParams(MainUrls.cartSubmitUrl);
+        params.addBodyParameter("access_token", IPSCApplication.accessToken);
+        if(((IPSCApplication)getApplicationContext()).getUserInfo()!=null){
+            params.addBodyParameter("user", ((IPSCApplication) getApplicationContext()).getUserInfo().getId() + "");
+        }
+        x.http().post(params, new Callback.CommonCallback<JSONObject>() {
+            @Override
+            public void onSuccess(JSONObject result) {
+
+                try {
+                    int code = result.getInt("code");
+                    int state = result.getInt("state");
+                    if(code ==0 && state ==0) {
+                        JSONObject data = result.getJSONObject("data");
+                        Intent intent = new Intent(GoodsDetailActivity.this, ConfirmOrderActivity.class);
+                        intent.putExtra("id", data.getInt("id"));
+                        startActivity(intent);
+                    }
+                } catch (JSONException e1) {
+                    e1.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
     }
 
     /**
@@ -472,9 +516,25 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
     }
 
     @OnClick({R.id.iv_back, R.id.rl_open_select_spec, R.id.rl_to_evaluate_list, R.id.tv_add_to_cart, R.id.rl_add_to_collection,
-            R.id.tv_buy_immediately, R.id.rl_car, R.id.rl_contact_service})
+            R.id.tv_buy_immediately, R.id.rl_car, R.id.rl_contact_service,R.id.rl_brand_container})
     public void onClick(View view) {
         switch (view.getId()) {
+            //跳转品牌
+            case R.id.rl_brand_container:
+                Goods_brand brand =null;
+                try{
+                    brand  = goodsBean.getData().getGoods_goods().getGoods_brand();
+                }catch (Exception e){}
+
+                if(brand==null){
+                    return;
+                }
+
+                Intent intent = new Intent(this, BrandDetailActivity.class);
+                intent.putExtra("brandId", brand.getId());
+                intent.putExtra("brandName", brand.getName());
+                startActivity(intent);
+                break;
             case R.id.rl_contact_service:
                 contactService();
                 break;

@@ -31,6 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
+            android:visibility="gone"
             android:id="@+id/tv_created_by"
             android:layout_marginTop="@dimen/x6"
             android:text="欧美制造"
@@ -54,6 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
+            android:gravity="center"
             android:id="@+id/tv_goods_price"
             android:paddingRight="@dimen/x3"
             android:paddingLeft="@dimen/x3"
