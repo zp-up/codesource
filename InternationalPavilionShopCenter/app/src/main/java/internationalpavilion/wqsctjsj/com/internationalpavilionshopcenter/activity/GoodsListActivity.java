@@ -222,7 +222,6 @@ public class GoodsListActivity extends BaseAppcompatActivity {
                 android.widget.LinearLayout llBox = holder.getView(R.id.ll_box);
                 ImageView ivProduct = holder.getView(R.id.iv_product);
                 TextView tvProductName = holder.getView(R.id.tv_name);
-                TextView tvDescribe = holder.getView(R.id.tv_describe);
                 TextView tvSinglePrice = holder.getView(R.id.tv_price);
                 TextView tvStoreType = holder.getView(R.id.tv_store_type);
 
@@ -237,8 +236,6 @@ public class GoodsListActivity extends BaseAppcompatActivity {
                 //商品名字
                 tvProductName.setText(productEntity.getGoods_goods().getName());
 
-                //商品描述
-                tvDescribe.setText(productEntity.getGoods_goods().getDescribe());
                 //商品单价
                 tvSinglePrice.setText(SpannableUtil.setSizeSpan(rmb + productEntity.getPrice_m(), 0, 1, 0.8f));
 
@@ -311,7 +308,6 @@ public class GoodsListActivity extends BaseAppcompatActivity {
 
                     @Override
                     public void onSuccess(String result) {
-                        Log.d(TAG, "onSuccess() type:" + type + ",result:" + result);
                         stopRefreshAndLoadMore();
                         if (result != null) {
                             com.alibaba.fastjson.JSONObject obj = JSON.parseObject(result);

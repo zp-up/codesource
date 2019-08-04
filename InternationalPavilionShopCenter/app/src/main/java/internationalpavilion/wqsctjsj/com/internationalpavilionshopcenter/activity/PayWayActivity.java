@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.alipay.sdk.app.PayTask;
 import com.chrisjason.baseui.ui.BaseAppcompatActivity;
@@ -77,7 +78,7 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
                     String resultStatus = payResult.getResultStatus();
                     // 判断resultStatus 为9000则代表支付成功
                     if (TextUtils.equals(resultStatus, "9000")) {
-                        toPayResult();
+                        getPayResult();
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
                         ToastUtils.show(PayWayActivity.this, "支付失败:" + resultInfo);
@@ -131,7 +132,7 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
     public void onEvent(WxEvent event) {
         if (event != null) {
             if (event.getCode() == 1) {// 支付成功
-                toPayResult();
+                getPayResult();
             }
         }
     }
@@ -204,7 +205,7 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
                 public void run() {
                     commonPresenter.getCommonGoodsData(params, PayWayActivity.this);
                 }
-            },800);
+            }, 800);
 
         } catch (Exception e) {
             Log.e(TAG, "selectPayWay() occur an exception!", e);
@@ -268,13 +269,15 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
                     }
                 } else if (flag == 4) {
                     JSONObject orderInfoJSON = jsonObject.getJSONObject("data");
-                    // 后台支付结果校验
-                    if ("10000".equals(orderInfoJSON.getString("code"))) { // 支付成功
+                    String msg = orderInfoJSON.getString("msg");
+                    if(msg.equals("支付成功")){
                         toPayResult();
-                        // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
                         ToastUtils.show(PayWayActivity.this, "支付成功");
-                    } else {
-                        Log.e(TAG, "background pay result is failed! result:" + result);
+                    }else {
+                        Toast.makeText(this, "订单状态或有延迟，请稍后查询", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(this,MainActivity.class);
+                        startActivity(intent);
+                        finish();
                     }
                 }
             }
@@ -367,9 +370,8 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
      * 跳转支付结果
      */
     private void toPayResult() {
-
         Intent intent = new Intent(PayWayActivity.this, PayResultActivity.class);
-        intent.putExtra("orderId",orderId);
+        intent.putExtra("orderId", orderId);
         startActivity(intent);
         finish();
     }

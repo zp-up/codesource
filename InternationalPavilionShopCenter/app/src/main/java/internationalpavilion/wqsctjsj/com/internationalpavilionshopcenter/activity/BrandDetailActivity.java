@@ -124,6 +124,7 @@ public class BrandDetailActivity extends BaseAppcompatActivity implements OnBran
 
 
     private ArrayList<HomeBondedGoodsBean> data = new ArrayList<>();
+    private ArrayList<HomeBondedGoodsBean> hotProducts;//热门商品
     private BondedGoodsListAdapter adapter;
     private int screenWidth;
     private int currentPosition = 1;
@@ -599,6 +600,13 @@ public class BrandDetailActivity extends BaseAppcompatActivity implements OnBran
     }
 
     private void initHotGoods() {
+        //热门商品只需要初始化一次
+        if(hotProducts!=null){
+            return;
+        }
+
+        hotProducts = new ArrayList<>();
+
         llGoodsContainer.removeAllViews();
         try {
             for (int i = 0; i < 6 && i < data.size(); i++) {

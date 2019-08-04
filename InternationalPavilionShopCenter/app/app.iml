@@ -175,5 +175,6 @@
     <orderEntry type="library" name="Gradle: com.yanzhenjie:album:2.0.2@aar" level="project" />
     <orderEntry type="module" module-name="baseui" />
     <orderEntry type="module" module-name="baseui" />
+    <orderEntry type="module" module-name="baseui" />
   </component>
 </module>

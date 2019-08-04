@@ -184,16 +184,15 @@ public class OrderDetailActivity extends BaseAppcompatActivity implements OnComm
                             orderGoodsBeans.add(orderGoodsBean);
                         }
                     }
-                    if (data.has("store") && data.get("store") != null &&
-                            data.get("store").toString() != "null" && data.getJSONObject("store") != null) {
+                    if (data.has("address") && data.get("address") != null && data.get("address").toString() != "null") {
                         AddressBean addressBean = new AddressBean();
-                        addressBean.setId(data.getJSONObject("store").getInt("id"));
-                        addressBean.setReceiveName(data.getJSONObject("store").getString("name"));
-                        addressBean.setReceivePhone(data.getJSONObject("store").getString("telphone"));
-                        addressBean.setDetailPlace(data.getJSONObject("store").getString("address"));
-                        addressBean.setProvince(data.getJSONObject("store").getString("province"));
-                        addressBean.setCity(data.getJSONObject("store").getString("city"));
-                        addressBean.setArea(data.getJSONObject("store").getString("area"));
+                        addressBean.setId(data.getJSONObject("address").getInt("id"));
+                        addressBean.setReceiveName(data.getJSONObject("address").getString("name"));
+                        addressBean.setReceivePhone(data.getJSONObject("address").getString("telphone"));
+                        addressBean.setDetailPlace(data.getJSONObject("address").getString("address"));
+                        addressBean.setProvince(data.getJSONObject("address").getString("province"));
+                        addressBean.setCity(data.getJSONObject("address").getString("city"));
+                        addressBean.setArea(data.getJSONObject("address").getString("area"));
                         orderRootBean.setAddressBean(addressBean);
                     }
                     orderRootBean.setGoodsBeans(orderGoodsBeans);

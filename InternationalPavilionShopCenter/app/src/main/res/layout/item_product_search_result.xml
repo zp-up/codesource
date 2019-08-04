@@ -19,8 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
-            android:scaleType="fitXY"
-            tools:src="@drawable/bg_home_lay10_1" />
+            android:scaleType="fitCenter"
+            android:src="@drawable/icon_no_image" />
 
         <TextView
             android:id="@+id/tv_store_type"
