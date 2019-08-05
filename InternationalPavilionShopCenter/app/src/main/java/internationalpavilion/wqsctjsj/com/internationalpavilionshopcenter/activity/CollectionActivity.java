@@ -76,7 +76,7 @@ public class CollectionActivity extends BaseAppcompatActivity implements OnCommo
     private void initData() {
         RequestParams params = new RequestParams(MainUrls.collectionGoodsListUrl);
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
-        if(((IPSCApplication) getApplication()).getUserInfo()!=null){
+        if (((IPSCApplication) getApplication()).getUserInfo() != null) {
             params.addBodyParameter("user", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
         }
         params.addBodyParameter("page", pageIndex + "");
@@ -141,7 +141,7 @@ public class CollectionActivity extends BaseAppcompatActivity implements OnCommo
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");
                 int state = jsonObject.getInt("state");
-                if (code == 0 && state == 0){
+                if (code == 0 && state == 0) {
                     if (jsonObject.has("data")) {
                         JSONArray data = jsonObject.getJSONArray("data");
                         if (pageIndex == 1) {
@@ -158,8 +158,11 @@ public class CollectionActivity extends BaseAppcompatActivity implements OnCommo
                                 String baseAreaName = data.getJSONObject(i).getJSONObject("goods_goods").getString("base_area").equals("0") ? "国内" : data.getJSONObject(i).getJSONObject("goods_goods").getJSONObject("base_area").getString("name");
                                 double price = data.getJSONObject(i).getDouble("price");
 
-                                String imgUrl = data.getJSONObject(i).getJSONObject("goods_goods").getString("img");
-
+                                String imgUrl = "";
+                                if (data.getJSONObject(i).getJSONObject("goods_goods").getJSONArray("img") != null &&
+                                        data.getJSONObject(i).getJSONObject("goods_goods").getJSONArray("img").length() > 0) {
+                                    imgUrl = data.getJSONObject(i).getJSONObject("goods_goods").getJSONArray("img").getString(0);
+                                }
 
                                 bean.setGoodsId(id);
                                 bean.setGoodsName(name);
@@ -186,7 +189,7 @@ public class CollectionActivity extends BaseAppcompatActivity implements OnCommo
                         }
                     }
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
