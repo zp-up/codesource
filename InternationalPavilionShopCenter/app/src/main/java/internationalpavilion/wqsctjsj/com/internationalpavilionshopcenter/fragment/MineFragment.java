@@ -309,8 +309,6 @@ public class MineFragment extends Fragment implements OnMineDataCallBack {
 //                    Intent intentToFriends = new Intent(getActivity(), FriendsActivity.class);
 //                    startActivity(intentToFriends);
                     ToastUtils.show(getContext(), "暂未开通！");
-                    BaseDialog
-
 
                 } else {
                     if (getActivity() != null) {

@@ -13,7 +13,8 @@ public class OrderRootBean {
     private String orderNumber;//订单编号
     private String status;//交易状态
     private int state;
-    private int count;
+    private int count;//种
+    private int number;//件
     private int type;
     private String afterSaleState;//售后状态
     private String refund_goods;//退货状态
@@ -32,6 +33,14 @@ public class OrderRootBean {
     private AddressBean addressBean;
     private double postPrice;//运费
     private double weight;
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
 
     public String getStoreName() {
         return storeName;

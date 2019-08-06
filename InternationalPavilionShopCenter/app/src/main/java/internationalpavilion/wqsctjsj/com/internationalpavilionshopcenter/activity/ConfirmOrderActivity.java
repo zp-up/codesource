@@ -254,6 +254,7 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
                 orderRootBean.setPostPrice(data.getDouble("total_post"));
                 orderRootBean.setWeight(data.getDouble("weight"));
                 orderRootBean.setCount(data.getInt("count"));
+                orderRootBean.setNumber(data.getInt("number"));
                 List<OrderGoodsBean> orderGoodsBeans = new ArrayList<>();
                 if (data.has("order_orderlist") && data.getJSONArray("order_orderlist") != null && data.getJSONArray("order_orderlist").length() != 0) {
                     JSONArray list = data.getJSONArray("order_orderlist");
@@ -380,7 +381,7 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
 
         tv_storage.setText(orderRootBean.getStoreName());
         tv_goods_weight.setText(orderRootBean.getWeight()+"KG");
-        tv_goods_count.setText("共"+orderRootBean.getCount()+"件商品");
+        tv_goods_count.setText("共"+orderRootBean.getCount()+"件"+orderRootBean.getNumber()+"件商品");
         tv_order_code.setText(orderRootBean.getOrderNumber());
         tv_order_time.setText(orderRootBean.getCreate_time());
     }
