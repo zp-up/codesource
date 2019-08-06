@@ -63,7 +63,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         if (data.get(position).getCartGoodsName() == null || data.get(position).getCartGoodsName().isEmpty()) {
             ((View) holder.itemCarts.getParent()).setVisibility(View.GONE);
         }
-        holder.itemCarts.setText(data.get(position).getCartGoodsName());
+        holder.itemCarts.setText(data.get(position).getStoreType());
         holder.cartContentLinearLayout.removeAllViews();
         holder.tvStoreGoodsTotalPrice.setText("￥" + data.get(position).getTotalPrice());
         for (int i = 0; i < goodsList.size(); i++) {

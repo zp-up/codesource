@@ -44,7 +44,7 @@
                 android:layout_marginRight="@dimen/x6"
                 android:layout_marginLeft="@dimen/x6"
                 android:layout_gravity="center_vertical"
-                android:background="#dddddd"
+                android:background="@null"
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/x12"
                 android:layout_width="match_parent"

@@ -33,6 +33,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.application.IPSCApplication;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.eventBusBean.MainSwitchEvent;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.eventBusBean.WxEvent;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp.CommonGoodsImp;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.CommonDataInterface;
@@ -238,6 +239,8 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
             JSONObject jsonObject = new JSONObject(result);
             int code = jsonObject.getInt("code");
             int state = jsonObject.getInt("state");
+            String msg = jsonObject.getString("msg");
+
             if (code == 0 && state == 0) {
                 if (flag == 1) {
                     JSONArray finpaydata = jsonObject.getJSONObject("data").getJSONArray("finpaydata");
@@ -268,15 +271,18 @@ public class PayWayActivity extends BaseAppcompatActivity implements OnCommonGoo
                         payWithWechat(orderInfo);
                     }
                 } else if (flag == 4) {
-                    JSONObject orderInfoJSON = jsonObject.getJSONObject("data");
-                    String msg = orderInfoJSON.getString("msg");
+
                     if(msg.equals("支付成功")){
                         toPayResult();
                         ToastUtils.show(PayWayActivity.this, "支付成功");
                     }else {
                         Toast.makeText(this, "订单状态或有延迟，请稍后查询", Toast.LENGTH_SHORT).show();
+
+                        EventBus.getDefault().post(new MainSwitchEvent(2));
                         Intent intent = new Intent(this,MainActivity.class);
                         startActivity(intent);
+                        finish();
+
                         finish();
                     }
                 }

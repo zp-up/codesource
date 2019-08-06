@@ -265,11 +265,11 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
             llGoodsTagContainer.addView(view);
         }
         if (TextUtils.isEmpty(goodsBean.getData().getGoods_goods().getGoods_brand().getName())) {
-            Glide.with(GoodsDetailActivity.this).load(goodsBean.getData().getGoods_goods().getGoods_brand().getLogo()).apply(new RequestOptions().override(100, 100).placeholder(R.drawable.icon_no_image).placeholder(R.drawable.icon_no_image)).into(ivBrand);
+            Glide.with(GoodsDetailActivity.this).load(goodsBean.getData().getGoods_goods().getGoods_brand().getLogo()).apply(new RequestOptions().override(100, 100).placeholder(R.drawable.icon_no_image).error(R.drawable.ic_launcher_logo)).into(ivBrand);
             tvBrandName.setText("暂无品牌信息");
         } else {
 
-            Glide.with(GoodsDetailActivity.this).load(goodsBean.getData().getGoods_goods().getGoods_brand().getLogo()).apply(new RequestOptions().override(100, 100).placeholder(R.drawable.icon_no_image).placeholder(R.drawable.icon_no_image)).into(ivBrand);
+            Glide.with(GoodsDetailActivity.this).load(goodsBean.getData().getGoods_goods().getGoods_brand().getLogo()).apply(new RequestOptions().override(100, 100).placeholder(R.drawable.icon_no_image).error(R.drawable.ic_launcher_logo)).into(ivBrand);
             tvBrandName.setText(goodsBean.getData().getGoods_goods().getGoods_brand().getName());
         }
 

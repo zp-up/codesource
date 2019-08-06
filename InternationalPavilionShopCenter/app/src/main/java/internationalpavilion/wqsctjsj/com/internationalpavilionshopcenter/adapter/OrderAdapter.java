@@ -169,7 +169,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             case 2:
                 holder.tvGoodsCount2.setText("共" + (data.get(position).getGoodsBeans() != null ? data.get(position).getGoodsBeans().size() : 0) + "件商品");
                 holder.tvStoreType2.setText(data.get(position).getStoreType());
-                holder.tvOrderCreateTime2.setText("订单时间:" + data.get(position).getCreate_time());
+                holder.tvOrderCreateTime2.setText("订单编号:" + data.get(position).getOrderNumber());
                 holder.tvStatus.setText(data.get(position).getStatus());
                 if (data.get(position).getGoodsBeans() != null && data.get(position).getGoodsBeans().size() == 1) {
                     holder.tvGoodsName2.setText(data.get(position).getGoodsBeans().get(0).getGoodsName());

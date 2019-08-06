@@ -10,7 +10,7 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/civ_received_message_portrait"
         android:layout_marginLeft="10dp"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/ic_launcher_logo"
         android:layout_width="37dp"
         android:layout_height="37dp" />
     <LinearLayout

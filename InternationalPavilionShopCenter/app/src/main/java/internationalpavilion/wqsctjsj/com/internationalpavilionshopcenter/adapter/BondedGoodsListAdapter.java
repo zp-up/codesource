@@ -71,7 +71,7 @@ public class BondedGoodsListAdapter extends RecyclerView.Adapter<BondedGoodsList
         holder.llClickParent.setLayoutParams(layoutParamsP);
 
         final HomeBondedGoodsBean goodsBean = data.get(position);
-        Glide.with(context).load(goodsBean.getGoodsPic()).apply(new RequestOptions().placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher)).into(holder.ivGoodsPic);
+        Glide.with(context).load(goodsBean.getGoodsPic()).apply(new RequestOptions().placeholder(R.drawable.icon_no_image).error(R.drawable.icon_no_image)).into(holder.ivGoodsPic);
         holder.tvGoodsName.setText(goodsBean.getGoodsName());
         holder.tvGoodsPrice.setText("￥" + new DecimalFormat("#######0.00").format(goodsBean.getGoodsPrice()));
         holder.tvBrandArea.setText(goodsBean.getBrandName());

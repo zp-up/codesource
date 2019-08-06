@@ -44,7 +44,7 @@ public class GoodsPropsSelectPop implements View.OnClickListener {
     private GoodsDetailRootBean goodsBean;
     private internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.LinearLayout llStorageContainer;
     private TextView tvAdd, tvSub;
-    private EditText cetNum;
+    private TextView cetNum;
 
 //    private TextView tvAddGoodsToCart;
 
@@ -182,6 +182,13 @@ public class GoodsPropsSelectPop implements View.OnClickListener {
         tvSub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if(goodsBean.getData().getGoods_goods().getNum() ==1){
+
+                    Toast.makeText(context, "该商品数量不能再减了哦", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 //减
                 if (goodsBean.getData().getGoods_goods().getNum() > 1) {
                     goodsBean.getData().getGoods_goods().setNum(goodsBean.getData().getGoods_goods().getNum() - 1);
@@ -331,8 +338,8 @@ public class GoodsPropsSelectPop implements View.OnClickListener {
 
     private void initGoodsInfo(GoodsDetailRootBean goodsBean) {
         try {
-            Glide.with(context).load(goodsBean.getData().getGoods_goods().getImg()).apply(new RequestOptions().placeholder(R.drawable.icon_no_image).error(R.drawable.icon_no_image).override(200, 200)).into(ivGoodsPic);
-            tvGoodsName.setText(goodsBean.getData().getGoods_goods().getName());
+            Glide.with(context).load(goodsBean.getData().getGoods_goods().getGoods_temp().getImg().get(0)).apply(new RequestOptions().placeholder(R.drawable.icon_no_image).error(R.drawable.icon_no_image).override(200, 200)).into(ivGoodsPic);
+            tvGoodsName.setText(goodsBean.getData().getGoods_goods().getGoods_temp().getName());
             tvGoodsPrice.setText("" + goodsBean.getData().getPrice());
             tvSelectedGoodsSpec.setText("已选:" + goodsBean.getData().getGoods_goods().getSpec());
         } catch (Exception e) {

@@ -71,6 +71,18 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
     TextView tvDiscount;
     @BindView(R.id.tv_to_true_name)
     TextView tvToTrueName;
+    @BindView(R.id.tv_storage)
+    TextView tv_storage;
+    @BindView(R.id.tv_goods_weight)
+    TextView tv_goods_weight;
+    @BindView(R.id.tv_goods_count)
+    TextView tv_goods_count;
+    @BindView(R.id.tv_order_code)
+    TextView tv_order_code;
+    @BindView(R.id.tv_order_time)
+    TextView tv_order_time;
+
+
     private int walletMoney = 0;
     private int setMoney = 0;
 
@@ -234,12 +246,14 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
                 orderRootBean.setRefund_time(data.has("refund_time") ? data.getLong("refund_time") : 0);
                 orderRootBean.setStatus(data.getString("status"));
                 orderRootBean.setStoreType(data.getJSONObject("store").getString("type"));
+                orderRootBean.setStoreName(data.getJSONObject("store").getString("name"));
                 orderRootBean.setPost(data.getString("post"));
                 orderRootBean.setTotal_tax(data.getDouble("total_tax"));
                 orderRootBean.setTotal_goods(data.getDouble("total_goods"));
                 orderRootBean.setTotal_total(data.getDouble("total_total"));
                 orderRootBean.setPostPrice(data.getDouble("total_post"));
                 orderRootBean.setWeight(data.getDouble("weight"));
+                orderRootBean.setCount(data.getInt("count"));
                 List<OrderGoodsBean> orderGoodsBeans = new ArrayList<>();
                 if (data.has("order_orderlist") && data.getJSONArray("order_orderlist") != null && data.getJSONArray("order_orderlist").length() != 0) {
                     JSONArray list = data.getJSONArray("order_orderlist");
@@ -363,6 +377,12 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
         tvBondedPrice.setText("￥" + orderRootBean.getTotal_tax());
         tvPayTotal.setText("应付:￥" + orderRootBean.getPay_total());
         tvPostPrice.setText("￥" + orderRootBean.getPostPrice());
+
+        tv_storage.setText(orderRootBean.getStoreName());
+        tv_goods_weight.setText(orderRootBean.getWeight()+"KG");
+        tv_goods_count.setText("共"+orderRootBean.getCount()+"件商品");
+        tv_order_code.setText(orderRootBean.getOrderNumber());
+        tv_order_time.setText(orderRootBean.getCreate_time());
     }
 
     @Override

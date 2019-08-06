@@ -18,7 +18,6 @@ import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.chrisjason.baseui.ui.BaseAppcompatActivity;
-import com.google.gson.Gson;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -310,6 +309,9 @@ public class MineFragment extends Fragment implements OnMineDataCallBack {
 //                    Intent intentToFriends = new Intent(getActivity(), FriendsActivity.class);
 //                    startActivity(intentToFriends);
                     ToastUtils.show(getContext(), "暂未开通！");
+                    BaseDialog
+
+
                 } else {
                     if (getActivity() != null) {
                         getActivity().startActivity(new Intent(getActivity(), LoginByPasswordActivity.class));

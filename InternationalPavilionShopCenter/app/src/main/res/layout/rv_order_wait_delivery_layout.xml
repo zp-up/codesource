@@ -178,7 +178,7 @@
                 android:background="@drawable/shape_of_verify_code_btn"
                 android:gravity="center"
                 android:layout_gravity="center_vertical"
-                android:text="再次购买"
+                android:text="退货"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/x12"
                 android:layout_marginLeft="@dimen/x15"

@@ -27,6 +27,17 @@ public class Data {
     private String update_time;
     private String create_time;
     private String error;
+    private String goods_goods;
+
+
+    public String getGoods_goods() {
+        return goods_goods;
+    }
+
+    public void setGoods_goods(String goods_goods) {
+        this.goods_goods = goods_goods;
+    }
+
     public void setId(int id) {
          this.id = id;
      }

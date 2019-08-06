@@ -600,12 +600,29 @@ public class ClassGoodsListActivity extends BaseAppcompatActivity implements OnB
                                 String description = data.getJSONObject(i).getJSONObject("goods_goods").getString("keyword");
                                 String baseAreaName = data.getJSONObject(i).getJSONObject("goods_goods").getString("base_area").equals("0") ? "国内" : data.getJSONObject(i).getJSONObject("goods_goods").getJSONObject("base_area").getString("name");
                                 double price = data.getJSONObject(i).getDouble("price");
-                                String goodsPic = data.getJSONObject(i).getJSONObject("goods_goods").getJSONArray("img").getString(0);
+
+                                JSONObject goods_goods = data.getJSONObject(i).getJSONObject("goods_goods");
+                                String imgUrl = "";
+                                if(goods_goods!=null){
+                                    Object o = goods_goods.get("img");
+                                    if(o!=null){
+                                        if(o instanceof String){
+                                            imgUrl = goods_goods.getString("img");
+                                        }else if(o instanceof JSONArray){
+                                            JSONArray imgArray = goods_goods.getJSONArray("img");
+                                            if(imgArray!=null && imgArray.length()>0){
+                                                imgUrl = imgArray.getString(0);
+                                            }
+                                        }
+                                    }
+                                }
+
+
                                 bean.setGoodsId(id);
                                 bean.setGoodsName(name);
                                 bean.setBrandName(baseAreaName);
                                 bean.setDescription(description);
-                                bean.setGoodsPic(goodsPic);
+                                bean.setGoodsPic(imgUrl);
                                 bean.setGoodsPrice(price);
                                 ClassGoodsListActivity.this.data.add(bean);
                             }

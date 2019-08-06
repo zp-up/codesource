@@ -44,7 +44,7 @@
         android:orientation="vertical"
         android:id="@+id/ll_header"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x75">
+        android:layout_height="@dimen/x70">
         <View
             android:id="@+id/view_status_bar"
             android:layout_width="match_parent"
@@ -53,7 +53,7 @@
 
             android:layout_width="match_parent"
             android:layout_height="@dimen/x45"
-            android:layout_marginTop="@dimen/x5">
+         >
 
             <RelativeLayout
                 android:id="@+id/rl_search_container"

@@ -21,6 +21,7 @@ public class OrderRootBean {
     private String refund_state;//退款状态
     private long refund_time;//退款时间
     private String storeType;//仓库类型
+    private String storeName;//仓库名
     private String create_time;//订单创建时间
     private double pay_total;//支付总额
     private List<OrderGoodsBean> goodsBeans;
@@ -31,6 +32,14 @@ public class OrderRootBean {
     private AddressBean addressBean;
     private double postPrice;//运费
     private double weight;
+
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
+    }
 
     public void setWeight(double weight) {
         this.weight = weight;
