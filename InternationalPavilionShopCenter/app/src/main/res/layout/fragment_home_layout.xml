@@ -29,31 +29,24 @@
 
         </android.support.v7.widget.RecyclerView>
 
-        <!--<com.scwang.smartrefresh.layout.footer.ClassicsFooter-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--app:srlAccentColor="@color/black"-->
-            <!--app:srlClassicsSpinnerStyle="FixedBehind"-->
-            <!--app:srlTextSizeTitle="15dp">-->
-
-        <!--</com.scwang.smartrefresh.layout.footer.ClassicsFooter>-->
 
 
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
     <LinearLayout
         android:orientation="vertical"
         android:id="@+id/ll_header"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x70">
-        <View
-            android:id="@+id/view_status_bar"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/fake_top"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/x25"></View>
+            android:layout_height="wrap_content" />
+
         <RelativeLayout
 
             android:layout_width="match_parent"
-            android:layout_height="@dimen/x45"
-         >
+            android:layout_height="wrap_content">
 
             <RelativeLayout
                 android:id="@+id/rl_search_container"
@@ -86,10 +79,10 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:visibility="gone"
+                android:visibility="visible"
                 android:id="@+id/rl_message_container"
-                android:layout_width="@dimen/x50"
-                android:layout_height="@dimen/x50"
+                android:layout_width="@dimen/x30"
+                android:layout_height="@dimen/x30"
                 android:layout_alignParentRight="true">
 
                 <ImageView
@@ -103,8 +96,8 @@
                 <TextView
                     android:layout_width="@dimen/x15"
                     android:layout_height="@dimen/x15"
-                    android:layout_marginLeft="@dimen/x13"
-                    android:layout_marginTop="@dimen/x10"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginTop="@dimen/x3"
                     android:background="@drawable/shape_of_notice_num"
                     android:gravity="center"
                     android:text="10"

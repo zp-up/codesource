@@ -183,7 +183,7 @@
                 android:textSize="@dimen/x12"
                 android:layout_marginLeft="@dimen/x15"
                 android:layout_centerVertical="true"
-                android:layout_width="@dimen/x90"
+                android:layout_width="@dimen/x80"
                 android:layout_height="@dimen/x30" />
         </RelativeLayout>
     </LinearLayout>

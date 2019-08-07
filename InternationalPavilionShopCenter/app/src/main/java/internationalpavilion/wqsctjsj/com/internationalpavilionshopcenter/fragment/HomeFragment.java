@@ -61,6 +61,7 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entity
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp.HomeDataImp;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.HomeDataInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.DimenUtil;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.LogUtil;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnHomeDataCallBack;
@@ -90,14 +91,15 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
     LinearLayout llHeader;
     @BindView(R.id.rl_search_container)
     RelativeLayout rlSearchContainer;
-    @BindView(R.id.view_status_bar)
-    View viewStatusBar;
+
     @BindView(R.id.refresh)
     SmartRefreshLayout srlContent;
     @BindView(R.id.tv_remind)
     TextView tvRemind;
     @BindView(R.id.return_top)
     ImageView ivTop;
+    @BindView(R.id.fake_top)
+    TextView fake_top;
 
     private HomeDataInterface homePresenter;
     private int pageIndex = 1;
@@ -110,6 +112,11 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
         unbinder = ButterKnife.bind(this, view);
         initRVL();
         homePresenter = new HomeDataImp();
+        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) fake_top.getLayoutParams();
+        if(lp!=null){
+            lp.height = DimenUtil.getStatusBarHeight(getActivity());
+            fake_top.setLayoutParams(lp);
+        }
         return view;
     }
 
@@ -276,11 +283,11 @@ public class HomeFragment extends Fragment implements OnHomeDataCallBack {
                 if (trueY > 145) {
                     llHeader.setBackgroundColor(Color.parseColor("#ffffff"));
                     rlSearchContainer.setBackgroundResource(R.drawable.shape_of_search_cotainer_gray);
-                    viewStatusBar.setBackgroundColor(Color.parseColor("#c0c0c0"));
+                    fake_top.setBackgroundColor(Color.parseColor("#ffffff"));
                 } else {
                     llHeader.setBackgroundColor(Color.parseColor("#00ffffff"));
                     rlSearchContainer.setBackgroundResource(R.drawable.shape_of_search_cotainer);
-                    viewStatusBar.setBackgroundColor(Color.parseColor("#00ffffff"));
+                    fake_top.setBackgroundColor(Color.parseColor("#00ffffff"));
                 }
                 if (layoutManager.findFirstVisibleItemPosition() >= 14) {
                     ivTop.setVisibility(View.VISIBLE);

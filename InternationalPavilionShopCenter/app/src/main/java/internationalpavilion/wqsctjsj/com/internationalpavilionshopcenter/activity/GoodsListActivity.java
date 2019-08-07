@@ -866,7 +866,7 @@ public class GoodsListActivity extends BaseAppcompatActivity {
 
     private void initView() {
         if (1 == type) {
-            mTvTitle.setText("新品列表");
+            mTvTitle.setText("新品荟");
         } else if (2 == type) {
             mTvTitle.setText("折扣商品");
         }

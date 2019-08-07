@@ -100,7 +100,12 @@
                 android:textColor="@color/gray"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-            <TextView
+
+            <com.shengqf.view.round.RoundTextView
+                app:rv_cornerRadius="6dp"
+                android:layout_marginRight="35dp"
+                android:layout_marginLeft="35dp"
+                app:rv_backgroundColor="@color/red"
                 android:id="@+id/tv_submit_after_sale_info"
                 android:layout_marginBottom="@dimen/x40"
                 android:text="提交"
@@ -110,8 +115,8 @@
                 android:layout_marginTop="@dimen/x40"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/red"
-                android:layout_width="@dimen/x80"
-                android:layout_height="@dimen/x40" />
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x30" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

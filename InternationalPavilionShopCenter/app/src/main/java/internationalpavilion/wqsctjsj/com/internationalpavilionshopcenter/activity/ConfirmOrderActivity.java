@@ -83,8 +83,8 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
     TextView tv_order_time;
 
 
-    private int walletMoney = 0;
-    private int setMoney = 0;
+    private float walletMoney = 0;
+    private float setMoney = 0;
 
 
     @Override
@@ -134,6 +134,7 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
                 Intent intent2 = new Intent(ConfirmOrderActivity.this, PayWayActivity.class);
                 intent2.putExtra("oderId", orderId);
                 startActivity(intent2);
+                finish();
                 //checkOrderInfo();
                 break;
             case R.id.rl_wallet_add:
@@ -149,7 +150,7 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
                     }
 
                     @Override
-                    public void onProgress(int progress) {
+                    public void onProgress(float progress) {
                         setWalletToOrder(progress);
                     }
                 }, walletMoney);
@@ -169,7 +170,7 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
         confirmPresenter.checkPayInfo(params, this);
     }
 
-    private void setWalletToOrder(int progress) {
+    private void setWalletToOrder(float progress) {
         setMoney = progress;
         RequestParams params = new RequestParams(MainUrls.setWalletMoneyToOrderUrl);
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
@@ -180,9 +181,7 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
 
     @Subscribe
     public void onSub(AddressUpdateEvent event) {
-        Log.e(TAG, "hah");
         if (event != null) {
-            Log.e(TAG, "hah:" + event.getOp());
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -214,7 +213,6 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
 
     @Override
     public void onError(String error) {
-        Log.e(TAG, "ConfirmOrderActivity->访问网络错误:" + error);
     }
 
     @Override
@@ -297,7 +295,13 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
             int state = jsonObject.getInt("state");
             if (code == 0 && state == 0) {
                 JSONObject data = jsonObject.getJSONObject("data");
-                walletMoney = (int) Math.floor(data.getDouble("money"));
+                String str= data.getString("可用");
+                walletMoney = Float.valueOf(str);
+                if(walletMoney<=0){
+                    tvDiscount.setText("暂无抵扣");
+                }else {
+                    tvDiscount.setText("可抵扣");
+                }
             }
         } catch (Exception e) {
             LogUtil.e(TAG, "onWalletDataLoaded()", e);
@@ -323,7 +327,6 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
     public void onCheckInfoCallBack(String result) {
 
         try {
-            Log.e(TAG, "checkInfo:" + result);
             JSONObject jsonObject = new JSONObject(result);
             int code = jsonObject.getInt("code");
             int state = jsonObject.getInt("state");

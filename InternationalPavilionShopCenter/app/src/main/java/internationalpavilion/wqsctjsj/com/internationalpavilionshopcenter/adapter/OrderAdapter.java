@@ -97,7 +97,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                 holder.tvGoodsCount1.setText("共" + (data.get(position).getGoodsBeans() != null ? data.get(position).getGoodsBeans().size() : 0) + "种商品");
                 holder.tvStoreType1.setText(data.get(position).getStoreType());
                 holder.tvStatus.setText(data.get(position).getStatus());
-//                holder.tvOrderCreateTime1.setText("订单时间:" + data.get(position).getCreate_time());
                 holder.tvOrderCreateTime1.setText("订单编号:" + data.get(position).getOrderNumber());
                 if (data.get(position).getGoodsBeans() != null && data.get(position).getGoodsBeans().size() == 1) {
                     holder.tvGoodsName1.setText(data.get(position).getGoodsBeans().get(0).getGoodsName());
@@ -215,85 +214,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                     @Override
                     public void onClick(View view) {
                         ((OrderActivity) context).showRequestAfterSale(data.get(position).getId());
-//                        AfterSaleSelectPop pop = new AfterSaleSelectPop(context);
-//                        pop.show(((OrderActivity) context).llParent, new AfterSaleSelectPop.ItemClick() {
-//                            @Override
-//                            public void onClick(int type, double rentPrice, double buyPrice) {
-//                                switch (type) {
-//                                    case 1:
-//                                        final SweetAlertDialog dialog = new SweetAlertDialog(context, WARNING_TYPE);
-//                                        dialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-//                                            @Override
-//                                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-//                                                dialog.dismissWithAnimation();
-//                                                ((OrderActivity) context).backMoneyOnly(data.get(position).getId());
-//                                            }
-//                                        });
-//                                        dialog.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-//                                            @Override
-//                                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-//                                                dialog.dismissWithAnimation();
-//                                            }
-//                                        });
-//                                        dialog.showCancelButton(true);
-//                                        dialog.setCancelText("取消");
-//                                        dialog.setConfirmText("确定");
-//                                        dialog.setTitleText("注意");
-//                                        dialog.setContentText("当前订单状态只能申请退款，是否要进行退款操作?");
-//                                        dialog.setCancelable(false);
-//                                        dialog.show();
-//                                        break;
-//                                    case 2:
-//                                        final SweetAlertDialog dialog1 = new SweetAlertDialog(context, WARNING_TYPE);
-//                                        dialog1.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-//                                            @Override
-//                                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-//                                                dialog1.dismissWithAnimation();
-//                                                ((OrderActivity) context).backMoneyOnly(data.get(position).getId());
-//                                            }
-//                                        });
-//                                        dialog1.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-//                                            @Override
-//                                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-//                                                dialog1.dismissWithAnimation();
-//                                            }
-//                                        });
-//                                        dialog1.showCancelButton(true);
-//                                        dialog1.setCancelText("取消");
-//                                        dialog1.setConfirmText("确定");
-//                                        dialog1.setTitleText("注意");
-//                                        dialog1.setContentText("当前订单状态只能申请退款，是否要进行退款操作?");
-//                                        dialog1.setCancelable(false);
-//                                        dialog1.show();
-//                                        break;
-//                                    case 3:
-//                                        final SweetAlertDialog dialog2 = new SweetAlertDialog(context, WARNING_TYPE);
-//                                        dialog2.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-//                                            @Override
-//                                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-//                                                dialog2.dismissWithAnimation();
-//                                                ((OrderActivity) context).backMoneyOnly(data.get(position).getId());
-//                                            }
-//                                        });
-//                                        dialog2.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-//                                            @Override
-//                                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-//                                                dialog2.dismissWithAnimation();
-//                                            }
-//                                        });
-//                                        dialog2.showCancelButton(true);
-//                                        dialog2.setCancelText("取消");
-//                                        dialog2.setConfirmText("确定");
-//                                        dialog2.setTitleText("注意");
-//                                        dialog2.setContentText("是否要进行退款操作?");
-//                                        dialog2.setCancelable(false);
-//                                        dialog2.show();
-//                                        break;
-//                                }
-//                            }
-//                        });
                     }
                 });
+                //待发货的再次购买改成退货
                 holder.tvBuyAgain.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -302,7 +225,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                             @Override
                             public void onClick(SweetAlertDialog sweetAlertDialog) {
                                 dialog.dismissWithAnimation();
-                                ((OrderActivity) context).buyAgain(data.get(position).getId());
+                                Intent intent = new Intent(context, AfterSaleFormSubmitActivity.class);
+                                intent.putExtra("orderId", data.get(position).getId());
+                                context.startActivity(intent);
                             }
                         });
                         dialog.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
@@ -315,7 +240,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                         dialog.setCancelText("取消");
                         dialog.setConfirmText("确定");
                         dialog.setTitleText("温馨提示");
-                        dialog.setContentText("是否要进行再次购买?");
+                        dialog.setContentText("是否要申请售后?");
                         dialog.setCancelable(false);
                         dialog.show();
                     }
@@ -325,7 +250,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                 holder.tvGoodsCount3.setText("共" + (data.get(position).getGoodsBeans() != null ? data.get(position).getGoodsBeans().size() : 0) + "件商品");
                 holder.tvStoreType3.setText(data.get(position).getStoreType());
                 holder.tvStatus.setText(data.get(position).getStatus());
-//                holder.tvOrderCreateTime3.setText("订单时间:" + data.get(position).getCreate_time());
                 holder.tvOrderCreateTime3.setText("订单编号:" + data.get(position).getOrderNumber());
                 if (data.get(position).getGoodsBeans() != null && data.get(position).getGoodsBeans().size() == 1) {
                     holder.tvGoodsName3.setText(data.get(position).getGoodsBeans().get(0).getGoodsName());
@@ -396,11 +320,43 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                         dialog.setCancelText("取消");
                         dialog.setConfirmText("确定");
                         dialog.setTitleText("温馨提示");
-                        dialog.setContentText("是否确认收货?");
+                        dialog.setContentText("亲~确认收货?");
                         dialog.setCancelable(false);
                         dialog.show();
                     }
                 });
+
+                holder.tv_buy_refund.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final SweetAlertDialog dialog = new SweetAlertDialog(context, WARNING_TYPE);
+                        dialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                dialog.dismissWithAnimation();
+                                Intent intent = new Intent(context, AfterSaleFormSubmitActivity.class);
+                                intent.putExtra("orderId", data.get(position).getId());
+                                context.startActivity(intent);
+                            }
+                        });
+                        dialog.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                dialog.dismissWithAnimation();
+                            }
+                        });
+                        dialog.showCancelButton(true);
+                        dialog.setCancelText("取消");
+                        dialog.setConfirmText("确定");
+                        dialog.setTitleText("温馨提示");
+                        dialog.setContentText("是否要申请售后?");
+                        dialog.setCancelable(false);
+                        dialog.show();
+                    }
+                });
+
+
+
                 break;
             case 4:
                 holder.tvToEvaluate.setOnClickListener(new View.OnClickListener() {
@@ -414,7 +370,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                 holder.tvGoodsCount4.setText("共" + (data.get(position).getGoodsBeans() != null ? data.get(position).getGoodsBeans().size() : 0) + "件商品");
                 holder.tvStoreType4.setText(data.get(position).getStoreType());
                 holder.tvStatus.setText(data.get(position).getStatus());
-//                holder.tvOrderCreateTime4.setText("订单时间:" + data.get(position).getCreate_time());
                 holder.tvOrderCreateTime4.setText("订单编号:" + data.get(position).getOrderNumber());
                 if (data.get(position).getGoodsBeans() != null && data.get(position).getGoodsBeans().size() == 1) {
                     holder.tvGoodsName4.setText(data.get(position).getGoodsBeans().get(0).getGoodsName());
@@ -460,25 +415,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                     @Override
                     public void onClick(View view) {
                         ((OrderActivity) context).showRequestAfterSale(data.get(position).getId());
-//                        AfterSaleSelectPop pop = new AfterSaleSelectPop(context);
-//                        pop.show(((OrderActivity) context).llParent, new AfterSaleSelectPop.ItemClick() {
-//                            @Override
-//                            public void onClick(int type, double rentPrice, double buyPrice) {
-//                                switch (type) {
-//                                    case 1:
-//                                        Intent intent = new Intent(context, ApplyAfterSaleActivity.class);
-//                                        intent.putExtra("orderId", data.get(position).getId());
-//                                        context.startActivity(intent);
-//                                        break;
-//                                    case 2:
-//
-//                                        break;
-//                                    case 3:
-//
-//                                        break;
-//                                }
-//                            }
-//                        });
+
                     }
                 });
                 break;
@@ -774,6 +711,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         TextView tvStoreType3;
         TextView tvGoodsCount3;
         TextView tvConfirmReveived;
+        TextView tv_buy_refund;
         //type = 4
         HorizontalScrollView hsvParent4;
         LinearLayout llGoodsContainer4;
@@ -851,6 +789,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                     tvStoreType3 = item.findViewById(R.id.tv_store_type);
                     tvGoodsCount3 = item.findViewById(R.id.tv_goods_count);
                     tvConfirmReveived = item.findViewById(R.id.tv_confirm_received);
+                    tv_buy_refund = item.findViewById(R.id.tv_buy_refund);
                     break;
                 case 4:
                     tvStatus = item.findViewById(R.id.tv_status);

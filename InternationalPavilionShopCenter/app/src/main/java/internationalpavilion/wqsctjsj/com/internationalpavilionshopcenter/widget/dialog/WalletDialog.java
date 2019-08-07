@@ -2,11 +2,14 @@ package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widge
 
 import android.app.Dialog;
 import android.content.Context;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import com.xw.repo.BubbleSeekBar;
 
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
 
@@ -38,39 +41,39 @@ public class WalletDialog extends Dialog implements View.OnClickListener {
         this.context = context;
     }
 
+    private float amount = 0;
     /**
      * Show  the dialog
      *
      * @param clickListener 点击回调方法
      */
-    public void showDialog(OnButtonClickListener clickListener, int canUse) {
+    public void showDialog(OnButtonClickListener clickListener, float canUse) {
         this.mClickListener = clickListener;
         View contentView = LayoutInflater.from(context).inflate(R.layout.dialog_wallet_layout, null);
         TextView tvNegative = contentView.findViewById(R.id.tv_negative_button);
         TextView tvCanUseMoney = contentView.findViewById(R.id.tv_can_use_money);
         tvCanUseMoney.setText("可用：￥" + canUse + " 元");
         final TextView tvUsedMoney = contentView.findViewById(R.id.tv_used_money);
-        SeekBar seekBar = contentView.findViewById(R.id.seek_bar);
-        seekBar.setMax(canUse);
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        BubbleSeekBar seekBar = contentView.findViewById(R.id.seek_bar);
+        seekBar.getConfigBuilder().max(canUse).build();
+        seekBar.setOnProgressChangedListener(new BubbleSeekBar.OnProgressChangedListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                tvUsedMoney.setText("已选：￥" + progress + " 元");
-                if (mClickListener != null) {
-                    mClickListener.onProgress(progress);
-                }
+            public void onProgressChanged(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat, boolean fromUser) {
+                tvUsedMoney.setText("已选：￥" + progressFloat + " 元");
+                amount= progressFloat;
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+            public void getProgressOnActionUp(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat) {
 
             }
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+            public void getProgressOnFinally(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat, boolean fromUser) {
 
             }
         });
+
         tvNegative.setOnClickListener(this);
         setContentView(contentView);
         dialog = this;
@@ -103,6 +106,14 @@ public class WalletDialog extends Dialog implements View.OnClickListener {
          */
         void onNegativeClick();
 
-        void onProgress(int progress);
+        void onProgress(float progress);
+    }
+
+    @Override
+    public void dismiss() {
+        super.dismiss();
+        if(mClickListener!=null){
+            mClickListener.onProgress(amount);
+        }
     }
 }
