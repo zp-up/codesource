@@ -677,7 +677,7 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
                                     View view = LayoutInflater.from(this).inflate(R.layout.rv_item_order_image_view, null);
                                     ImageView ivEvaluatePic = view.findViewById(R.id.iv_evaluate_pic);
                                     Glide.with(GoodsDetailActivity.this).load(imagesList.get(i).getUrl())
-                                            .apply(new RequestOptions().placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher))
+                                            .apply(new RequestOptions().placeholder(R.drawable.icon_no_image).error(R.drawable.ic_launcher_logo))
                                             .into(ivEvaluatePic);
                                     llEvaluatePicContainer.addView(view);
                                 }
