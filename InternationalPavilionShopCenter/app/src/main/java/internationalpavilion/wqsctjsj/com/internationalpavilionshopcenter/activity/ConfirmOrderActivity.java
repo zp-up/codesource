@@ -295,7 +295,7 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
             int state = jsonObject.getInt("state");
             if (code == 0 && state == 0) {
                 JSONObject data = jsonObject.getJSONObject("data");
-                String str= data.getString("可用");
+                String str= data.getString("max");
                 walletMoney = Float.valueOf(str);
                 if(walletMoney<=0){
                     tvDiscount.setText("暂无抵扣");
