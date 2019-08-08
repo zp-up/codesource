@@ -91,7 +91,9 @@ public class WalletDialog extends Dialog implements View.OnClickListener {
                 if (dialog != null) {
                     dialog.dismiss();
                 }
-                mClickListener.onNegativeClick();
+                if(mClickListener!=null){
+                    mClickListener.onProgress(amount);
+                }
                 break;
         }
     }
@@ -112,8 +114,6 @@ public class WalletDialog extends Dialog implements View.OnClickListener {
     @Override
     public void dismiss() {
         super.dismiss();
-        if(mClickListener!=null){
-            mClickListener.onProgress(amount);
-        }
+
     }
 }
