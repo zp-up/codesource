@@ -41,10 +41,10 @@ public class MyBalanceActivity extends BaseAppcompatActivity implements OnCommon
         if (((IPSCApplication) getApplication()).getUserInfo() == null) {
             return;
         }
-        RequestParams params = new RequestParams(MainUrls.getUserInfoUrl);
+        RequestParams params = new RequestParams(MainUrls.getUserbalanceUrl);
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
         if(((IPSCApplication) getApplication()).getUserInfo()!=null){
-            params.addBodyParameter("id", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
+            params.addBodyParameter("user", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
         }
         commonPresenter.getCommonGoodsData(params, this);
     }
@@ -94,8 +94,9 @@ public class MyBalanceActivity extends BaseAppcompatActivity implements OnCommon
                 if (code == 0 && state == 1){
                     JSONObject data = jsonObject.getJSONObject("data");
                     if (data != null){
-                        double balance = data.getDouble("money");
-                        tvBalance.setText("￥"+new DecimalFormat("######0.00").format(balance));
+                        double balance1 = data.getDouble("可用");
+                        double balance2 = data.getDouble("充值可用");
+                        tvBalance.setText("￥"+new DecimalFormat("######0.00").format(balance1+balance2));
                     }
                 }
             }catch (Exception e){

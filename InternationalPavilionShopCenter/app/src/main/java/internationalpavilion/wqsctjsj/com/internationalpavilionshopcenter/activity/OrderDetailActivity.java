@@ -75,6 +75,9 @@ public class OrderDetailActivity extends BaseAppcompatActivity implements OnComm
     @BindView(R.id.tv_post_price)
     TextView tvPostPrice;
 
+    @BindView(R.id.tv_banlance)
+    TextView tv_banlance;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -244,6 +247,9 @@ public class OrderDetailActivity extends BaseAppcompatActivity implements OnComm
             tvPayTotal.setText("实付金额:￥" + orderRootBean.getPay_total());
             tvPostPrice.setText("运费:￥" + orderRootBean.getPostPrice());
             tvGoodsWeight.setText(orderRootBean.getWeight() + "KG");
+
+
+            tv_banlance.setText("零钱抵扣：");
         }
     }
 
