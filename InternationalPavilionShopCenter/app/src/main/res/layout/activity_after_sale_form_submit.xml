@@ -39,6 +39,12 @@
         android:background="@color/gainsboro"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x10"></View>
+
+
+
+
+
+
     <TextView
         android:layout_marginTop="@dimen/x10"
         android:layout_marginLeft="@dimen/x15"

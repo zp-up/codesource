@@ -172,6 +172,9 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
     @BindView(R.id.ll_goods_container)
     LinearLayout llEvaluatePicContainer;
 
+    @BindView(R.id.tv_cart_num)
+    TextView tv_cart_num;
+
     private ArrayList<Fragment> fgList = new ArrayList<>();
     private GoodsDetailInterface goodsDetailPresenter;
     private int goodsId = -1;
@@ -239,6 +242,14 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
         if (goodsBean == null) {
             return;
         }
+
+        //购物车数量
+        if(goodsBean.getData().getCartnumber()>0){
+            tv_cart_num.setVisibility(View.VISIBLE);
+            tv_cart_num.setText(goodsBean.getData().getCartnumber()+"");
+        }
+
+
         //商品信息数据
         tvGoodsName.setText(goodsBean.getData().getGoods_goods().getName());
         tvGoodsDescription.setText(goodsBean.getData().getGoods_goods().getDescribe());
@@ -352,6 +363,7 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
             ivCollection.setImageResource(R.mipmap.icon_mine_collection);
         }
     }
+
 
     @Override
     public int initLayout() {
@@ -934,6 +946,27 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
                     if (isBuyImmediately) {
                         openShoppingCar();
                     }
+
+                    int number = jsonObject.getJSONObject("data").getInt("number");
+
+                    int ori =0;
+                    if(!TextUtils.isEmpty(tv_cart_num.getText().toString())){
+                       ori = Integer.valueOf(tv_cart_num.getText().toString());
+                    }
+
+                    if(ori<0){
+                        ori=0;
+                    }
+
+
+                    if(ori + number>0){
+                        tv_cart_num.setVisibility(View.VISIBLE);
+                        tv_cart_num.setText((ori+number)+"");
+                    }else {
+                        tv_cart_num.setVisibility(View.GONE);
+                    }
+
+
                 } else {
                     ToastUtils.show(GoodsDetailActivity.this, "添加购物车失败:" + msg);
                 }

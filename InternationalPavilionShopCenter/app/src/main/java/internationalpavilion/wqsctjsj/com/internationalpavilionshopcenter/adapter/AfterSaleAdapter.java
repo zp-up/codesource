@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,16 +63,8 @@ public class AfterSaleAdapter extends RecyclerView.Adapter<AfterSaleAdapter.View
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = null;
-        switch (viewType) {
-            case NO_REFUND: // 无售后
-            case REFUNDIND: // 售后中
-            case REFUND_GOODS: //
-            case REFUND_MONEY:
-            case REFUND_DONE:
-                view = inflater.inflate(R.layout.rv_order_after_sale_layout, parent, false);
-                break;
-        }
+        View view = inflater.inflate(R.layout.rv_order_after_sale_layout, parent, false);
+
         return new ViewHolder(view, viewType);
     }
 
@@ -83,7 +76,9 @@ public class AfterSaleAdapter extends RecyclerView.Adapter<AfterSaleAdapter.View
         // 下面为不同状态共有的设置
         holder.tvGoodsCount.setText("共" + (rootBean.getGoodsBeans() != null ? rootBean.getGoodsBeans().size() : 0) + "种商品");
         holder.tvStoreType.setText(rootBean.getStoreType());
-        holder.tvOrderStatus.setText(rootBean.getStatus());
+        holder.tvOrderStatus.setText(rootBean.getAfterSaleState());
+
+
         holder.tvOrderSn.setText("订单编号:" + rootBean.getOrderNumber());
         if (rootBean.getGoodsBeans() != null && rootBean.getGoodsBeans().size() == 1) {
             holder.tvGoodsName.setText(rootBean.getGoodsBeans().get(0).getGoodsName());
@@ -120,33 +115,20 @@ public class AfterSaleAdapter extends RecyclerView.Adapter<AfterSaleAdapter.View
                 holder.llGoodsContainer.addView(view);
             }
         }
-//        if (rootBean.getStatus().contains("拼团")) {
-//            holder.tvTAG.setVisibility(View.VISIBLE);
-//        } else {
-//            holder.tvTAG.setVisibility(View.GONE);
-//        }
+
         holder.tvRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                showExpressAddress(position);
                 showBuyAgain(position);
             }
         });
 
-        switch (viewType) {
-            case NO_REFUND:// 售后单列表中应该不会出现这种未售后的单子
-                holder.tvLeft.setText("退货");
-                holder.tvLeft.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        ((OrderActivity) context).showRequestAfterSale(data.get(position).getId());
-                    }
-                });
-                holder.tvLeft.setVisibility(View.VISIBLE);
-                holder.tvRight.setVisibility(View.VISIBLE);
-                break;
-            case REFUNDIND:
-                holder.tvLeft.setText("退货");
+
+        switch (rootBean.getAfterSaleState()) {
+
+            //售后中
+            case "售后中":
+                holder.tvLeft.setText("售后中");
                 holder.tvLeft.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -156,7 +138,9 @@ public class AfterSaleAdapter extends RecyclerView.Adapter<AfterSaleAdapter.View
                 holder.tvLeft.setVisibility(View.VISIBLE);
                 holder.tvRight.setVisibility(View.VISIBLE);
                 break;
-            case REFUND_GOODS:
+
+                //退货中
+            case "退货中":
                 if ("无退货".equals(rootBean.getRefund_goods())) {
                     holder.tvLeft.setText("退货");
                     holder.tvLeft.setOnClickListener(new View.OnClickListener() {
@@ -166,7 +150,7 @@ public class AfterSaleAdapter extends RecyclerView.Adapter<AfterSaleAdapter.View
                         }
                     });
                 } else {
-                    holder.tvLeft.setText("售后中");
+                    holder.tvLeft.setText("退货中");
                     holder.tvLeft.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -177,8 +161,10 @@ public class AfterSaleAdapter extends RecyclerView.Adapter<AfterSaleAdapter.View
                 holder.tvLeft.setVisibility(View.VISIBLE);
                 holder.tvRight.setVisibility(View.VISIBLE);
                 break;
-            case REFUND_MONEY:
-                holder.tvLeft.setText("售后中");
+
+                //退款中
+            case "退款中":
+                holder.tvLeft.setText("退款中");
                 holder.tvLeft.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -188,7 +174,8 @@ public class AfterSaleAdapter extends RecyclerView.Adapter<AfterSaleAdapter.View
                 holder.tvLeft.setVisibility(View.VISIBLE);
                 holder.tvRight.setVisibility(View.VISIBLE);
                 break;
-            case REFUND_DONE:
+                //已售后
+            case "已售后":
                 holder.tvLeft.setText("已售后");
                 holder.tvLeft.setOnClickListener(new View.OnClickListener() {
                     @Override

@@ -60,15 +60,9 @@ public class AfterSaleOrderFragment extends Fragment implements OnCommonGoodsCal
     @Override
     public void onResume() {
         super.onResume();
-//        if ( orderList.size() == 0){
-//            orderList.add(new OrderRootBean(1,1,1));
-//            orderList.add(new OrderRootBean(2,2,1));
-//            orderList.add(new OrderRootBean(3,3,1));
-//            orderList.add(new OrderRootBean(4,4,1));
-//        }
+
         if (adapter == null){
             adapter = new AfterSaleAdapter(getActivity(),orderList);
-//            adapter = new OrderAdapter(getActivity(),orderList);
         }
         rvAfterSaleOrder.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvAfterSaleOrder.setAdapter(adapter);
@@ -85,7 +79,6 @@ public class AfterSaleOrderFragment extends Fragment implements OnCommonGoodsCal
             }
         }
 
-        Log.d(TAG, "initData() user:" + ((IPSCApplication) getActivity().getApplication()).getUserInfo().getId());
         params.addBodyParameter("type", "5");
         params.addBodyParameter("page", pageIndex + "");
         params.addBodyParameter("limit", "10");
@@ -142,7 +135,6 @@ public class AfterSaleOrderFragment extends Fragment implements OnCommonGoodsCal
     @Override
     public void onCommonGoodsCallBack(String result) {
         if (result != null) {
-            Log.e(TAG, "订单信息:" + result);
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");
