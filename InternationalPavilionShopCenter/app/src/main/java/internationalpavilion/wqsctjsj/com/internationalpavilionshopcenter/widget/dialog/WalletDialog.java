@@ -41,7 +41,7 @@ public class WalletDialog extends Dialog implements View.OnClickListener {
         this.context = context;
     }
 
-    private float amount = 0;
+    private int amount = 0;
     /**
      * Show  the dialog
      *
@@ -60,7 +60,7 @@ public class WalletDialog extends Dialog implements View.OnClickListener {
             @Override
             public void onProgressChanged(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat, boolean fromUser) {
                 tvUsedMoney.setText("已选：￥" + progressFloat + " 元");
-                amount= progressFloat;
+                amount= (int) progressFloat;
             }
 
             @Override
@@ -108,7 +108,7 @@ public class WalletDialog extends Dialog implements View.OnClickListener {
          */
         void onNegativeClick();
 
-        void onProgress(float progress);
+        void onProgress(int progress);
     }
 
     @Override

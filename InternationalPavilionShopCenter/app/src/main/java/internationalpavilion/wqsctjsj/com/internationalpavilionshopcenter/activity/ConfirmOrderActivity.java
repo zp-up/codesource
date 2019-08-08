@@ -83,8 +83,8 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
     TextView tv_order_time;
 
 
-    private float walletMoney = 0;
-    private float setMoney = 0;
+    private int walletMoney = 0;
+    private int setMoney = 0;
 
 
     @Override
@@ -150,7 +150,7 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
                     }
 
                     @Override
-                    public void onProgress(float progress) {
+                    public void onProgress(int progress) {
                         setWalletToOrder(progress);
                     }
                 }, walletMoney);
@@ -170,7 +170,7 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
         confirmPresenter.checkPayInfo(params, this);
     }
 
-    private void setWalletToOrder(float progress) {
+    private void setWalletToOrder(int progress) {
         setMoney = progress;
         RequestParams params = new RequestParams(MainUrls.setWalletMoneyToOrderUrl);
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
@@ -295,8 +295,9 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
             int state = jsonObject.getInt("state");
             if (code == 0 && state == 0) {
                 JSONObject data = jsonObject.getJSONObject("data");
-                String str= data.getString("max");
-                walletMoney = Float.valueOf(str);
+                Double d = data.getDouble("max");
+                walletMoney = d.intValue();
+
                 if(walletMoney<=0){
                     tvDiscount.setText("暂无抵扣");
                 }else {
