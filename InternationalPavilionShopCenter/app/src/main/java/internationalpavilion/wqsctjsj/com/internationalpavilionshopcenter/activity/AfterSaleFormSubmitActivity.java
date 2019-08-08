@@ -1,7 +1,6 @@
 package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -75,7 +74,6 @@ public class AfterSaleFormSubmitActivity extends BaseAppcompatActivity implement
         if (getIntent().getIntExtra("orderId", -1) != -1) {
             orderId = getIntent().getIntExtra("orderId", -1);
         }
-        Log.e(TAG, "订单id：" + orderId);
         if (getIntent().getByteArrayExtra("orderRootBean") != null) {
             rootBean = getIntent().getByteArrayExtra("orderRootBean");
         }
@@ -85,7 +83,6 @@ public class AfterSaleFormSubmitActivity extends BaseAppcompatActivity implement
         /**
          * 如果订单状态为代发货  。就调用退货接口： order.order.cancelorder ；参数是orderId 提示退款成功。不知道怎么改了。 需要马哥帮忙
          * */
-        Log.e("TAG","订单状态："+orderState);
         commonPresenter = new CommonGoodsImp();
         orderDealPresenter = new OrderDealImp();
         orderAfterSaleDealInterface = new OrderAfterSaleDealImp();
@@ -125,9 +122,8 @@ public class AfterSaleFormSubmitActivity extends BaseAppcompatActivity implement
                 pickerView.show();
                 break;
             case R.id.tv_submit_after_sale_info:
-                Log.e("TAG","执行到这里");
                 //如果是待发货需要退货就调用退货接口否则调用售后接口 .没有执行到这个方法
-                if(TextUtils.isEmpty(orderState)&&orderState.equalsIgnoreCase("待发货")){
+                if(TextUtils.equals(orderState,"待发货")){
                     requestRefund(orderId);
                 }else{
                     requestAfterSale(orderId);
@@ -159,7 +155,6 @@ public class AfterSaleFormSubmitActivity extends BaseAppcompatActivity implement
 
     @Override
     public void onError(String error) {
-        Log.e(TAG, "获取订单信息出错:" + error);
     }
 
     @Override
@@ -198,7 +193,21 @@ public class AfterSaleFormSubmitActivity extends BaseAppcompatActivity implement
                             orderGoodsBean.setGoodsId(list.getJSONObject(j).getJSONObject("goods_goods").getInt("id"));
                             orderGoodsBean.setGoodsName(list.getJSONObject(j).getJSONObject("goods_goods").getString("name"));
                             orderGoodsBean.setGoodsDescription(list.getJSONObject(j).getJSONObject("goods_goods").getString("spec"));
-                            orderGoodsBean.setImageUrl(list.getJSONObject(j).getJSONObject("goods_goods").getJSONArray("img").getString(0));
+
+                            String img="";
+                            Object o = list.getJSONObject(j).getJSONObject("goods_goods").get("img");
+                            if(o!=null){
+                                if(o instanceof String){
+                                    img = list.getJSONObject(j).getJSONObject("goods_goods").getString("img");
+                                }else if(o instanceof JSONArray){
+                                    JSONArray array = list.getJSONObject(j).getJSONObject("goods_goods").getJSONArray("img");
+                                    if(array!=null && array.length()>0){
+                                        img = array.getString(0);
+                                    }
+                                }
+                            }
+
+                            orderGoodsBean.setImageUrl(img);
                             orderGoodsBean.setCount(list.getJSONObject(j).getInt("number"));
                             orderGoodsBean.setGoodsPrice(list.getJSONObject(j).getDouble("price"));
                             orderGoodsBean.setBondedPrice(list.getJSONObject(j).getDouble("total_tax"));
@@ -269,8 +278,7 @@ public class AfterSaleFormSubmitActivity extends BaseAppcompatActivity implement
     @Override
     public void onRequestAfterSale(String result) {
         if (result != null) {
-            Log.e("TAG","申请售后结果："+result );
-            LogUtil.d(TAG, "申请售后结果:" + result);
+
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");
@@ -302,7 +310,6 @@ public class AfterSaleFormSubmitActivity extends BaseAppcompatActivity implement
     }
 
     public void requestAfterSale(int orderId) {
-        Log.d(TAG, "requestAfterSale() orderId:" + orderId);
         RequestParams params = new RequestParams(MainUrls.requestAfterSaleUrl);
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
         params.addBodyParameter("id", orderId + "");
@@ -311,16 +318,13 @@ public class AfterSaleFormSubmitActivity extends BaseAppcompatActivity implement
 
 
     public void requestRefund(int orderId){
-        Log.e("TAG","执行到这里222");
         RequestParams params=new RequestParams(MainUrls.backMoneyOnlyUrl);
         params.addBodyParameter("access_token",IPSCApplication.accessToken);
         params.addBodyParameter("id",orderId+"");
-        Log.e("TAG","执行到这里333"+orderId+"");
         x.http().post(params, new Callback.CommonCallback<String>() {
 
             @Override
             public void onSuccess(String result) {
-                Log.e("TAG","代发货退款回调："+result);
                 try {
                     JSONObject jsonObject = new JSONObject(result);
                     int code = jsonObject.getInt("code");
@@ -365,5 +369,8 @@ public class AfterSaleFormSubmitActivity extends BaseAppcompatActivity implement
             }
         });
     }
+
+
+
 
 }
