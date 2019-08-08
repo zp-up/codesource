@@ -1,6 +1,7 @@
 package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -302,6 +303,7 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
                     tvDiscount.setText("暂无抵扣");
                 }else {
                     tvDiscount.setText("可抵扣");
+                    tvDiscount.setTextColor(Color.RED);
                 }
             }
         } catch (Exception e) {
