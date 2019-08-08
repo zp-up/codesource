@@ -143,7 +143,8 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
                     ToastUtils.show(ConfirmOrderActivity.this, "暂无可用零钱");
                     return;
                 }
-                final WalletDialog dialog = new WalletDialog(ConfirmOrderActivity.this);
+                final WalletDialog dialog = new WalletDialog(ConfirmOrderActivity.this,setMoney);
+
                 dialog.showDialog(new WalletDialog.OnButtonClickListener() {
                     @Override
                     public void onNegativeClick() {
@@ -177,6 +178,7 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
         params.addBodyParameter("order", orderId);
         params.addBodyParameter("money", progress + "");
+        Log.e("TAG","pars:"+params.toJSONString());
         confirmPresenter.setWalletMoneyToOrder(params, this);
     }
 
@@ -219,6 +221,7 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
     @Override
     public void onOrderInfoLoaded(String result) {
         LogUtil.d(TAG, "onOrderInfoLoaded() result:" + result);
+        Log.e("TAG", "onOrderInfoLoaded() result:" + result);
         try {
             JSONObject jsonObject = new JSONObject(result);
             int code = jsonObject.getInt("code");
@@ -298,7 +301,6 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
                 JSONObject data = jsonObject.getJSONObject("data");
                 Double d = data.getDouble("max");
                 walletMoney = d.floatValue();
-
                 if(walletMoney<=0){
                     tvDiscount.setText("暂无抵扣");
                 }else {
@@ -314,12 +316,17 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
     @Override
     public void onWalletSetSuccessed(String result) {
         LogUtil.d(TAG, "onWalletSetSuccessed() result:" + result);
+        Log.e("TAG", "onWalletSetSuccessed() result:" + result);
         try {
             JSONObject jsonObject = new JSONObject(result);
             int code = jsonObject.getInt("code");
             int state = jsonObject.getInt("state");
             if (code == 0 && state == 0) {
                 tvDiscount.setText("-￥" + setMoney);
+                RequestParams params = new RequestParams(MainUrls.getOrderDetailByIdUrl);
+                params.addBodyParameter("access_token", IPSCApplication.accessToken);
+                params.addBodyParameter("id", orderId);
+                confirmPresenter.getOrderInfo(params, this);
             }
         } catch (Exception e) {
             LogUtil.e(TAG, "onWalletSetSuccessed()", e);
