@@ -949,19 +949,9 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
 
                     int number = jsonObject.getJSONObject("data").getInt("number");
 
-                    int ori =0;
-                    if(!TextUtils.isEmpty(tv_cart_num.getText().toString())){
-                       ori = Integer.valueOf(tv_cart_num.getText().toString());
-                    }
-
-                    if(ori<0){
-                        ori=0;
-                    }
-
-
-                    if(ori + number>0){
+                    if(number>0){
                         tv_cart_num.setVisibility(View.VISIBLE);
-                        tv_cart_num.setText((ori+number)+"");
+                        tv_cart_num.setText(number+"");
                     }else {
                         tv_cart_num.setVisibility(View.GONE);
                     }
