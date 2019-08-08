@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -224,7 +225,11 @@ public class GoodsPropsSelectPop implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 // TOD 立即购买
-                if (Integer.valueOf(cetNum.getText().toString()) > goodsBean.getData().getUsenumber()) {
+                int count =0;
+                if(!TextUtils.isEmpty(cetNum.getText().toString())){
+                    count =Integer.valueOf(cetNum.getText().toString());
+                }
+                if (count> goodsBean.getData().getUsenumber()) {
                     ToastUtils.show(context, "库存不足");
                 } else {
                     ((GoodsDetailActivity) context).buyImmediately(currentSpecId, currentStoreType, Integer.valueOf(cetNum.getText().toString()));
