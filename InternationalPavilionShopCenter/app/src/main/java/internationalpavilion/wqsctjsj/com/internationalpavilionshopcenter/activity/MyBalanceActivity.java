@@ -46,6 +46,7 @@ public class MyBalanceActivity extends BaseAppcompatActivity implements OnCommon
         if(((IPSCApplication) getApplication()).getUserInfo()!=null){
             params.addBodyParameter("user", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
         }
+        Log.e("TAG ","params:"+params.toJSONString());
         commonPresenter.getCommonGoodsData(params, this);
     }
 
@@ -91,11 +92,12 @@ public class MyBalanceActivity extends BaseAppcompatActivity implements OnCommon
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");
                 int state = jsonObject.getInt("state");
-                if (code == 0 && state == 1){
+                if (code == 0 && state == 0){
                     JSONObject data = jsonObject.getJSONObject("data");
                     if (data != null){
                         double balance1 = data.getDouble("可用");
                         double balance2 = data.getDouble("充值可用");
+                        Log.e("TAG","执行到这里："+"￥"+new DecimalFormat("######0.00").format(balance1+balance2));
                         tvBalance.setText("￥"+new DecimalFormat("######0.00").format(balance1+balance2));
                     }
                 }
