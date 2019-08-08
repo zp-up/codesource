@@ -36,9 +36,13 @@ public class WalletDialog extends Dialog implements View.OnClickListener {
      */
     private Dialog dialog = null;
 
-    public WalletDialog(Context context) {
+    //初始值
+    private Float initMoney=0f;
+
+    public WalletDialog(Context context,Float initMoney) {
         super(context, R.style.warning_dialog_theme);
         this.context = context;
+        this.initMoney=initMoney;
     }
 
     private float amount = 0;
@@ -47,18 +51,36 @@ public class WalletDialog extends Dialog implements View.OnClickListener {
      *
      * @param clickListener 点击回调方法
      */
-    public void showDialog(OnButtonClickListener clickListener, float canUse) {
+    public void showDialog(OnButtonClickListener clickListener, final float canUse) {
         this.mClickListener = clickListener;
         View contentView = LayoutInflater.from(context).inflate(R.layout.dialog_wallet_layout, null);
         TextView tvNegative = contentView.findViewById(R.id.tv_negative_button);
         TextView tvCanUseMoney = contentView.findViewById(R.id.tv_can_use_money);
         tvCanUseMoney.setText("可用：￥" + canUse + " 元");
+
         final TextView tvUsedMoney = contentView.findViewById(R.id.tv_used_money);
+        if(initMoney<=0){
+            amount=canUse;
+            tvUsedMoney.setText("已选：￥" + canUse + " 元");
+        }else{
+            amount=initMoney;
+            tvUsedMoney.setText("已选：￥" + initMoney + " 元");
+        }
         BubbleSeekBar seekBar = contentView.findViewById(R.id.seek_bar);
         seekBar.getConfigBuilder().max(canUse).build();
+        if(initMoney<=0){
+            seekBar.setProgress(canUse);
+        }else{
+            seekBar.setProgress(initMoney);
+        }
+
+
         seekBar.setOnProgressChangedListener(new BubbleSeekBar.OnProgressChangedListener() {
             @Override
             public void onProgressChanged(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat, boolean fromUser) {
+                if(progressFloat>canUse){
+                    progressFloat=canUse;
+                }
                 tvUsedMoney.setText("已选：￥" + progressFloat + " 元");
                 amount=  progressFloat;
             }

@@ -210,12 +210,12 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                 } else {
                     holder.tvTAG2.setVisibility(View.GONE);
                 }
-                holder.tvBackMoney.setOnClickListener(new View.OnClickListener() {
+            /*    holder.tvBackMoney.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         ((OrderActivity) context).showRequestAfterSale(data.get(position).getId());
                     }
-                });
+                });*/
                 //待发货的再次购买改成退货
                 holder.tvBuyAgain.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -227,6 +227,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                                 dialog.dismissWithAnimation();
                                 Intent intent = new Intent(context, AfterSaleFormSubmitActivity.class);
                                 intent.putExtra("orderId", data.get(position).getId());
+                                intent.putExtra("state","待发货");
                                 context.startActivity(intent);
                             }
                         });
@@ -336,6 +337,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                                 dialog.dismissWithAnimation();
                                 Intent intent = new Intent(context, AfterSaleFormSubmitActivity.class);
                                 intent.putExtra("orderId", data.get(position).getId());
+
                                 context.startActivity(intent);
                             }
                         });
@@ -766,7 +768,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                     llGoodsContainer2 = item.findViewById(R.id.ll_goods_container);
                     rlOneGoodsParent2 = item.findViewById(R.id.rl_one_goods_parent);
                     tvTAG2 = item.findViewById(R.id.tv_tag);
-                    tvBackMoney = item.findViewById(R.id.tv_back_money);
+                   // tvBackMoney = item.findViewById(R.id.tv_back_money);
                     tvOrderCreateTime2 = item.findViewById(R.id.tv_order_create_time);
                     tvDescription2 = item.findViewById(R.id.tv_goods_description_1);
                     tvGoodsName2 = item.findViewById(R.id.tv_goods_name_1);

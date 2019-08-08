@@ -3,12 +3,14 @@ package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activ
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bumptech.glide.Glide;
@@ -18,7 +20,10 @@ import com.jaeger.library.StatusBarUtil;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.xutils.common.Callback;
+import org.xutils.ex.HttpException;
 import org.xutils.http.RequestParams;
+import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +45,7 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presen
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.OrderDealInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.LogUtil;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.StringUtil;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnAfterSaleOrderCallBack;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnCommonGoodsCallBack;
@@ -57,6 +63,8 @@ public class AfterSaleFormSubmitActivity extends BaseAppcompatActivity implement
     private OrderAfterSaleDealInterface orderAfterSaleDealInterface;
     private int orderId = -1;
     private byte[] rootBean = null;
+    //订单状态
+    private String orderState=null;
     private OrderRootBean orderRootBean;
     @BindView(R.id.ll_goods_list_container)
     LinearLayout llGoodsListContainer;
@@ -71,6 +79,13 @@ public class AfterSaleFormSubmitActivity extends BaseAppcompatActivity implement
         if (getIntent().getByteArrayExtra("orderRootBean") != null) {
             rootBean = getIntent().getByteArrayExtra("orderRootBean");
         }
+        if(!TextUtils.isEmpty(getIntent().getStringExtra("state"))){
+            orderState=getIntent().getStringExtra("state");
+        }
+        /**
+         * 如果订单状态为代发货  。就调用退货接口： order.order.cancelorder ；参数是orderId 提示退款成功。不知道怎么改了。 需要马哥帮忙
+         * */
+        Log.e("TAG","订单状态："+orderState);
         commonPresenter = new CommonGoodsImp();
         orderDealPresenter = new OrderDealImp();
         orderAfterSaleDealInterface = new OrderAfterSaleDealImp();
@@ -110,7 +125,14 @@ public class AfterSaleFormSubmitActivity extends BaseAppcompatActivity implement
                 pickerView.show();
                 break;
             case R.id.tv_submit_after_sale_info:
-                requestAfterSale(orderId);
+                Log.e("TAG","执行到这里");
+                //如果是待发货需要退货就调用退货接口否则调用售后接口 .没有执行到这个方法
+                if(TextUtils.isEmpty(orderState)&&orderState.equalsIgnoreCase("待发货")){
+                    requestRefund(orderId);
+                }else{
+                    requestAfterSale(orderId);
+                }
+
                 break;
         }
     }
@@ -247,6 +269,7 @@ public class AfterSaleFormSubmitActivity extends BaseAppcompatActivity implement
     @Override
     public void onRequestAfterSale(String result) {
         if (result != null) {
+            Log.e("TAG","申请售后结果："+result );
             LogUtil.d(TAG, "申请售后结果:" + result);
             try {
                 JSONObject jsonObject = new JSONObject(result);
@@ -286,5 +309,61 @@ public class AfterSaleFormSubmitActivity extends BaseAppcompatActivity implement
         orderAfterSaleDealInterface.requestAfterSale(params, this);
     }
 
+
+    public void requestRefund(int orderId){
+        Log.e("TAG","执行到这里222");
+        RequestParams params=new RequestParams(MainUrls.backMoneyOnlyUrl);
+        params.addBodyParameter("access_token",IPSCApplication.accessToken);
+        params.addBodyParameter("id",orderId+"");
+        Log.e("TAG","执行到这里333"+orderId+"");
+        x.http().post(params, new Callback.CommonCallback<String>() {
+
+            @Override
+            public void onSuccess(String result) {
+                Log.e("TAG","代发货退款回调："+result);
+                try {
+                    JSONObject jsonObject = new JSONObject(result);
+                    int code = jsonObject.getInt("code");
+                    int state = jsonObject.getInt("state");
+                    String msg = jsonObject.getString("msg");
+                    if (jsonObject.has("msg")) {
+                        msg = jsonObject.getString("msg");
+                    }
+                    if (code == 0 && state == 0) {
+                        ToastUtils.show(x.app(), "申请退款成功");
+                        finish();
+                    } else {
+                        ToastUtils.show(x.app(), "申请退款失败:" + msg);
+                    }
+                } catch (Exception e) {
+                    LogUtil.e(TAG, "onRequestAfterSale()", e);
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                if (ex instanceof HttpException) { // 网络错误
+                    HttpException httpEx = (HttpException) ex;
+                    int responseCode = httpEx.getCode();
+                    String responseMsg = httpEx.getMessage();
+                    String errorResult = httpEx.getResult();
+                    // ...
+                } else { // 其他错误
+                    // ...
+                }
+                Toast.makeText(x.app(), ex.getMessage(), Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+                Toast.makeText(x.app(), "cancelled", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+    }
 
 }
