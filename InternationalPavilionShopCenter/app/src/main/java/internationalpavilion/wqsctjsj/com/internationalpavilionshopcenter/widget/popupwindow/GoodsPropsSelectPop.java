@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -42,9 +43,8 @@ public class GoodsPropsSelectPop implements View.OnClickListener {
     private ImageView ivClosePop;
     private GoodsDetailRootBean goodsBean;
     private internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.LinearLayout llStorageContainer;
-    private TextView tvAdd, tvSub, tvNum;
-
-//    private TextView tvAddGoodsToCart;
+    private TextView tvAdd, tvSub;
+    private TextView cetNum;
 
     private int currentSpecId = -1;
     private int currentStoreType = -1;
@@ -126,16 +126,13 @@ public class GoodsPropsSelectPop implements View.OnClickListener {
 
     public void setGoodsBean(GoodsDetailRootBean goodsBean) {
         this.goodsBean = goodsBean;
-//        getTagBeans(goodsBean);
         initSelectedInfo();
-        Log.e("TAG", "当前规格:" + currentSpecId + " 当前店铺类型:" + currentStoreType);
         initView(v, 1);
     }
 
     private void initSelectedInfo() {
         if (currentSpecId != -1) {
             for (int i = 0; i < specLists.size(); i++) {
-                Log.e("TAG", "specListsId:" + specLists.get(i).getId() + "---position:" + i);
                 if (specLists.get(i).getId() == currentSpecId) {
                     specLists.get(i).setChecked(true);
                 } else {
@@ -145,7 +142,6 @@ public class GoodsPropsSelectPop implements View.OnClickListener {
         }
         if (currentStoreType != -1) {
             for (int i = 0; i < storeLists.size(); i++) {
-                Log.e("TAG", "storeListsId:" + storeLists.get(i).getId() + "---position:" + i);
                 if (storeLists.get(i).getId() == currentStoreType) {
                     storeLists.get(i).setChecked(true);
                 } else {
@@ -162,9 +158,8 @@ public class GoodsPropsSelectPop implements View.OnClickListener {
         tvGoodsPrice = v.findViewById(R.id.tv_price);
         tvSelectedGoodsSpec = v.findViewById(R.id.tv_selected);
         llStorageContainer = v.findViewById(R.id.ll_storage_type_container);
-//        tvAddGoodsToCart = v.findViewById(R.id.tv_add_goods);
         tvAdd = v.findViewById(R.id.tv_add);
-        tvNum = v.findViewById(R.id.tv_num);
+        cetNum = v.findViewById(R.id.tv_num);
         tvSub = v.findViewById(R.id.tv_sub);
         String num="";
         if(goodsBean!=null){
@@ -175,16 +170,23 @@ public class GoodsPropsSelectPop implements View.OnClickListener {
             }
         }
 
-        tvNum.setText(num);
+        cetNum.setText(num);
 
         tvSub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if(goodsBean.getData().getGoods_goods().getNum() ==1){
+
+                    Toast.makeText(context, "该商品数量不能再减了哦", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 //减
                 if (goodsBean.getData().getGoods_goods().getNum() > 1) {
                     goodsBean.getData().getGoods_goods().setNum(goodsBean.getData().getGoods_goods().getNum() - 1);
                 }
-                tvNum.setText("" + goodsBean.getData().getGoods_goods().getNum());
+                cetNum.setText("" + goodsBean.getData().getGoods_goods().getNum());
             }
         });
         tvAdd.setOnClickListener(new View.OnClickListener() {
@@ -194,20 +196,10 @@ public class GoodsPropsSelectPop implements View.OnClickListener {
                 if (goodsBean.getData().getGoods_goods().getNum() < goodsBean.getData().getUsenumber()) {
                     goodsBean.getData().getGoods_goods().setNum(goodsBean.getData().getGoods_goods().getNum() + 1);
                 }
-                tvNum.setText("" + goodsBean.getData().getGoods_goods().getNum());
+                cetNum.setText("" + goodsBean.getData().getGoods_goods().getNum());
             }
         });
 
-//        tvAddGoodsToCart.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (Integer.valueOf(tvNum.getText().toString()) > goodsBean.getData().getUsenumber()) {
-//                    ToastUtils.show(context, "库存不足");
-//                } else {
-//                    ((GoodsDetailActivity) context).addToCart(currentSpecId, currentStoreType, Integer.valueOf(tvNum.getText().toString()));
-//                }
-//            }
-//        });
 
         // bottom bar click event
         v.findViewById(R.id.rl_contact_service).setOnClickListener(new View.OnClickListener() {
@@ -232,22 +224,20 @@ public class GoodsPropsSelectPop implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 // TOD 立即购买
-//                ((GoodsDetailActivity) context).buyImmediately();
-                if (Integer.valueOf(tvNum.getText().toString()) > goodsBean.getData().getUsenumber()) {
+                if (Integer.valueOf(cetNum.getText().toString()) > goodsBean.getData().getUsenumber()) {
                     ToastUtils.show(context, "库存不足");
                 } else {
-                    ((GoodsDetailActivity) context).buyImmediately(currentSpecId, currentStoreType, Integer.valueOf(tvNum.getText().toString()));
-//                    ((GoodsDetailActivity) context).addToCart(currentSpecId, currentStoreType, Integer.valueOf(tvNum.getText().toString()));
+                    ((GoodsDetailActivity) context).buyImmediately(currentSpecId, currentStoreType, Integer.valueOf(cetNum.getText().toString()));
                 }
             }
         });
         v.findViewById(R.id.tv_add_to_cart).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Integer.valueOf(tvNum.getText().toString()) > goodsBean.getData().getUsenumber()) {
+                if (Integer.valueOf(cetNum.getText().toString()) > goodsBean.getData().getUsenumber()) {
                     ToastUtils.show(context, "库存不足");
                 } else {
-                    ((GoodsDetailActivity) context).addToCart(currentSpecId, currentStoreType, Integer.valueOf(tvNum.getText().toString()));
+                    ((GoodsDetailActivity) context).addToCart(currentSpecId, currentStoreType, Integer.valueOf(cetNum.getText().toString()));
                 }
             }
         });
@@ -257,7 +247,6 @@ public class GoodsPropsSelectPop implements View.OnClickListener {
         ivClosePop = v.findViewById(R.id.iv_close_select);
         ivClosePop.setOnClickListener(this);
         if (index != 0) {
-            Log.e("TAG", "执行");
             initTags();
             initStorageTypes();
         }
@@ -329,8 +318,8 @@ public class GoodsPropsSelectPop implements View.OnClickListener {
 
     private void initGoodsInfo(GoodsDetailRootBean goodsBean) {
         try {
-            Glide.with(context).load(goodsBean.getData().getGoods_goods().getImg()).apply(new RequestOptions().placeholder(R.drawable.icon_no_image).error(R.drawable.icon_no_image).override(200, 200)).into(ivGoodsPic);
-            tvGoodsName.setText(goodsBean.getData().getGoods_goods().getName());
+            Glide.with(context).load(goodsBean.getData().getGoods_goods().getGoods_temp().getImg().get(0)).apply(new RequestOptions().placeholder(R.drawable.icon_no_image).error(R.drawable.icon_no_image).override(200, 200)).into(ivGoodsPic);
+            tvGoodsName.setText(goodsBean.getData().getGoods_goods().getGoods_temp().getName());
             tvGoodsPrice.setText("" + goodsBean.getData().getPrice());
             tvSelectedGoodsSpec.setText("已选:" + goodsBean.getData().getGoods_goods().getSpec());
         } catch (Exception e) {

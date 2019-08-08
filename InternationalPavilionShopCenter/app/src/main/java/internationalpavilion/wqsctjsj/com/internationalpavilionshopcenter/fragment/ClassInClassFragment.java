@@ -198,10 +198,20 @@ public class ClassInClassFragment extends Fragment implements OnClassCallback {
                                             int childId = children.getJSONObject(j).getInt("id");
                                             String childName = children.getJSONObject(j).getString("name");
                                             if (children.getJSONObject(j).has("goods")) {
-                                                if (!TextUtils.isEmpty(children.getJSONObject(j).getJSONObject("goods").getString("img"))) {
-                                                    //Log.e("TAG","分类名称:"+children.getJSONObject(j).getString("name")+"   图片地址:"+children.getJSONObject(j).getJSONObject("goods").getString("img"));
-                                                    String childIcon = !TextUtils.isEmpty(children.getJSONObject(j).getJSONObject("goods").getString("img")) ? children.getJSONObject(j).getJSONObject("goods").getJSONArray("img").getString(0) : "";
-                                                    child.setImgUrl(childIcon);
+                                                JSONObject goods = children.getJSONObject(j).getJSONObject("goods");
+                                                if(goods!=null){
+                                                    Object o = goods.get("img");
+                                                    String img = "";
+                                                    if(o instanceof String){
+                                                        img = goods.getString("img");
+                                                    }else if(o instanceof JSONArray){
+                                                        JSONArray imgAry = goods.getJSONArray("img");
+                                                        if(imgAry!=null && imgAry.length()>0){
+                                                            img = imgAry.getString(0);
+                                                        }
+
+                                                    }
+                                                    child.setImgUrl(img);
                                                     child.setId(childId);
                                                     child.setClassName(childName);
                                                     childBeans.add(child);

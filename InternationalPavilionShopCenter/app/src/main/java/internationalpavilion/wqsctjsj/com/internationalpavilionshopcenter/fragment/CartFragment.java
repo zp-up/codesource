@@ -320,10 +320,26 @@ public class CartFragment extends Fragment implements OnCommonGoodsCallBack, Car
                                     cartGood.setId(goods.getInt("id"));
                                     cartGood.setGoodsPriceId(goods.getJSONObject("store_price").getInt("id"));
                                     cartGood.setChecked(goods.getInt("cart_state") == 1 ? true : false);
-                                    cartGood.setImagePath(goods.getJSONObject("store_price").getJSONObject("goods_goods")
-                                            .getString("img"));
-                                    cartGood.setName(goods.getJSONObject("store_price").getJSONObject("goods_goods")
-                                            .getString("name"));
+
+
+                                    JSONObject goods_temp = goods.getJSONObject("store_price").getJSONObject("goods_goods").getJSONObject("goods_temp");
+                                    String imgUrl = "";
+                                    if(goods_temp !=null){
+                                        Object o = goods_temp.get("img");
+                                        if(o instanceof String){
+                                            imgUrl = goods_temp.getString("img");
+                                        }else if(o instanceof JSONArray){
+                                            JSONArray imgArray = goods_temp.getJSONArray("img");
+                                            if(imgArray!=null && imgArray.length()>0){
+                                                imgUrl = imgArray.getString(0);
+                                            }
+                                        }
+                                    }
+
+
+                                    cartGood.setImagePath(imgUrl);
+
+                                    cartGood.setName(goods.getJSONObject("store_price").getJSONObject("goods_goods").getJSONObject("goods_temp").getString("name"));
                                     cartGood.setNum(goods.getInt("number"));
                                     cartGood.setPrice(goods.getDouble("price"));
                                     cartGood.setOriginalPrice(goods.getDouble("price"));

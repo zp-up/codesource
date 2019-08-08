@@ -210,6 +210,7 @@
 
     </android.support.design.widget.CoordinatorLayout>
     <LinearLayout
+        tools:visibility="gone"
         android:visibility="gone"
         android:id="@+id/ll_screen_container"
         android:orientation="horizontal"
@@ -325,6 +326,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="80dp"></internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.LinearLayout>
                     <RelativeLayout
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <TextView
@@ -338,6 +340,7 @@
 
                     </RelativeLayout>
                     <RelativeLayout
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <LinearLayout
@@ -414,6 +417,7 @@
                         </LinearLayout>
                     </RelativeLayout>
                     <internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.LinearLayout
+                        android:visibility="gone"
                         android:layout_marginTop="@dimen/x15"
                         android:id="@+id/ll_goods_tag_container_price"
                         android:padding="0dp"

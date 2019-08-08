@@ -301,11 +301,9 @@ public class ClassGoodsListActivity extends BaseAppcompatActivity implements OnB
         }
 
         String brandId = currentBrandIdSet.toString().replace(" ", "");
-        Log.d(TAG, "currentBrandIdSet origin:" + brandId + ",handled:" + brandId.substring(1, brandId.length() - 1));
         params.addBodyParameter("brand", brandId.substring(1, brandId.length() - 1) + "");
 
         String classId = currentClassIdSet.toString().replace(" ", "");
-        Log.d(TAG, "currentClassIdSet origin:" + classId + ",handled:" + classId.substring(1, classId.length() - 1));
         params.addBodyParameter("cate", classId.substring(1, classId.length() - 1) + "");
 
         if (etMinPrice.getText().toString().trim().length() != 0) {
@@ -336,7 +334,6 @@ public class ClassGoodsListActivity extends BaseAppcompatActivity implements OnB
                     break;
             }
         }
-        Log.d(TAG, "request() params:" + params.toString());
         bondedGoodsPresenter.getBondedGoods(params, this);
     }
 
@@ -603,12 +600,29 @@ public class ClassGoodsListActivity extends BaseAppcompatActivity implements OnB
                                 String description = data.getJSONObject(i).getJSONObject("goods_goods").getString("keyword");
                                 String baseAreaName = data.getJSONObject(i).getJSONObject("goods_goods").getString("base_area").equals("0") ? "国内" : data.getJSONObject(i).getJSONObject("goods_goods").getJSONObject("base_area").getString("name");
                                 double price = data.getJSONObject(i).getDouble("price");
-                                String goodsPic = data.getJSONObject(i).getJSONObject("goods_goods").getJSONArray("img").getString(0);
+
+                                JSONObject goods_goods = data.getJSONObject(i).getJSONObject("goods_goods");
+                                String imgUrl = "";
+                                if(goods_goods!=null){
+                                    Object o = goods_goods.get("img");
+                                    if(o!=null){
+                                        if(o instanceof String){
+                                            imgUrl = goods_goods.getString("img");
+                                        }else if(o instanceof JSONArray){
+                                            JSONArray imgArray = goods_goods.getJSONArray("img");
+                                            if(imgArray!=null && imgArray.length()>0){
+                                                imgUrl = imgArray.getString(0);
+                                            }
+                                        }
+                                    }
+                                }
+
+
                                 bean.setGoodsId(id);
                                 bean.setGoodsName(name);
                                 bean.setBrandName(baseAreaName);
                                 bean.setDescription(description);
-                                bean.setGoodsPic(goodsPic);
+                                bean.setGoodsPic(imgUrl);
                                 bean.setGoodsPrice(price);
                                 ClassGoodsListActivity.this.data.add(bean);
                             }
@@ -631,7 +645,6 @@ public class ClassGoodsListActivity extends BaseAppcompatActivity implements OnB
                         // 筛选的品牌、分类数据获取
                         com.alibaba.fastjson.JSONObject obj = com.alibaba.fastjson.JSONObject.parseObject(result);
                         com.alibaba.fastjson.JSONObject list = obj.getJSONObject("list");
-                        Log.d(TAG, "品牌分类:");
                         try {
 //                            if (pageIndex == 1) {
 //                            }
@@ -661,7 +674,6 @@ public class ClassGoodsListActivity extends BaseAppcompatActivity implements OnB
                             LogUtil.e(TAG, "update brand data occur an exception!", e);
                         }
 
-                        Log.d(TAG, "商品种类:");
                         try {
 /*                            if (pageIndex == 1) {
                             }*/

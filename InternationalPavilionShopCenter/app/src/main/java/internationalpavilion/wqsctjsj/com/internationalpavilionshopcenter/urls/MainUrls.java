@@ -93,6 +93,9 @@ public class MainUrls {
 
     public static final String getUserInfoUrl = ServerIp + "?api=user.user.info";
 
+    //获取用户零钱
+    public static final String getUserbalanceUrl = ServerIp + "?api=user.money.getmoney";
+
     public static final String getExperienceListUrl = ServerIp + "?api=user.exp.explist";
 
     public static final String getAllThreeLevelClassUrl = ServerIp + "?api=goods.cate.cata3";

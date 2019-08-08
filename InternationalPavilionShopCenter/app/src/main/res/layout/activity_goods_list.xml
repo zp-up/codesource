@@ -26,6 +26,7 @@
                 android:layout_width="@dimen/x50"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical">
+
                 <ImageView
                     android:layout_width="@dimen/x35"
                     android:layout_height="@dimen/x15"
@@ -39,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="新品列表"
+                android:text="新品荟"
                 android:textColor="@color/black"
                 android:textSize="@dimen/x14" />
         </RelativeLayout>
@@ -294,8 +295,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
-                            android:layout_marginRight="@dimen/x15"
-                            android:layout_marginTop="@dimen/x15">
+                            android:layout_marginTop="@dimen/x15"
+                            android:layout_marginRight="@dimen/x15">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -343,8 +344,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
-                            android:layout_marginRight="@dimen/x15"
-                            android:layout_marginTop="@dimen/x15">
+                            android:layout_marginTop="@dimen/x15"
+                            android:layout_marginRight="@dimen/x15">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -375,6 +376,7 @@
                         app:vertical_Space="10dp"></internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.LinearLayout>
 
                     <RelativeLayout
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -390,6 +392,7 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -437,8 +440,8 @@
                             android:layout_height="@dimen/x25"
                             android:layout_alignParentRight="true"
                             android:layout_marginLeft="@dimen/x15"
-                            android:layout_marginRight="@dimen/x10"
                             android:layout_marginTop="@dimen/x15"
+                            android:layout_marginRight="@dimen/x10"
                             android:background="@drawable/shape_of_verify_code_btn">
 
                             <TextView
@@ -475,11 +478,12 @@
                     </RelativeLayout>
 
                     <internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.LinearLayout
+                        android:visibility="gone"
                         android:id="@+id/ll_goods_tag_container_price"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/x30"
                         android:layout_marginTop="@dimen/x10"
+                        android:layout_marginBottom="@dimen/x30"
                         android:padding="0dp"
                         app:grivate="left"
                         app:horizontal_Space="5dp"

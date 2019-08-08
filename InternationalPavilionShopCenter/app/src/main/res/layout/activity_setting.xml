@@ -37,6 +37,7 @@
             android:textSize="@dimen/x14" />
     </RelativeLayout>
     <RelativeLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x120">
         <LinearLayout

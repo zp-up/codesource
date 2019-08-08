@@ -25,6 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
@@ -46,8 +47,11 @@ import com.youth.banner.loader.ImageLoader;
 
 import org.greenrobot.eventbus.EventBus;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
+import org.xutils.x;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -63,10 +67,13 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.adapter.GoodsDetailAdapter;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.application.IPSCApplication;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.CartGood;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.CartRootBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.EvaluateImage;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.HomeBannerBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.eventBusBean.MainSwitchEvent;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.goodsDetailBean.GoodsDetailRootBean;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.goodsDetailBean.Goods_brand;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.goodsDetailBean.Speclist;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.goodsDetailBean.Storelist;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.fragment.GoodsDetailFragment;
@@ -97,10 +104,8 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
     Banner banner;
     @BindView(R.id.rl_open_select_spec)
     RelativeLayout rlOpenSelectSpec;
-
     @BindView(R.id.rl_parent)
     RelativeLayout rlParent;
-
     @BindView(R.id.view_pager)
     ViewPager viewPager;
     @BindView(R.id.tv_pic_index)
@@ -164,11 +169,8 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
     TextView tvEvaluateTotal;
     @BindView(R.id.tv_evaluate_content)
     TextView tvEvaluateContent;
-
-
     @BindView(R.id.ll_goods_container)
     LinearLayout llEvaluatePicContainer;
-
 
     private ArrayList<Fragment> fgList = new ArrayList<>();
     private GoodsDetailInterface goodsDetailPresenter;
@@ -183,6 +185,10 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
      *  0 未收藏  1 已收藏
       */
     private int isCollection = 0;
+
+    private ArrayList<CartRootBean> carts = new ArrayList<>();
+
+    private boolean isMul = false;
 
 
     @Override
@@ -267,11 +273,11 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
             llGoodsTagContainer.addView(view);
         }
         if (TextUtils.isEmpty(goodsBean.getData().getGoods_goods().getGoods_brand().getName())) {
-            Glide.with(GoodsDetailActivity.this).load(goodsBean.getData().getGoods_goods().getGoods_brand().getLogo()).apply(new RequestOptions().override(100, 100).placeholder(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)).into(ivBrand);
+            Glide.with(GoodsDetailActivity.this).load(goodsBean.getData().getGoods_goods().getGoods_brand().getLogo()).apply(new RequestOptions().override(100, 100).placeholder(R.drawable.icon_no_image).error(R.drawable.ic_launcher_logo)).into(ivBrand);
             tvBrandName.setText("暂无品牌信息");
         } else {
 
-            Glide.with(GoodsDetailActivity.this).load(goodsBean.getData().getGoods_goods().getGoods_brand().getLogo()).apply(new RequestOptions().override(100, 100).placeholder(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)).into(ivBrand);
+            Glide.with(GoodsDetailActivity.this).load(goodsBean.getData().getGoods_goods().getGoods_brand().getLogo()).apply(new RequestOptions().override(100, 100).placeholder(R.drawable.icon_no_image).error(R.drawable.ic_launcher_logo)).into(ivBrand);
             tvBrandName.setText(goodsBean.getData().getGoods_goods().getGoods_brand().getName());
         }
 
@@ -347,7 +353,6 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
         }
     }
 
-
     @Override
     public int initLayout() {
         return R.layout.activity_goods_detail;
@@ -413,7 +418,8 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
     public void openShoppingCar() {
         if (isLogin()) {
             EventBus.getDefault().post(new MainSwitchEvent(3));
-
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
             finish();
         } else {
             startActivity(new Intent(this, LoginByPasswordActivity.class));
@@ -444,13 +450,265 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
      * 立即购买
      */
     public void buyImmediately(int currentSpecId, int currentStoreType, int number) {
-        if (isLogin()) {
-            isBuyImmediately = true;
-            addToCart(currentSpecId, currentStoreType, number);
-        } else {
+        if(!isLogin()){
             startActivity(new Intent(this, LoginByPasswordActivity.class));
+            return;
         }
+
+        isBuyImmediately = true;
+
+        if (((IPSCApplication) getApplication()).getUserInfo() == null) {
+            ToastUtils.show(GoodsDetailActivity.this, "请先登录");
+            Intent intent = new Intent(GoodsDetailActivity.this, LoginByPasswordActivity.class);
+            startActivity(intent);
+            return;
+        }
+        RequestParams params = new RequestParams(MainUrls.addGoodsToCartUrl);
+        params.addBodyParameter("access_token", IPSCApplication.accessToken);
+        params.addBodyParameter("id", currentSpecId + "");
+        params.addBodyParameter("number", number + "");
+        if (((IPSCApplication) getApplication()).getUserInfo() != null) {
+            params.addBodyParameter("user", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
+        }
+
+        showLoading(false, "加载数据中...");
+
+        x.http().post(params, new Callback.CommonCallback<JSONObject>() {
+            @Override
+            public void onSuccess(JSONObject result) {
+
+                if(result!=null){
+                    try {
+                        int code = result.getInt("code");
+                        int state = result.getInt("state");
+                        //添加购物车成功
+                        if(code ==0 && state ==0){
+                            goodsPropsSelectPop.dismiss();
+                            //查询购物车，然后结算
+                            queryCart();
+                        }else {
+                            Toast.makeText(GoodsDetailActivity.this, "订单创建失败", Toast.LENGTH_SHORT).show();
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Toast.makeText(GoodsDetailActivity.this, "订单差U功能键失败", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
     }
+
+    private void queryCart(){
+        RequestParams params = new RequestParams(MainUrls.getGoodsCartUrl);
+        params.addBodyParameter("access_token", IPSCApplication.accessToken);
+        params.addBodyParameter("page", "1");
+        params.addBodyParameter("limit", "10000");
+        if (((IPSCApplication) getApplication()).getUserInfo() != null) {
+            params.addBodyParameter("user", ((IPSCApplication)getApplication()).getUserInfo().getId() + "");
+        }
+
+        x.http().post(params, new Callback.CommonCallback<JSONObject>() {
+            @Override
+            public void onSuccess(JSONObject jsonObject) {
+                try {
+
+                    int state = jsonObject.getInt("state");
+                    int code = jsonObject.getInt("code");
+                    if (state == 0 && code == 0) {
+                        JSONObject data = jsonObject.getJSONObject("data");
+
+                        carts.clear();
+
+                        JSONArray storeList = data.getJSONArray("list");
+                        if (storeList != null && storeList.length() != 0) {
+                            for (int i = 0; i < storeList.length(); i++) {
+                                CartRootBean cartRootBean = new CartRootBean();
+                                JSONObject carRoot = storeList.getJSONObject(i);
+                                if (carRoot.get("store_store") != null && carRoot.get("store_store").toString() != "null" && carRoot.getJSONObject("store_store") != null) {
+                                    cartRootBean.setCartGoodsName(carRoot.getJSONObject("store_store").getString("name"));
+                                    cartRootBean.setStoreType(carRoot.getJSONObject("store_store").getString("type"));
+                                    cartRootBean.setId(carRoot.getJSONObject("store_store").getInt("id"));
+                                }
+                                cartRootBean.setTotalPrice(carRoot.getDouble("total"));
+                                JSONArray goodsList = carRoot.getJSONArray("list");
+                                ArrayList<CartGood> cartGoodsList = new ArrayList<>();
+                                if (goodsList != null && goodsList.length() != 0) {
+                                    for (int j = 0; j < goodsList.length(); j++) {
+                                        JSONObject goods = goodsList.getJSONObject(j);
+                                        CartGood cartGood = new CartGood();
+                                        cartGood.setId(goods.getInt("id"));
+                                        cartGood.setGoodsPriceId(goods.getJSONObject("store_price").getInt("id"));
+                                        cartGood.setChecked(goods.getInt("cart_state") == 1 ? true : false);
+
+
+                                        JSONObject goods_temp = goods.getJSONObject("store_price").getJSONObject("goods_goods").getJSONObject("goods_temp");
+                                        String imgUrl = "";
+                                        if(goods_temp !=null){
+                                            Object o = goods_temp.get("img");
+                                            if(o instanceof String){
+                                                imgUrl = goods_temp.getString("img");
+                                            }else if(o instanceof JSONArray){
+                                                JSONArray imgArray = goods_temp.getJSONArray("img");
+                                                if(imgArray!=null && imgArray.length()>0){
+                                                    imgUrl = imgArray.getString(0);
+                                                }
+                                            }
+                                        }
+
+
+                                        cartGood.setImagePath(imgUrl);
+
+                                        cartGood.setName(goods.getJSONObject("store_price").getJSONObject("goods_goods").getJSONObject("goods_temp").getString("name"));
+                                        cartGood.setNum(goods.getInt("number"));
+                                        cartGood.setPrice(goods.getDouble("price"));
+                                        cartGood.setOriginalPrice(goods.getDouble("price"));
+                                        cartGood.setTaxation(goods.getDouble("tax"));
+                                        cartGood.setInfo(goods.getJSONObject("store_price").getJSONObject("goods_goods")
+                                                .getString("spec"));
+                                        cartGoodsList.add(cartGood);
+                                    }
+                                    cartRootBean.setmCartGood(cartGoodsList);
+                                }
+                                carts.add(cartRootBean);
+                            }
+                        } else {
+                        }
+                    }
+
+
+                } catch (Exception e) {
+                    LogUtil.e(TAG, "onCommonGoodsCallBack()", e);
+                }finally {
+
+                    //只有一单
+                    if(countChecked(carts)==1){
+                        isMul = false;
+                    }else {
+                        //拆单
+                        isMul = true;
+                    }
+
+                    submit();
+
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
+    }
+
+    private int countChecked(ArrayList<CartRootBean> rootBean) {
+        int checkedCount = 0;
+        try {
+            for (int i = 0; i < rootBean.size(); i++) {
+                if (rootBean.get(i).getmCartGood() != null && rootBean.get(i).getmCartGood().size() != 0) {
+                    // TODO这里存在潜在问题，后台反馈的数据有时候会存在没有对应仓库，当前我们默认后台数据正常
+                    for (int j = 0; j < rootBean.get(i).getmCartGood().size(); j++) {
+                        if (rootBean.get(i).getmCartGood().get(j).isChecked()) {
+                            checkedCount++;
+                            break;
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+        }
+        return checkedCount;
+    }
+
+    private void submit(){
+
+
+        RequestParams params = new RequestParams(MainUrls.cartSubmitUrl);
+        params.addBodyParameter("access_token", IPSCApplication.accessToken);
+        if(((IPSCApplication)getApplicationContext()).getUserInfo()!=null){
+            params.addBodyParameter("user", ((IPSCApplication)getApplicationContext()).getUserInfo().getId() + "");
+        }
+
+        x.http().post(params, new Callback.CommonCallback<JSONObject>() {
+            @Override
+            public void onSuccess(JSONObject jsonObject) {
+                try {
+                    int code = jsonObject.getInt("code");
+                    int state = jsonObject.getInt("state");
+                    if(code ==0 && state ==0){
+
+                        //提交成功
+                        if (jsonObject.has("data")) {
+                            JSONObject data = jsonObject.getJSONObject("data");
+                            String orderId = data.has("0") ? data.getString("0") : "-1";
+                            if (isMul) {// 提交购物车成功后，如果是多订单，则会跳转到待付款界面
+                                //跳转到代付款界面
+                                Intent intentToWaitPayOrder = new Intent(GoodsDetailActivity.this, OrderActivity.class);
+                                intentToWaitPayOrder.putExtra("index", 1);
+                                startActivity(intentToWaitPayOrder);
+                                return;
+                            }
+                            if (!orderId.equals("-1")) {
+                                Intent intent = new Intent(GoodsDetailActivity.this, ConfirmOrderActivity.class);
+                                intent.putExtra("id", orderId);
+                                startActivity(intent);
+                            }
+                        }
+
+                        finish();
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+                dismissLoading();
+            }
+        });
+
+    }
+
 
     /**
      * 立即购买
@@ -472,9 +730,25 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
     }
 
     @OnClick({R.id.iv_back, R.id.rl_open_select_spec, R.id.rl_to_evaluate_list, R.id.tv_add_to_cart, R.id.rl_add_to_collection,
-            R.id.tv_buy_immediately, R.id.rl_car, R.id.rl_contact_service})
+            R.id.tv_buy_immediately, R.id.rl_car, R.id.rl_contact_service,R.id.rl_brand_container})
     public void onClick(View view) {
         switch (view.getId()) {
+            //跳转品牌
+            case R.id.rl_brand_container:
+                Goods_brand brand =null;
+                try{
+                    brand  = goodsBean.getData().getGoods_goods().getGoods_brand();
+                }catch (Exception e){}
+
+                if(brand==null){
+                    return;
+                }
+
+                Intent intent = new Intent(this, BrandDetailActivity.class);
+                intent.putExtra("brandId", brand.getId());
+                intent.putExtra("brandName", brand.getName());
+                startActivity(intent);
+                break;
             case R.id.rl_contact_service:
                 contactService();
                 break;
@@ -617,7 +891,7 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
                                     View view = LayoutInflater.from(this).inflate(R.layout.rv_item_order_image_view, null);
                                     ImageView ivEvaluatePic = view.findViewById(R.id.iv_evaluate_pic);
                                     Glide.with(GoodsDetailActivity.this).load(imagesList.get(i).getUrl())
-                                            .apply(new RequestOptions().placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher))
+                                            .apply(new RequestOptions().placeholder(R.drawable.icon_no_image).error(R.drawable.ic_launcher_logo))
                                             .into(ivEvaluatePic);
                                     llEvaluatePicContainer.addView(view);
                                 }

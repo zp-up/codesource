@@ -76,7 +76,7 @@ public class CollectionActivity extends BaseAppcompatActivity implements OnCommo
     private void initData() {
         RequestParams params = new RequestParams(MainUrls.collectionGoodsListUrl);
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
-        if(((IPSCApplication) getApplication()).getUserInfo()!=null){
+        if (((IPSCApplication) getApplication()).getUserInfo() != null) {
             params.addBodyParameter("user", ((IPSCApplication) getApplication()).getUserInfo().getId() + "");
         }
         params.addBodyParameter("page", pageIndex + "");
@@ -141,7 +141,7 @@ public class CollectionActivity extends BaseAppcompatActivity implements OnCommo
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");
                 int state = jsonObject.getInt("state");
-                if (code == 0 && state == 0){
+                if (code == 0 && state == 0) {
                     if (jsonObject.has("data")) {
                         JSONArray data = jsonObject.getJSONArray("data");
                         if (pageIndex == 1) {
@@ -153,12 +153,27 @@ public class CollectionActivity extends BaseAppcompatActivity implements OnCommo
                             for (int i = 0; i < data.length(); i++) {
                                 CollectionGoodsBean bean = new CollectionGoodsBean();
                                 int id = data.getJSONObject(i).getJSONObject("goods_goods").getInt("id");
-                                String name = data.getJSONObject(i).getJSONObject("goods_goods").getString("name");
+                                String name = data.getJSONObject(i).getJSONObject("goods_goods").getJSONObject("goods_temp").getString("name");
 //                                String description = data.getJSONObject(i).getJSONObject("goods_goods").getString("keyword");
                                 String baseAreaName = data.getJSONObject(i).getJSONObject("goods_goods").getString("base_area").equals("0") ? "国内" : data.getJSONObject(i).getJSONObject("goods_goods").getJSONObject("base_area").getString("name");
                                 double price = data.getJSONObject(i).getDouble("price");
 
-                                String imgUrl = data.getJSONObject(i).getJSONObject("goods_goods").getString("img");
+                                String imgUrl = "";
+
+                                JSONObject goods_goods = data.getJSONObject(i).getJSONObject("goods_goods");
+                                if(goods_goods!=null){
+                                    Object o = goods_goods.get("img");
+                                    if(o!=null){
+                                        if(o instanceof String){
+                                            imgUrl = goods_goods.getString("img");
+                                        }else if(o instanceof JSONArray){
+                                            JSONArray imgArray = goods_goods.getJSONArray("img");
+                                            if(imgArray!=null && imgArray.length()>0){
+                                                imgUrl = imgArray.getString(0);
+                                            }
+                                        }
+                                    }
+                                }
 
 
                                 bean.setGoodsId(id);
@@ -186,7 +201,7 @@ public class CollectionActivity extends BaseAppcompatActivity implements OnCommo
                         }
                     }
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

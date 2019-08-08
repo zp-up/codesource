@@ -248,7 +248,6 @@ public class LoginByPasswordActivity extends BaseAppcompatActivity implements On
     //网络请求出错
     @Override
     public void onError(String error) {
-        Log.i(TAG, "onError() error:");
     }
 
     @Override
@@ -319,7 +318,6 @@ public class LoginByPasswordActivity extends BaseAppcompatActivity implements On
                     ToastUtils.show(LoginByPasswordActivity.this, msg);
                 }
             } catch (Exception e) {
-                Log.e(TAG, "onCommonSuccess() occur an Exception", e);
             }
         }
     }
@@ -328,7 +326,6 @@ public class LoginByPasswordActivity extends BaseAppcompatActivity implements On
     @Override
     public void onLoginSuccess(String result) {
         if (result != null) {
-            Log.e(TAG, "登录返回信息:" + result);
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");
@@ -341,10 +338,13 @@ public class LoginByPasswordActivity extends BaseAppcompatActivity implements On
                     if (jsonObject.has("data") && jsonObject.getString("data") != null && !jsonObject.getString("data").equals("null")){
                         JSONObject data = jsonObject.getJSONObject("data");
                         UserBean userBean = new UserBean();
+
                         userBean.setId(data.getInt("id"));
                         userBean.setName(data.getString("name"));
                         userBean.setUserPhone(etPhoneNumber.getText().toString().trim());
                         userBean.setPassword(etPassword.getText().toString().trim());
+
+
                         userBean.setNickName(data.has("nickname")?data.getString("nickname"):"");
                         userBean.setImg(data.has("img")?data.getString("img"):"");
                         ((IPSCApplication)getApplication()).saveUserInfo(new Gson().toJson(userBean));
@@ -358,7 +358,7 @@ public class LoginByPasswordActivity extends BaseAppcompatActivity implements On
                                 IPSCApplication.id = id;
                             }
                         } catch (Exception e) {
-                            Log.e(TAG, "onLoginSuccess()", e);
+                            e.printStackTrace();
                         }
 
                         ToastUtils.show(LoginByPasswordActivity.this,"登录成功");
@@ -375,7 +375,6 @@ public class LoginByPasswordActivity extends BaseAppcompatActivity implements On
                     ToastUtils.show(LoginByPasswordActivity.this,msg);
                 }
             }catch (Exception e){
-                Log.e(TAG, "onLoginSuccess() occur an Exception", e);
             }
         }
     }
@@ -397,7 +396,6 @@ public class LoginByPasswordActivity extends BaseAppcompatActivity implements On
      * 微信登录
      */
     private void wechatLogin() {
-        Log.d(TAG, "wechatLogin()");
         loginWay = LOGIN_WAY_WECHAT;
         // 获取微信授权
         wechatAuth();
@@ -430,7 +428,6 @@ public class LoginByPasswordActivity extends BaseAppcompatActivity implements On
      * 获取支付宝登录授权
      */
     private void alipayLoginAuth(final String authInfo) {
-        Log.d(TAG, "alipayLoginAuth() authInfo:" + authInfo);
         new Thread(new Runnable() {
 
             @Override
@@ -464,7 +461,6 @@ public class LoginByPasswordActivity extends BaseAppcompatActivity implements On
 //        params.addBodyParameter("account", account);// "wx936ef706f9fb1fe7");
 //        params.addBodyParameter("code", code);//微信openid,支付宝auth_token
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
-        Log.d(TAG, "alipayAuthData() params:" + params.toString());
         userOptionPresenter.commonData(params, this, TYPE_GET_ALIPAY_AUTH_DATA);
     }
 
@@ -484,7 +480,6 @@ public class LoginByPasswordActivity extends BaseAppcompatActivity implements On
 //        params.addBodyParameter("account", "wx936ef706f9fb1fe7");
 //        params.addBodyParameter("code", code);//微信openid,支付宝auth_token
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
-        Log.d(TAG, "thirdCodeLogin() params:" + params.toString());
         userOptionPresenter.doLogin(params, this);
     }
 
@@ -494,7 +489,6 @@ public class LoginByPasswordActivity extends BaseAppcompatActivity implements On
     private void thirdLoginList() {
         RequestParams params = new RequestParams(MainUrls.userThirdLoginListUrl);
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
-        Log.d(TAG, "thirdLoginList() params:" + params.toString());
         userOptionPresenter.commonData(params, this, TYPE_GET_LOGIN_LIST);
     }
 
@@ -504,7 +498,6 @@ public class LoginByPasswordActivity extends BaseAppcompatActivity implements On
      */
     @Subscribe
     public void onEvent(WxEvent event) {
-        Log.d(TAG, "onEvent() code:" + event.getCode());
         if (event != null && event.getCode() == 4) {// 微信授权成功
             wechatAuthCode = event.getMsg();
             thirdLoginList();
@@ -528,19 +521,16 @@ public class LoginByPasswordActivity extends BaseAppcompatActivity implements On
                     @SuppressWarnings("unchecked")
                     AuthResult authResult = new AuthResult((Map<String, String>) msg.obj, true);
                     String resultStatus = authResult.getResultStatus();
-                    Log.d(TAG, "handleMessage() resultStatus:" + resultStatus + ",resultCode:" + authResult.getResultCode());
 
                     // 判断resultStatus 为“9000”且result_code
                     // 为“200”则代表授权成功，具体状态码代表含义可参考授权接口文档
                     if (TextUtils.equals(resultStatus, "9000") && TextUtils.equals(authResult.getResultCode(), "200")) {
                         // 获取alipay_open_id，调支付时作为参数extern_token 的value
                         // 传入，则支付账户为该授权账户
-                        Log.d(TAG, "handleMessage() alipay auth success!");
                         alipayAuthCode = authResult.getAuthCode();
                         thirdCodeLogin(alipayAccount, alipayAuthCode);
                     } else {
                         // 其他状态值则为授权失败
-                        Log.d(TAG, "handleMessage() alipay auth failed!");
                     }
                     break;
                 }

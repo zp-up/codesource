@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
@@ -189,7 +190,7 @@ public class HomeAdapter extends DelegateAdapter.Adapter<HomeAdapter.ViewHolder>
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(context, GoodsListActivity.class);
-                        intent.putExtra("type",1);
+                        intent.putExtra("type", 1);
                         context.startActivity(intent);
                     }
                 });
@@ -198,7 +199,7 @@ public class HomeAdapter extends DelegateAdapter.Adapter<HomeAdapter.ViewHolder>
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(context, GoodsListActivity.class);
-                        intent.putExtra("type",2);
+                        intent.putExtra("type", 2);
                         context.startActivity(intent);
                     }
                 });
@@ -276,8 +277,8 @@ public class HomeAdapter extends DelegateAdapter.Adapter<HomeAdapter.ViewHolder>
                     holder.llClickParent5.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent intent = new Intent(context,GoodsDetailActivity.class);
-                            intent.putExtra("goodsId",bean.getGoodsId());
+                            Intent intent = new Intent(context, GoodsDetailActivity.class);
+                            intent.putExtra("goodsId", bean.getGoodsId());
                             context.startActivity(intent);
                         }
                     });
@@ -398,7 +399,7 @@ public class HomeAdapter extends DelegateAdapter.Adapter<HomeAdapter.ViewHolder>
                                 view.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        Log.e("goods","goodsID:"+goodsList.get(index).getGoodsId());
+                                        Log.e("goods", "goodsID:" + goodsList.get(index).getGoodsId());
                                         Intent intent = new Intent(context, GoodsDetailActivity.class);
                                         intent.putExtra("goodsId", goodsList.get(index).getGoodsId());
                                         context.startActivity(intent);
@@ -507,7 +508,7 @@ public class HomeAdapter extends DelegateAdapter.Adapter<HomeAdapter.ViewHolder>
         //type = 1
         Banner banner;
         //type = 2
-        RelativeLayout rlToGroup,rlToNewly,rlToDiscount;
+        RelativeLayout rlToGroup, rlToNewly, rlToDiscount;
         //type = 3
         TimerView tvCountDown;
         LinearLayout llGoodsContainer;
@@ -542,9 +543,9 @@ public class HomeAdapter extends DelegateAdapter.Adapter<HomeAdapter.ViewHolder>
                     break;
                 case TYPE_2:
                     rlToGroup = itemView.findViewById(R.id.rl_to_group);
-                    rlToNewly =itemView.findViewById(R.id.rl_to_newly_goods_list);
+                    rlToNewly = itemView.findViewById(R.id.rl_to_newly_goods_list);
                     rlToDiscount = itemView.findViewById(R.id.rl_to_discount);
-                break;
+                    break;
                 case TYPE_3:
                     tvCountDown = itemView.findViewById(R.id.tv_count_down);
                     llGoodsContainer = itemView.findViewById(R.id.ll_goods_container);
@@ -579,7 +580,7 @@ public class HomeAdapter extends DelegateAdapter.Adapter<HomeAdapter.ViewHolder>
         }
     }
 
-    private void initBanner(Banner banner, ArrayList<Data> bannerBeanList) {
+    private void initBanner(final Banner banner, final ArrayList<Data> bannerBeanList) {
         //显示圆形指示器
         banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
         //指示器居中
@@ -589,6 +590,26 @@ public class HomeAdapter extends DelegateAdapter.Adapter<HomeAdapter.ViewHolder>
         banner.setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(int position) {
+
+                try{
+                    if (bannerBeanList != null && position < bannerBeanList.size()) {
+                        Data data = bannerBeanList.get(position);
+                        if (data != null) {
+                            String url = data.getUrl();
+
+                            if(TextUtils.equals("商品",url) && !TextUtils.isEmpty(data.getGoods_goods()) ){
+                                Intent intent = new Intent(context,GoodsDetailActivity.class);
+                                intent.putExtra("goodsId",Integer.valueOf(data.getGoods_goods()));
+                                context.startActivity(intent);
+                            }
+
+                        }
+
+                    }
+                }catch (Exception e){
+
+                }
+
 
             }
         });

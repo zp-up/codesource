@@ -67,7 +67,7 @@
                         <ImageView
                             android:id="@+id/iv_shop_logo"
                             android:padding="@dimen/x1"
-                            android:src="@mipmap/ic_launcher"
+                            tools:src="@mipmap/ic_launcher"
                             android:background="@drawable/shape_of_verify_code_btn"
                             android:layout_marginLeft="@dimen/x20"
                             android:layout_width="@dimen/x80"

@@ -49,7 +49,7 @@
                     android:id="@+id/tv_goods_price"
                     android:ellipsize="end"
                     tools:text="￥320.00"
-                    android:textColor="@color/black"
+                    android:textColor="#333333"
                     android:textSize="@dimen/x12"
                     android:lines="1"
                     android:layout_marginTop="@dimen/x5"
@@ -65,7 +65,7 @@
                 android:gravity="center"
                 android:background="@drawable/shape_of_verify_code_btn"
                 android:textSize="@dimen/x12"
-                android:textColor="@color/black"
+                android:textColor="#333333"
                 android:text="去购买"
                 android:layout_width="@dimen/x70"
                 android:layout_height="@dimen/x25" />

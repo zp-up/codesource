@@ -71,8 +71,20 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
     TextView tvDiscount;
     @BindView(R.id.tv_to_true_name)
     TextView tvToTrueName;
-    private int walletMoney = 0;
-    private int setMoney = 0;
+    @BindView(R.id.tv_storage)
+    TextView tv_storage;
+    @BindView(R.id.tv_goods_weight)
+    TextView tv_goods_weight;
+    @BindView(R.id.tv_goods_count)
+    TextView tv_goods_count;
+    @BindView(R.id.tv_order_code)
+    TextView tv_order_code;
+    @BindView(R.id.tv_order_time)
+    TextView tv_order_time;
+
+
+    private float walletMoney = 0;
+    private float setMoney = 0;
 
 
     @Override
@@ -122,6 +134,7 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
                 Intent intent2 = new Intent(ConfirmOrderActivity.this, PayWayActivity.class);
                 intent2.putExtra("oderId", orderId);
                 startActivity(intent2);
+                finish();
                 //checkOrderInfo();
                 break;
             case R.id.rl_wallet_add:
@@ -137,7 +150,7 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
                     }
 
                     @Override
-                    public void onProgress(int progress) {
+                    public void onProgress(float progress) {
                         setWalletToOrder(progress);
                     }
                 }, walletMoney);
@@ -157,7 +170,7 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
         confirmPresenter.checkPayInfo(params, this);
     }
 
-    private void setWalletToOrder(int progress) {
+    private void setWalletToOrder(float progress) {
         setMoney = progress;
         RequestParams params = new RequestParams(MainUrls.setWalletMoneyToOrderUrl);
         params.addBodyParameter("access_token", IPSCApplication.accessToken);
@@ -168,9 +181,7 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
 
     @Subscribe
     public void onSub(AddressUpdateEvent event) {
-        Log.e(TAG, "hah");
         if (event != null) {
-            Log.e(TAG, "hah:" + event.getOp());
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -202,7 +213,6 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
 
     @Override
     public void onError(String error) {
-        Log.e(TAG, "ConfirmOrderActivity->访问网络错误:" + error);
     }
 
     @Override
@@ -234,12 +244,15 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
                 orderRootBean.setRefund_time(data.has("refund_time") ? data.getLong("refund_time") : 0);
                 orderRootBean.setStatus(data.getString("status"));
                 orderRootBean.setStoreType(data.getJSONObject("store").getString("type"));
+                orderRootBean.setStoreName(data.getJSONObject("store").getString("name"));
                 orderRootBean.setPost(data.getString("post"));
                 orderRootBean.setTotal_tax(data.getDouble("total_tax"));
                 orderRootBean.setTotal_goods(data.getDouble("total_goods"));
                 orderRootBean.setTotal_total(data.getDouble("total_total"));
                 orderRootBean.setPostPrice(data.getDouble("total_post"));
                 orderRootBean.setWeight(data.getDouble("weight"));
+                orderRootBean.setCount(data.getInt("count"));
+                orderRootBean.setNumber(data.getInt("number"));
                 List<OrderGoodsBean> orderGoodsBeans = new ArrayList<>();
                 if (data.has("order_orderlist") && data.getJSONArray("order_orderlist") != null && data.getJSONArray("order_orderlist").length() != 0) {
                     JSONArray list = data.getJSONArray("order_orderlist");
@@ -282,7 +295,13 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
             int state = jsonObject.getInt("state");
             if (code == 0 && state == 0) {
                 JSONObject data = jsonObject.getJSONObject("data");
-                walletMoney = (int) Math.floor(data.getDouble("money"));
+                String str= data.getString("max");
+                walletMoney = Float.valueOf(str);
+                if(walletMoney<=0){
+                    tvDiscount.setText("暂无抵扣");
+                }else {
+                    tvDiscount.setText("可抵扣");
+                }
             }
         } catch (Exception e) {
             LogUtil.e(TAG, "onWalletDataLoaded()", e);
@@ -308,7 +327,6 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
     public void onCheckInfoCallBack(String result) {
 
         try {
-            Log.e(TAG, "checkInfo:" + result);
             JSONObject jsonObject = new JSONObject(result);
             int code = jsonObject.getInt("code");
             int state = jsonObject.getInt("state");
@@ -363,6 +381,12 @@ public class ConfirmOrderActivity extends BaseAppcompatActivity implements OnCon
         tvBondedPrice.setText("￥" + orderRootBean.getTotal_tax());
         tvPayTotal.setText("应付:￥" + orderRootBean.getPay_total());
         tvPostPrice.setText("￥" + orderRootBean.getPostPrice());
+
+        tv_storage.setText(orderRootBean.getStoreName());
+        tv_goods_weight.setText(orderRootBean.getWeight()+"KG");
+        tv_goods_count.setText("共"+orderRootBean.getCount()+"件"+orderRootBean.getNumber()+"件商品");
+        tv_order_code.setText(orderRootBean.getOrderNumber());
+        tv_order_time.setText(orderRootBean.getCreate_time());
     }
 
     @Override

@@ -124,6 +124,7 @@ public class BrandDetailActivity extends BaseAppcompatActivity implements OnBran
 
 
     private ArrayList<HomeBondedGoodsBean> data = new ArrayList<>();
+    private ArrayList<HomeBondedGoodsBean> hotProducts;//热门商品
     private BondedGoodsListAdapter adapter;
     private int screenWidth;
     private int currentPosition = 1;
@@ -579,10 +580,10 @@ public class BrandDetailActivity extends BaseAppcompatActivity implements OnBran
                         String title = data.getJSONObject("data").getString("name");
                         int goodsUp = data.getJSONObject("data").getInt("goodsup");
                         tvBrandTitle.setText(title);
-                        Glide.with(BrandDetailActivity.this).load(logo).apply(new RequestOptions().placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher))
+                        Glide.with(BrandDetailActivity.this).load(logo).apply(new RequestOptions().placeholder(R.drawable.icon_no_image).error(R.drawable.icon_no_image))
                                 .into(ivShopLogo);
                         if (!imgExtend.isEmpty()) {
-                            Glide.with(BrandDetailActivity.this).load(imgExtend).apply(new RequestOptions().placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher))
+                            Glide.with(BrandDetailActivity.this).load(imgExtend).apply(new RequestOptions().placeholder(R.drawable.icon_no_image).error(R.drawable.icon_no_image))
                                     .into(ivBrandDetail);
                         }
                         int goodsCount = data.getInt("count");
@@ -599,6 +600,13 @@ public class BrandDetailActivity extends BaseAppcompatActivity implements OnBran
     }
 
     private void initHotGoods() {
+        //热门商品只需要初始化一次
+        if(hotProducts!=null){
+            return;
+        }
+
+        hotProducts = new ArrayList<>();
+
         llGoodsContainer.removeAllViews();
         try {
             for (int i = 0; i < 6 && i < data.size(); i++) {
@@ -608,7 +616,7 @@ public class BrandDetailActivity extends BaseAppcompatActivity implements OnBran
                 String goodsName = goodsBean.getGoodsName();
                 double goodsPrice = goodsBean.getGoodsPrice();
                 if (!imgSrc.isEmpty()) {
-                    Glide.with(BrandDetailActivity.this).load(imgSrc).apply(new RequestOptions().placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher))
+                    Glide.with(BrandDetailActivity.this).load(imgSrc).apply(new RequestOptions().placeholder(R.drawable.icon_no_image).error(R.drawable.icon_no_image))
                             .into(((ImageView) view.findViewById(R.id.iv_goods_pic)));
                 }
                 if (goodsName != null && !goodsName.isEmpty()) {
