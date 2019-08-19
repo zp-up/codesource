@@ -2,8 +2,8 @@ package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activ
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.chrisjason.baseui.ui.BaseAppcompatActivity;

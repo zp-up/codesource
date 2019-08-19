@@ -153,8 +153,8 @@
         android:background="@color/gainsboro"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x1"></View>
-   <androidx.viewpager.widget.ViewPager
+   <android.support.v4.view.ViewPager
        android:id="@+id/vp_class_container"
        android:layout_width="match_parent"
-       android:layout_height="match_parent"></androidx.viewpager.widget.ViewPager>
+       android:layout_height="match_parent"></android.support.v4.view.ViewPager>
 </LinearLayout>

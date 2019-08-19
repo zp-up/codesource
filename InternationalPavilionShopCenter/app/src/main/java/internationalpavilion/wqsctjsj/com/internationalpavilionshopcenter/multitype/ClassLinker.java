@@ -17,7 +17,7 @@
 package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.multitype;
 
 
-import androidx.annotation.NonNull;
+import android.support.annotation.NonNull;
 
 /**
  * An interface to link the items and binders by the classes of binders.

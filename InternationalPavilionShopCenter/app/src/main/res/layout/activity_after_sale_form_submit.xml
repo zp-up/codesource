@@ -69,7 +69,6 @@
 
             </LinearLayout>
             <RelativeLayout
-                android:visibility="gone"
                 android:id="@+id/rl_reason_select"
                 android:background="@drawable/shape_of_verify_code_btn"
                 android:layout_marginRight="@dimen/x15"

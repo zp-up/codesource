@@ -1,11 +1,10 @@
 package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity;
 
 import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -14,7 +13,7 @@ import com.chrisjason.baseui.ui.BaseAppcompatActivity;
 import com.jaeger.library.StatusBarUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import org.xutils.http.RequestParams;
@@ -26,6 +25,7 @@ import butterknife.OnClick;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.adapter.EvaluateListAdapter;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.application.IPSCApplication;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.EvaluateListBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.goodsEvaluateList.GoodsEvaluateListBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp.GoodsEvaluateImp;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.GoodsEvaluateInterface;
@@ -65,15 +65,14 @@ public class GoodsEvalateListActivity extends BaseAppcompatActivity implements O
                 initData();
             }
         });
-        srlContent.setOnLoadMoreListener(new OnLoadMoreListener() {
+        srlContent.setOnLoadmoreListener(new OnLoadmoreListener() {
             @Override
-            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+            public void onLoadmore(RefreshLayout refreshlayout) {
                 pageIndex++;
                 loadMore();
             }
-
         });
-        srlContent.setEnableLoadMore(true);
+        srlContent.setEnableLoadmore(true);
     }
 
     @Override
@@ -134,7 +133,7 @@ public class GoodsEvalateListActivity extends BaseAppcompatActivity implements O
     @Override
     public void onFinished() {
         dismissLoading();
-        srlContent.finishLoadMore();
+        srlContent.finishLoadmore();
         srlContent.finishRefresh();
     }
 

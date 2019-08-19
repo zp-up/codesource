@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -24,16 +26,12 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.chrisjason.baseui.ui.BaseAppcompatActivity;
 import com.chrisjason.baseui.util.DpUtils;
 import com.jaeger.library.StatusBarUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import org.json.JSONArray;
@@ -182,19 +180,18 @@ public class ClassGoodsListActivity extends BaseAppcompatActivity implements OnB
                 return true;
             }
         });
-        srlContent.setEnableLoadMore(true);
+        srlContent.setEnableLoadmore(true);
         srlContent.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 initData();
             }
         });
-        srlContent.setOnLoadMoreListener(new OnLoadMoreListener() {
+        srlContent.setOnLoadmoreListener(new OnLoadmoreListener() {
             @Override
-            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+            public void onLoadmore(RefreshLayout refreshlayout) {
                 loadMore();
             }
-
         });
 
         tvReset.setOnClickListener(new View.OnClickListener() {
@@ -560,7 +557,7 @@ public class ClassGoodsListActivity extends BaseAppcompatActivity implements OnB
     @Override
     public void onFinished() {
         srlContent.finishRefresh();
-        srlContent.finishLoadMore();
+        srlContent.finishLoadmore();
         dismissLoading();
     }
 

@@ -2,8 +2,7 @@ package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activ
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 
@@ -11,12 +10,19 @@ import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
 import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
+
 import com.chrisjason.baseui.ui.BaseAppcompatActivity;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 import com.jaeger.library.StatusBarUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.xutils.http.RequestParams;
@@ -69,12 +75,11 @@ public class GroupGoodsListActivity extends BaseAppcompatActivity implements OnG
                 initData();
             }
         });
-        mRefresh.setOnLoadMoreListener(new OnLoadMoreListener() {
+        mRefresh.setOnLoadmoreListener(new OnLoadmoreListener() {
             @Override
-            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+            public void onLoadmore(RefreshLayout refreshlayout) {
                 initData();
             }
-
         });
         initRVLayout();
         initData();
@@ -243,10 +248,10 @@ public class GroupGoodsListActivity extends BaseAppcompatActivity implements OnG
                                 //已经加载完所有数据
                                 if (data.size() < 10) {
                                     ToastUtils.show(this, "已加载完所有数据");
-                                    mRefresh.setEnableLoadMore(false);
+                                    mRefresh.setEnableLoadmore(false);
                                 } else {
                                     pageIndex++;
-                                    mRefresh.setEnableLoadMore(true);
+                                    mRefresh.setEnableLoadmore(true);
                                 }
 
                             } else {
@@ -274,10 +279,10 @@ public class GroupGoodsListActivity extends BaseAppcompatActivity implements OnG
 //                                }
                                     ToastUtils.show(this, "已加载完所有数据");
                                     //上拉加载完所有数据，禁止上拉事件
-                                    mRefresh.setEnableLoadMore(false);
+                                    mRefresh.setEnableLoadmore(false);
                                 } else {
                                     pageIndex++;
-                                    mRefresh.setEnableLoadMore(true);
+                                    mRefresh.setEnableLoadmore(true);
                                 }
                             } else {
                                 //上拉加载完了所有数据
@@ -288,7 +293,7 @@ public class GroupGoodsListActivity extends BaseAppcompatActivity implements OnG
 //                                mItems.add(bottomEntity);
 //                            }
                                 ToastUtils.show(this, "已加载完所有数据");
-                                mRefresh.setEnableLoadMore(false);
+                                mRefresh.setEnableLoadmore(false);
                             }
 
                         }
@@ -306,7 +311,7 @@ public class GroupGoodsListActivity extends BaseAppcompatActivity implements OnG
 
     private void stopRefreshAndLoadMore() {
         if (mRefresh != null) {
-            mRefresh.finishLoadMore();
+            mRefresh.finishLoadmore();
             mRefresh.finishRefresh(true);
         }
     }

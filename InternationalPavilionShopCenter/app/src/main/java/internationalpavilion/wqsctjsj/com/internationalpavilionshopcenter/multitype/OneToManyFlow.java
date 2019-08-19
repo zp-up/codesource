@@ -16,8 +16,9 @@
 
 package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.multitype;
 
-import androidx.annotation.CheckResult;
-import androidx.annotation.NonNull;
+
+import android.support.annotation.CheckResult;
+import android.support.annotation.NonNull;
 
 /**
  * Process and flow operators for one-to-many.

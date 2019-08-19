@@ -1,12 +1,17 @@
 package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity;
+
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+
 import com.chrisjason.baseui.ui.BaseAppcompatActivity;
 import com.jaeger.library.StatusBarUtil;
+
 import org.json.JSONObject;
 import org.xutils.http.RequestParams;
+
 import java.util.ArrayList;
 
 import butterknife.BindView;

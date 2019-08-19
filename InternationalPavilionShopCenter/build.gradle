@@ -28,6 +28,12 @@ allprojects {
     }
 
     configurations.all {
+        resolutionStrategy.force "com.android.support:support-annotations:${rootProject.ext.supportLibraryVersion}"
+        resolutionStrategy.force "com.android.support:appcompat-v7:${rootProject.ext.supportLibraryVersion}"
+        resolutionStrategy.force "com.android.support:support-fragment:${rootProject.ext.supportLibraryVersion}"
+        resolutionStrategy.force "com.android.support:support-compat:${rootProject.ext.supportLibraryVersion}"
+        resolutionStrategy.force "com.github.bumptech.glide:glide:${rootProject.ext.glideVersion}"
+
 
     }
 }
@@ -40,9 +46,9 @@ task clean(type: Delete) {
 
 ext {
     // Sdk and tools
-    buildToolsVersion = "28.0.3"
+    buildToolsVersion = "27.0.3"
 
-    compileSdkVersion = 28
+    compileSdkVersion = 27
 
     minSdkVersion = 21
 
@@ -54,14 +60,12 @@ ext {
 
     javaVersion = JavaVersion.VERSION_1_7
 
-    multidexVersion = "2.0.0"
-    appCompatVersion = "1.0.2"
-
     // App dependencies version
-    supportLibraryVersion = "28.0.0"
+    supportLibraryVersion = "27.1.0"
 
     constraintVersion = "1.1.2"
 
+    multidexVersion = "1.0.2"
 
     /************第三方库版本***********/
 
@@ -70,39 +74,13 @@ ext {
     gsonVersion = "2.8.5"
 
 //    butterKnife
-    butterknifeVersion = "10.1.0"
+    butterKnifeVersion = "8.8.1"
+    butterKnifeCompilerVersion = "8.8.1"
 
-    smartRefreshVersion = "1.1.0"
-
-    eventbusVersion = "3.1.1"
-
-    glideVersion = "4.9.0"
-    //banner
-    bannerVersion = "1.4.10"
+    glideVersion = "4.1.0"
 
 //    Rxjava2
     rxJavaVersion = '2.1.17'
     rxAndroidVersion = '2.0.2'
-
-    //xUtils
-    xUtilsVersion = "3.5.1"
-
-    vLayoutVersion = "1.3.0"
-
-    statusBarUtilVersion = "1.4.0"
-
-    pickerviewVersion = "3.2.7"
-
-    circleImageViewVersion = "3.0.0"
-
-    flyTabLayoutVersion = "2.1.2@aar"
-
-    progressVersion = "1.7"
-
-    wechatVersion = "5.3.1"
-
-    recyclerViewVersion = "1.0.0"
-
-    takePhotoVersion = "3.0.2"
 
 }

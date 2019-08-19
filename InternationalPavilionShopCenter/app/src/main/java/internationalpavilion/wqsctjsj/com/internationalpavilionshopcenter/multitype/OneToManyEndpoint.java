@@ -17,7 +17,7 @@
 package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.multitype;
 
 
-import androidx.annotation.NonNull;
+import android.support.annotation.NonNull;
 
 /**
  * End-operators for one-to-many.

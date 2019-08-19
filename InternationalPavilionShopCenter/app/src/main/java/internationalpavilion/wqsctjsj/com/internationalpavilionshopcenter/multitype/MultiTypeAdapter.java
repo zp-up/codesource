@@ -1,9 +1,9 @@
 
 package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.multitype;
 
-import androidx.annotation.CheckResult;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import android.support.annotation.CheckResult;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;

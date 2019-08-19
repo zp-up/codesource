@@ -40,17 +40,17 @@
             android:textSize="@dimen/x14" />
     </RelativeLayout>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/view_line"
         android:layout_below="@+id/rl_header">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.google.android.material.appbar.CollapsingToolbarLayout
+            <android.support.design.widget.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
@@ -69,7 +69,7 @@
                     <include layout="@layout/rv_goods_detail_layout3"></include>
                 </LinearLayout>
 
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
+            </android.support.design.widget.CollapsingToolbarLayout>
 
             <com.flyco.tablayout.SlidingTabLayout
                 android:id="@+id/slidingTabLayout"
@@ -90,15 +90,15 @@
                 app:tl_underline_height="0.7dp" />
 
 
-        </com.google.android.material.appbar.AppBarLayout>
-        <androidx.viewpager.widget.ViewPager
+        </android.support.design.widget.AppBarLayout>
+        <android.support.v4.view.ViewPager
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        </androidx.viewpager.widget.ViewPager>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        </android.support.v4.view.ViewPager>
+    </android.support.design.widget.CoordinatorLayout>
 
     <View
         android:id="@+id/view_line"

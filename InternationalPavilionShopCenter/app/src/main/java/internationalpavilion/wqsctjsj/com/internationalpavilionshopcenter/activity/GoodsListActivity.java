@@ -5,10 +5,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -37,7 +35,7 @@ import com.chrisjason.baseui.util.DpUtils;
 import com.jaeger.library.StatusBarUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import org.xutils.http.RequestParams;
@@ -304,7 +302,7 @@ public class GoodsListActivity extends BaseAppcompatActivity {
                     @Override
                     public void onFinished() {
                         srlContent.finishRefresh();
-                        srlContent.finishLoadMore();
+                        srlContent.finishLoadmore();
                         dismissLoading();
                     }
 
@@ -375,10 +373,10 @@ public class GoodsListActivity extends BaseAppcompatActivity {
                                                 //已经加载完所有数据
                                                 if (data.size() < 10) {
                                                     ToastUtils.show(GoodsListActivity.this, "已加载完所有数据");
-                                                    srlContent.setEnableLoadMore(false);
+                                                    srlContent.setEnableLoadmore(false);
                                                 } else {
                                                     pageIndex++;
-                                                    srlContent.setEnableLoadMore(true);
+                                                    srlContent.setEnableLoadmore(true);
                                                 }
 
                                             } else {
@@ -402,10 +400,10 @@ public class GoodsListActivity extends BaseAppcompatActivity {
 //                                }
                                                     ToastUtils.show(GoodsListActivity.this, "已加载完所有数据");
                                                     //上拉加载完所有数据，禁止上拉事件
-                                                    srlContent.setEnableLoadMore(false);
+                                                    srlContent.setEnableLoadmore(false);
                                                 } else {
                                                     pageIndex++;
-                                                    srlContent.setEnableLoadMore(true);
+                                                    srlContent.setEnableLoadmore(true);
                                                 }
                                             } else {
                                                 //上拉加载完了所有数据
@@ -416,7 +414,7 @@ public class GoodsListActivity extends BaseAppcompatActivity {
 //                                mItems.add(bottomEntity);
 //                            }
                                                 ToastUtils.show(GoodsListActivity.this, "已加载完所有数据");
-                                                srlContent.setEnableLoadMore(false);
+                                                srlContent.setEnableLoadmore(false);
                                             }
 
                                         }
@@ -438,6 +436,7 @@ public class GoodsListActivity extends BaseAppcompatActivity {
 
                                     // 筛选的品牌、分类数据获取
                                     com.alibaba.fastjson.JSONObject list = obj.getJSONObject("list");
+                                    Log.d(TAG, "品牌分类:");
                                     try {
 //                                        if (pageIndex == 1) {
 //                                        }
@@ -467,6 +466,7 @@ public class GoodsListActivity extends BaseAppcompatActivity {
                                         LogUtil.e(TAG, "update brand data occur an exception!", e);
                                     }
 
+                                    Log.d(TAG, "商品种类:");
                                     try {
 //                                        if (pageIndex == 1) {
 //                                        }
@@ -518,12 +518,13 @@ public class GoodsListActivity extends BaseAppcompatActivity {
                     @Override
                     public void onFinished() {
                         srlContent.finishRefresh();
-                        srlContent.finishLoadMore();
+                        srlContent.finishLoadmore();
                         dismissLoading();
                     }
 
                     @Override
                     public void onSuccess(String result) {
+                        Log.d(TAG, "onSuccess() type:" + type + ",result:" + result);
                         stopRefreshAndLoadMore();
                         if (result != null) {
                             com.alibaba.fastjson.JSONObject obj = JSON.parseObject(result);
@@ -589,10 +590,10 @@ public class GoodsListActivity extends BaseAppcompatActivity {
                                                 //已经加载完所有数据
                                                 if (data.size() < 10) {
                                                     ToastUtils.show(GoodsListActivity.this, "已加载完所有数据");
-                                                    srlContent.setEnableLoadMore(false);
+                                                    srlContent.setEnableLoadmore(false);
                                                 } else {
                                                     pageIndex++;
-                                                    srlContent.setEnableLoadMore(true);
+                                                    srlContent.setEnableLoadmore(true);
                                                 }
 
                                             } else {
@@ -616,10 +617,10 @@ public class GoodsListActivity extends BaseAppcompatActivity {
 //                                }
                                                     ToastUtils.show(GoodsListActivity.this, "已加载完所有数据");
                                                     //上拉加载完所有数据，禁止上拉事件
-                                                    srlContent.setEnableLoadMore(false);
+                                                    srlContent.setEnableLoadmore(false);
                                                 } else {
                                                     pageIndex++;
-                                                    srlContent.setEnableLoadMore(true);
+                                                    srlContent.setEnableLoadmore(true);
                                                 }
                                             } else {
                                                 //上拉加载完了所有数据
@@ -630,7 +631,7 @@ public class GoodsListActivity extends BaseAppcompatActivity {
 //                                mItems.add(bottomEntity);
 //                            }
                                                 ToastUtils.show(GoodsListActivity.this, "已加载完所有数据");
-                                                srlContent.setEnableLoadMore(false);
+                                                srlContent.setEnableLoadmore(false);
                                             }
 
                                         }
@@ -665,7 +666,7 @@ public class GoodsListActivity extends BaseAppcompatActivity {
 
     private void stopRefreshAndLoadMore() {
         if (srlContent != null) {
-            srlContent.finishLoadMore();
+            srlContent.finishLoadmore();
             srlContent.finishRefresh(true);
         }
     }
@@ -705,9 +706,11 @@ public class GoodsListActivity extends BaseAppcompatActivity {
             }
         }
         String brandId = currentBrandIdSet.toString().replace(" ", "");
+        Log.d(TAG, "currentBrandIdSet origin:" + brandId + ",handled:" + brandId.substring(1, brandId.length() - 1));
         params.addBodyParameter("brand", brandId.substring(1, brandId.length() - 1) + "");
 
         String classId = currentClassIdSet.toString().replace(" ", "");
+        Log.d(TAG, "currentClassIdSet origin:" + classId + ",handled:" + classId.substring(1, classId.length() - 1));
         params.addBodyParameter("cate", classId.substring(1, classId.length() - 1) + "");
         if (etMinPrice.getText().toString().trim().length() != 0) {
             params.addBodyParameter("pricemin", etMinPrice.getText().toString().trim());
@@ -737,6 +740,7 @@ public class GoodsListActivity extends BaseAppcompatActivity {
                     break;
             }
         }
+        Log.d(TAG, "generateParams() params:" + params.toString());
         return params;
     }
 
@@ -878,7 +882,7 @@ public class GoodsListActivity extends BaseAppcompatActivity {
         });
 
         // 下拉刷新和上拉
-        srlContent.setEnableLoadMore(true);
+        srlContent.setEnableLoadmore(true);
         srlContent.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
@@ -886,9 +890,9 @@ public class GoodsListActivity extends BaseAppcompatActivity {
                 initData();
             }
         });
-        srlContent.setOnLoadMoreListener(new OnLoadMoreListener() {
+        srlContent.setOnLoadmoreListener(new OnLoadmoreListener() {
             @Override
-            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+            public void onLoadmore(RefreshLayout refreshlayout) {
                 loadMore();
             }
         });
@@ -976,6 +980,7 @@ public class GoodsListActivity extends BaseAppcompatActivity {
 
     private void loadMore() {
         pageIndex++;
+        Log.d(TAG, "loadMore() pageIndex:" + pageIndex);
         request(type);
     }
 

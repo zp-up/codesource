@@ -1,11 +1,11 @@
 package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.fragment;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.chrisjason.baseui.ui.BaseAppcompatActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import org.json.JSONArray;
@@ -112,16 +112,16 @@ public class LimitTimeGoodsFragment extends Fragment implements OnLimitTimeGoods
                 tvTitle.setText("即将开始");
             }
         }
-        srlContent.setEnableLoadMore(true);
+        srlContent.setEnableLoadmore(true);
         srlContent.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 initData();
             }
         });
-        srlContent.setOnLoadMoreListener(new OnLoadMoreListener() {
+        srlContent.setOnLoadmoreListener(new OnLoadmoreListener() {
             @Override
-            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+            public void onLoadmore(RefreshLayout refreshlayout) {
                 loadMore();
             }
         });
@@ -166,7 +166,7 @@ public class LimitTimeGoodsFragment extends Fragment implements OnLimitTimeGoods
     public void onFinished() {
         ((BaseAppcompatActivity) getActivity()).dismissLoading();
         srlContent.finishRefresh();
-        srlContent.finishLoadMore();
+        srlContent.finishLoadmore();
     }
 
     @Override

@@ -3,8 +3,9 @@ package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.adapt
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import android.support.annotation.NonNull;
+import android.support.v4.view.ViewPager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
@@ -28,8 +30,10 @@ import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -41,6 +45,7 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activi
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.LimitedTimeActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.OverseasGoodsListActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.WishGoodsListActivity;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.HomeBannerBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.homeBanner.Data;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.homeBondedGoodsBean.HomeBondedGoodsBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.homeHotSaleGoods.HotGoodsBean;
@@ -591,18 +596,18 @@ public class HomeAdapter extends DelegateAdapter.Adapter<HomeAdapter.ViewHolder>
                         Data data = bannerBeanList.get(position);
                         if (data != null) {
                             String url = data.getUrl();
-                            int id = 0;
-                            String goods_goods = data.getGoods_goods();
-                            id = Integer.valueOf(goods_goods);
-                            if(TextUtils.equals("商品",url) && id!=0 ){
+
+                            if(TextUtils.equals("商品",url) && !TextUtils.isEmpty(data.getGoods_goods()) ){
                                 Intent intent = new Intent(context,GoodsDetailActivity.class);
-                                intent.putExtra("goodsId",id);
+                                intent.putExtra("goodsId",Integer.valueOf(data.getGoods_goods()));
                                 context.startActivity(intent);
                             }
+
                         }
+
                     }
                 }catch (Exception e){
-                    e.printStackTrace();
+
                 }
 
 

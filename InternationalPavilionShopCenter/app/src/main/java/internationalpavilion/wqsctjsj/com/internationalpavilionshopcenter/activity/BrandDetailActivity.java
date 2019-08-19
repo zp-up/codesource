@@ -5,11 +5,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -36,7 +34,7 @@ import com.chrisjason.baseui.util.DpUtils;
 import com.jaeger.library.StatusBarUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import org.json.JSONArray;
@@ -176,7 +174,7 @@ public class BrandDetailActivity extends BaseAppcompatActivity implements OnBran
                 return true;
             }
         });
-        srlContent.setEnableLoadMore(true);
+        srlContent.setEnableLoadmore(true);
         srlContent.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
@@ -184,13 +182,12 @@ public class BrandDetailActivity extends BaseAppcompatActivity implements OnBran
                 initData();
             }
         });
-        srlContent.setOnLoadMoreListener(new OnLoadMoreListener() {
+        srlContent.setOnLoadmoreListener(new OnLoadmoreListener() {
             @Override
-            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+            public void onLoadmore(RefreshLayout refreshlayout) {
                 pageIndex++;
                 initData();
             }
-
         });
     }
 
@@ -498,7 +495,7 @@ public class BrandDetailActivity extends BaseAppcompatActivity implements OnBran
     public void onFinished() {
         dismissLoading();
         srlContent.finishRefresh();
-        srlContent.finishLoadMore();
+        srlContent.finishLoadmore();
     }
 
     @Override

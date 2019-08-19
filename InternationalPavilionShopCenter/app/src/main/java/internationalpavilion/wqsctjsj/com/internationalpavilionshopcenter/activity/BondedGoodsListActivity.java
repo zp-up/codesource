@@ -4,10 +4,8 @@ import android.animation.ObjectAnimator;
 import android.graphics.Color;
 import android.os.Handler;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -32,7 +30,7 @@ import com.chrisjason.baseui.util.DpUtils;
 import com.jaeger.library.StatusBarUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import org.json.JSONArray;
@@ -180,19 +178,18 @@ public class BondedGoodsListActivity extends BaseAppcompatActivity implements On
         } else {
             adapter.notifyDataSetChanged();
         }
-        srlContent.setEnableLoadMore(true);
+        srlContent.setEnableLoadmore(true);
         srlContent.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 initData();
             }
         });
-        srlContent.setOnLoadMoreListener(new OnLoadMoreListener() {
+        srlContent.setOnLoadmoreListener(new OnLoadmoreListener() {
             @Override
-            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+            public void onLoadmore(RefreshLayout refreshlayout) {
                 loadMore();
             }
-
         });
 
         tvReset.setOnClickListener(new View.OnClickListener() {
@@ -299,10 +296,13 @@ public class BondedGoodsListActivity extends BaseAppcompatActivity implements On
             }
         }
 
+
         String brandId = currentBrandIdSet.toString().replace(" ", "");
+        Log.d(TAG, "currentBrandIdSet origin:" + brandId + ",handled:" + brandId.substring(1, brandId.length() - 1));
         params.addBodyParameter("brand", brandId.substring(1, brandId.length() - 1) + "");
 
         String classId = currentClassIdSet.toString().replace(" ", "");
+        Log.d(TAG, "currentClassIdSet origin:" + classId + ",handled:" + classId.substring(1, classId.length() - 1));
         params.addBodyParameter("cate", classId.substring(1, classId.length() - 1) + "");
 
         if (etMinPrice.getText().toString().trim().length() != 0) {
@@ -554,7 +554,7 @@ public class BondedGoodsListActivity extends BaseAppcompatActivity implements On
     public void onFinished() {
         dismissLoading();
         srlContent.finishRefresh();
-        srlContent.finishLoadMore();
+        srlContent.finishLoadmore();
     }
 
     @Override
@@ -624,6 +624,7 @@ public class BondedGoodsListActivity extends BaseAppcompatActivity implements On
                         // 筛选的品牌、分类数据获取
                         com.alibaba.fastjson.JSONObject obj = com.alibaba.fastjson.JSONObject.parseObject(result);
                         com.alibaba.fastjson.JSONObject list = obj.getJSONObject("list");
+                        Log.d(TAG, "品牌分类:");
                         try {
 //                            if (pageIndex == 1) {
 //                            }
@@ -653,6 +654,7 @@ public class BondedGoodsListActivity extends BaseAppcompatActivity implements On
                             LogUtil.e(TAG, "update brand data occur an exception!", e);
                         }
 
+                        Log.d(TAG, "商品种类:");
                         try {
 /*                            if (pageIndex == 1) {
                             }*/

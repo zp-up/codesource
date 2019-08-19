@@ -2,12 +2,15 @@ package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Point;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Environment;
+import android.support.annotation.RequiresApi;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Display;
@@ -15,8 +18,6 @@ import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 import android.view.ViewConfiguration;
 import android.view.WindowManager;
-
-import androidx.annotation.RequiresApi;
 
 import java.lang.reflect.Field;
 import java.util.Locale;

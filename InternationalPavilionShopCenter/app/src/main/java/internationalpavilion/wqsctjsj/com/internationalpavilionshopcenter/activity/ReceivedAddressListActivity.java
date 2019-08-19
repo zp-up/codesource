@@ -2,18 +2,16 @@ package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activ
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.chrisjason.baseui.ui.BaseAppcompatActivity;
 import com.jaeger.library.StatusBarUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import org.greenrobot.eventbus.EventBus;
@@ -95,7 +93,7 @@ public class ReceivedAddressListActivity extends BaseAppcompatActivity implement
             rvAddress.setAdapter(adapter);
         }
 
-        srlContent.setEnableLoadMore(true);
+        srlContent.setEnableLoadmore(true);
         srlContent.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
@@ -103,17 +101,17 @@ public class ReceivedAddressListActivity extends BaseAppcompatActivity implement
                 initData();
             }
         });
-        srlContent.setOnLoadMoreListener(new OnLoadMoreListener() {
+        srlContent.setOnLoadmoreListener(new OnLoadmoreListener() {
             @Override
-            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+            public void onLoadmore(RefreshLayout refreshlayout) {
                 initData();
             }
-
         });
         if (flag == 1) {
             adapter.setListener(new AddressAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(int id) {
+                    Log.e(TAG, "地址Id:" + id);
                     RequestParams params = new RequestParams(MainUrls.setAddressDefaultUrl);
                     params.addBodyParameter("access_token", IPSCApplication.accessToken);
                     params.addBodyParameter("id", id + "");
@@ -135,6 +133,7 @@ public class ReceivedAddressListActivity extends BaseAppcompatActivity implement
 
                         @Override
                         public void onSuccess(String result) {
+                            Log.e(TAG, "设置默认地址:" + result);
                             try {
                                 JSONObject jsonObject = new JSONObject(result);
                                 int code = jsonObject.getInt("code");
@@ -200,17 +199,18 @@ public class ReceivedAddressListActivity extends BaseAppcompatActivity implement
     @Override
     public void onFinished() {
         dismissLoading();
-        srlContent.finishLoadMore();
+        srlContent.finishLoadmore();
         srlContent.finishRefresh();
     }
 
     @Override
     public void onError(String error) {
-
+        Log.e(TAG, "获取数据中...");
     }
 
     @Override
     public void onCommonGoodsCallBack(String result) {
+        Log.d(TAG, "onCommonGoodsCallBack() result:" + result);
         if (result != null) {
             try {
                 JSONObject jsonObject = new JSONObject(result);
@@ -255,10 +255,10 @@ public class ReceivedAddressListActivity extends BaseAppcompatActivity implement
                             //已经加载完所有数据
                             if (tmpList.size() < 10) {
                                 ToastUtils.show(this, "已加载完所有数据");
-                                srlContent.setEnableLoadMore(false);
+                                srlContent.setEnableLoadmore(false);
                             } else {
                                 pageIndex++;
-                                srlContent.setEnableLoadMore(true);
+                                srlContent.setEnableLoadmore(true);
                             }
                         } else {
                             //刷新或首次加载失败
@@ -273,15 +273,15 @@ public class ReceivedAddressListActivity extends BaseAppcompatActivity implement
                             if (tmpList.size() < 10) {
                                 ToastUtils.show(this, "已加载完所有数据");
                                 //上拉加载完所有数据，禁止上拉事件
-                                srlContent.setEnableLoadMore(false);
+                                srlContent.setEnableLoadmore(false);
                             } else {
                                 pageIndex++;
-                                srlContent.setEnableLoadMore(true);
+                                srlContent.setEnableLoadmore(true);
                             }
                         } else {
                             //上拉加载完了所有数据
                             ToastUtils.show(this, "已加载完所有数据");
-                            srlContent.setEnableLoadMore(false);
+                            srlContent.setEnableLoadmore(false);
                         }
 
                     }
@@ -289,6 +289,7 @@ public class ReceivedAddressListActivity extends BaseAppcompatActivity implement
                     adapter.notifyDataSetChanged();
                 }
             } catch (Exception e) {
+                Log.e(TAG, "onCommonGoodsCallBack() occur an Exception!", e);
             }
 
         }

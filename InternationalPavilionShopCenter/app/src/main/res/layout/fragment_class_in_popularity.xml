@@ -22,13 +22,13 @@
                 app:srlTextSizeTitle="15dp">
             </com.scwang.smartrefresh.layout.header.ClassicsHeader>
 
-            <androidx.recyclerview.widget.RecyclerView
+            <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_class_in_popularity"
                 android:layout_marginBottom="@dimen/x10"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-            </androidx.recyclerview.widget.RecyclerView>
+            </android.support.v7.widget.RecyclerView>
 
         </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 

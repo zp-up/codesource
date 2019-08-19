@@ -93,10 +93,10 @@
         android:background="@color/gainsboro"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x10"></View>
-    <androidx.viewpager.widget.ViewPager
+    <android.support.v4.view.ViewPager
         android:id="@+id/vp_group_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </androidx.viewpager.widget.ViewPager>
+    </android.support.v4.view.ViewPager>
 </LinearLayout>

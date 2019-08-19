@@ -5,9 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-
+import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -412,6 +411,7 @@ public class SettingActivity extends BaseAppcompatActivity implements TakePhoto.
                     options.circleCrop();
                     options.placeholder(R.mipmap.icon_mine_defaul_head);
                     options.error(R.mipmap.icon_mine_defaul_head);
+                    Log.e("TAG","头像url:"+MainUrls.areaUrl + url);
                     Glide.with(this).load(MainUrls.areaUrl + url).apply(options).into(civHead);
                     UserBean userBean = ((IPSCApplication)getApplication()).getUserInfo();
                     userBean.setImg(MainUrls.areaUrl + url);

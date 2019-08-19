@@ -1,9 +1,12 @@
 package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity;
 
+import android.graphics.Color;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;

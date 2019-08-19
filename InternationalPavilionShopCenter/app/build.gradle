@@ -8,7 +8,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
 
 
@@ -43,11 +43,9 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility rootProject.ext.javaVersion
+        targetCompatibility rootProject.ext.javaVersion
     }
-
-
 
     repositories{
         flatDir {
@@ -55,13 +53,6 @@ android {
         }
     }
 
-
-    lintOptions {
-        checkReleaseBuilds false
-        // Or, if you prefer, you can continue to check for errors in release builds,
-        // but continue the build even when errors are found:
-        abortOnError false
-    }
 
     packagingOptions {
         doNotStrip '*/mips/*.so'
@@ -74,12 +65,12 @@ android {
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     api project(':baseui')
-    annotationProcessor "com.jakewharton:butterknife-compiler:${rootProject.ext.butterknifeVersion}"
+    annotationProcessor "com.jakewharton:butterknife-compiler:${rootProject.ext.butterKnifeCompilerVersion}"
     //alipay
     implementation(name: 'alipaySdk-15.5.9-20181123210601', ext: 'aar')
     //image-load
     //implementation files('libs/universal-image-loader-1.9.5.jar')
-    implementation("com.jph.takephoto:takephoto_library:${rootProject.ext.takePhotoVersion}") {
+    implementation('com.jph.takephoto:takephoto_library:3.0.2') {
         exclude module: 'support-v4'
         exclude module: 'support-compat'
         exclude module: 'appcompat-v7'
@@ -88,14 +79,16 @@ dependencies {
         exclude module: 'glide'
     }
     //multidex
-    api "androidx.multidex:multidex:${rootProject.ext.multidexVersion}"
+    api("com.android.support:multidex:${rootProject.ext.multidexVersion}") {
+        exclude module: 'support-v4'
+        exclude module: 'support-compat'
+    }
 
     implementation 'com.alibaba:fastjson:1.2.39'
 
+
     api 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.3.0'
-
     implementation 'com.yanzhenjie:album:2.0.2'
-
     implementation 'com.yanzhenjie:durban:1.0.1'
 
     implementation 'com.github.shengqf:RoundView:v1.0.1'

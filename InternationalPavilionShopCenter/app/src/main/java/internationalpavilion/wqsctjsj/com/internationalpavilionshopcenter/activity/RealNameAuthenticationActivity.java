@@ -7,9 +7,9 @@ import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Environment;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-
+import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -229,6 +229,7 @@ public class RealNameAuthenticationActivity extends BaseAppcompatActivity implem
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d(TAG, "onActivityResult() requestCode:" + requestCode + ",resultCode:" + resultCode + ",intent:" + data);
         getTakePhoto().onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -300,6 +301,7 @@ public class RealNameAuthenticationActivity extends BaseAppcompatActivity implem
                     ToastUtils.show(RealNameAuthenticationActivity.this, msg);
                 }
             } catch (Exception e) {
+                Log.e(TAG, "", e);
             }
         }
     }
@@ -324,6 +326,7 @@ public class RealNameAuthenticationActivity extends BaseAppcompatActivity implem
                     ToastUtils.show(RealNameAuthenticationActivity.this, msg);
                 }
             } catch (Exception e) {
+                Log.e(TAG, "onModifyUserHeadSuccess() ", e);
             }
         }
 
@@ -345,6 +348,7 @@ public class RealNameAuthenticationActivity extends BaseAppcompatActivity implem
                     ToastUtils.show(RealNameAuthenticationActivity.this, msg);
                 }
             } catch (Exception e) {
+                Log.e(TAG, "onModifyUserNickName() ", e);
             }
         }
     }
@@ -369,6 +373,7 @@ public class RealNameAuthenticationActivity extends BaseAppcompatActivity implem
                     ToastUtils.show(RealNameAuthenticationActivity.this, msg);
                 }
             } catch (Exception e) {
+                Log.e(TAG, "onVerifyIdCardByInput() ", e);
             }
         }
     }
@@ -406,6 +411,7 @@ public class RealNameAuthenticationActivity extends BaseAppcompatActivity implem
         if (((IPSCApplication) getApplication()).getUserInfo() != null) {
             params.addBodyParameter("user", ((IPSCApplication) this.getApplication()).getUserInfo().getId() + "");
         }
+        Log.d(TAG, "verifyIdCardByInput() params:" + params.toString());
         upLoadFilePresenter.verifyIdCardByInput(params, this);
     }
 

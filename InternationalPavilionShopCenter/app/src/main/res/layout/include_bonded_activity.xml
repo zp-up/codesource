@@ -32,14 +32,14 @@
             android:textColor="@color/black"
             android:textSize="@dimen/x14" />
     </RelativeLayout>
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <com.google.android.material.appbar.AppBarLayout
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.google.android.material.appbar.CollapsingToolbarLayout
+            <android.support.design.widget.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
@@ -57,7 +57,7 @@
                         android:layout_height="@dimen/x130" />
                 </LinearLayout>
 
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
+            </android.support.design.widget.CollapsingToolbarLayout>
 
             <LinearLayout
                 android:orientation="vertical"
@@ -187,7 +187,7 @@
             </LinearLayout>
 
 
-        </com.google.android.material.appbar.AppBarLayout>
+        </android.support.design.widget.AppBarLayout>
         <com.scwang.smartrefresh.layout.SmartRefreshLayout
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_width="match_parent"
@@ -196,11 +196,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             </com.scwang.smartrefresh.layout.header.ClassicsHeader>
-            <androidx.recyclerview.widget.RecyclerView
+            <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_bonded_goods"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+                android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
         </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </android.support.design.widget.CoordinatorLayout>
 </LinearLayout>

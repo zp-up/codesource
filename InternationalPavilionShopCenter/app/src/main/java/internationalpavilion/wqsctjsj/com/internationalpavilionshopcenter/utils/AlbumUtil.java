@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
-import androidx.core.content.ContextCompat;
+import android.support.v4.content.ContextCompat;
 
 import com.yanzhenjie.album.Action;
 import com.yanzhenjie.album.Album;
