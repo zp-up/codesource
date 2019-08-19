@@ -6,17 +6,16 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.text.TextUtils;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chrisjason.baseui.ui.BaseAppcompatActivity;
@@ -26,7 +25,6 @@ import com.jaeger.library.StatusBarUtil;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.xutils.http.RequestParams;
 
@@ -44,7 +42,6 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.fragme
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterImp.UserOptionImp;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.presenters.presenterInterface.UserOptionInterface;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
-import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnNetCallBack;
 
 public class MainActivity extends BaseAppcompatActivity {

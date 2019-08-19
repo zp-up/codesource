@@ -1,10 +1,11 @@
 package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.fragment;
 
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,7 @@ import android.view.ViewGroup;
 import com.chrisjason.baseui.ui.BaseAppcompatActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import org.json.JSONArray;
@@ -27,9 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
-import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.AfterSaleGoodsAdapter;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.adapter.AfterSaleAdapter;
-import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.adapter.OrderAdapter;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.application.IPSCApplication;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.OrderRootBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.orderBeans.OrderGoodsBean;
@@ -91,7 +90,7 @@ public class AfterSaleOrderFragment extends Fragment implements OnCommonGoodsCal
         View view = inflater.inflate(R.layout.fragment_all_order,container,false);
         unbinder = ButterKnife.bind(this,view);
         commonPresenter = new CommonGoodsImp();
-        srlContent.setEnableLoadmore(true);
+        srlContent.setEnableLoadMore(true);
         srlContent.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
@@ -99,9 +98,9 @@ public class AfterSaleOrderFragment extends Fragment implements OnCommonGoodsCal
                 initData();
             }
         });
-        srlContent.setOnLoadmoreListener(new OnLoadmoreListener() {
+        srlContent.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
-            public void onLoadmore(RefreshLayout refreshlayout) {
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 pageIndex ++;
                 initData();
             }
@@ -124,12 +123,12 @@ public class AfterSaleOrderFragment extends Fragment implements OnCommonGoodsCal
     public void onFinished() {
         ((BaseAppcompatActivity) getActivity()).dismissLoading();
         srlContent.finishRefresh();
-        srlContent.finishLoadmore();
+        srlContent.finishLoadMore();
     }
 
     @Override
     public void onError(String error) {
-        Log.e(TAG, "出错：" + error);
+
     }
 
     @Override

@@ -1,11 +1,11 @@
 package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.fragment;
 
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.EventLog;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import com.chrisjason.baseui.ui.BaseAppcompatActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import org.greenrobot.eventbus.EventBus;
@@ -63,7 +63,7 @@ public class WaitDeliveryOrderFragment extends Fragment implements OnCommonGoods
         unbinder = ButterKnife.bind(this,view);
         EventBus.getDefault().register(this);
         commonPresenter = new CommonGoodsImp();
-        srlContent.setEnableLoadmore(true);
+        srlContent.setEnableLoadMore(true);
         srlContent.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
@@ -71,12 +71,13 @@ public class WaitDeliveryOrderFragment extends Fragment implements OnCommonGoods
                 initData();
             }
         });
-        srlContent.setOnLoadmoreListener(new OnLoadmoreListener() {
+        srlContent.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
-            public void onLoadmore(RefreshLayout refreshlayout) {
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 pageIndex ++;
                 initData();
             }
+
         });
         return view;
     }
@@ -116,7 +117,7 @@ public class WaitDeliveryOrderFragment extends Fragment implements OnCommonGoods
     public void onFinished() {
         ((BaseAppcompatActivity) getActivity()).dismissLoading();
         srlContent.finishRefresh();
-        srlContent.finishLoadmore();
+        srlContent.finishLoadMore();
     }
 
     @Override

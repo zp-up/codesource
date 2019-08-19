@@ -17,8 +17,8 @@
 package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.multitype;
 
 
-import android.support.annotation.CheckResult;
-import android.support.annotation.NonNull;
+import androidx.annotation.CheckResult;
+import androidx.annotation.NonNull;
 
 import static internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.multitype.Preconditions.checkNotNull;
 

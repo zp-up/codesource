@@ -1,18 +1,18 @@
 package com.chrisjason.baseui.ui;
 
-import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Toast;
+
+import androidx.annotation.LayoutRes;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.chrisjason.baseui.receiver.NetworkChangeReceiver;
 import com.chrisjason.baseui.util.NetUtil;

@@ -3,10 +3,10 @@ package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.fragm
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,7 +21,7 @@ import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
 import com.chrisjason.baseui.ui.BaseAppcompatActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import org.json.JSONArray;
@@ -93,16 +93,16 @@ public class ClassInPopularityFragment extends Fragment implements OnHomeDataCal
         adapter.setAdapters(subAdapterList);
         rvClassInPopularity.setAdapter(adapter);
         rvClassInPopularity.setItemViewCacheSize(30);
-        srlContent.setEnableLoadmore(true);
+        srlContent.setEnableLoadMore(true);
         srlContent.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 initData();
             }
         });
-        srlContent.setOnLoadmoreListener(new OnLoadmoreListener() {
+        srlContent.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
-            public void onLoadmore(RefreshLayout refreshlayout) {
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 getMoreData();
             }
         });
@@ -155,7 +155,7 @@ public class ClassInPopularityFragment extends Fragment implements OnHomeDataCal
     public void onFinished() {
         ((BaseAppcompatActivity)getActivity()).dismissLoading();
         srlContent.finishRefresh();
-        srlContent.finishLoadmore();
+        srlContent.finishLoadMore();
     }
 
     @Override
@@ -196,7 +196,6 @@ public class ClassInPopularityFragment extends Fragment implements OnHomeDataCal
     @Override
     public void onPopularityGoodsLoaded(String result) {
         if (result != null) {
-            Log.e(TAG, "人气榜:" + result);
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 int code = jsonObject.getInt("code");

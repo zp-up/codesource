@@ -45,16 +45,16 @@
                 android:textSize="@dimen/x14" />
         </RelativeLayout>
 
-        <android.support.design.widget.CoordinatorLayout
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/rl_header">
 
-            <android.support.design.widget.AppBarLayout
+            <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <android.support.design.widget.CollapsingToolbarLayout
+                <com.google.android.material.appbar.CollapsingToolbarLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed">
@@ -69,7 +69,7 @@
 
                     </LinearLayout>
 
-                </android.support.design.widget.CollapsingToolbarLayout>
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
 
                 <!-- 筛选操作 -->
                 <LinearLayout
@@ -219,7 +219,7 @@
                 </LinearLayout>
 
 
-            </android.support.design.widget.AppBarLayout>
+            </com.google.android.material.appbar.AppBarLayout>
 
             <!-- 商品内容 -->
             <com.scwang.smartrefresh.layout.SmartRefreshLayout
@@ -232,13 +232,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"></com.scwang.smartrefresh.layout.header.ClassicsHeader>
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+                    android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
             </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
-        </android.support.design.widget.CoordinatorLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </LinearLayout>
 
     <!-- 右侧筛选面板 -->

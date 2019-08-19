@@ -3,39 +3,24 @@ package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activ
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.webkit.JavascriptInterface;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alibaba.android.vlayout.DelegateAdapter;
-import com.alibaba.android.vlayout.VirtualLayoutManager;
-import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
-import com.alibaba.android.vlayout.layout.StickyLayoutHelper;
 import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.chrisjason.baseui.ui.BaseAppcompatActivity;
-import com.chrisjason.baseui.util.DpUtils;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -57,20 +42,16 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
-import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.adapter.GoodsDetailAdapter;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.application.IPSCApplication;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.CartGood;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.CartRootBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.EvaluateImage;
-import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.HomeBannerBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.eventBusBean.MainSwitchEvent;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.goodsDetailBean.GoodsDetailRootBean;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.goodsDetailBean.Goods_brand;
@@ -86,14 +67,11 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.StringUtil;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.views.OnGoodsDetailInfoCallback;
-import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.CustomScrollViewPager;
-import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.HoldTabScrollView;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.RatingView;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.TimerView;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.popupwindow.GoodsPropsSelectPop;
 
 import static internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.TimerView.TIMETYPE_MS;
-import static internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.TimerView.TIMETYPE_S;
 
 public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGoodsDetailInfoCallback {
 

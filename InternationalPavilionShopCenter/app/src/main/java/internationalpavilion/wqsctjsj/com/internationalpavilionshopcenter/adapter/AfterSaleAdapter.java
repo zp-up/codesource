@@ -2,15 +2,13 @@ package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.adapt
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
+import androidx.annotation.NonNull;
+
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -50,7 +48,6 @@ public class AfterSaleAdapter extends RecyclerView.Adapter<AfterSaleAdapter.View
     public AfterSaleAdapter(Context context, ArrayList<OrderRootBean> data) {
         this.context = context;
         this.data = data;
-        Log.i("[IPSC][AfterSaleAdapter]", " data size:" + (data == null ? "null" : data.size()));
         if (inflater == null) {
             inflater = LayoutInflater.from(context);
         }

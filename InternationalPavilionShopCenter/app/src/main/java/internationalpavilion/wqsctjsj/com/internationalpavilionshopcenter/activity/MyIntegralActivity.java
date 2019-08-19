@@ -2,11 +2,11 @@ package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activ
 
 import android.animation.ObjectAnimator;
 import android.graphics.Color;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;

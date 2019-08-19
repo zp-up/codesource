@@ -5,8 +5,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Environment;
-import android.support.multidex.MultiDex;
 import android.util.Log;
+
+import androidx.multidex.MultiDex;
 
 import com.google.gson.Gson;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
