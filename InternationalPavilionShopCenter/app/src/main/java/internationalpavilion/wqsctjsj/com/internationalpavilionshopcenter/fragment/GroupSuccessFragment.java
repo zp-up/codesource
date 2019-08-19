@@ -1,11 +1,11 @@
 package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import com.chrisjason.baseui.ui.BaseAppcompatActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import org.json.JSONArray;
@@ -59,7 +59,7 @@ public class GroupSuccessFragment extends Fragment implements OnCommonGoodsCallB
         View view = inflater.inflate(R.layout.fragment_all_order, container, false);
         unbinder = ButterKnife.bind(this, view);
         commonPresenter = new CommonGoodsImp();
-        srlContent.setEnableLoadmore(true);
+        srlContent.setEnableLoadMore(true);
         srlContent.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
@@ -67,12 +67,13 @@ public class GroupSuccessFragment extends Fragment implements OnCommonGoodsCallB
                 initData();
             }
         });
-        srlContent.setOnLoadmoreListener(new OnLoadmoreListener() {
+        srlContent.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
-            public void onLoadmore(RefreshLayout refreshlayout) {
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 pageIndex ++;
                 initData();
             }
+
         });
         return view;
     }
@@ -125,7 +126,7 @@ public class GroupSuccessFragment extends Fragment implements OnCommonGoodsCallB
     public void onFinished() {
         ((BaseAppcompatActivity) getActivity()).dismissLoading();
         srlContent.finishRefresh();
-        srlContent.finishLoadmore();
+        srlContent.finishLoadMore();
     }
 
     @Override

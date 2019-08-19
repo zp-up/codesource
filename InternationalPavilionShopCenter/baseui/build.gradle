@@ -6,7 +6,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
 
     }
@@ -23,127 +23,58 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    //api "com.android.support:support-v4:${rootProject.ext.supportLibraryVersion}"
-
-    api ("com.android.support:appcompat-v7:${rootProject.supportLibraryVersion}"){
-        exclude module:'support-v4'
-    }
+    api "androidx.appcompat:appcompat:${rootProject.ext.appCompatVersion}"
 
     //ButterKnife
-    api ("com.jakewharton:butterknife:${rootProject.ext.butterKnifeVersion}"){
-        exclude module:'support-v4'
-        exclude module:'support-compat'
-        exclude module:'support-annotations'
-    }
+    api "com.jakewharton:butterknife:${rootProject.ext.butterknifeVersion}"
+    annotationProcessor "com.jakewharton:butterknife-compiler:${rootProject.ext.butterknifeVersion}"
 
-    annotationProcessor "com.jakewharton:butterknife-compiler:${rootProject.ext.butterKnifeCompilerVersion}"
-
-    //constraint-layout
-    implementation ("com.android.support.constraint:constraint-layout:${rootProject.constraintVersion}") {
-        exclude module:'support-v4'
-        exclude module:'support-compat'
-    }
-
-    //support:design
-    api("com.android.support:design:${rootProject.ext.supportLibraryVersion}") {
-        exclude module:'support-v4'
-        exclude module:'support-compat'
-    }
+    api "com.google.android.material:material:1.0.0"
 
     //xUtils
-    api ('org.xutils:xutils:3.3.36'){
-        exclude  module:'support-v4'
-        exclude module:'support-compat'
-    }
+    api "org.xutils:xutils:${rootProject.ext.xUtilsVersion}"
 
     //glide
-    api ("com.github.bumptech.glide:glide:${rootProject.ext.glideVersion}"){
-        exclude module:'support-v4'
-        exclude module:'support-compat'
-        exclude module:'support-fragment'
-        exclude module:'support-annotations'
+    api ("com.github.bumptech.glide:glide:${rootProject.ext.glideVersion}") {
+        exclude group: "com.android.support"
     }
 
     //banner
-    api ('com.youth.banner:banner:1.4.10'){
-        exclude module:'support-v4'
-        exclude module:'support-compat'
-    }
+    api "com.youth.banner:banner:${rootProject.ext.bannerVersion}"
 
     //eventbus
-    api ('org.greenrobot:eventbus:3.1.1'){
-        exclude module:'support-v4'
-        exclude module:'support-compat'
-    }
+    api "org.greenrobot:eventbus:${rootProject.ext.eventbusVersion}"
 
     //refresh
-    api ('com.scwang.smartrefresh:SmartRefreshLayout:1.0.4-7'){
-        exclude module:'support-v4'
-        exclude module:'support-compat'
-    }
-
-    api ('com.scwang.smartrefresh:SmartRefreshHeader:1.0.4-7'){
-        exclude module:'support-v4'
-        exclude module:'support-compat'
-    }
-
-    //takephoto
+    api "com.scwang.smartrefresh:SmartRefreshLayout:${rootProject.ext.smartRefreshVersion}"
+    api "com.scwang.smartrefresh:SmartRefreshHeader:${rootProject.ext.smartRefreshVersion}"
 
     //statusbar
-    api ('com.jaeger.statusbaruitl:library:1.3.0'){
-        exclude module:'support-v4'
-        exclude module:'support-compat'
-        exclude module:'appcompat-v7'
-    }
+    api "com.jaeger.statusbaruitl:library:${rootProject.ext.statusBarUtilVersion}"
 
     //vlayout
-    api('com.alibaba.android:vlayout:1.2.2@aar') {
+    api("com.alibaba.android:vlayout:${rootProject.ext.vLayoutVersion}") {
         transitive = true
-        exclude module:'support-v4'
-        exclude module:'support-compat'
-        exclude module:'recyclerview-v7'
-        exclude module:'support-annotations'
     }
 
     //pickerview
-    api ('com.contrarywind:Android-PickerView:3.2.6'){
-        exclude module:'support-v4'
-        exclude module:'support-compat'
-    }
+    api "com.contrarywind:Android-PickerView:${rootProject.ext.pickerviewVersion}"
+
 
     //circleImageView
-    api ('de.hdodenhof:circleimageview:2.2.0'){
-        exclude module:'support-v4'
-        exclude module:'support-compat'
-    }
+    api "de.hdodenhof:circleimageview:${rootProject.ext.circleImageViewVersion}"
 
     //tablayout
-    api ('com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'){
-        exclude module:'support-v4'
-        exclude module:'support-compat'
-    }
+    api "com.flyco.tablayout:FlycoTabLayout_Lib:${rootProject.ext.flyTabLayoutVersion}"
 
     //progress
-    implementation ('com.pnikosis:materialish-progress:1.7'){
-        exclude  module:'support-v4'
-        exclude module:'support-compat'
-    }
-
-
+    implementation "com.pnikosis:materialish-progress:${rootProject.ext.progressVersion}"
 
     //wechat
-    api ('com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'){
-        exclude  module:'support-v4'
-        exclude module:'support-compat'
-    }
-
+    api "com.tencent.mm.opensdk:wechat-sdk-android-with-mta:${rootProject.ext.wechatVersion}"
 
     //recyclerView
-    api ("com.android.support:recyclerview-v7:${rootProject.ext.supportLibraryVersion}"){
-        exclude module:'support-v4'
-        exclude module:'support-compat'
-    }
-
+    api "androidx.recyclerview:recyclerview:${rootProject.ext.recyclerViewVersion}"
 
 }
 

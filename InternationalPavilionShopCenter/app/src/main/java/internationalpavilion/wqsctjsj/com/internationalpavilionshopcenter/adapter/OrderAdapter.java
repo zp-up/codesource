@@ -2,8 +2,8 @@ package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.adapt
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.Layout;
 import android.text.TextUtils;
 import android.util.Log;
@@ -15,9 +15,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+
+import org.greenrobot.eventbus.EventBus;
+import org.json.JSONObject;
+import org.xutils.common.Callback;
+import org.xutils.ex.HttpException;
+import org.xutils.http.RequestParams;
+import org.xutils.x;
 
 import java.util.ArrayList;
 
@@ -29,7 +37,12 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activi
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.OrderActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.OrderDetailActivity;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.PayWayActivity;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.application.IPSCApplication;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.OrderRootBean;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.entitys.eventBusBean.OrderEvent;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.urls.MainUrls;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.LogUtil;
+import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.utils.ToastUtils;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.dialog.SweetAlertDialog;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.widget.popupwindow.AfterSaleSelectPop;
 
@@ -225,10 +238,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                             @Override
                             public void onClick(SweetAlertDialog sweetAlertDialog) {
                                 dialog.dismissWithAnimation();
-                                Intent intent = new Intent(context, AfterSaleFormSubmitActivity.class);
-                                intent.putExtra("orderId", data.get(position).getId());
-                                intent.putExtra("state","待发货");
-                                context.startActivity(intent);
+                                requestRefund(data.get(position).getId());
                             }
                         });
                         dialog.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
@@ -240,8 +250,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                         dialog.showCancelButton(true);
                         dialog.setCancelText("取消");
                         dialog.setConfirmText("确定");
-                        dialog.setTitleText("温馨提示");
-                        dialog.setContentText("是否要申请售后?");
+                        dialog.setTitleText("退款");
+                        dialog.setContentText("亲~是否直接退款?");
                         dialog.setCancelable(false);
                         dialog.show();
                     }
@@ -826,4 +836,49 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             }
         }
     }
+
+    public void requestRefund(int orderId){
+        RequestParams params=new RequestParams(MainUrls.backMoneyOnlyUrl);
+        params.addBodyParameter("access_token", IPSCApplication.accessToken);
+        params.addBodyParameter("id",orderId+"");
+        x.http().post(params, new Callback.CommonCallback<String>() {
+
+            @Override
+            public void onSuccess(String result) {
+                try {
+                    JSONObject jsonObject = new JSONObject(result);
+                    int code = jsonObject.getInt("code");
+                    int state = jsonObject.getInt("state");
+                    String msg = jsonObject.getString("msg");
+                    if (jsonObject.has("msg")) {
+                        msg = jsonObject.getString("msg");
+                    }
+                    if (code == 0 && state == 0) {
+                        ToastUtils.show(x.app(), "申请退款成功");
+                        EventBus.getDefault().post(new OrderEvent());
+                    } else {
+                        ToastUtils.show(x.app(), "申请退款失败:" + msg);
+                    }
+                } catch (Exception e) {
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Toast.makeText(x.app(), ex.getMessage(), Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+                Toast.makeText(x.app(), "cancelled", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+    }
+
+
 }

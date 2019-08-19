@@ -2,10 +2,10 @@ package internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activ
 
 import android.content.Intent;
 import android.graphics.Rect;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextUtils;
@@ -25,7 +25,7 @@ import com.google.gson.Gson;
 import com.jaeger.library.StatusBarUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import org.json.JSONArray;
@@ -110,9 +110,9 @@ public class SearchActivity extends BaseAppcompatActivity implements OnSearchCal
             }
         });
 
-        mRefresh.setOnLoadmoreListener(new OnLoadmoreListener() {
+        mRefresh.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
-            public void onLoadmore(RefreshLayout refreshlayout) {
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 doSearch();
             }
         });
@@ -249,10 +249,10 @@ public class SearchActivity extends BaseAppcompatActivity implements OnSearchCal
                                                 //已经加载完所有数据
                                                 if (data.size() < 10) {
                                                     ToastUtils.show(SearchActivity.this, "已加载完所有数据");
-                                                    mRefresh.setEnableLoadmore(false);
+                                                    mRefresh.setEnableLoadMore(false);
                                                 } else {
                                                     pageIndex++;
-                                                    mRefresh.setEnableLoadmore(true);
+                                                    mRefresh.setEnableLoadMore(true);
                                                 }
 
                                             } else {
@@ -276,10 +276,10 @@ public class SearchActivity extends BaseAppcompatActivity implements OnSearchCal
 //                                }
                                                     ToastUtils.show(SearchActivity.this, "已加载完所有数据");
                                                     //上拉加载完所有数据，禁止上拉事件
-                                                    mRefresh.setEnableLoadmore(false);
+                                                    mRefresh.setEnableLoadMore(false);
                                                 } else {
                                                     pageIndex++;
-                                                    mRefresh.setEnableLoadmore(true);
+                                                    mRefresh.setEnableLoadMore(true);
                                                 }
                                             } else {
                                                 //上拉加载完了所有数据
@@ -290,7 +290,7 @@ public class SearchActivity extends BaseAppcompatActivity implements OnSearchCal
 //                                mItems.add(bottomEntity);
 //                            }
                                                 ToastUtils.show(SearchActivity.this, "已加载完所有数据");
-                                                mRefresh.setEnableLoadmore(false);
+                                                mRefresh.setEnableLoadMore(false);
                                             }
 
                                         }
@@ -331,7 +331,7 @@ public class SearchActivity extends BaseAppcompatActivity implements OnSearchCal
 
     private void stopRefreshAndLoadMore() {
         if (mRefresh != null) {
-            mRefresh.finishLoadmore();
+            mRefresh.finishLoadMore();
             mRefresh.finishRefresh(true);
         }
     }

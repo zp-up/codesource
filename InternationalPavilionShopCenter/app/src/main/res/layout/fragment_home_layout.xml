@@ -21,13 +21,13 @@
             app:srlTextSizeTitle="15dp">
         </com.scwang.smartrefresh.layout.header.ClassicsHeader>
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_home"
             android:layout_marginBottom="@dimen/x10"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        </android.support.v7.widget.RecyclerView>
+        </androidx.recyclerview.widget.RecyclerView>
 
 
 
@@ -74,7 +74,7 @@
                     android:layout_marginLeft="@dimen/x10"
                     android:layout_toRightOf="@+id/iv_search_icon"
                     android:text="请输入你想找的商品"
-                    android:textColor="@color/gray"
+                    android:textColor="#c3c3c7"
                     android:textSize="@dimen/x12" />
             </RelativeLayout>
 
