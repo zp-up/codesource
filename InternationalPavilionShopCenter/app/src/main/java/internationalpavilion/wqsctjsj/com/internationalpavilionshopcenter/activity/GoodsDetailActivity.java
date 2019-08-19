@@ -350,7 +350,7 @@ public class GoodsDetailActivity extends BaseAppcompatActivity implements OnGood
             strings[1] = "适用范围";
             strings[2] = "购物须知";
             fgList.clear();
-            fgList.add(GoodsDetailFragment.getInstance(viewPager, goodsBean.getData().getGoods_goods().getDetail()));
+            fgList.add(GoodsDetailFragment.getInstance(viewPager, goodsBean.getData().getGoods_goods().getGoods_temp().getDetail()));
             fgList.add(GoodsScopelFragment.getInstance(viewPager, goodsBean.getData().getGoods_goods().getGoods_attr_html()));
             fgList.add(GoodsInstructionsFragment.getInstance(viewPager, goodsBean.getData().getGoods_goods().getInstructions()));
             viewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager()));

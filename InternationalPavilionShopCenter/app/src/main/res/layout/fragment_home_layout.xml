@@ -74,7 +74,7 @@
                     android:layout_marginLeft="@dimen/x10"
                     android:layout_toRightOf="@+id/iv_search_icon"
                     android:text="请输入你想找的商品"
-                    android:textColor="@color/gray"
+                    android:textColor="#c3c3c7"
                     android:textSize="@dimen/x12" />
             </RelativeLayout>
 

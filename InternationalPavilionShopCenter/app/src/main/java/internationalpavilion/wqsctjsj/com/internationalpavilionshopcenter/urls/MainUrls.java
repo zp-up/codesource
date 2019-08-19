@@ -7,11 +7,11 @@ import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.BuildC
  */
 
 public class MainUrls {
-    public static final String areaUrl = "https://app.gjigbuy.com";
+    public static final String areaUrl = BuildConfig.DEBUG ? "https://app.gjigbuy.com" : "http://api.gjigbuy.com";
 
-    public static final String ServerIp = BuildConfig.DEBUG ? "https://www.gjigbuy.com/app/index/api" : "https://api.gjigbuy.com/app/index/api";
+    public static final String ServerIp = BuildConfig.DEBUG ? "https://www.gjigbuy.com/app/index/api" : "http://api.gjigbuy.com/app/index/api";
 
-    public static final String getAccessTokenUrl = BuildConfig.DEBUG ? "https://www.gjigbuy.com/app/index/login" : "https://api.gjigbuy.com/app/index/login";
+    public static final String getAccessTokenUrl = BuildConfig.DEBUG ? "https://www.gjigbuy.com/app/index/login" : "http://api.gjigbuy.com/app/index/login";
 
     // 基础系统-》配置管理-》发送注册验证码
     public static final String getVerifyCodeUrl = ServerIp + "?api=data.config.sendregsms";
@@ -162,11 +162,11 @@ public class MainUrls {
     public static final String getGroupProductListUrl = ServerIp + "/api?api=store.price.getgroupgoodslist";
 
     //商品搜索
-    public static final String searchProduct =ServerIp+"/api?api=goods.search.goods";
+    public static final String searchProduct = ServerIp + "/api?api=goods.search.goods";
     //初始化联系客服
-    public static final String getInitIMMessage = ServerIp +"/api?api=msg.qmsg.getallcatebrand";
+    public static final String getInitIMMessage = ServerIp + "/api?api=msg.qmsg.getallcatebrand";
     //发送客服消息
-    public static final String sendMessage = ServerIp +"/api?api=msg.qmsg.getdata";
+    public static final String sendMessage = ServerIp + "/api?api=msg.qmsg.getdata";
 
     public static final String getUserWalletMoneyUrl = ServerIp + "?api=order.order.getmoney";
 
@@ -189,9 +189,9 @@ public class MainUrls {
     public static final String deleteAddressUrl = ServerIp + "?api=user.address.del";
 
     //门店系统-》门店商品价格-》查询新品列表
-    public static final String getNewlyGoodsListUrl =ServerIp +"?api=store.price.newgoods";
+    public static final String getNewlyGoodsListUrl = ServerIp + "?api=store.price.newgoods";
     //查询折扣商品列表
-    public static final String getDiscountGoodsListUrl = ServerIp +"?api=store.price.agio";
+    public static final String getDiscountGoodsListUrl = ServerIp + "?api=store.price.agio";
 
     // 实名认证
     public static final String authenticationListUrl = ServerIp + "?api=user.auth.datalist";
@@ -210,10 +210,7 @@ public class MainUrls {
     public static final String setDefaultAuthInfoUrl = ServerIp + "?api=user.auth.setdefault";
 
     //删除实名信息
-    public static final String deleteAuthUrl = ServerIp +"?api=user.auth.del";
-
-
-
+    public static final String deleteAuthUrl = ServerIp + "?api=user.auth.del";
 
 
 }

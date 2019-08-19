@@ -29,7 +29,6 @@ public class Data {
     private String error;
     private String goods_goods;
 
-
     public String getGoods_goods() {
         return goods_goods;
     }

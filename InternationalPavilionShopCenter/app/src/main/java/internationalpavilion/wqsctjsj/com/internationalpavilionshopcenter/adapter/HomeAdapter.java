@@ -36,6 +36,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.R;
 import internationalpavilion.wqsctjsj.com.internationalpavilionshopcenter.activity.BondedGoodsListActivity;
@@ -596,18 +597,18 @@ public class HomeAdapter extends DelegateAdapter.Adapter<HomeAdapter.ViewHolder>
                         Data data = bannerBeanList.get(position);
                         if (data != null) {
                             String url = data.getUrl();
-
-                            if(TextUtils.equals("商品",url) && !TextUtils.isEmpty(data.getGoods_goods()) ){
+                            int id = 0;
+                            String goods_goods = data.getGoods_goods();
+                            id = Integer.valueOf(goods_goods);
+                            if(TextUtils.equals("商品",url) && id!=0 ){
                                 Intent intent = new Intent(context,GoodsDetailActivity.class);
-                                intent.putExtra("goodsId",Integer.valueOf(data.getGoods_goods()));
+                                intent.putExtra("goodsId",id);
                                 context.startActivity(intent);
                             }
-
                         }
-
                     }
                 }catch (Exception e){
-
+                    e.printStackTrace();
                 }
 
 
